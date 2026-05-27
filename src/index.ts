@@ -8,6 +8,7 @@ export * from "./components/input-field";
 export * from "./components/label";
 export * from "./components/select";
 export * from "./components/separator";
+export * from "./components/table";
 export * from "./lib/cn";
 export * from "./lib/radius";
 export * from "./lib/size";
