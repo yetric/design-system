@@ -198,5 +198,34 @@ Consumers must import `src/styles/globals.css` themselves — not documented, no
 Options: auto-inject via side-effect import in index.ts, or document clearly in README.
 Risk: "why is nothing styled" is the #1 onboarding failure point.
 
+## First-class citizen checklist
+
+### Critical (blocking real-world adoption)
+
+- **`"use client"` directives** — every component using hooks or browser APIs needs this for Next.js App Router. Currently the library is broken in the most popular React setup. Add to all Radix-based components and anything with useState/useEffect/useRef.
+
+- **`@tanstack/react-table` → peerDependency** — currently a regular dep, meaning it ships in the bundle for every consumer even if they never use `Table`. Move to `peerDependencies`. Same principle applies to future heavy deps (Sonner, etc.).
+
+- **`exports` map in package.json** — without a proper `exports` field, bundlers can't tree-shake effectively and subpath imports behave unpredictably across toolchains. Define `exports` for ESM, types, and CSS.
+
+### Important (professionalism / trust)
+
+- **GitHub Actions CI** — no automated pipeline yet. Need:
+  - Run tests on every PR
+  - Type-check on every PR
+  - Automated `npm publish` on version tag push
+
+- **Deploy Storybook** — local Storybook is great for dev, useless as public docs. Deploy to Chromatic, Vercel, or GitHub Pages. This becomes the public API reference.
+
+- **CHANGELOG.md** — consumers can't know what changed between versions. Adopt conventional commits + auto-generated changelog (e.g. `changesets` or `release-it`).
+
+- **README** — currently sparse. Need: installation, quick start, one real usage example, link to deployed Storybook.
+
+### Nice to have
+
+- **Visual regression testing** — Chromatic catches unintended visual changes across stories. Critical once the Open Color migration happens.
+- **Bundle size tracking** — add `bundlesize` or similar to CI so regressions are caught before publish.
+- **SSR safety audit** — verify no `window`/`document` access outside effects.
+
 ## Polish / smaller items
 - **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for all new components
