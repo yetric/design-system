@@ -55,6 +55,18 @@ export const WithActions: Story = {
   )
 };
 
+export const Radius: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 max-w-sm">
+      {(["none", "xs", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+        <Card key={r} radius={r} className="px-4 py-3">
+          <CardTitle className="text-sm">{r}</CardTitle>
+        </Card>
+      ))}
+    </div>
+  )
+};
+
 export const Compact: Story = {
   render: () => (
     <Card className="max-w-sm p-4">

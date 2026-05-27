@@ -1,12 +1,17 @@
 import * as React from "react";
 
 import { cn } from "../../lib/cn";
+import { radiusClass, type Radius } from "../../lib/radius";
 
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  radius?: Radius;
+}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, radius = "lg", ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)}
+      className={cn("border bg-card text-card-foreground shadow-sm", radiusClass[radius], className)}
       {...props}
     />
   )

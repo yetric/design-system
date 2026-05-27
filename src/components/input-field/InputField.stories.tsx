@@ -72,6 +72,16 @@ export const MultilineWithError: Story = {
   }
 };
 
+export const Radius: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 max-w-sm">
+      {(["none", "xs", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+        <InputField key={r} label={r} placeholder={r} radius={r} />
+      ))}
+    </div>
+  )
+};
+
 export const FullForm: Story = {
   render: () => (
     <div className="flex flex-col gap-4 max-w-sm">
