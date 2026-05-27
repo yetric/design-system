@@ -227,5 +227,42 @@ Risk: "why is nothing styled" is the #1 onboarding failure point.
 - **Bundle size tracking** — add `bundlesize` or similar to CI so regressions are caught before publish.
 - **SSR safety audit** — verify no `window`/`document` access outside effects.
 
+## CSS Modules + Tailwind architecture
+
+**Goal:** Tailwind used internally only. Consumers can use CSS Modules (or plain CSS) with no Tailwind setup required.
+
+**Why it already mostly works:**
+Tailwind v3 wraps all output in `@layer base/components/utilities`. CSS Modules don't use layers, so they sit outside — CSS Module rules automatically win on specificity. The cascade already favours the consumer.
+
+**What still needs doing:**
+
+1. **Ship pre-compiled Tailwind CSS in dist**
+   The build pipeline needs a step that generates `dist/index.css` containing both design tokens AND all compiled Tailwind utility classes used internally. The `index.ts` auto-import then points at this built file, not the source. Consumers get styled components with zero Tailwind config.
+
+2. **Component-level CSS custom properties**
+   Beyond global tokens, expose per-component variables so consumers can override structure without touching Tailwind:
+   ```css
+   /* consumer CSS Module */
+   .myButton {
+     --button-height: 3rem;
+     --button-radius: 0;
+   }
+   ```
+   Currently no components expose these. Adding them makes CSS Modules feel first-class.
+
+3. **`data-*` attributes as styling hooks**
+   Consumers need stable hooks to target variant/size/state in CSS Modules:
+   ```css
+   .myButton[data-variant="primary"] { background: hotpink; }
+   .myButton[data-size="lg"] { padding: 1rem 2rem; }
+   ```
+   Radix already adds `data-state`, `data-disabled` etc. We should add `data-variant` and `data-size` to our own components.
+
+4. **Audit `className` position in all `cn()` calls**
+   Consumer `className` must always be the final argument in every `cn()` call so it wins regardless of specificity. Needs a pass across all components.
+
+5. **No Tailwind required from consumers**
+   Pre-compiled dist CSS (point 1) makes this true. Document explicitly: "no Tailwind config needed in your app."
+
 ## Polish / smaller items
 - **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for all new components
