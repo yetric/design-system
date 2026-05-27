@@ -59,9 +59,9 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
       [helpTextId, errorId].filter(Boolean).join(" ") || undefined;
 
     return (
-      <div className={cn("flex flex-col gap-1.5", wrapperClassName)}>
+      <div className={cn("flex flex-col", wrapperClassName)}>
         {label && (
-          <Label htmlFor={id} required={required}>
+          <Label htmlFor={id} required={required} className="mb-1.5">
             {label}
           </Label>
         )}
@@ -90,14 +90,14 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           />
         )}
         {helpText && !hasError && (
-          <p id={helpTextId} className="text-xs text-muted-foreground">
+          <div id={helpTextId} className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
             {helpText}
-          </p>
+          </div>
         )}
         {typeof error === "string" && (
-          <p id={errorId} className="text-xs text-destructive" role="alert">
+          <div id={errorId} role="alert" className="mt-1 flex items-center gap-1 text-xs text-destructive">
             {error}
-          </p>
+          </div>
         )}
       </div>
     );
