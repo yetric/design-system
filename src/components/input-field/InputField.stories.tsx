@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const WithDescription: Story = {
+export const WithHelpText: Story = {
   args: {
     helpText: "We'll never share your email with anyone."
   }
@@ -30,7 +30,6 @@ export const Required: Story = {
 
 export const WithError: Story = {
   args: {
-    label: "Email address",
     error: "Enter a valid email address.",
     required: true
   }
@@ -55,6 +54,24 @@ export const Types: Story = {
   )
 };
 
+export const Multiline: Story = {
+  args: {
+    label: "Bio",
+    placeholder: "Tell us a bit about yourself…",
+    multiline: true,
+    helpText: "Max 300 characters."
+  }
+};
+
+export const MultilineWithError: Story = {
+  args: {
+    label: "Bio",
+    multiline: true,
+    error: "Bio is required.",
+    required: true
+  }
+};
+
 export const FullForm: Story = {
   render: () => (
     <div className="flex flex-col gap-4 max-w-sm">
@@ -72,6 +89,12 @@ export const FullForm: Story = {
         placeholder="Min 8 characters"
         required
         error="Password must be at least 8 characters."
+      />
+      <InputField
+        label="Bio"
+        multiline
+        placeholder="Tell us about yourself…"
+        helpText="Max 300 characters."
       />
     </div>
   )
