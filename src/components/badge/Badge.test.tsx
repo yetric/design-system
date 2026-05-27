@@ -8,20 +8,6 @@ describe("Badge", () => {
     expect(screen.getByText("New")).toBeInTheDocument();
   });
 
-  it("renders all variants without crashing", () => {
-    const { rerender } = render(<Badge variant="default">Default</Badge>);
-    expect(screen.getByText("Default")).toBeInTheDocument();
-
-    rerender(<Badge variant="secondary">Secondary</Badge>);
-    expect(screen.getByText("Secondary")).toBeInTheDocument();
-
-    rerender(<Badge variant="outline">Outline</Badge>);
-    expect(screen.getByText("Outline")).toBeInTheDocument();
-
-    rerender(<Badge variant="destructive">Destructive</Badge>);
-    expect(screen.getByText("Destructive")).toBeInTheDocument();
-  });
-
   it("renders as a span", () => {
     render(<Badge>Tag</Badge>);
     expect(screen.getByText("Tag").tagName).toBe("SPAN");
@@ -30,5 +16,18 @@ describe("Badge", () => {
   it("accepts a custom className", () => {
     render(<Badge className="custom-class">Tag</Badge>);
     expect(screen.getByText("Tag")).toHaveClass("custom-class");
+  });
+
+  it.each([
+    "default", "secondary", "outline", "ghost",
+    "destructive", "warning", "success", "info"
+  ] as const)("renders variant %s without crashing", (variant) => {
+    render(<Badge variant={variant}>{variant}</Badge>);
+    expect(screen.getByText(variant)).toBeInTheDocument();
+  });
+
+  it.each(["sm", "md", "lg"] as const)("renders size %s without crashing", (size) => {
+    render(<Badge size={size}>{size}</Badge>);
+    expect(screen.getByText(size)).toBeInTheDocument();
   });
 });

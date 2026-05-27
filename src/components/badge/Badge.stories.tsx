@@ -20,7 +20,21 @@ export const Variants: Story = {
       <Badge variant="default">Default</Badge>
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="outline">Outline</Badge>
+      <Badge variant="ghost">Ghost</Badge>
       <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="info">Info</Badge>
+    </div>
+  )
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Badge size="sm">Small</Badge>
+      <Badge size="md">Medium</Badge>
+      <Badge size="lg">Large</Badge>
     </div>
   )
 };
@@ -37,12 +51,24 @@ export const InContext: Story = {
         <Badge variant="secondary">Beta</Badge>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-sm">Legacy export</span>
-        <Badge variant="outline">Deprecated</Badge>
+        <span className="text-sm">Deploy status</span>
+        <Badge variant="success">Live</Badge>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Storage</span>
+        <Badge variant="warning">Near limit</Badge>
       </div>
       <div className="flex items-center gap-2">
         <span className="text-sm">Billing</span>
         <Badge variant="destructive">Overdue</Badge>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Maintenance</span>
+        <Badge variant="info">Scheduled</Badge>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Legacy export</span>
+        <Badge variant="outline">Deprecated</Badge>
       </div>
     </div>
   )

@@ -75,7 +75,7 @@ export const WithCustomFooter: Story = {
         </DialogHeader>
         <DialogFooter>
           <Button variant="ghost">Keep project</Button>
-          <Button variant="danger">Archive</Button>
+          <Button variant="destructive">Archive</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
