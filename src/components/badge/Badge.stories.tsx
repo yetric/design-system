@@ -41,6 +41,20 @@ export const Sizes: Story = {
   )
 };
 
+export const Radius: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge radius="none">None</Badge>
+      <Badge radius="xs">XSmall</Badge>
+      <Badge radius="sm">Small</Badge>
+      <Badge radius="md">Medium</Badge>
+      <Badge radius="lg">Large</Badge>
+      <Badge radius="xl">XLarge</Badge>
+      <Badge radius="full">Full</Badge>
+    </div>
+  )
+};
+
 export const InContext: Story = {
   render: () => (
     <div className="flex flex-col gap-3">

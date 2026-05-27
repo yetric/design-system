@@ -43,6 +43,20 @@ export const Sizes: Story = {
   )
 };
 
+export const Radius: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Button radius="none">None</Button>
+      <Button radius="xs">XSmall</Button>
+      <Button radius="sm">Small</Button>
+      <Button radius="md">Medium</Button>
+      <Button radius="lg">Large</Button>
+      <Button radius="xl">XLarge</Button>
+      <Button radius="full">Full</Button>
+    </div>
+  )
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,
