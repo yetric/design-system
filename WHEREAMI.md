@@ -71,11 +71,14 @@ import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
 - Browser: Storybook + Playwright/Chromium via @storybook/addon-vitest
 - `src/test/setup.ts` polyfills pointer capture, scrollIntoView, ResizeObserver for Radix in jsdom
 
-## What's not done yet (good next steps)
-- **Tooltip** — Radix `@radix-ui/react-tooltip`, small and high-utility
-- **Toast/Sonner** — feedback after actions
-- **Avatar** — image + fallback initials
-- **DropdownMenu** — useful for action menus (Radix `@radix-ui/react-dropdown-menu`)
-- **Icon support** next to helpText/error in InputField (wrapper already has `flex items-center gap-1`)
-- **InputField sizes** — sizes exist but Label/helpText/error text size doesn't scale with them yet
-- **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for new components
+## What's next (priority order)
+
+1. **DropdownMenu** — unblocks user menus, action menus, DataTable row actions. Radix `@radix-ui/react-dropdown-menu`. Highest utility.
+2. **Avatar** — image + fallback initials. Simple, no Radix needed.
+3. **Toast/Sonner** — feedback after actions. Needs a provider + positioning system, slightly heavier setup.
+4. **Tooltip** — deferred. Skipped for now: invisible on mobile, often misused, add only when a real use case demands it.
+
+## Polish / smaller items
+- **Icon support** next to helpText/error in InputField (wrapper already has `flex items-center gap-1`, just needs an icon library decision)
+- **InputField label/help text size scaling** — sizes exist on the input itself but Label/helpText/error font size doesn't scale with them yet
+- **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for all new components
