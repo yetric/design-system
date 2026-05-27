@@ -7,4 +7,6 @@ export * from "./components/input-field";
 export * from "./components/label";
 export * from "./lib/cn";
 export * from "./lib/radius";
+export * from "./lib/size";
 export * from "./lib/theme";
+export * from "./lib/variant";

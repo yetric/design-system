@@ -1,4 +1,14 @@
-export type Radius = "none" | "xs" | "sm" | "md" | "lg" | "xl" | "full";
+export const RADIUS = {
+  NONE: "none",
+  XS:   "xs",
+  SM:   "sm",
+  MD:   "md",
+  LG:   "lg",
+  XL:   "xl",
+  FULL: "full"
+} as const;
+
+export type Radius = (typeof RADIUS)[keyof typeof RADIUS];
 
 export const radiusClass: Record<Radius, string> = {
   none: "rounded-none",
