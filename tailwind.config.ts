@@ -1,9 +1,13 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: "class",
   content: ["./src/**/*.{ts,tsx}", "./.storybook/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["IBM Plex Sans", "ui-sans-serif", "system-ui", "sans-serif"]
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
