@@ -78,7 +78,28 @@ import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
 3. **Toast/Sonner** — feedback after actions. Needs a provider + positioning system, slightly heavier setup.
 4. **Tooltip** — deferred. Skipped for now: invisible on mobile, often misused, add only when a real use case demands it.
 
+## Incomplete / gaps in existing components
+
+| Component   | Gap                                                                 |
+|-------------|---------------------------------------------------------------------|
+| Button      | Loading state (spinner + disabled during async)                     |
+| Button      | No standardized icon slot (left/right)                              |
+| Card        | No sub-components — need CardHeader, CardContent, CardFooter        |
+| Input       | Hardcoded h-10, no size prop — inconsistent with InputField         |
+| InputField  | Label/helpText/error font size doesn't scale with size prop         |
+| InputField  | Icon support next to helpText/error (flex wrapper ready, no prop)   |
+| Checkbox    | No error/invalid state for form validation                          |
+| Dialog      | Missing AlertDialog (destructive confirmations, different semantic) |
+| Table       | No loading/skeleton state                                           |
+
+**Priority order for fixes:**
+1. Button loading state — very commonly needed, blocks real usage
+2. Card sub-components — CardHeader, CardContent, CardFooter
+3. Input size prop — fix the inconsistency
+4. Table loading/skeleton
+5. AlertDialog
+6. Checkbox error state
+7. InputField label size scaling + icon support
+
 ## Polish / smaller items
-- **Icon support** next to helpText/error in InputField (wrapper already has `flex items-center gap-1`, just needs an icon library decision)
-- **InputField label/help text size scaling** — sizes exist on the input itself but Label/helpText/error font size doesn't scale with them yet
 - **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for all new components
