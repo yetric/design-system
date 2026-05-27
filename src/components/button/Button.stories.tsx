@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 
 import { Button } from "./Button";
 
-const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+const meta = {
   component: Button,
+  tags: ["ai-generated", "needs-work"],
   args: {
     children: "Save"
   }
-};
+} satisfies Meta<typeof Button>;
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
@@ -40,5 +41,35 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     children: "Disabled"
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("button", { name: "Disabled" })).toHaveAttribute(
+      "aria-disabled",
+      "true"
+    );
+  }
+};
+
+export const AsChildLink: Story = {
+  render: () => (
+    <Button asChild>
+      <a href="/docs">Read docs</a>
+    </Button>
+  ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("link", { name: "Read docs" })).toHaveAttribute(
+      "href",
+      "/docs"
+    );
+  }
+};
+
+export const CssCheck: Story = {
+  args: {
+    children: "Styled button"
+  },
+  play: async ({ canvas }) => {
+    const button = canvas.getByRole("button", { name: "Styled button" });
+    await expect(getComputedStyle(button).borderRadius).toBe("6px");
   }
 };
