@@ -32,9 +32,11 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-2">
+      <Badge size="xs">XSmall</Badge>
       <Badge size="sm">Small</Badge>
       <Badge size="md">Medium</Badge>
       <Badge size="lg">Large</Badge>
+      <Badge size="xl">XLarge</Badge>
     </div>
   )
 };

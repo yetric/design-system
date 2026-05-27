@@ -18,9 +18,11 @@ const badgeVariants = cva(
         info:        "bg-info text-info-foreground"
       },
       size: {
+        xs: "px-1.5 py-px text-xs",
         sm: "px-2 py-0.5 text-xs",
         md: "px-2.5 py-0.5 text-xs",
-        lg: "px-3 py-1 text-sm"
+        lg: "px-3 py-1 text-sm",
+        xl: "px-4 py-1.5 text-base"
       }
     },
     defaultVariants: {
