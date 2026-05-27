@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputField } from "./InputField";
 
 const meta = {
+  title: "InputField",
   component: InputField,
   args: {
     label: "Email address",
