@@ -10,9 +10,10 @@ import {
   TableHeader,
   TableRow
 } from "./Table";
-import { DataTable } from "./DataTable";
 
-describe("Table primitives", () => {
+// ─── Children mode ───────────────────────────────────────────────────────────
+
+describe("Table — children mode", () => {
   it("renders a basic table with rows and cells", () => {
     render(
       <Table>
@@ -52,10 +53,12 @@ describe("Table primitives", () => {
   });
 });
 
+// ─── Data-driven mode ────────────────────────────────────────────────────────
+
 type Row = { id: string; name: string; role: string };
 
 const data: Row[] = [
-  { id: "1", name: "Alice", role: "Admin" },
+  { id: "1", name: "Alice", role: "Admin"  },
   { id: "2", name: "Bob",   role: "Viewer" },
   { id: "3", name: "Carol", role: "Editor" }
 ];
@@ -65,49 +68,49 @@ const columns: ColumnDef<Row>[] = [
   { accessorKey: "role", header: "Role" }
 ];
 
-describe("DataTable", () => {
+describe("Table — data-driven mode", () => {
   it("renders all rows", () => {
-    render(<DataTable data={data} columns={columns} />);
+    render(<Table data={data} columns={columns} />);
     expect(screen.getByText("Alice")).toBeInTheDocument();
     expect(screen.getByText("Bob")).toBeInTheDocument();
     expect(screen.getByText("Carol")).toBeInTheDocument();
   });
 
   it("shows empty state when data is empty", () => {
-    render(<DataTable data={[]} columns={columns} />);
+    render(<Table data={[]} columns={columns} />);
     expect(screen.getByText("No results.")).toBeInTheDocument();
   });
 
   it("renders a search input when searchable", () => {
-    render(<DataTable data={data} columns={columns} searchable />);
+    render(<Table data={data} columns={columns} searchable />);
     expect(screen.getByPlaceholderText("Search…")).toBeInTheDocument();
   });
 
   it("filters rows when searching", async () => {
-    render(<DataTable data={data} columns={columns} searchable />);
+    render(<Table data={data} columns={columns} searchable />);
     await userEvent.type(screen.getByPlaceholderText("Search…"), "Alice");
     expect(screen.getByText("Alice")).toBeInTheDocument();
     expect(screen.queryByText("Bob")).not.toBeInTheDocument();
   });
 
   it("renders select-all checkbox when selectable", () => {
-    render(<DataTable data={data} columns={columns} selectable />);
+    render(<Table data={data} columns={columns} selectable />);
     expect(screen.getByRole("checkbox", { name: "Select all" })).toBeInTheDocument();
   });
 
   it("shows Columns button", () => {
-    render(<DataTable data={data} columns={columns} />);
+    render(<Table data={data} columns={columns} />);
     expect(screen.getByRole("button", { name: /columns/i })).toBeInTheDocument();
   });
 
   it("shows pagination controls when pageSize is set", () => {
-    render(<DataTable data={data} columns={columns} pageSize={2} />);
+    render(<Table data={data} columns={columns} pageSize={2} />);
     expect(screen.getByRole("button", { name: /previous/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /next/i })).toBeInTheDocument();
   });
 
   it("paginates rows correctly", async () => {
-    render(<DataTable data={data} columns={columns} pageSize={2} />);
+    render(<Table data={data} columns={columns} pageSize={2} />);
     expect(screen.getByText("Alice")).toBeInTheDocument();
     expect(screen.getByText("Bob")).toBeInTheDocument();
     expect(screen.queryByText("Carol")).not.toBeInTheDocument();
