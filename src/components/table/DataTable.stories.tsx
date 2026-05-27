@@ -73,6 +73,48 @@ const columns: ColumnDef<User>[] = [
   }
 ];
 
+const columnsWithFilters: ColumnDef<User>[] = [
+  {
+    accessorKey: "name",
+    header: "Name",
+    meta: { filterType: "text" },
+    cell: ({ row }) => <span className="font-medium">{row.getValue("name")}</span>
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+    meta: { filterType: "text" },
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.getValue("email")}</span>
+    )
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
+    meta: { filterType: "select", filterOptions: ["Admin", "Editor", "Viewer"] }
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    meta: { filterType: "select", filterOptions: ["active", "inactive"] },
+    cell: ({ row }) => {
+      const status = row.getValue<string>("status");
+      return (
+        <Badge variant={status === "active" ? "success" : "secondary"} size="sm">
+          {status}
+        </Badge>
+      );
+    }
+  },
+  {
+    accessorKey: "joined",
+    header: "Joined",
+    meta: { filterType: "date" },
+    cell: ({ row }) =>
+      new Date(row.getValue<string>("joined")).toLocaleDateString("en-SE")
+  }
+];
+
 export const Default: Story = {
   render: () => <DataTable data={users} columns={columns} />
 };
@@ -81,13 +123,19 @@ export const Searchable: Story = {
   render: () => <DataTable data={users} columns={columns} searchable />
 };
 
+export const WithColumnFilters: Story = {
+  render: () => (
+    <DataTable data={users} columns={columnsWithFilters} searchable />
+  )
+};
+
 export const WithRowSelection: Story = {
-  render: () => <DataTable data={users} columns={columns} searchable selectable />
+  render: () => <DataTable data={users} columns={columnsWithFilters} searchable selectable />
 };
 
 export const WithPagination: Story = {
   render: () => (
-    <DataTable data={users} columns={columns} searchable selectable pageSize={5} />
+    <DataTable data={users} columns={columnsWithFilters} searchable selectable pageSize={5} />
   )
 };
 

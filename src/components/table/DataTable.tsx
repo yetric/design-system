@@ -1,8 +1,11 @@
 import * as React from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  type Column,
   type ColumnDef,
   type ColumnFiltersState,
+  type FilterFn,
+  type RowData,
   type RowSelectionState,
   type SortingState,
   type VisibilityState,
@@ -18,7 +21,35 @@ import { cn } from "../../lib/cn";
 import { Button } from "../button/Button";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Input } from "../input/Input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "../select/Select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./Table";
+
+// Extend TanStack's ColumnMeta and FilterFns via module augmentation
+declare module "@tanstack/react-table" {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface ColumnMeta<TData extends RowData, TValue> {
+    filterType?: "text" | "number" | "select" | "date";
+    filterOptions?: string[];
+  }
+  interface FilterFns {
+    dateRange: FilterFn<unknown>;
+  }
+}
+
+const dateRangeFilter: FilterFn<unknown> = (row, columnId, value: [string, string]) => {
+  const cell = row.getValue<string>(columnId);
+  const [from, to] = value ?? ["", ""];
+  if (from && cell < from) return false;
+  if (to && cell > to) return false;
+  return true;
+};
+dateRangeFilter.autoRemove = (val: [string, string]) => !val || (!val[0] && !val[1]);
 
 export type { ColumnDef };
 
@@ -56,6 +87,107 @@ function SortIcon({ sorted }: { sorted: false | "asc" | "desc" }) {
   );
 }
 
+function ColumnFilter<TData>({ column }: { column: Column<TData> }) {
+  const filterType = column.columnDef.meta?.filterType;
+  if (!filterType) return null;
+
+  const filterValue = column.getFilterValue();
+
+  if (filterType === "text") {
+    return (
+      <Input
+        value={(filterValue as string) ?? ""}
+        onChange={(e) => column.setFilterValue(e.target.value || undefined)}
+        placeholder="Filter…"
+        className="h-7 text-xs"
+      />
+    );
+  }
+
+  if (filterType === "number") {
+    const [min, max] = (filterValue as [number?, number?]) ?? [];
+    return (
+      <div className="flex gap-1">
+        <Input
+          type="number"
+          value={min === undefined ? "" : String(min)}
+          onChange={(e) => {
+            const v = e.target.value === "" ? undefined : Number(e.target.value);
+            column.setFilterValue((prev: [number?, number?]) => [v, prev?.[1]]);
+          }}
+          placeholder="Min"
+          className="h-7 w-16 text-xs"
+        />
+        <Input
+          type="number"
+          value={max === undefined ? "" : String(max)}
+          onChange={(e) => {
+            const v = e.target.value === "" ? undefined : Number(e.target.value);
+            column.setFilterValue((prev: [number?, number?]) => [prev?.[0], v]);
+          }}
+          placeholder="Max"
+          className="h-7 w-16 text-xs"
+        />
+      </div>
+    );
+  }
+
+  if (filterType === "select") {
+    const options = column.columnDef.meta?.filterOptions ?? [];
+    const selected = (filterValue as string) ?? "__all__";
+    return (
+      <Select
+        value={selected}
+        onValueChange={(v) => column.setFilterValue(v === "__all__" ? undefined : v)}
+      >
+        <SelectTrigger size="sm" className="h-7 text-xs">
+          <SelectValue placeholder="All" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="__all__">All</SelectItem>
+          {options.map((opt) => (
+            <SelectItem key={opt} value={opt}>
+              {opt}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    );
+  }
+
+  if (filterType === "date") {
+    const [from = "", to = ""] = (filterValue as [string, string]) ?? [];
+    return (
+      <div className="flex flex-col gap-1">
+        <Input
+          type="date"
+          value={from}
+          onChange={(e) =>
+            column.setFilterValue((prev: [string, string]) => [
+              e.target.value,
+              prev?.[1] ?? ""
+            ])
+          }
+          className="h-7 text-xs"
+        />
+        <Input
+          type="date"
+          value={to}
+          onChange={(e) =>
+            column.setFilterValue((prev: [string, string]) => [
+              prev?.[0] ?? "",
+              e.target.value
+            ])
+          }
+          className="h-7 text-xs"
+        />
+      </div>
+    );
+  }
+
+  return null;
+}
+
 function DataTable<TData>({
   data,
   columns,
@@ -70,6 +202,7 @@ function DataTable<TData>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [colMenuOpen, setColMenuOpen] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
   const colMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,6 +215,11 @@ function DataTable<TData>({
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [colMenuOpen]);
+
+  const hasFilterableColumns = useMemo(
+    () => columns.some((col) => col.meta?.filterType),
+    [columns]
+  );
 
   const allColumns = useMemo<ColumnDef<TData>[]>(() => {
     if (!selectable) return columns;
@@ -116,9 +254,26 @@ function DataTable<TData>({
     return [selectCol, ...columns];
   }, [columns, selectable]);
 
+  // Set filterFn on each column based on meta.filterType
+  const processedColumns = useMemo<ColumnDef<TData>[]>(() => {
+    return allColumns.map((col) => {
+      const ft = col.meta?.filterType;
+      if (!ft) return col;
+      return {
+        ...col,
+        filterFn:
+          ft === "date"   ? ("dateRange" as const)     :
+          ft === "number" ? ("inNumberRange" as const) :
+          ft === "select" ? ("equals" as const)        :
+                            ("includesString" as const)
+      };
+    });
+  }, [allColumns]);
+
   const table = useReactTable({
     data,
-    columns: allColumns,
+    columns: processedColumns,
+    filterFns: { dateRange: dateRangeFilter },
     state: {
       sorting,
       columnFilters,
@@ -136,15 +291,21 @@ function DataTable<TData>({
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: { pagination: { pageSize: pageSize ?? 999999 } },
-    enableRowSelection: selectable
+    enableRowSelection: selectable,
+    autoResetPageIndex: true
   });
 
   const selectedCount = Object.keys(rowSelection).length;
   const hideable = table.getAllLeafColumns().filter((col) => col.getCanHide());
+  const activeFilterCount = columnFilters.length;
+
+  // Last leaf-level header group — used for the filter row
+  const leafHeaders = table.getHeaderGroups().at(-1)!.headers;
 
   return (
     <div className={cn("space-y-3", className)}>
-      <div className="flex items-center gap-3">
+      {/* Toolbar */}
+      <div className="flex items-center gap-2">
         {searchable && (
           <Input
             placeholder="Search…"
@@ -154,52 +315,77 @@ function DataTable<TData>({
           />
         )}
         {selectedCount > 0 && (
-          <span className="text-sm text-muted-foreground">
-            {selectedCount} selected
-          </span>
+          <span className="text-sm text-muted-foreground">{selectedCount} selected</span>
         )}
-        <div className="relative ml-auto" ref={colMenuRef}>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setColMenuOpen((v) => !v)}
-          >
-            Columns
-            <svg
-              className="ml-1.5 h-3.5 w-3.5 opacity-60"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M4 6l4 4 4-4" />
-            </svg>
-          </Button>
-          {colMenuOpen && (
-            <div className="absolute right-0 top-full z-[var(--z-dropdown)] mt-1 min-w-[160px] rounded-md border border-border bg-card p-1 shadow-md">
-              {hideable.map((col) => (
-                <label
-                  key={col.id}
-                  className="flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm hover:bg-accent"
+
+        <div className="ml-auto flex items-center gap-2">
+          {hasFilterableColumns && (
+            <>
+              <Button
+                variant={showFilters ? "secondary" : "outline"}
+                size="sm"
+                onClick={() => setShowFilters((v) => !v)}
+              >
+                Filters
+                {activeFilterCount > 0 && ` (${activeFilterCount})`}
+              </Button>
+              {activeFilterCount > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setColumnFilters([])}
                 >
-                  <Checkbox
-                    size="sm"
-                    checked={col.getIsVisible()}
-                    onCheckedChange={(v) => col.toggleVisibility(!!v)}
-                  />
-                  <span className="capitalize">{col.id}</span>
-                </label>
-              ))}
-            </div>
+                  Clear
+                </Button>
+              )}
+            </>
           )}
+
+          <div className="relative" ref={colMenuRef}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setColMenuOpen((v) => !v)}
+            >
+              Columns
+              <svg
+                className="ml-1.5 h-3.5 w-3.5 opacity-60"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 6l4 4 4-4" />
+              </svg>
+            </Button>
+            {colMenuOpen && (
+              <div className="absolute right-0 top-full z-[var(--z-dropdown)] mt-1 min-w-[160px] rounded-md border border-border bg-card p-1 shadow-md">
+                {hideable.map((col) => (
+                  <label
+                    key={col.id}
+                    className="flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm hover:bg-accent"
+                  >
+                    <Checkbox
+                      size="sm"
+                      checked={col.getIsVisible()}
+                      onCheckedChange={(v) => col.toggleVisibility(!!v)}
+                    />
+                    <span className="capitalize">{col.id}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
+      {/* Table */}
       <div className="rounded-md border border-border">
         <Table>
           <TableHeader>
+            {/* Column header row(s) */}
             {table.getHeaderGroups().map((hg) => (
               <TableRow key={hg.id} className="hover:bg-transparent">
                 {hg.headers.map((header) => (
@@ -219,6 +405,17 @@ function DataTable<TData>({
                 ))}
               </TableRow>
             ))}
+
+            {/* Filter row */}
+            {showFilters && (
+              <TableRow className="hover:bg-transparent">
+                {leafHeaders.map((header) => (
+                  <TableHead key={header.id} className="py-2">
+                    <ColumnFilter column={header.column} />
+                  </TableHead>
+                ))}
+              </TableRow>
+            )}
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows.length ? (
@@ -234,7 +431,7 @@ function DataTable<TData>({
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={allColumns.length}
+                  colSpan={processedColumns.length}
                   className="h-24 text-center text-muted-foreground"
                 >
                   No results.
@@ -245,6 +442,7 @@ function DataTable<TData>({
         </Table>
       </div>
 
+      {/* Pagination */}
       {pageSize && (
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">
