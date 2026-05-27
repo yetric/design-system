@@ -13,7 +13,7 @@ import { Button } from "../button";
 
 const meta = {
   component: Card,
-  tags: ["ai-generated", "needs-work"]
+  tags: ["ai-generated"]
 } satisfies Meta<typeof Card>;
 
 export default meta;

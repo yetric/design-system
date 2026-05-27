@@ -5,7 +5,7 @@ import { Button } from "./Button";
 
 const meta = {
   component: Button,
-  tags: ["ai-generated", "needs-work"],
+  tags: ["ai-generated"],
   args: {
     children: "Save"
   }

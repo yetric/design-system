@@ -14,7 +14,7 @@ import {
 
 const meta = {
   component: Dialog,
-  tags: ["ai-generated", "needs-work"]
+  tags: ["ai-generated"]
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
