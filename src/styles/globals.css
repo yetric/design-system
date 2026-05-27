@@ -5,84 +5,77 @@
 @tailwind utilities;
 
 :root {
-  /* zinc-50 */
+  /* Colors */
   --background: 0 0% 98%;
-  /* zinc-900 */
   --foreground: 240 6% 10%;
-
-  /* white */
   --card: 0 0% 100%;
   --card-foreground: 240 6% 10%;
-
-  /* violet-600 */
   --primary: 262 83% 58%;
   --primary-foreground: 0 0% 100%;
-
-  /* zinc-100 */
   --secondary: 240 5% 96%;
-  /* zinc-700 */
   --secondary-foreground: 240 5% 26%;
-
-  /* zinc-100 */
   --muted: 240 5% 96%;
-  /* zinc-500 */
   --muted-foreground: 240 4% 46%;
-
-  /* zinc-100 */
   --accent: 240 5% 96%;
   --accent-foreground: 240 6% 10%;
-
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-
-  /* zinc-200 */
   --border: 240 6% 90%;
   --input: 240 6% 90%;
-
-  /* violet-600 */
   --ring: 262 83% 58%;
 
+  /* Border radius */
   --radius: 0.5rem;
+
+  /* Shadows — zinc-tinted for cohesion */
+  --shadow-color: 240 6% 10%;
+  --shadow-sm: 0 1px 2px 0 hsl(var(--shadow-color) / 0.06);
+  --shadow-md: 0 4px 6px -1px hsl(var(--shadow-color) / 0.08), 0 2px 4px -2px hsl(var(--shadow-color) / 0.06);
+  --shadow-lg: 0 10px 15px -3px hsl(var(--shadow-color) / 0.1), 0 4px 6px -4px hsl(var(--shadow-color) / 0.06);
+  --shadow-xl: 0 20px 25px -5px hsl(var(--shadow-color) / 0.1), 0 8px 10px -6px hsl(var(--shadow-color) / 0.06);
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-base: 150ms;
+  --duration-slow: 300ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* Z-index scale */
+  --z-dropdown: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
 }
 
 .dark {
-  /* zinc-950 */
+  /* Colors */
   --background: 240 11% 4%;
-  /* zinc-50 */
   --foreground: 0 0% 98%;
-
-  /* zinc-900 */
   --card: 240 6% 10%;
   --card-foreground: 0 0% 98%;
-
-  /* violet-400 */
   --primary: 263 70% 75%;
-  /* zinc-950 */
   --primary-foreground: 240 11% 4%;
-
-  /* zinc-800 */
   --secondary: 240 4% 16%;
-  /* zinc-300 */
   --secondary-foreground: 240 5% 84%;
-
-  /* zinc-800 */
   --muted: 240 4% 16%;
-  /* zinc-400 */
   --muted-foreground: 240 4% 65%;
-
-  /* zinc-800 */
   --accent: 240 4% 16%;
   --accent-foreground: 0 0% 98%;
-
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-
-  /* zinc-700 */
   --border: 240 5% 26%;
   --input: 240 5% 26%;
-
-  /* violet-400 */
   --ring: 263 70% 75%;
+
+  /* Shadows — deeper in dark mode */
+  --shadow-color: 240 11% 2%;
+  --shadow-sm: 0 1px 2px 0 hsl(var(--shadow-color) / 0.4);
+  --shadow-md: 0 4px 6px -1px hsl(var(--shadow-color) / 0.5), 0 2px 4px -2px hsl(var(--shadow-color) / 0.4);
+  --shadow-lg: 0 10px 15px -3px hsl(var(--shadow-color) / 0.6), 0 4px 6px -4px hsl(var(--shadow-color) / 0.4);
+  --shadow-xl: 0 20px 25px -5px hsl(var(--shadow-color) / 0.6), 0 8px 10px -6px hsl(var(--shadow-color) / 0.4);
 }
 
 * {

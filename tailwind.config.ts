@@ -8,10 +8,44 @@ export default {
       fontFamily: {
         sans: ["IBM Plex Sans", "ui-sans-serif", "system-ui", "sans-serif"]
       },
+      fontSize: {
+        xs:    ["0.75rem",  { lineHeight: "1rem",    letterSpacing: "0.01em" }],
+        sm:    ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.005em" }],
+        base:  ["1rem",     { lineHeight: "1.5rem",  letterSpacing: "0em" }],
+        lg:    ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "0em" }],
+        xl:    ["1.25rem",  { lineHeight: "1.75rem", letterSpacing: "-0.01em" }],
+        "2xl": ["1.5rem",   { lineHeight: "2rem",    letterSpacing: "-0.015em" }],
+        "3xl": ["1.875rem", { lineHeight: "2.25rem", letterSpacing: "-0.02em" }],
+        "4xl": ["2.25rem",  { lineHeight: "2.5rem",  letterSpacing: "-0.025em" }]
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)"
+      },
+      boxShadow: {
+        sm:      "var(--shadow-sm)",
+        DEFAULT: "var(--shadow-md)",
+        md:      "var(--shadow-md)",
+        lg:      "var(--shadow-lg)",
+        xl:      "var(--shadow-xl)"
+      },
+      transitionDuration: {
+        fast: "var(--duration-fast)",
+        base: "var(--duration-base)",
+        slow: "var(--duration-slow)"
+      },
+      transitionTimingFunction: {
+        default:  "var(--ease-default)",
+        "ease-in":  "var(--ease-in)",
+        "ease-out": "var(--ease-out)"
+      },
+      zIndex: {
+        dropdown: "var(--z-dropdown)",
+        overlay:  "var(--z-overlay)",
+        modal:    "var(--z-modal)",
+        toast:    "var(--z-toast)",
+        tooltip:  "var(--z-tooltip)"
       },
       colors: {
         border: "hsl(var(--border))",
