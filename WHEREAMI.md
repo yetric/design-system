@@ -148,5 +148,55 @@ Things to tackle (not all at once — pick up as we go):
 - **Zero required props** — every component should render something reasonable with no props passed.
 - **Controlled + uncontrolled** — all inputs should work both ways without friction.
 
+## Foundational gaps (non-component)
+
+### 1. Icon strategy — DECISION NEEDED
+Blocks: Button icons, InputField prefix/suffix, alert icons, Table actions, etc.
+Options:
+- **Lucide React** — most common in React ecosystem, tree-shakeable, consistent style
+- **Phosphor Icons** — richer set, multiple weights, same tree-shakeable pattern
+- **Heroicons** — Tailwind's own, smaller set
+- **Custom SVG sprite** — full control, no external dep, more maintenance
+
+Recommendation: Lucide. Decide and integrate before adding icon props to any component.
+
+### 2. Skeleton component
+Standalone `<Skeleton>` primitive (animated pulse) usable anywhere — cards, lists,
+avatars, table rows. Not just a Table concern. One component covers all loading states.
+
+### 3. ThemeProvider + useTheme hook
+Currently `applyTheme`/`getSystemTheme` helpers exist but apps wire dark mode themselves.
+Need:
+- `<ThemeProvider defaultTheme="system">` React context
+- `useTheme()` hook returning `{ theme, setTheme }`
+- Handles system preference detection + localStorage persistence
+- Lives in `src/lib/theme.ts` (already has helpers, extend it)
+
+### 4. Typography scale + Text/Heading components
+No type hierarchy codified. Need:
+- Defined scale: display, h1–h4, body-lg, body, body-sm, caption, label
+- `<Heading as="h1–h4" size="...">` component
+- `<Text size="..." weight="..." color="...">` component
+- Tokens for font-size, line-height, letter-spacing in Tailwind config
+
+### 5. Stack layout primitive
+Devs currently write raw `flex flex-col gap-4` everywhere. A thin:
+```tsx
+<Stack gap={4} direction="row" align="center">...</Stack>
+```
+covers 80% of layout needs and makes intent explicit. No magic, just a convenience wrapper.
+
+### 6. Form integration pattern
+react-hook-form is the dominant form library. Need:
+- Verify `ref` forwarding works cleanly on InputField, Checkbox, Select
+- A `<FormField>` wrapper that accepts `control`/`name` from RHF and wires errors automatically
+- Example story showing a full form with validation (Zod schema)
+- Document the pattern in Storybook
+
+### 7. CSS delivery
+Consumers must import `src/styles/globals.css` themselves — not documented, not enforced.
+Options: auto-inject via side-effect import in index.ts, or document clearly in README.
+Risk: "why is nothing styled" is the #1 onboarding failure point.
+
 ## Polish / smaller items
 - **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for all new components
