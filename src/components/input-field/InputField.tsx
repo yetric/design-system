@@ -3,14 +3,31 @@ import { useId } from "react";
 
 import { cn } from "../../lib/cn";
 import { radiusClass, type Radius } from "../../lib/radius";
+import { type Size } from "../../lib/size";
 import { Label } from "../label/Label";
 
 const fieldBase =
-  "flex w-full border border-input bg-background px-3 py-2 text-sm " +
+  "flex w-full border border-input bg-background " +
   "placeholder:text-muted-foreground transition-colors duration-base " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "disabled:cursor-not-allowed disabled:opacity-50";
+
+const inputSizeClass: Record<Size, string> = {
+  xs: "h-7 px-2 text-xs",
+  sm: "h-8 px-3 text-sm",
+  md: "h-10 px-3 text-sm",
+  lg: "h-12 px-4 text-base",
+  xl: "h-14 px-5 text-base"
+};
+
+const textareaSizeClass: Record<Size, string> = {
+  xs: "px-2 py-1 text-xs",
+  sm: "px-3 py-1.5 text-sm",
+  md: "px-3 py-2 text-sm",
+  lg: "px-4 py-3 text-base",
+  xl: "px-5 py-4 text-base"
+};
 
 type BaseProps = {
   label?: string;
@@ -19,10 +36,11 @@ type BaseProps = {
   required?: boolean;
   wrapperClassName?: string;
   radius?: Radius;
+  size?: Size;
 };
 
 type InputFieldInputProps = BaseProps &
-  Omit<React.InputHTMLAttributes<HTMLInputElement>, "error"> & {
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, "error" | "size"> & {
     multiline?: false;
   };
 
@@ -41,6 +59,7 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
       error,
       required,
       radius = "md",
+      size = "md",
       id: idProp,
       className,
       wrapperClassName,
@@ -74,7 +93,7 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
             id={id}
             aria-invalid={hasError || undefined}
             aria-describedby={describedBy}
-            className={cn(fieldBase, "min-h-[100px] resize-y", radiusClass[radius], errorClass, className)}
+            className={cn(fieldBase, "min-h-[100px] resize-y", textareaSizeClass[size], radiusClass[radius], errorClass, className)}
             {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
           />
         ) : (
@@ -85,7 +104,8 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
             aria-describedby={describedBy}
             className={cn(
               fieldBase,
-              "h-10 file:border-0 file:bg-transparent file:text-sm file:font-medium",
+              inputSizeClass[size],
+              "file:border-0 file:bg-transparent file:text-sm file:font-medium",
               radiusClass[radius],
               errorClass,
               className

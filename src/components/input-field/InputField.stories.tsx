@@ -82,6 +82,16 @@ export const Radius: Story = {
   )
 };
 
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 max-w-sm">
+      {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
+        <InputField key={s} label={s} placeholder={s} size={s} />
+      ))}
+    </div>
+  )
+};
+
 export const FullForm: Story = {
   render: () => (
     <div className="flex flex-col gap-4 max-w-sm">
