@@ -1,0 +1,39 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import * as React from "react";
+import { Slider } from "./Slider";
+
+const meta: Meta<typeof Slider> = {
+  title: "Components/Slider",
+  component: Slider,
+  parameters: { layout: "centered" },
+};
+export default meta;
+type Story = StoryObj<typeof Slider>;
+
+export const Default: Story = {
+  render: () => <Slider defaultValue={[50]} max={100} step={1} className="w-[300px]" />,
+};
+
+export const Range: Story = {
+  render: () => <Slider defaultValue={[20, 80]} max={100} step={1} className="w-[300px]" />,
+};
+
+export const WithSteps: Story = {
+  render: () => <Slider defaultValue={[3]} max={10} step={1} className="w-[300px]" />,
+};
+
+export const Controlled: Story = {
+  render: () => {
+    const [value, setValue] = React.useState([40]);
+    return (
+      <div className="space-y-3 w-[300px]">
+        <Slider value={value} onValueChange={setValue} max={100} />
+        <p className="text-sm text-center text-muted-foreground">Value: {value[0]}</p>
+      </div>
+    );
+  },
+};
+
+export const Disabled: Story = {
+  render: () => <Slider defaultValue={[60]} disabled className="w-[300px]" />,
+};
