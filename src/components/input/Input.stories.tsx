@@ -9,7 +9,13 @@ const meta = {
   tags: ["autodocs"],
   args: {
     placeholder: "Placeholder…"
-  }
+  },
+  argTypes: {
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    radius:   { control: "select", options: ["none","sm","md","lg","xl","full"] },
+    error:    { control: "boolean" },
+    disabled: { control: "boolean" },
+  },
 } satisfies Meta<typeof Input>;
 
 export default meta;

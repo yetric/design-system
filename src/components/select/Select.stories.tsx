@@ -14,7 +14,8 @@ import {
 
 const meta = {
   title: "Components/Select",
-  component: SelectTrigger
+  component: SelectTrigger,
+  tags: ["autodocs"],
 } satisfies Meta<typeof SelectTrigger>;
 
 export default meta;

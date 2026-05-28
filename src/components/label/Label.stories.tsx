@@ -6,6 +6,7 @@ import { Checkbox } from "../checkbox/Checkbox";
 const meta: Meta<typeof Label> = {
   title: "Components/Label",
   component: Label,
+  tags: ["autodocs"],
   parameters: { layout: "centered" }
 };
 

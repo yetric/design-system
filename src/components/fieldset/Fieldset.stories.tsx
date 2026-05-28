@@ -6,6 +6,7 @@ import { Label } from "../label/Label";
 
 const meta: Meta<typeof Fieldset> = {
   component: Fieldset,
+  tags: ["autodocs"],
   title: "Components/Fieldset",
 };
 export default meta;

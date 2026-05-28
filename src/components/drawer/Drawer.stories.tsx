@@ -15,6 +15,7 @@ import {
 
 const meta = {
   component: Drawer,
+  tags: ["autodocs"],
   title: "Components/Drawer",
 } satisfies Meta<typeof Drawer>;
 

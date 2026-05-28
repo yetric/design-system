@@ -7,10 +7,17 @@ import { Button } from "./Button";
 const meta = {
   component: Button,
   title: "Components/Button",
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
   args: {
     children: "Save"
-  }
+  },
+  argTypes: {
+    variant:     { control: "select", options: ["primary","secondary","ghost","outline","destructive","warning","success","info"] },
+    size:        { control: "select", options: ["xs","sm","md","lg","xl","icon"] },
+    radius:      { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    isLoading:   { control: "boolean" },
+    disabled:    { control: "boolean" },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;

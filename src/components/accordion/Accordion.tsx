@@ -4,53 +4,163 @@ import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "../../lib/cn";
+import { radiusClass, type Radius } from "../../lib/radius";
 
-const Accordion = AccordionPrimitive.Root;
+// ─── Variant styles ───────────────────────────────────────────────────────────
+
+type AccordionVariant = "default" | "contained" | "separated" | "filled";
+
+const variantItemClass: Record<AccordionVariant, string> = {
+  default:   "border-b border-border",
+  contained: "border-b border-border first:border-t",
+  separated: "border border-border mb-2 last:mb-0",
+  filled:    "border-b border-border",
+};
+
+const variantContentClass: Record<AccordionVariant, string> = {
+  default:   "",
+  contained: "",
+  separated: "px-4",
+  filled:    "bg-muted/40",
+};
+
+const variantTriggerClass: Record<AccordionVariant, string> = {
+  default:   "",
+  contained: "",
+  separated: "px-4",
+  filled:    "px-4 data-[state=open]:bg-muted/40",
+};
+
+// ─── Context ──────────────────────────────────────────────────────────────────
+
+interface AccordionContextValue {
+  variant: AccordionVariant;
+  radius: Radius;
+  chevronPosition: "left" | "right";
+}
+
+const AccordionContext = React.createContext<AccordionContextValue>({
+  variant: "default",
+  radius: "none",
+  chevronPosition: "right",
+});
+
+// ─── Root ─────────────────────────────────────────────────────────────────────
+
+interface AccordionRootExtraProps {
+  variant?: AccordionVariant;
+  radius?: Radius;
+  chevronPosition?: "left" | "right";
+}
+
+type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> &
+  AccordionRootExtraProps;
+
+const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  AccordionProps
+>(({ className, variant = "default", radius = "none", chevronPosition = "right", ...props }, ref) => (
+  <AccordionContext.Provider value={{ variant, radius, chevronPosition }}>
+    <AccordionPrimitive.Root
+      ref={ref}
+      className={cn(
+        variant === "contained" && ["border border-border overflow-hidden", radiusClass[radius]],
+        className
+      )}
+      {...props}
+    />
+  </AccordionContext.Provider>
+));
+Accordion.displayName = "Accordion";
+
+// ─── Item ─────────────────────────────────────────────────────────────────────
 
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
-    ref={ref}
-    className={cn("border-b border-border", className)}
-    {...props}
-  />
-));
-AccordionItem.displayName = "AccordionItem";
-
-const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
+>(({ className, ...props }, ref) => {
+  const { variant, radius } = React.useContext(AccordionContext);
+  return (
+    <AccordionPrimitive.Item
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left [&[data-state=open]>svg]:rotate-180",
+        variantItemClass[variant],
+        variant === "separated" && radiusClass[radius],
         className
       )}
       {...props}
-    >
-      {children}
-      <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
+    />
+  );
+});
+AccordionItem.displayName = "AccordionItem";
+
+// ─── Trigger ──────────────────────────────────────────────────────────────────
+
+interface AccordionTriggerProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
+  /** Hide the chevron entirely. */
+  hideChevron?: boolean;
+}
+
+const AccordionTrigger = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+  AccordionTriggerProps
+>(({ className, children, hideChevron = false, ...props }, ref) => {
+  const { variant, chevronPosition } = React.useContext(AccordionContext);
+  const chevron = !hideChevron && (
+    <ChevronDown
+      aria-hidden="true"
+      className={cn(
+        "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200",
+        chevronPosition === "left" && "mr-2",
+        chevronPosition === "right" && "ml-auto"
+      )}
+    />
+  );
+
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn(
+          "flex flex-1 items-center py-4 text-sm font-medium transition-all hover:underline text-left",
+          "[&[data-state=open]>svg]:rotate-180",
+          variantTriggerClass[variant],
+          className
+        )}
+        {...props}
+      >
+        {chevronPosition === "left" && chevron}
+        {children}
+        {chevronPosition === "right" && chevron}
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  );
+});
 AccordionTrigger.displayName = "AccordionTrigger";
+
+// ─── Content ──────────────────────────────────────────────────────────────────
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
-    {...props}
-  >
-    <div className={cn("pb-4 pt-0", className)}>{children}</div>
-  </AccordionPrimitive.Content>
-));
+>(({ className, children, ...props }, ref) => {
+  const { variant } = React.useContext(AccordionContext);
+  return (
+    <AccordionPrimitive.Content
+      ref={ref}
+      className={cn(
+        "overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+        variantContentClass[variant]
+      )}
+      {...props}
+    >
+      <div className={cn("pb-4 pt-0", className)}>{children}</div>
+    </AccordionPrimitive.Content>
+  );
+});
 AccordionContent.displayName = "AccordionContent";
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export type { AccordionVariant };
+

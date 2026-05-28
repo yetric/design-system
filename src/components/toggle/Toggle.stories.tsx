@@ -3,6 +3,7 @@ import { Toggle, ToggleGroup, ToggleGroupItem } from "./Toggle";
 import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from "lucide-react";
 
 const meta: Meta = {
+  tags: ["autodocs"],
   title: "Components/Toggle",
   parameters: { layout: "centered" },
 };

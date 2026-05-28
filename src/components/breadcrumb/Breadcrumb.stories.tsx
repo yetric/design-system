@@ -6,6 +6,7 @@ import {
 import { Slash } from "lucide-react";
 
 const meta: Meta = {
+  tags: ["autodocs"],
   title: "Components/Breadcrumb",
   parameters: { layout: "centered" },
 };

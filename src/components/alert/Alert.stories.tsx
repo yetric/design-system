@@ -4,10 +4,17 @@ import { Rocket, ShieldCheck } from "lucide-react";
 import { Alert } from "./Alert";
 
 const meta = {
+  title: "Components/Alert",
   component: Alert,
+  tags: ["autodocs"],
   args: {
     title: "Heads up",
     children: "This is an informational alert with some helpful context.",
+  },
+  argTypes: {
+    variant: { control: "select", options: ["default", "info", "success", "warning", "destructive"] },
+    size:    { control: "select", options: ["sm", "md", "lg"] },
+    radius:  { control: "select", options: ["none", "sm", "md", "lg", "xl", "full"] },
   },
 } satisfies Meta<typeof Alert>;
 

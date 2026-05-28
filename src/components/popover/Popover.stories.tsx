@@ -6,6 +6,7 @@ import { Input } from "../input/Input";
 import { X } from "lucide-react";
 
 const meta: Meta = {
+  tags: ["autodocs"],
   title: "Components/Popover",
   parameters: { layout: "centered" },
 };

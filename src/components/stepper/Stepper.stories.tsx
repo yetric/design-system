@@ -5,6 +5,7 @@ import { Button } from "../button/Button";
 
 const meta: Meta<typeof Stepper> = {
   component: Stepper,
+  tags: ["autodocs"],
   title: "Components/Stepper",
 };
 export default meta;

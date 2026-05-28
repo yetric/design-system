@@ -4,10 +4,15 @@ import { Loader } from "./Loader";
 
 const meta = {
   component: Loader,
+  tags: ["autodocs"],
   title: "Components/Loader",
   args: {
     size: "md",
     variant: "default",
+  },
+  argTypes: {
+    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
+    variant: { control: "select", options: ["default","primary","success","warning","destructive","muted"] },
   },
 } satisfies Meta<typeof Loader>;
 

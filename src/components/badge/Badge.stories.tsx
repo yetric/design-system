@@ -5,10 +5,16 @@ import { Badge } from "./Badge";
 
 const meta = {
   component: Badge,
+  tags: ["autodocs"],
   title: "Components/Badge",
   args: {
     children: "Badge"
-  }
+  },
+  argTypes: {
+    variant: { control: "select", options: ["default","secondary","outline","ghost","destructive","warning","success","info"] },
+    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
+    radius:  { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+  },
 } satisfies Meta<typeof Badge>;
 
 export default meta;

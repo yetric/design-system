@@ -5,6 +5,7 @@ import { NumberInput } from "./NumberInput";
 
 const meta = {
   component: NumberInput,
+  tags: ["autodocs"],
   title: "Components/NumberInput",
 } satisfies Meta<typeof NumberInput>;
 

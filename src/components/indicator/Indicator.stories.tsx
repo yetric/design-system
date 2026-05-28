@@ -6,6 +6,7 @@ import { Button } from "../button/Button";
 
 const meta: Meta<typeof Indicator> = {
   component: Indicator,
+  tags: ["autodocs"],
   title: "Components/Indicator",
 };
 export default meta;

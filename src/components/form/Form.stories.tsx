@@ -12,6 +12,7 @@ import { Checkbox } from "../checkbox/Checkbox";
 import { RadioGroup, RadioGroupItem } from "../radio-group/RadioGroup";
 
 const meta: Meta = {
+  tags: ["autodocs"],
   title: "Patterns/Form",
   parameters: { layout: "centered" }
 };

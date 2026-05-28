@@ -5,6 +5,7 @@ import {
 } from "./Pagination";
 
 const meta: Meta = {
+  tags: ["autodocs"],
   title: "Components/Pagination",
   parameters: { layout: "centered" },
 };

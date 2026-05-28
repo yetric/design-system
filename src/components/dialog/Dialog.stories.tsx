@@ -15,7 +15,7 @@ import {
 const meta = {
   component: Dialog,
   title: "Components/Dialog",
-  tags: ["ai-generated"]
+  tags: ["autodocs"]
 } satisfies Meta<typeof Dialog>;
 
 export default meta;

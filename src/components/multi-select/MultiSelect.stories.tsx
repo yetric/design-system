@@ -14,6 +14,7 @@ const techOptions = [
 
 const meta: Meta<typeof MultiSelect> = {
   component: MultiSelect,
+  tags: ["autodocs"],
   title: "Components/MultiSelect",
 };
 export default meta;

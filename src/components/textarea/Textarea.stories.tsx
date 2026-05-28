@@ -4,6 +4,7 @@ import { Textarea } from "./Textarea";
 
 const meta = {
   component: Textarea,
+  tags: ["autodocs"],
   title: "Components/Textarea",
   args: {
     placeholder: "Type something…",

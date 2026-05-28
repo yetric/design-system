@@ -10,6 +10,11 @@ const meta = {
     fallback: "AB",
     size: "md",
   },
+  argTypes: {
+    size:   { control: "select", options: ["xs","sm","md","lg","xl"] },
+    radius: { control: "select", options: ["none","sm","md","lg","full"] },
+    status: { control: "select", options: ["online","away","busy","offline",undefined] },
+  },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
