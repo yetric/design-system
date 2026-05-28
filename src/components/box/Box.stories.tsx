@@ -9,10 +9,11 @@ const meta: Meta<typeof Box> = {
     layout: "padded",
   },
   argTypes: {
-    p:  { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
-    px: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
-    py: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
-    m:  { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    p:      { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    px:     { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    py:     { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    m:      { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    shadow: { control: "select", options: ["none", "sm", "md", "lg", "xl"] },
     display: { control: "select", options: ["block", "inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "hidden", "contents"] },
   },
 };
@@ -58,6 +59,18 @@ export const FlexContainer: Story = {
       </>
     ),
   },
+};
+
+export const ShadowTokens: Story = {
+  render: () => (
+    <Box display="flex" className="gap-4 flex-col">
+      {(["none", "sm", "md", "lg", "xl"] as const).map((s) => (
+        <Box key={s} p="md" shadow={s} className="bg-card border rounded-lg text-sm">
+          shadow="{s}"
+        </Box>
+      ))}
+    </Box>
+  ),
 };
 
 export const SpacingTokens: Story = {

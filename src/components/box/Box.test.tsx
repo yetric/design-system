@@ -92,6 +92,21 @@ describe("Box", () => {
     expect(screen.getByTestId("box")).toHaveClass("hidden");
   });
 
+  it("applies shadow class for token value", () => {
+    render(<Box shadow="md" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("shadow-md");
+  });
+
+  it("applies shadow-none for shadow='none'", () => {
+    render(<Box shadow="none" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("shadow-none");
+  });
+
+  it("applies shadow-xl for shadow='xl'", () => {
+    render(<Box shadow="xl" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("shadow-xl");
+  });
+
   it("merges custom className", () => {
     render(<Box className="text-red-500" data-testid="box">x</Box>);
     expect(screen.getByTestId("box")).toHaveClass("text-red-500");

@@ -4,16 +4,19 @@ import * as React from "react";
 
 import { cn } from "../../lib/cn";
 import { radiusClass, type Radius } from "../../lib/radius";
+import { shadowClass, type ShadowSize } from "../../lib/shadow";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   radius?: Radius;
+  /** Box shadow. Defaults to "sm". */
+  shadow?: ShadowSize;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, radius = "lg", ...props }, ref) => (
+  ({ className, radius = "lg", shadow = "sm", ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("border bg-card text-card-foreground shadow-sm", radiusClass[radius], className)}
+      className={cn("border bg-card text-card-foreground", radiusClass[radius], shadowClass[shadow], className)}
       {...props}
     />
   )

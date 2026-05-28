@@ -38,6 +38,7 @@ export * from "./components/toast";
 export * from "./components/toggle";
 export * from "./components/tooltip";
 export * from "./lib/cn";
+export * from "./lib/shadow";
 export * from "./lib/radius";
 export * from "./lib/size";
 export * from "./lib/theme";

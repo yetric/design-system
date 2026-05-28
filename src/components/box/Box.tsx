@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../../lib/cn";
+import { shadowClass, type ShadowSize } from "../../lib/shadow";
 
 // Spacing design tokens mapped to Tailwind spacing classes.
 // none=0, xs=1(4px), sm=2(8px), md=4(16px), lg=6(24px), xl=8(32px)
@@ -72,6 +73,8 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   ml?: SpacingSize;
   /** Margin right */
   mr?: SpacingSize;
+  /** Box shadow */
+  shadow?: ShadowSize;
 }
 
 const Box = React.forwardRef<HTMLElement, BoxProps>(
@@ -79,6 +82,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>(
     {
       as: Comp = "div",
       display,
+      shadow,
       p, px, py, pt, pb, pl, pr,
       m, mx, my, mt, mb, ml, mr,
       className,
@@ -90,6 +94,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>(
       ref={ref}
       className={cn(
         display !== undefined && displayMap[display],
+        shadow !== undefined && shadowClass[shadow],
         p  !== undefined && spacingToClass.p[p],
         px !== undefined && spacingToClass.px[px],
         py !== undefined && spacingToClass.py[py],
