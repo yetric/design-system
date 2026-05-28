@@ -37,3 +37,23 @@ export const Controlled: Story = {
 export const Disabled: Story = {
   render: () => <Slider defaultValue={[60]} disabled className="w-[300px]" />,
 };
+
+export const Sizes: Story = {
+  name: "Size variants",
+  render: () => (
+    <div className="flex flex-col gap-6 w-[300px]">
+      <div className="space-y-1">
+        <p className="text-xs text-muted-foreground">sm</p>
+        <Slider defaultValue={[40]} size="sm" />
+      </div>
+      <div className="space-y-1">
+        <p className="text-xs text-muted-foreground">md (default)</p>
+        <Slider defaultValue={[60]} size="md" />
+      </div>
+      <div className="space-y-1">
+        <p className="text-xs text-muted-foreground">lg</p>
+        <Slider defaultValue={[80]} size="lg" />
+      </div>
+    </div>
+  ),
+};

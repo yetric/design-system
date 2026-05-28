@@ -83,3 +83,17 @@ export const Error: Story = {
     </div>
   )
 };
+
+export const RadiusVariants: Story = {
+  name: "Radius variants",
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(["none", "xs", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+        <div key={r} className="flex items-center gap-2">
+          <Checkbox id={`radius-${r}`} radius={r} defaultChecked />
+          <Label htmlFor={`radius-${r}`} className="text-sm">radius: {r}</Label>
+        </div>
+      ))}
+    </div>
+  )
+};

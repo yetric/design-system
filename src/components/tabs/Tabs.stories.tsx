@@ -49,3 +49,22 @@ export const Pills: Story = {
     </Tabs>
   ),
 };
+
+export const Sizes: Story = {
+  name: "Size variants",
+  render: () => (
+    <div className="flex flex-col gap-8">
+      {(["sm", "md", "lg"] as const).map((s) => (
+        <div key={s} className="space-y-2">
+          <p className="text-xs text-muted-foreground">size: {s}</p>
+          <Tabs defaultValue="overview" className="w-[400px]">
+            <TabsList size={s}>
+              {items.slice(0, 3).map((i) => <TabsTrigger key={i.value} value={i.value} size={s}>{i.label}</TabsTrigger>)}
+            </TabsList>
+            {items.slice(0, 3).map((i) => <TabsContent key={i.value} value={i.value}><p className="pt-4 text-sm">{i.content}</p></TabsContent>)}
+          </Tabs>
+        </div>
+      ))}
+    </div>
+  ),
+};

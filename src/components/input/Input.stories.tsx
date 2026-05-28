@@ -73,3 +73,17 @@ export const IconSizes: Story = {
     </div>
   )
 };
+
+export const Radius: Story = {
+  name: "Radius variants",
+  render: () => (
+    <div className="flex flex-col gap-3 max-w-sm">
+      <Input radius="none" placeholder="radius: none" />
+      <Input radius="sm" placeholder="radius: sm" />
+      <Input radius="md" placeholder="radius: md (default)" />
+      <Input radius="lg" placeholder="radius: lg" />
+      <Input radius="xl" placeholder="radius: xl" />
+      <Input radius="full" placeholder="radius: full" />
+    </div>
+  )
+};

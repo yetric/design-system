@@ -122,3 +122,22 @@ export const WithDisabledItem: Story = {
     </Select>
   )
 };
+
+export const RadiusVariants: Story = {
+  name: "Radius variants",
+  render: () => (
+    <div className="flex flex-col gap-3 w-56">
+      {(["none", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+        <Select key={r}>
+          <SelectTrigger radius={r}>
+            <SelectValue placeholder={`radius: ${r}`} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="a">Option A</SelectItem>
+            <SelectItem value="b">Option B</SelectItem>
+          </SelectContent>
+        </Select>
+      ))}
+    </div>
+  )
+};

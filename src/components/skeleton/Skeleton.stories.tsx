@@ -54,3 +54,37 @@ export const TableLoading: Story = {
     </div>
   ),
 };
+
+export const Presets: Story = {
+  name: "Preset variants",
+  render: () => (
+    <div className="flex flex-col gap-4 w-64">
+      <div className="flex items-center gap-3">
+        <Skeleton preset="avatar" />
+        <div className="flex flex-col gap-2 flex-1">
+          <Skeleton preset="heading" />
+          <Skeleton preset="text" />
+        </div>
+      </div>
+      <Skeleton preset="card" />
+      <div className="flex gap-2">
+        <Skeleton preset="button" />
+        <Skeleton preset="badge" />
+      </div>
+    </div>
+  ),
+};
+
+export const RadiusVariants: Story = {
+  name: "Radius variants",
+  render: () => (
+    <div className="flex flex-col gap-3 w-64">
+      {(["none", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+        <div key={r} className="flex items-center gap-3">
+          <Skeleton radius={r} className="h-8 w-8 shrink-0" />
+          <Skeleton radius={r} className="h-4 flex-1" />
+        </div>
+      ))}
+    </div>
+  ),
+};

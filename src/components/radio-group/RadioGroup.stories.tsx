@@ -38,3 +38,20 @@ export const WithDisabled: Story = {
     </RadioGroup>
   )
 };
+
+export const Sizes: Story = {
+  name: "Size variants",
+  render: () => (
+    <div className="flex flex-col gap-4">
+      {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
+        <div key={s} className="space-y-1">
+          <p className="text-xs text-muted-foreground">size: {s}</p>
+          <RadioGroup defaultValue="a" className="flex flex-row gap-4">
+            <RadioGroupItem value="a" label="Option A" size={s} />
+            <RadioGroupItem value="b" label="Option B" size={s} />
+          </RadioGroup>
+        </div>
+      ))}
+    </div>
+  )
+};

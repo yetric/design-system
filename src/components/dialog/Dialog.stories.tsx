@@ -81,3 +81,27 @@ export const WithCustomFooter: Story = {
     </Dialog>
   )
 };
+
+export const Sizes: Story = {
+  name: "Size variants",
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      {(["sm", "md", "lg", "xl"] as const).map((s) => (
+        <Dialog key={s}>
+          <DialogTrigger asChild>
+            <Button variant="outline">Open {s}</Button>
+          </DialogTrigger>
+          <DialogContent size={s}>
+            <DialogHeader>
+              <DialogTitle>Dialog — size: {s}</DialogTitle>
+              <DialogDescription>This dialog uses size="{s}" ({s === "sm" ? "max-w-sm" : s === "md" ? "max-w-lg" : s === "lg" ? "max-w-2xl" : "max-w-4xl"}).</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button>Close</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      ))}
+    </div>
+  )
+};

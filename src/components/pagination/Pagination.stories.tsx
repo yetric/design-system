@@ -42,3 +42,26 @@ export const WithEllipsis: Story = {
     </Pagination>
   ),
 };
+
+export const Sizes: Story = {
+  name: "Size variants",
+  render: () => (
+    <div className="flex flex-col gap-6">
+      {(["sm", "md", "lg", "xl"] as const).map((s) => (
+        <div key={s} className="space-y-1">
+          <p className="text-xs text-muted-foreground">size: {s}</p>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem><PaginationPrevious href="#" size={s} /></PaginationItem>
+              <PaginationItem><PaginationLink href="#" size={s}>1</PaginationLink></PaginationItem>
+              <PaginationItem><PaginationLink href="#" size={s} isActive>2</PaginationLink></PaginationItem>
+              <PaginationItem><PaginationLink href="#" size={s}>3</PaginationLink></PaginationItem>
+              <PaginationItem><PaginationEllipsis size={s} /></PaginationItem>
+              <PaginationItem><PaginationNext href="#" size={s} /></PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      ))}
+    </div>
+  ),
+};

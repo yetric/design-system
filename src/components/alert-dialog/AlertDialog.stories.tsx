@@ -66,3 +66,30 @@ export const PrimaryAction: Story = {
     </AlertDialog>
   ),
 };
+
+export const Sizes: Story = {
+  name: "Size variants",
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      {(["sm", "md", "lg"] as const).map((s) => (
+        <AlertDialog key={s}>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline">Open {s}</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent size={s}>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Confirm — size: {s}</AlertDialogTitle>
+              <AlertDialogDescription>
+                This alert dialog uses size="{s}".
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Confirm</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      ))}
+    </div>
+  ),
+};
