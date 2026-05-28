@@ -1,41 +1,48 @@
-# Where we are
+# Where we are — @yetric/ui
+
+> Last updated: 2026-05-28 · v0.1.0 · 37 components · 228 tests passing
 
 ## Components shipped
 
-| Component    | Variants | Sizes | Radius | Notes |
-|--------------|----------|-------|--------|-------|
-| Accordion    | —        | —     | —  | Radix, single/multiple, collapsible |
-| AlertDialog  | —        | —     | ✅ | Radix compound |
-| Avatar       | —        | ✅ xs–xl | ✅ | Image + initials fallback |
-| Badge        | ✅ 8     | ✅ xs–xl | ✅ full default | |
-| Breadcrumb   | —        | —     | —  | HTML nav, slash/custom separator, ellipsis |
-| Button       | ✅ 8     | ✅ xs–xl | ✅ | asChild, disabled via data-attr, icon support |
-| Card         | —        | —     | ✅ | Header/Content/Footer sub-components |
-| Checkbox     | —        | ✅ xs–xl | — | Radix, indeterminate state |
-| Collapsible  | —        | —     | —  | Radix Root/Trigger/Content |
-| Dialog       | —        | —     | ✅ | Radix |
-| DropdownMenu | —        | —     | ✅ | Radix compound: Item/CheckboxItem/RadioItem/Sub |
-| Form         | —        | —     | —  | react-hook-form + Zod integration |
-| Input        | —        | —     | —  | Primitive, use InputField for forms |
-| InputField   | —        | ✅ xs–xl | ✅ | Merged textarea (multiline prop), helpText, error, useId |
-| Label        | —        | —     | —  | Radix, required indicator |
-| Pagination   | —        | —     | —  | HTML nav: Previous/Next/Link/Ellipsis |
-| Popover      | —        | —     | ✅ | Radix compound: Trigger/Content/Anchor/Close |
-| Progress     | ✅ 5     | ✅ xs–xl | ✅ | Radix, indeterminate support |
-| RadioGroup   | —        | —     | —  | Radix, horizontal/vertical |
-| ScrollArea   | —        | —     | —  | Radix, vertical/horizontal scrollbars |
-| Select       | —        | ✅ xs–xl | — | Radix compound: Trigger/Content/Item/Label/Separator/Group |
-| Separator    | —        | —     | —  | horizontal/vertical, decorative/semantic |
-| Skeleton     | —        | —     | —  | Animated pulse, arbitrary sizing |
-| Slider       | —        | —     | —  | Radix, range support, steps, disabled |
-| Stack        | —        | —     | —  | Flex layout primitive, row/col, gap, align, justify |
-| Switch       | —        | ✅ xs–xl | — | Radix, optional label prop |
-| Table        | —        | —     | —  | See below |
-| Tabs         | ✅ 3     | —     | —  | Radix, default/underline/pills variants |
-| Text         | ✅ sizes | ✅ | — | xs→5xl, weights, colors, alignment |
-| Toast        | —        | —     | —  | Sonner-based |
-| Toggle       | ✅ 2     | ✅ sm–lg | — | Radix, + ToggleGroup (single/multiple) |
-| Tooltip      | —        | —     | ✅ | Radix, TooltipProvider wrapping |
+| Component        | Variants        | Sizes       | Radius   | Notes |
+|------------------|-----------------|-------------|----------|-------|
+| Accordion        | —               | —           | —        | Radix, single/multiple, collapsible |
+| AlertDialog      | —               | ✅ sm–xl    | ✅       | Radix compound, destructive/primary action |
+| Avatar           | —               | ✅ xs–xl    | ✅ (full default) | Image + initials fallback, status dot |
+| Badge            | ✅ 8            | ✅ xs–xl    | ✅       | Icon slot, dismiss button |
+| Box              | —               | ✅ token    | ✅       | Design-token layout primitive |
+| Breadcrumb       | —               | —           | —        | HTML nav, slash/custom separator, ellipsis |
+| Button           | ✅ 8            | ✅ xs–xl    | ✅       | Loading state, icon-only size, asChild |
+| Card             | ✅ 4            | —           | ✅       | CardImage, CardHeader (actions), CardTitle (as), CardFooter (justify), interactive |
+| Checkbox         | —               | ✅ xs–xl    | ✅       | Radix, indeterminate, error state |
+| Collapsible      | —               | —           | —        | Radix Root/Trigger/Content |
+| Command          | —               | —           | —        | cmdk-based search/combobox |
+| ContextMenu      | —               | —           | —        | Radix compound |
+| Dialog           | —               | ✅ sm–full  | ✅       | Radix |
+| DropdownMenu     | —               | —           | —        | Radix compound: Item/CheckboxItem/RadioItem/Sub |
+| Form             | —               | —           | —        | react-hook-form + Zod integration |
+| HoverCard        | —               | —           | —        | Radix |
+| Input            | —               | ✅ xs–xl    | ✅       | leftIcon/rightIcon, error state |
+| InputField       | —               | ✅ xs–xl    | ✅       | label+input+helpText, textarea mode, icons |
+| Label            | —               | —           | —        | Radix, required indicator |
+| NavigationMenu   | —               | —           | —        | Radix compound |
+| Pagination       | —               | ✅ xs–xl    | —        | Previous/Next/Link/Ellipsis |
+| Popover          | —               | —           | ✅       | Radix compound |
+| Progress         | ✅ 5            | ✅ xs–xl    | ✅       | Radix, indeterminate |
+| RadioGroup       | —               | ✅ xs–xl    | —        | Radix, horizontal/vertical |
+| ScrollArea       | —               | —           | —        | Radix, vertical/horizontal |
+| Select           | —               | ✅ xs–xl    | ✅       | Radix compound |
+| Separator        | —               | —           | —        | horizontal/vertical, decorative/semantic |
+| Skeleton         | ✅ 7 presets    | —           | ✅       | Animated pulse, presets: text/heading/avatar/button/card/badge |
+| Slider           | —               | ✅ sm–lg    | —        | Radix, range, steps, disabled |
+| Stack            | —               | —           | —        | Flex layout primitive, row/col, gap, align |
+| Switch           | —               | ✅ xs–xl    | —        | Radix, optional label |
+| Table            | —               | —           | —        | Data-driven + children mode (TanStack Table) |
+| Tabs             | ✅ 3            | ✅ sm–lg    | —        | Radix, default/underline/pills |
+| Text             | ✅ sizes        | ✅ xs–5xl   | —        | weights, colors, alignment |
+| Toast            | —               | —           | —        | Sonner-based |
+| Toggle           | ✅ 2            | ✅ sm–lg    | ✅       | Radix + ToggleGroup (single/multiple), radius via context |
+| Tooltip          | —               | —           | ✅       | Radix, TooltipProvider |
 
 ## Table — unified component
 
@@ -87,203 +94,140 @@ import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
 - Tailwind config extends all tokens (background, foreground, card, primary, secondary, muted, accent, destructive, warning, success, info, border, input, ring, shadow, z-index, duration, easing)
 
 ## Testing
-- 134 tests, all green
+- **228 tests, all green** across 36 test files
 - Unit: Vitest + jsdom + @testing-library/react
 - Browser: Storybook + Playwright/Chromium via @storybook/addon-vitest
 - `src/test/setup.ts` polyfills pointer capture, scrollIntoView, ResizeObserver for Radix in jsdom
+- Every component has at least basic tests; richer components (Card, Badge, Table) have 8–14 tests
 
-## What's next (priority order)
+## Component roadmap
 
-1. **DropdownMenu** — unblocks user menus, action menus, DataTable row actions. Radix `@radix-ui/react-dropdown-menu`. Highest utility.
-2. **Avatar** — image + fallback initials. Simple, no Radix needed.
-3. **Toast/Sonner** — feedback after actions. Needs a provider + positioning system, slightly heavier setup.
-4. **Tooltip** — deferred. Skipped for now: invisible on mobile, often misused, add only when a real use case demands it.
+Matrix comparison against **Radix UI Primitives** (33 primitives) and **Mantine Core** (107 components) identified the following gaps. Grouped by priority.
 
-## Incomplete / gaps in existing components
+### 🔴 Tier A — High impact, most apps need these
 
-| Component   | Gap                                                                 |
-|-------------|---------------------------------------------------------------------|
-| Button      | Loading state (spinner + disabled during async)                     |
-| Button      | No standardized icon slot (left/right)                              |
-| Card        | No sub-components — need CardHeader, CardContent, CardFooter        |
-| Input       | Hardcoded h-10, no size prop — inconsistent with InputField         |
-| InputField  | Label/helpText/error font size doesn't scale with size prop         |
-| InputField  | Icon support next to helpText/error (flex wrapper ready, no prop)   |
-| Checkbox    | No error/invalid state for form validation                          |
-| Dialog      | Missing AlertDialog (destructive confirmations, different semantic) |
-| Table       | No loading/skeleton state                                           |
+| Component | Present in | Why it matters |
+|-----------|-----------|----------------|
+| **Alert** | Mantine | Inline contextual banners (success/warning/error/info). Different from Toast — stays on-page, not time-limited |
+| **Drawer** | Mantine | Slide-in side panel. Essential for mobile nav, settings sheets, detail panels |
+| **Loader / Spinner** | Mantine | Animated spinner for async states. Skeleton covers content placeholders; Loader covers in-button/inline loading |
+| **NumberInput** | Mantine | +/– stepper input with keyboard support. Required in nearly every data entry form |
+| **Heading** | Mantine | h1–h6 component with design token scale. `Text` exists but Heading has semantic props and scale variants |
+| **Textarea** | Mantine | Standalone `<textarea>` (currently only available via InputField's `multiline` prop) |
 
-**Priority order for fixes:**
-1. Button loading state — very commonly needed, blocks real usage
-2. Card sub-components — CardHeader, CardContent, CardFooter
-3. Input size prop — fix the inconsistency
-4. Table loading/skeleton
-5. AlertDialog
-6. Checkbox error state
-7. InputField label size scaling + icon support
+### 🟡 Tier B — Common patterns, adds real value
 
-## Color system — migrate to Open Color
+| Component | Present in | Why it matters |
+|-----------|-----------|----------------|
+| **Stepper** | Mantine | Multi-step wizard / form progress indicator |
+| **Kbd** | Mantine | Keyboard shortcut display — `⌘K`, `Ctrl+S`. Tiny but high-signal for dev tools / docs |
+| **Code** | Mantine | Inline `<code>` and block code with monospace styling and optional copy button |
+| **Indicator** | Mantine | Notification dot positioned on another element (Avatar, Icon, Button). Complements Avatar's `status` prop |
+| **SegmentedControl** | Mantine | Polished radio-as-pill-group. More opinionated than ToggleGroup — single select, active segment has background fill |
+| **Chip** | Mantine | Toggleable filter tag. Looks like a Badge but acts like a Checkbox |
+| **MultiSelect** | Mantine | Multi-value select with search. Critical for admin UIs, tag selection, permission pickers |
+| **AspectRatio** | Radix + Mantine | Responsive ratio container (16/9, 1/1, etc.) — needed for image/video cards |
+| **Fieldset** | Mantine | Grouped form section with optional legend and disabled propagation |
 
-Source: https://yeun.github.io/open-color/
+### 🟢 Tier C — Nice to have
 
-Open Color gives a consistent 10-step scale (0=lightest, 9=darkest) across 17 hues:
-gray, red, pink, grape, violet, indigo, blue, cyan, teal, green, lime, yellow, orange.
+| Component | Present in | Why it matters |
+|-----------|-----------|----------------|
+| TagsInput | Mantine | Free-form tag entry (type + Enter) |
+| PinInput | Radix + Mantine | OTP / PIN entry with per-digit boxes |
+| Rating | Mantine | Star rating input |
+| Timeline | Mantine | Vertical activity feed / changelog view |
+| Spoiler | Mantine | Expandable/collapsible text with "Show more" trigger |
+| Blockquote | Mantine | Styled `<blockquote>` with optional cite |
+| Paper | Mantine | Simple surface/elevation wrapper (lighter than Card) |
+| Anchor | Mantine | Themed `<a>` with variant/color/underline props |
+| Menubar | Radix | Horizontal app menu bar (File / Edit / View…) |
+| Toolbar | Radix | Accessible grouped button toolbar |
 
-**Plan:**
-- Keep the semantic CSS variable layer (--primary, --destructive, etc.) — consuming apps never reference raw OC values
-- Map semantic tokens onto OC values in `globals.css`
-- Proposed palette:
-  - **Base/neutral**: OC gray (replaces Zinc)
-  - **Primary**: OC violet (keep current feel, better scale)
-  - **Destructive**: OC red
-  - **Warning**: OC orange
-  - **Success**: OC green
-  - **Info**: OC blue
-  - **Secondary/muted**: OC gray mid-tones
-- Install `open-color` npm package for the JS color values, or just copy the HSL values into globals.css directly (simpler, no runtime dep)
-- Update Tailwind config to use the new HSL values
-- Dark mode: use deeper steps (7–9) for surfaces, lighter steps (0–2) for foreground in dark
+## Design tokens
 
-**Why OC:** consistent perceptual steps, designed for UI, widely used, predictable naming.
+- **Colors**: Zinc base + Violet primary, via Open Color
+- **Font**: IBM Plex Sans (loaded via `@font-face` in `globals.css`)
+- **Dark mode**: `.dark` class on `<html>`
+- **CSS variables**: `src/styles/globals.css` — semantic tokens: `--primary`, `--destructive`, `--warning`, `--success`, `--info`, `--muted`, `--border`, `--ring`, etc.
+- **Tailwind config** extends all tokens (background, foreground, card, primary, secondary, muted, accent, destructive, warning, success, info, border, input, ring, shadow, z-index, duration, easing)
+- **Design token libs**: `src/lib/radius.ts`, `src/lib/size.ts`, `src/lib/shadow.ts`, `src/lib/icon.ts`
 
-## DX — making the API something devs love
-
-Things to tackle (not all at once — pick up as we go):
-
-**Already good:**
-- TypeScript-first, no `any` leaking out
-- Consistent `size`, `variant`, `radius` props across components
-- `VARIANT`, `SIZE`, `RADIUS` constants so no magic strings
-- Radix accessibility built in
-- `cn` utility exported for consumers to compose classes
-- All component prop types exported (ButtonProps, BadgeProps, etc.)
-
-**Gaps to close:**
-- **Form library integration** — react-hook-form `Controller` pattern. InputField, Checkbox, Select should accept `ref` cleanly and expose `name`/`onBlur` without friction. This is where most real apps feel the pain.
-- **`asChild` beyond Button** — Badge, Card, and others could support `asChild` for use as links/router elements.
-- **Better default variant** — `VARIANT.DEFAULT` exists but isn't consistently useful. Consider making `primary` the true default everywhere and removing `default` variant confusion.
-- **Component-level className merging** — already done via `cn()`, but confirm no component accidentally blocks className override.
-- **Prop types re-exported** — all `*Props` types should be importable so consumers can type their own wrappers.
-- **JSDoc on key props** — hover docs in IDE for non-obvious props (e.g. `asChild`, `multiline`, `filterType`).
-- **Single import surface** — everything from `@yetric/ui`, never from `@yetric/ui/button` etc. Already the case, keep it.
-- **Zero required props** — every component should render something reasonable with no props passed.
-- **Controlled + uncontrolled** — all inputs should work both ways without friction.
-
-## Foundational gaps (non-component)
-
-### 1. Icon strategy — DECISION NEEDED
-Blocks: Button icons, InputField prefix/suffix, alert icons, Table actions, etc.
-Options:
-- **Lucide React** — most common in React ecosystem, tree-shakeable, consistent style
-- **Phosphor Icons** — richer set, multiple weights, same tree-shakeable pattern
-- **Heroicons** — Tailwind's own, smaller set
-- **Custom SVG sprite** — full control, no external dep, more maintenance
-
-Recommendation: Lucide. Decide and integrate before adding icon props to any component.
-
-### 2. Skeleton component
-Standalone `<Skeleton>` primitive (animated pulse) usable anywhere — cards, lists,
-avatars, table rows. Not just a Table concern. One component covers all loading states.
-
-### 3. ThemeProvider + useTheme hook
-Currently `applyTheme`/`getSystemTheme` helpers exist but apps wire dark mode themselves.
-Need:
-- `<ThemeProvider defaultTheme="system">` React context
-- `useTheme()` hook returning `{ theme, setTheme }`
-- Handles system preference detection + localStorage persistence
-- Lives in `src/lib/theme.ts` (already has helpers, extend it)
-
-### 4. Typography scale + Text/Heading components
-No type hierarchy codified. Need:
-- Defined scale: display, h1–h4, body-lg, body, body-sm, caption, label
-- `<Heading as="h1–h4" size="...">` component
-- `<Text size="..." weight="..." color="...">` component
-- Tokens for font-size, line-height, letter-spacing in Tailwind config
-
-### 5. Stack layout primitive
-Devs currently write raw `flex flex-col gap-4` everywhere. A thin:
-```tsx
-<Stack gap={4} direction="row" align="center">...</Stack>
+### Token pattern
+Always use explicit Tailwind class lookup maps — never dynamic `rounded-${r}` strings (JIT won't pick them up):
+```ts
+const radiusClass: Record<Radius, string> = {
+  none: "rounded-none", xs: "rounded-sm", sm: "rounded", md: "rounded-md", ...
+}
 ```
-covers 80% of layout needs and makes intent explicit. No magic, just a convenience wrapper.
 
-### 6. Form integration pattern
-react-hook-form is the dominant form library. Need:
-- Verify `ref` forwarding works cleanly on InputField, Checkbox, Select
-- A `<FormField>` wrapper that accepts `control`/`name` from RHF and wires errors automatically
-- Example story showing a full form with validation (Zod schema)
-- Document the pattern in Storybook
+## Constants (for consumer use)
+```ts
+import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
+<Button variant={VARIANT.PRIMARY} size={SIZE.MD} radius={RADIUS.LG} />
+```
 
-### 7. CSS delivery
-Consumers must import `src/styles/globals.css` themselves — not documented, not enforced.
-Options: auto-inject via side-effect import in index.ts, or document clearly in README.
-Risk: "why is nothing styled" is the #1 onboarding failure point.
+## Table — unified component
 
-## First-class citizen checklist
+`Table` runs in two modes based on whether `data` prop is present:
 
-### Critical (blocking real-world adoption)
+### Children mode
+```tsx
+<Table density="compact" striped borders="grid" stickyHeader>
+  <TableHeader><TableRow><TableHead>Name</TableHead></TableRow></TableHeader>
+  <TableBody><TableRow><TableCell>Alice</TableCell></TableRow></TableBody>
+</Table>
+```
 
-- **`"use client"` directives** — every component using hooks or browser APIs needs this for Next.js App Router. Currently the library is broken in the most popular React setup. Add to all Radix-based components and anything with useState/useEffect/useRef.
+### Data-driven mode
+```tsx
+<Table
+  data={rows}
+  columns={cols}   // ColumnDef<TRow>[] from @tanstack/react-table
+  searchable       // global text filter
+  selectable       // row checkboxes + select-all
+  pageSize={10}    // enables pagination
+  density="compact" | "default" | "comfortable"
+  borders="rows" | "grid" | "outer" | "none"
+  striped
+  stickyHeader
+/>
+```
 
-- **`@tanstack/react-table` → peerDependency** — currently a regular dep, meaning it ships in the bundle for every consumer even if they never use `Table`. Move to `peerDependencies`. Same principle applies to future heavy deps (Sonner, etc.).
+Column-level filters via `meta` on each column:
+```tsx
+{ accessorKey: "name",   meta: { filterType: "text" } }
+{ accessorKey: "joined", meta: { filterType: "date" } }
+{ accessorKey: "amount", meta: { filterType: "number" } }
+{ accessorKey: "role",   meta: { filterType: "select", filterOptions: ["Admin","Editor"] } }
+```
 
-- **`exports` map in package.json** — without a proper `exports` field, bundlers can't tree-shake effectively and subpath imports behave unpredictably across toolchains. Define `exports` for ESM, types, and CSS.
+## DX — API design principles
 
-### Important (professionalism / trust)
+**Already in place:**
+- TypeScript-first, all `*Props` types exported
+- Consistent `size`, `variant`, `radius` props across components
+- `VARIANT`, `SIZE`, `RADIUS` constants — no magic strings
+- Radix accessibility primitives as base
+- `cn` utility exported for consumers to compose classes
+- `"use client"` directives on all components using hooks/browser APIs
+- react-hook-form + Zod integration via `Form`/`useZodForm`
+- Single import surface: `import { Button } from "@yetric/ui"`
 
-- **GitHub Actions CI** — no automated pipeline yet. Need:
-  - Run tests on every PR
-  - Type-check on every PR
-  - Automated `npm publish` on version tag push
+**Open items:**
+- `asChild` beyond Button — Badge, Card, Anchor could support it for router links
+- JSDoc on non-obvious props (`multiline`, `filterType`, `asChild`)
+- `data-variant` / `data-size` attributes as CSS Module styling hooks
 
-- **Deploy Storybook** — local Storybook is great for dev, useless as public docs. Deploy to Chromatic, Vercel, or GitHub Pages. This becomes the public API reference.
+## Infrastructure / shipping
 
-- **CHANGELOG.md** — consumers can't know what changed between versions. Adopt conventional commits + auto-generated changelog (e.g. `changesets` or `release-it`).
-
-- **README** — currently sparse. Need: installation, quick start, one real usage example, link to deployed Storybook.
-
-### Nice to have
-
-- **Visual regression testing** — Chromatic catches unintended visual changes across stories. Critical once the Open Color migration happens.
-- **Bundle size tracking** — add `bundlesize` or similar to CI so regressions are caught before publish.
-- **SSR safety audit** — verify no `window`/`document` access outside effects.
-
-## CSS Modules + Tailwind architecture
-
-**Goal:** Tailwind used internally only. Consumers can use CSS Modules (or plain CSS) with no Tailwind setup required.
-
-**Why it already mostly works:**
-Tailwind v3 wraps all output in `@layer base/components/utilities`. CSS Modules don't use layers, so they sit outside — CSS Module rules automatically win on specificity. The cascade already favours the consumer.
-
-**What still needs doing:**
-
-1. **Ship pre-compiled Tailwind CSS in dist**
-   The build pipeline needs a step that generates `dist/index.css` containing both design tokens AND all compiled Tailwind utility classes used internally. The `index.ts` auto-import then points at this built file, not the source. Consumers get styled components with zero Tailwind config.
-
-2. **Component-level CSS custom properties**
-   Beyond global tokens, expose per-component variables so consumers can override structure without touching Tailwind:
-   ```css
-   /* consumer CSS Module */
-   .myButton {
-     --button-height: 3rem;
-     --button-radius: 0;
-   }
-   ```
-   Currently no components expose these. Adding them makes CSS Modules feel first-class.
-
-3. **`data-*` attributes as styling hooks**
-   Consumers need stable hooks to target variant/size/state in CSS Modules:
-   ```css
-   .myButton[data-variant="primary"] { background: hotpink; }
-   .myButton[data-size="lg"] { padding: 1rem 2rem; }
-   ```
-   Radix already adds `data-state`, `data-disabled` etc. We should add `data-variant` and `data-size` to our own components.
-
-4. **Audit `className` position in all `cn()` calls**
-   Consumer `className` must always be the final argument in every `cn()` call so it wins regardless of specificity. Needs a pass across all components.
-
-5. **No Tailwind required from consumers**
-   Pre-compiled dist CSS (point 1) makes this true. Document explicitly: "no Tailwind config needed in your app."
-
-## Polish / smaller items
-- **Storybook Docs tab** — `tags: ["autodocs"]` is set globally, check it renders well for all new components
+| Item | Status |
+|------|--------|
+| `"use client"` on all interactive components | ✅ Done |
+| `@tanstack/react-table` as peerDependency | ✅ Done |
+| `exports` map in package.json | ✅ Done |
+| Pre-compiled CSS in dist (`dist/index.css`) | ✅ Done |
+| GitHub Actions CI (test + typecheck) | ⬜ Not yet |
+| Deploy Storybook (Chromatic / GitHub Pages) | ⬜ Not yet |
+| CHANGELOG.md + changesets | ⬜ Not yet |
+| Visual regression testing (Chromatic) | ⬜ Not yet |
