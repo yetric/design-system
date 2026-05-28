@@ -67,6 +67,7 @@ export default {
         "accordion-up":   "accordion-up 0.2s ease-out",
         indeterminate:    "indeterminate 1.5s ease-in-out infinite",
       },
+      colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -107,7 +108,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))"
-        }
+        },
       }
     }
   },
