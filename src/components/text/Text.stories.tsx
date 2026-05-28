@@ -6,7 +6,10 @@ const meta = {
   title: "Components/Typography",
   component: Heading,
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    size: { control: "select", options: ["display","h1","h2","h3","h4","h5","h6"] },
+    as:   { control: "select", options: ["h1","h2","h3","h4","h5","h6","p","div","span"] },
+  },
 } satisfies Meta<typeof Heading>;
 
 export default meta;

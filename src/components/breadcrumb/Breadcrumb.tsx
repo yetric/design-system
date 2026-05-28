@@ -4,10 +4,17 @@ import * as React from "react";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import { cn } from "../../lib/cn";
 
+// Context so the root separator prop flows down to BreadcrumbSeparator
+const BreadcrumbContext = React.createContext<{ separator?: React.ReactNode }>({});
+
 const Breadcrumb = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav"> & { separator?: React.ReactNode }
->(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
+>(({ separator, ...props }, ref) => (
+  <BreadcrumbContext.Provider value={{ separator }}>
+    <nav ref={ref} aria-label="breadcrumb" {...props} />
+  </BreadcrumbContext.Provider>
+));
 Breadcrumb.displayName = "Breadcrumb";
 
 const BreadcrumbList = React.forwardRef<
@@ -68,16 +75,19 @@ const BreadcrumbSeparator = ({
   children,
   className,
   ...props
-}: React.ComponentProps<"li">) => (
-  <li
-    role="presentation"
-    aria-hidden="true"
-    className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
-    {...props}
-  >
-    {children ?? <ChevronRight />}
-  </li>
-);
+}: React.ComponentProps<"li">) => {
+  const ctx = React.useContext(BreadcrumbContext);
+  return (
+    <li
+      role="presentation"
+      aria-hidden="true"
+      className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
+      {...props}
+    >
+      {children ?? ctx.separator ?? <ChevronRight />}
+    </li>
+  );
+};
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
 const BreadcrumbEllipsis = ({

@@ -21,16 +21,21 @@ export interface CheckboxProps
   radius?: Radius;
   /** Marks the checkbox as invalid for form validation. */
   error?: boolean;
+  /** Optional label rendered next to the checkbox */
+  label?: string;
 }
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, size = "md", radius = "sm", error, ...props }, ref) => {
+>(({ className, size = "md", radius = "sm", error, label, id, ...props }, ref) => {
+  const autoId = React.useId();
+  const checkboxId = id ?? (label ? autoId : undefined);
   const { box, icon } = sizeClass[size];
-  return (
+  const root = (
     <CheckboxPrimitive.Root
       ref={ref}
+      id={checkboxId}
       aria-invalid={error || undefined}
       className={cn(
         "peer shrink-0 border border-input ring-offset-background",
@@ -71,6 +76,20 @@ const Checkbox = React.forwardRef<
         )}
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
+  );
+
+  if (!label) return root;
+
+  return (
+    <div className="flex items-center gap-2">
+      {root}
+      <label
+        htmlFor={checkboxId}
+        className="text-sm font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        {label}
+      </label>
+    </div>
   );
 });
 Checkbox.displayName = "Checkbox";

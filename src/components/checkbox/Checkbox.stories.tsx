@@ -10,7 +10,9 @@ const meta = {
   argTypes: {
     size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
     radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    label:    { control: "text" },
     disabled: { control: "boolean" },
+    error:    { control: "boolean" },
   },
 } satisfies Meta<typeof Checkbox>;
 

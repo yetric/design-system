@@ -8,6 +8,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     radius: { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    preset: { control: "select", options: ["default","text","heading","avatar","button","card","badge"] },
   },
 } satisfies Meta<typeof Skeleton>;
 
