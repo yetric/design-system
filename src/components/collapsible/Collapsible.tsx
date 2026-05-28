@@ -55,3 +55,6 @@ const CollapsibleContent = React.forwardRef<
 CollapsibleContent.displayName = "CollapsibleContent";
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+export type CollapsibleProps = React.ComponentPropsWithoutRef<typeof Collapsible>;
+export type CollapsibleTriggerProps = React.ComponentPropsWithoutRef<typeof CollapsibleTrigger>;
+export type CollapsibleContentProps = React.ComponentPropsWithoutRef<typeof CollapsibleContent>;

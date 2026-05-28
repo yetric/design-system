@@ -45,3 +45,5 @@ const ScrollBar = React.forwardRef<
 ScrollBar.displayName = "ScrollBar";
 
 export { ScrollArea, ScrollBar };
+export type ScrollAreaProps = React.ComponentPropsWithoutRef<typeof ScrollArea>;
+export type ScrollBarProps = React.ComponentPropsWithoutRef<typeof ScrollBar>;

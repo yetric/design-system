@@ -59,6 +59,10 @@ const iconClass: Record<Size, string> = {
 };
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+  /**
+   * Marks the input as invalid (red border + aria-invalid). For displaying an inline error
+   * message alongside a label, use `InputField` instead.
+   */
   error?: boolean;
   size?: Size;
   radius?: Radius;

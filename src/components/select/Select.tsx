@@ -23,14 +23,17 @@ export interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
   size?: Size;
   radius?: Radius;
+  /** Marks the trigger as invalid for form validation. */
+  error?: boolean;
 }
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, size = "md", radius = "md", children, ...props }, ref) => (
+>(({ className, size = "md", radius = "md", error, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
+    aria-invalid={error || undefined}
     className={cn(
       "flex w-full items-center justify-between border border-input bg-background",
       "ring-offset-background transition-colors",
@@ -40,6 +43,7 @@ const SelectTrigger = React.forwardRef<
       "[&>span]:line-clamp-1",
       triggerSizeClass[size],
       radiusClass[radius],
+      error && "border-destructive focus:ring-destructive",
       className
     )}
     {...props}

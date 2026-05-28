@@ -19,8 +19,12 @@ export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
   size?: Size;
   radius?: Radius;
-  /** Marks the checkbox as invalid for form validation. */
-  error?: boolean;
+  /**
+   * Marks the checkbox as invalid. Pass a string to also display an error message.
+   * @example error={true}
+   * @example error="This field is required"
+   */
+  error?: string | boolean;
   /** Optional label rendered next to the checkbox */
   label?: string;
 }
@@ -31,12 +35,15 @@ const Checkbox = React.forwardRef<
 >(({ className, size = "md", radius = "sm", error, label, id, ...props }, ref) => {
   const autoId = React.useId();
   const checkboxId = id ?? (label ? autoId : undefined);
+  const errorId = typeof error === "string" ? `${autoId}-error` : undefined;
+  const hasError = Boolean(error);
   const { box, icon } = sizeClass[size];
   const root = (
     <CheckboxPrimitive.Root
       ref={ref}
       id={checkboxId}
-      aria-invalid={error || undefined}
+      aria-invalid={hasError || undefined}
+      aria-describedby={errorId}
       className={cn(
         "peer shrink-0 border border-input ring-offset-background",
         "transition-colors focus-visible:outline-none focus-visible:ring-2",
@@ -44,7 +51,7 @@ const Checkbox = React.forwardRef<
         "disabled:cursor-not-allowed disabled:opacity-50",
         "data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground",
         "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-foreground",
-        error && "border-destructive focus-visible:ring-destructive",
+        hasError && "border-destructive focus-visible:ring-destructive",
         radiusClass[radius],
         box,
         className
@@ -78,17 +85,26 @@ const Checkbox = React.forwardRef<
     </CheckboxPrimitive.Root>
   );
 
-  if (!label) return root;
+  if (!label && typeof error !== "string") return root;
 
   return (
-    <div className="flex items-center gap-2">
-      {root}
-      <label
-        htmlFor={checkboxId}
-        className="text-sm font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        {label}
-      </label>
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-2">
+        {root}
+        {label && (
+          <label
+            htmlFor={checkboxId}
+            className="text-sm font-medium leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            {label}
+          </label>
+        )}
+      </div>
+      {typeof error === "string" && (
+        <p id={errorId} role="alert" className="text-sm text-destructive">
+          {error}
+        </p>
+      )}
     </div>
   );
 });

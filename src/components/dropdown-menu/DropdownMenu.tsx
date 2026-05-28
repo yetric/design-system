@@ -213,3 +213,5 @@ export {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
 };
+export type DropdownMenuProps = React.ComponentPropsWithoutRef<typeof DropdownMenu>;
+export type DropdownMenuItemProps = React.ComponentPropsWithoutRef<typeof DropdownMenuItem>;

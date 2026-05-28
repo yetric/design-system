@@ -53,12 +53,12 @@ interface AccordionRootExtraProps {
   chevronPosition?: "left" | "right";
 }
 
-type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> &
+type AccordionRootProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> &
   AccordionRootExtraProps;
 
 const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
-  AccordionProps
+  AccordionRootProps
 >(({ className, variant = "default", radius = "none", chevronPosition = "right", ...props }, ref) => (
   <AccordionContext.Provider value={{ variant, radius, chevronPosition }}>
     <AccordionPrimitive.Root
@@ -163,4 +163,8 @@ AccordionContent.displayName = "AccordionContent";
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
 export type { AccordionVariant };
+export type AccordionProps = React.ComponentPropsWithoutRef<typeof Accordion>;
+export type AccordionItemProps = React.ComponentPropsWithoutRef<typeof AccordionItem>;
+export type { AccordionTriggerProps };
+export type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionContent>;
 

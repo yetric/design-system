@@ -166,3 +166,8 @@ export const FormMessage = React.forwardRef<
   );
 });
 FormMessage.displayName = "FormMessage";
+
+export type FormItemProps = React.ComponentPropsWithoutRef<typeof FormItem>;
+export type FormLabelProps = React.ComponentPropsWithoutRef<typeof FormLabel>;
+export type FormDescriptionProps = React.ComponentPropsWithoutRef<typeof FormDescription>;
+export type FormMessageProps = React.ComponentPropsWithoutRef<typeof FormMessage>;

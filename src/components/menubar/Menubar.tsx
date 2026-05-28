@@ -225,3 +225,5 @@ export {
   MenubarSub,
   MenubarShortcut,
 };
+export type MenubarProps = React.ComponentPropsWithoutRef<typeof Menubar>;
+export type MenubarItemProps = React.ComponentPropsWithoutRef<typeof MenubarItem>;

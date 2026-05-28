@@ -115,3 +115,8 @@ export {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
 };
+export type BreadcrumbProps = React.ComponentPropsWithoutRef<typeof Breadcrumb>;
+export type BreadcrumbListProps = React.ComponentPropsWithoutRef<typeof BreadcrumbList>;
+export type BreadcrumbItemProps = React.ComponentPropsWithoutRef<typeof BreadcrumbItem>;
+export type BreadcrumbLinkProps = React.ComponentPropsWithoutRef<typeof BreadcrumbLink>;
+export type BreadcrumbPageProps = React.ComponentPropsWithoutRef<typeof BreadcrumbPage>;

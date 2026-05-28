@@ -22,8 +22,12 @@ export interface PinInputProps {
   mask?: boolean;
   size?: Size;
   radius?: Radius;
-  /** Show error state. */
-  error?: boolean;
+  /**
+   * Marks all digits as invalid. Pass a string to also display an error message below the input.
+   * @example error={true}
+   * @example error="Invalid PIN"
+   */
+  error?: string | boolean;
   disabled?: boolean;
   /** Called when all digits are filled. */
   onComplete?: (value: string) => void;
@@ -42,6 +46,9 @@ function PinInput({
   onComplete,
   "aria-label": ariaLabel = "PIN input",
 }: PinInputProps) {
+  const autoId = React.useId();
+  const errorId = typeof error === "string" ? `${autoId}-error` : undefined;
+  const hasError = Boolean(error);
   const inputsRef = React.useRef<Array<HTMLInputElement | null>>([]);
 
   const digits = Array.from({ length }, (_, i) => value[i] ?? "");
@@ -75,35 +82,44 @@ function PinInput({
   };
 
   return (
-    <div
-      role="group"
-      aria-label={ariaLabel}
-      className="inline-flex items-center gap-2"
-    >
-      {digits.map((digit, index) => (
-        <input
-          key={index}
-          ref={(el) => { inputsRef.current[index] = el; }}
-          type={mask ? "password" : "text"}
-          inputMode="numeric"
-          maxLength={1}
-          value={digit}
-          disabled={disabled}
-          aria-label={`Digit ${index + 1} of ${length}`}
-          onChange={(e) => handleChange(index, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(index, e)}
-          onPaste={handlePaste}
-          onFocus={(e) => e.target.select()}
-          className={cn(
-            "border bg-background text-foreground text-center font-mono tabular-nums outline-none",
-            "transition-colors focus:ring-2 focus:ring-ring focus:ring-offset-2",
-            boxSizeClass[size],
-            radiusClass[radius],
-            error ? "border-destructive" : "border-input",
-            disabled && "opacity-50 cursor-not-allowed"
-          )}
-        />
-      ))}
+    <div className="inline-flex flex-col gap-1.5">
+      <div
+        role="group"
+        aria-label={ariaLabel}
+        aria-describedby={errorId}
+        className="inline-flex items-center gap-2"
+      >
+        {digits.map((digit, index) => (
+          <input
+            key={index}
+            ref={(el) => { inputsRef.current[index] = el; }}
+            type={mask ? "password" : "text"}
+            inputMode="numeric"
+            maxLength={1}
+            value={digit}
+            disabled={disabled}
+            aria-label={`Digit ${index + 1} of ${length}`}
+            aria-invalid={hasError || undefined}
+            onChange={(e) => handleChange(index, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(index, e)}
+            onPaste={handlePaste}
+            onFocus={(e) => e.target.select()}
+            className={cn(
+              "border bg-background text-foreground text-center font-mono tabular-nums outline-none",
+              "transition-colors focus:ring-2 focus:ring-ring focus:ring-offset-2",
+              boxSizeClass[size],
+              radiusClass[radius],
+              hasError ? "border-destructive" : "border-input",
+              disabled && "opacity-50 cursor-not-allowed"
+            )}
+          />
+        ))}
+      </div>
+      {typeof error === "string" && (
+        <p id={errorId} role="alert" className="text-sm text-destructive">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

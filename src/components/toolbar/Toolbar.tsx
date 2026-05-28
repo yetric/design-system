@@ -106,3 +106,7 @@ export {
   ToolbarToggleItem,
   ToolbarLink,
 };
+export type ToolbarProps = React.ComponentPropsWithoutRef<typeof Toolbar>;
+export type ToolbarButtonProps = React.ComponentPropsWithoutRef<typeof ToolbarButton>;
+export type ToolbarToggleGroupProps = React.ComponentPropsWithoutRef<typeof ToolbarToggleGroup>;
+export type ToolbarToggleItemProps = React.ComponentPropsWithoutRef<typeof ToolbarToggleItem>;

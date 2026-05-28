@@ -44,7 +44,7 @@ const PaginationItem = React.forwardRef<
 ));
 PaginationItem.displayName = "PaginationItem";
 
-type PaginationLinkProps = {
+export type PaginationLinkProps = {
   isActive?: boolean;
   size?: Size;
 } & React.ComponentProps<"a">;
@@ -113,3 +113,4 @@ export {
   PaginationNext,
   PaginationEllipsis,
 };
+export type PaginationProps = React.ComponentPropsWithoutRef<typeof PaginationRoot>;

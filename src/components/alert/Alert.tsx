@@ -57,6 +57,10 @@ export interface AlertProps
   /** Override the default variant icon or pass false to hide it */
   icon?: React.ReactNode | false;
   /** Called when user clicks the dismiss button; omit to hide the button */
+  onDismiss?: () => void;
+  /**
+   * @deprecated Use `onDismiss` instead.
+   */
   onClose?: () => void;
   /** Accessible label for the close button */
   closeLabel?: string;
@@ -73,6 +77,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       radius = "md",
       title,
       icon,
+      onDismiss,
       onClose,
       closeLabel = "Dismiss",
       children,
@@ -80,6 +85,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     },
     ref
   ) => {
+    const handleDismiss = onDismiss ?? onClose;
     const resolvedIcon = icon === false ? null : (icon ?? defaultIcon[variant ?? "default"]);
     const iconColor = iconColorClass[variant ?? "default"];
 
@@ -101,10 +107,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           {children && <div className="leading-relaxed opacity-90">{children}</div>}
         </div>
 
-        {onClose && (
+        {handleDismiss && (
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleDismiss}
             aria-label={closeLabel}
             className="ml-auto shrink-0 rounded opacity-60 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-opacity"
           >
