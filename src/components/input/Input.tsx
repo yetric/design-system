@@ -11,7 +11,7 @@ const inputSizeClass: Record<Size, string> = {
   xl: "h-14 px-5 text-base",
 };
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   error?: boolean;
   size?: Size;
 }

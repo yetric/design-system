@@ -35,26 +35,26 @@ describe("toast API", () => {
 
   it("calls sonner toast for default", () => {
     toast("Hello");
-    expect(vi.mocked(sonner.toast)).toHaveBeenCalledWith("Hello", undefined);
+    expect(vi.mocked(sonner.toast)).toHaveBeenCalledWith("Hello");
   });
 
   it("calls toast.success", () => {
     toast.success("Saved!");
-    expect(vi.mocked(sonner.toast.success)).toHaveBeenCalledWith("Saved!", undefined);
+    expect(vi.mocked(sonner.toast.success)).toHaveBeenCalledWith("Saved!");
   });
 
   it("calls toast.error", () => {
     toast.error("Failed");
-    expect(vi.mocked(sonner.toast.error)).toHaveBeenCalledWith("Failed", undefined);
+    expect(vi.mocked(sonner.toast.error)).toHaveBeenCalledWith("Failed");
   });
 
   it("calls toast.warning", () => {
     toast.warning("Watch out");
-    expect(vi.mocked(sonner.toast.warning)).toHaveBeenCalledWith("Watch out", undefined);
+    expect(vi.mocked(sonner.toast.warning)).toHaveBeenCalledWith("Watch out");
   });
 
   it("calls toast.info", () => {
     toast.info("FYI");
-    expect(vi.mocked(sonner.toast.info)).toHaveBeenCalledWith("FYI", undefined);
+    expect(vi.mocked(sonner.toast.info)).toHaveBeenCalledWith("FYI");
   });
 });

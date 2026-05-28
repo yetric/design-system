@@ -35,12 +35,13 @@ const defaultTagForSize: Record<NonNullable<HeadingProps["size"]>, HeadingAs> = 
   h4:      "h4",
 };
 
-const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+const Heading = React.forwardRef<HTMLElement, HeadingProps>(
   ({ className, size = "h2", as, children, ...props }, ref) => {
-    const Comp = as ?? defaultTagForSize[size];
+    const Comp = as ?? defaultTagForSize[size ?? "h2"];
     return (
       <Comp
-        ref={ref}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as React.Ref<any>}
         className={cn(headingVariants({ size }), className)}
         {...props}
       >
@@ -82,15 +83,16 @@ const textVariants = cva("text-foreground", {
 type TextAs = "p" | "span" | "div" | "label" | "small" | "strong" | "em";
 
 export interface TextProps
-  extends React.HTMLAttributes<HTMLElement>,
+  extends Omit<React.HTMLAttributes<HTMLElement>, "color">,
     VariantProps<typeof textVariants> {
   as?: TextAs;
 }
 
 const Text = React.forwardRef<HTMLElement, TextProps>(
   ({ className, size, weight, color, as: Comp = "p", ...props }, ref) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <Comp
-      ref={ref as React.Ref<HTMLParagraphElement>}
+      ref={ref as React.Ref<any>}
       className={cn(textVariants({ size, weight, color }), className)}
       {...props}
     />

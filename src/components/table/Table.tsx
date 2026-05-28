@@ -7,6 +7,7 @@ import {
   type ColumnDef,
   type ColumnFiltersState,
   type FilterFn,
+  type Header,
   type RowData,
   type RowSelectionState,
   type SortingState,
@@ -469,7 +470,7 @@ function DataMode<TData>({
   const selectedCount = Object.keys(rowSelection).length;
   const hideable = table.getAllLeafColumns().filter((col) => col.getCanHide());
   const activeFilterCount = columnFilters.length;
-  const leafHeaders = table.getHeaderGroups().at(-1)!.headers;
+  const leafHeaders = (table.getHeaderGroups().slice(-1)[0]?.headers) ?? [];
 
   return (
     <div className={cn("space-y-3", className)}>
@@ -572,7 +573,7 @@ function DataMode<TData>({
                 ))}
                 {showFilters && (
                   <TableRow className="hover:bg-transparent">
-                    {leafHeaders.map((header) => (
+                    {leafHeaders.map((header: Header<TData, unknown>) => (
                       <TableHead key={header.id} className="py-2">
                         <ColumnFilter column={header.column} />
                       </TableHead>
