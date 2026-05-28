@@ -8,7 +8,17 @@ const config: StorybookConfig = {
     "@storybook/addon-vitest",
     "@storybook/addon-a11y"
   ],
-  staticDirs: ["../public"]
+  staticDirs: ["../public"],
+  viteFinal: async (config) => ({
+    ...config,
+    resolve: {
+      ...(config.resolve ?? {}),
+      alias: {
+        ...(config.resolve?.alias ?? {}),
+        "@": new URL("../src", import.meta.url).pathname
+      }
+    }
+  })
 };
 
 export default config;

@@ -7,9 +7,15 @@ const storybookConfigDir = new URL("./.storybook", import.meta.url).pathname;
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      "@": new URL("./src", import.meta.url).pathname
+    }
+  },
   test: {
     projects: [
       {
+        extends: true,
         test: {
           name: "unit",
           environment: "jsdom",
