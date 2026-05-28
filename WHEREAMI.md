@@ -227,7 +227,7 @@ Column-level filters via `meta` on each column:
 ## DX — API design principles
 
 **Already in place:**
-- TypeScript-first, all `*Props` types exported
+- TypeScript-first, all `*Props` types exported from every component
 - Consistent `size`, `variant`, `radius` props across components
 - `VARIANT`, `SIZE`, `RADIUS` constants — no magic strings
 - Radix accessibility primitives as base
@@ -235,11 +235,18 @@ Column-level filters via `meta` on each column:
 - `"use client"` directives on all components using hooks/browser APIs
 - react-hook-form + Zod integration via `Form`/`useZodForm`
 - Single import surface: `import { Button } from "@yetric/ui"`
+- `error` prop is `string | boolean` on all field-level components (Checkbox, PinInput, Textarea, NumberInput, InputField, MultiSelect) — pass a string to show an inline error message
+- `Select` trigger now accepts `error?: boolean` for validation state
+- `Alert` uses `onDismiss` as primary prop (`onClose` kept as `@deprecated` alias) — consistent with Badge
+- All compound components export their Props types (Accordion, Breadcrumb, Collapsible, DropdownMenu, Form, Menubar, Pagination, ScrollArea, Toolbar, Tooltip)
+- ThemeProvider configurator: font pickers use Google Fonts dropdown (22 fonts, grouped by category, each rendered in its own typeface; lazy `<link>` injection on select)
 
-**Open items:**
+**Open items / next session:**
 - `asChild` beyond Button — Badge, Card, Anchor could support it for router links
-- JSDoc on non-obvious props (`multiline`, `filterType`, `asChild`)
+- JSDoc `@example` on complex props (`multiline`, `filterType`, etc.)
 - `data-variant` / `data-size` attributes as CSS Module styling hooks
+- Storybook stories for Tier C components need argTypes review
+- CI / Storybook deploy / visual regression (see Infrastructure table)
 
 ## Infrastructure / shipping
 
