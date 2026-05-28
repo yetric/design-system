@@ -20,49 +20,66 @@ describe("Box", () => {
     expect(screen.getByTestId("box").tagName).toBe("ARTICLE");
   });
 
-  it("applies padding class for `p` prop", () => {
-    render(<Box p={4} data-testid="box">x</Box>);
+  it("applies padding class for `p='md'`", () => {
+    render(<Box p="md" data-testid="box">x</Box>);
     expect(screen.getByTestId("box")).toHaveClass("p-4");
   });
 
-  it("applies horizontal padding class for `px` prop", () => {
-    render(<Box px={6} data-testid="box">x</Box>);
+  it("applies correct classes for all token sizes", () => {
+    const { rerender } = render(<Box p="none" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("p-0");
+
+    rerender(<Box p="xs" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("p-1");
+
+    rerender(<Box p="sm" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("p-2");
+
+    rerender(<Box p="lg" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("p-6");
+
+    rerender(<Box p="xl" data-testid="box">x</Box>);
+    expect(screen.getByTestId("box")).toHaveClass("p-8");
+  });
+
+  it("applies horizontal padding class for `px`", () => {
+    render(<Box px="lg" data-testid="box">x</Box>);
     expect(screen.getByTestId("box")).toHaveClass("px-6");
   });
 
-  it("applies vertical padding class for `py` prop", () => {
-    render(<Box py={2} data-testid="box">x</Box>);
+  it("applies vertical padding class for `py`", () => {
+    render(<Box py="sm" data-testid="box">x</Box>);
     expect(screen.getByTestId("box")).toHaveClass("py-2");
   });
 
   it("applies individual padding classes", () => {
-    render(<Box pt={1} pb={2} pl={3} pr={4} data-testid="box">x</Box>);
+    render(<Box pt="xs" pb="sm" pl="md" pr="lg" data-testid="box">x</Box>);
     const el = screen.getByTestId("box");
     expect(el).toHaveClass("pt-1");
     expect(el).toHaveClass("pb-2");
-    expect(el).toHaveClass("pl-3");
-    expect(el).toHaveClass("pr-4");
+    expect(el).toHaveClass("pl-4");
+    expect(el).toHaveClass("pr-6");
   });
 
-  it("applies margin class for `m` prop", () => {
-    render(<Box m={4} data-testid="box">x</Box>);
+  it("applies margin class for `m`", () => {
+    render(<Box m="md" data-testid="box">x</Box>);
     expect(screen.getByTestId("box")).toHaveClass("m-4");
   });
 
   it("applies horizontal and vertical margin classes", () => {
-    render(<Box mx={8} my={2} data-testid="box">x</Box>);
+    render(<Box mx="xl" my="sm" data-testid="box">x</Box>);
     const el = screen.getByTestId("box");
     expect(el).toHaveClass("mx-8");
     expect(el).toHaveClass("my-2");
   });
 
   it("applies individual margin classes", () => {
-    render(<Box mt={4} mb={6} ml={2} mr={3} data-testid="box">x</Box>);
+    render(<Box mt="md" mb="lg" ml="sm" mr="xs" data-testid="box">x</Box>);
     const el = screen.getByTestId("box");
     expect(el).toHaveClass("mt-4");
     expect(el).toHaveClass("mb-6");
     expect(el).toHaveClass("ml-2");
-    expect(el).toHaveClass("mr-3");
+    expect(el).toHaveClass("mr-1");
   });
 
   it("applies display class", () => {
@@ -86,7 +103,7 @@ describe("Box", () => {
   });
 
   it("combines multiple spacing and display props", () => {
-    render(<Box display="flex" p={4} mx={2} className="gap-4" data-testid="box">x</Box>);
+    render(<Box display="flex" p="md" mx="sm" className="gap-4" data-testid="box">x</Box>);
     const el = screen.getByTestId("box");
     expect(el).toHaveClass("flex");
     expect(el).toHaveClass("p-4");
@@ -94,8 +111,8 @@ describe("Box", () => {
     expect(el).toHaveClass("gap-4");
   });
 
-  it("applies zero spacing correctly", () => {
-    render(<Box p={0} m={0} data-testid="box">x</Box>);
+  it("applies none spacing correctly", () => {
+    render(<Box p="none" m="none" data-testid="box">x</Box>);
     const el = screen.getByTestId("box");
     expect(el).toHaveClass("p-0");
     expect(el).toHaveClass("m-0");

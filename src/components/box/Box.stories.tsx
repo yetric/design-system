@@ -8,6 +8,13 @@ const meta: Meta<typeof Box> = {
   parameters: {
     layout: "padded",
   },
+  argTypes: {
+    p:  { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    px: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    py: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    m:  { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    display: { control: "select", options: ["block", "inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "hidden", "contents"] },
+  },
 };
 
 export default meta;
@@ -15,23 +22,23 @@ type Story = StoryObj<typeof Box>;
 
 export const Default: Story = {
   args: {
-    p: 4,
-    children: "A simple box with p-4 padding.",
+    p: "md",
+    children: "A simple box with md padding.",
   },
 };
 
 export const WithBackground: Story = {
   args: {
-    p: 6,
+    p: "lg",
     className: "bg-muted rounded-lg",
-    children: "Box with background, rounded corners, and p-6.",
+    children: "Box with background, rounded corners, and lg padding.",
   },
 };
 
 export const AsSection: Story = {
   args: {
     as: "section",
-    p: 4,
+    p: "md",
     className: "bg-card border rounded-lg",
     children: "Rendered as a <section> element.",
   },
@@ -40,38 +47,38 @@ export const AsSection: Story = {
 export const FlexContainer: Story = {
   args: {
     display: "flex",
-    px: 4,
-    py: 2,
+    px: "md",
+    py: "sm",
     className: "gap-4 items-center bg-muted rounded",
     children: (
       <>
-        <Box p={2} className="bg-primary text-primary-foreground rounded text-sm">Item 1</Box>
-        <Box p={2} className="bg-primary text-primary-foreground rounded text-sm">Item 2</Box>
-        <Box p={2} className="bg-primary text-primary-foreground rounded text-sm">Item 3</Box>
+        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">Item 1</Box>
+        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">Item 2</Box>
+        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">Item 3</Box>
       </>
     ),
   },
 };
 
-export const SpacingShowcase: Story = {
+export const SpacingTokens: Story = {
   render: () => (
     <Box display="flex" className="gap-4 flex-col">
-      <Box p={2} className="bg-muted rounded text-sm">p=2</Box>
-      <Box p={4} className="bg-muted rounded text-sm">p=4</Box>
-      <Box p={6} className="bg-muted rounded text-sm">p=6</Box>
-      <Box px={8} py={2} className="bg-muted rounded text-sm">px=8, py=2</Box>
-      <Box pt={4} pr={8} pb={2} pl={6} className="bg-muted rounded text-sm">pt=4 pr=8 pb=2 pl=6</Box>
+      {(["none", "xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+        <Box key={size} p={size} className="bg-muted rounded text-sm">
+          p="{size}"
+        </Box>
+      ))}
     </Box>
   ),
 };
 
 export const NestedBoxes: Story = {
   render: () => (
-    <Box p={6} className="bg-muted rounded-lg">
-      <Box mb={4} className="text-lg font-semibold">Outer Box</Box>
+    <Box p="lg" className="bg-muted rounded-lg">
+      <Box mb="md" className="text-lg font-semibold">Outer Box</Box>
       <Box display="flex" className="gap-4">
-        <Box p={4} className="flex-1 bg-background border rounded">Inner 1</Box>
-        <Box p={4} className="flex-1 bg-background border rounded">Inner 2</Box>
+        <Box p="md" className="flex-1 bg-background border rounded">Inner 1</Box>
+        <Box p="md" className="flex-1 bg-background border rounded">Inner 2</Box>
       </Box>
     </Box>
   ),
@@ -80,14 +87,13 @@ export const NestedBoxes: Story = {
 export const AsArticle: Story = {
   args: {
     as: "article",
-    p: 6,
-    className: "prose max-w-none bg-card border rounded-lg",
+    p: "lg",
+    className: "bg-card border rounded-lg",
     children: (
       <Box>
-        <Box as="h2" mb={2} className="text-xl font-bold">Article Title</Box>
+        <Box as="h2" mb="sm" className="text-xl font-bold">Article Title</Box>
         <Box as="p" className="text-muted-foreground">
-          Box renders as semantic HTML by default. Use the <code>as</code> prop to change
-          the underlying element without losing styling utilities.
+          Use the <code>as</code> prop to render semantic HTML with design token spacing.
         </Box>
       </Box>
     ),
