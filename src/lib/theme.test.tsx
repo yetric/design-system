@@ -1,7 +1,12 @@
 import { render, screen, act } from "@testing-library/react";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import * as React from "react";
-import { ThemeProvider, useTheme } from "./theme";
+import {
+  ThemeProvider, useTheme,
+  applyConfig, removeConfig,
+  COLOR_PALETTES, RADIUS_VALUES,
+  type ThemeConfig,
+} from "./theme";
 
 // Helper: render a component that reads/writes the theme
 function ThemeConsumer() {
@@ -33,6 +38,10 @@ function stubMatchMedia(prefersDark: boolean) {
 beforeEach(() => {
   localStorage.clear();
   document.documentElement.classList.remove("light", "dark");
+  document.getElementById("yetric-ui-theme-config")?.remove();
+  document.documentElement.style.removeProperty("--radius");
+  document.documentElement.style.removeProperty("--font-sans");
+  document.documentElement.style.removeProperty("--font-heading");
   stubMatchMedia(false);
 });
 
@@ -130,5 +139,77 @@ describe("useTheme", () => {
       "useTheme must be used within a <ThemeProvider>"
     );
     spy.mockRestore();
+  });
+});
+
+// ─── applyConfig ──────────────────────────────────────────────────────────────
+
+describe("applyConfig — radius", () => {
+  it("sets --radius for each preset", () => {
+    (Object.entries(RADIUS_VALUES) as [string, string][]).forEach(([preset, value]) => {
+      applyConfig({ radius: preset as any });
+      expect(document.documentElement.style.getPropertyValue("--radius")).toBe(value);
+    });
+  });
+});
+
+describe("applyConfig — fonts", () => {
+  it("sets --font-sans", () => {
+    applyConfig({ fontSans: '"Inter", sans-serif' });
+    expect(document.documentElement.style.getPropertyValue("--font-sans")).toBe('"Inter", sans-serif');
+  });
+
+  it("sets --font-heading", () => {
+    applyConfig({ fontHeading: '"Cal Sans", serif' });
+    expect(document.documentElement.style.getPropertyValue("--font-heading")).toBe('"Cal Sans", serif');
+  });
+});
+
+describe("applyConfig — primaryColor", () => {
+  it("injects a <style> tag with :root and .dark overrides for blue", () => {
+    applyConfig({ primaryColor: "blue" });
+    const el = document.getElementById("yetric-ui-theme-config");
+    expect(el).not.toBeNull();
+    expect(el?.textContent).toContain(COLOR_PALETTES.blue.light.primary);
+    expect(el?.textContent).toContain(COLOR_PALETTES.blue.dark.primary);
+    expect(el?.textContent).toContain(":root");
+    expect(el?.textContent).toContain(".dark");
+  });
+
+  it("removes the style tag when primaryColor is not set", () => {
+    applyConfig({ primaryColor: "blue" });
+    applyConfig({}); // no primaryColor
+    expect(document.getElementById("yetric-ui-theme-config")).toBeNull();
+  });
+
+  it("updates the style tag when color changes", () => {
+    applyConfig({ primaryColor: "blue" });
+    applyConfig({ primaryColor: "red" });
+    const el = document.getElementById("yetric-ui-theme-config");
+    expect(el?.textContent).toContain(COLOR_PALETTES.red.light.primary);
+    expect(el?.textContent).not.toContain(COLOR_PALETTES.blue.light.primary);
+  });
+});
+
+describe("removeConfig", () => {
+  it("removes the style tag and inline custom props", () => {
+    applyConfig({ primaryColor: "green", radius: "lg", fontSans: '"Inter", sans-serif' });
+    removeConfig();
+    expect(document.getElementById("yetric-ui-theme-config")).toBeNull();
+    expect(document.documentElement.style.getPropertyValue("--radius")).toBe("");
+    expect(document.documentElement.style.getPropertyValue("--font-sans")).toBe("");
+  });
+});
+
+describe("ThemeProvider config prop", () => {
+  it("applies config on mount", () => {
+    const config: ThemeConfig = { radius: "lg", primaryColor: "green" };
+    render(
+      <ThemeProvider config={config}>
+        <div />
+      </ThemeProvider>
+    );
+    expect(document.documentElement.style.getPropertyValue("--radius")).toBe(RADIUS_VALUES.lg);
+    expect(document.getElementById("yetric-ui-theme-config")).not.toBeNull();
   });
 });

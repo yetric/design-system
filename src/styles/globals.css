@@ -38,6 +38,10 @@
   --input:                  210 14% 89%;  /* oc-gray-3 */
   --ring:                   255 86% 63%;  /* oc-violet-6 */
 
+  /* Typography */
+  --font-sans:    "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
   /* Border radius */
   --radius: 0.5rem;
 
@@ -103,5 +107,10 @@
 }
 
 body {
-  @apply bg-background text-foreground font-sans;
+  @apply bg-background text-foreground;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
