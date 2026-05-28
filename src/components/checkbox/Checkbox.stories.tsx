@@ -64,3 +64,22 @@ export const CheckboxList: Story = {
     </fieldset>
   )
 };
+
+export const Error: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-2">
+        <Checkbox id="error-unchecked" error />
+        <Label htmlFor="error-unchecked" className="text-destructive text-sm">
+          You must accept the terms
+        </Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <Checkbox id="error-checked" error defaultChecked />
+        <Label htmlFor="error-checked" className="text-sm">
+          Still shows error ring when checked
+        </Label>
+      </div>
+    </div>
+  )
+};

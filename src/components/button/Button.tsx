@@ -54,17 +54,28 @@ export interface ButtonProps
   isLoading?: boolean;
   /** Label read by screen readers when isLoading is true. Defaults to "Loading". */
   loadingText?: string;
+  /** Icon rendered before the button label. Replaced by a spinner when isLoading is true. */
+  leftIcon?: React.ReactNode;
+  /** Icon rendered after the button label. */
+  rightIcon?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, radius, asChild = false, disabled, isLoading = false, loadingText = "Loading", children, ...props }, ref) => {
+  ({ className, variant, size, radius, asChild = false, disabled, isLoading = false, loadingText = "Loading", leftIcon, rightIcon, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || isLoading;
     const content = asChild ? children : (
       <>
-        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
+        {isLoading
+          ? <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+          : leftIcon
+            ? <span className="mr-2 inline-flex shrink-0 items-center" aria-hidden="true">{leftIcon}</span>
+            : null}
         {isLoading && <span className="sr-only">{loadingText}</span>}
         {children}
+        {rightIcon && !isLoading && (
+          <span className="ml-2 inline-flex shrink-0 items-center" aria-hidden="true">{rightIcon}</span>
+        )}
       </>
     );
     return (

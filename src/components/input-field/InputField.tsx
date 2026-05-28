@@ -31,6 +31,22 @@ const textareaSizeClass: Record<Size, string> = {
   xl: "px-5 py-4 text-base"
 };
 
+const labelSizeClass: Record<Size, string> = {
+  xs: "text-xs",
+  sm: "text-xs",
+  md: "text-sm",
+  lg: "text-sm",
+  xl: "text-base",
+};
+
+const helperSizeClass: Record<Size, string> = {
+  xs: "text-xs",
+  sm: "text-xs",
+  md: "text-xs",
+  lg: "text-sm",
+  xl: "text-sm",
+};
+
 type BaseProps = {
   label?: string;
   helpText?: string;
@@ -85,7 +101,7 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
     return (
       <div className={cn("flex flex-col", wrapperClassName)}>
         {label && (
-          <Label htmlFor={id} required={required} className="mb-1.5">
+          <Label htmlFor={id} required={required} className={cn("mb-1.5", labelSizeClass[size])}>
             {label}
           </Label>
         )}
@@ -116,12 +132,12 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           />
         )}
         {helpText && !hasError && (
-          <div id={helpTextId} className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+          <div id={helpTextId} className={cn("mt-1 flex items-center gap-1 text-muted-foreground", helperSizeClass[size])}>
             {helpText}
           </div>
         )}
         {typeof error === "string" && (
-          <div id={errorId} role="alert" className="mt-1 flex items-center gap-1 text-xs text-destructive">
+          <div id={errorId} role="alert" className={cn("mt-1 flex items-center gap-1 text-destructive", helperSizeClass[size])}>
             {error}
           </div>
         )}

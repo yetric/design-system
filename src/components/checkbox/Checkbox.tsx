@@ -17,16 +17,19 @@ const sizeClass: Record<Size, { box: string; icon: string }> = {
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
   size?: Size;
+  /** Marks the checkbox as invalid for form validation. */
+  error?: boolean;
 }
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, size = "md", ...props }, ref) => {
+>(({ className, size = "md", error, ...props }, ref) => {
   const { box, icon } = sizeClass[size];
   return (
     <CheckboxPrimitive.Root
       ref={ref}
+      aria-invalid={error || undefined}
       className={cn(
         "peer shrink-0 rounded-sm border border-input ring-offset-background",
         "transition-colors focus-visible:outline-none focus-visible:ring-2",
@@ -34,6 +37,7 @@ const Checkbox = React.forwardRef<
         "disabled:cursor-not-allowed disabled:opacity-50",
         "data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground",
         "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-foreground",
+        error && "border-destructive focus-visible:ring-destructive",
         box,
         className
       )}

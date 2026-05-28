@@ -92,6 +92,40 @@ export const Sizes: Story = {
   )
 };
 
+export const SizesWithHelperText: Story = {
+  name: "Sizes — label & helper scaling",
+  render: () => (
+    <div className="flex flex-col gap-4 max-w-sm">
+      {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
+        <InputField
+          key={s}
+          size={s}
+          label={`Size ${s}`}
+          placeholder={`${s} input`}
+          helpText={`Helper text scales with the ${s} size`}
+        />
+      ))}
+    </div>
+  )
+};
+
+export const SizesWithError: Story = {
+  name: "Sizes — error text scaling",
+  render: () => (
+    <div className="flex flex-col gap-4 max-w-sm">
+      {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
+        <InputField
+          key={s}
+          size={s}
+          label={`Size ${s}`}
+          placeholder={`${s} input`}
+          error={`Error message scales with ${s}`}
+        />
+      ))}
+    </div>
+  )
+};
+
 export const FullForm: Story = {
   render: () => (
     <div className="flex flex-col gap-4 max-w-sm">

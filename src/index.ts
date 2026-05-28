@@ -1,5 +1,6 @@
 import "./styles/globals.css";
 
+export * from "./components/alert-dialog";
 export * from "./components/avatar";
 export * from "./components/badge";
 export * from "./components/button";
@@ -13,7 +14,9 @@ export * from "./components/label";
 export * from "./components/select";
 export * from "./components/separator";
 export * from "./components/skeleton";
+export * from "./components/stack";
 export * from "./components/table";
+export * from "./components/text";
 export * from "./lib/cn";
 export * from "./lib/radius";
 export * from "./lib/size";

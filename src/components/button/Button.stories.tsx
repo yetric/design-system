@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect } from "storybook/test";
+import { ArrowRight, Mail, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "./Button";
 
@@ -90,6 +91,39 @@ export const Loading: Story = {
       <Button isLoading>Saving…</Button>
       <Button isLoading variant="secondary">Processing…</Button>
       <Button isLoading variant="destructive">Deleting…</Button>
+    </div>
+  )
+};
+
+export const WithIcons: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Button leftIcon={<Mail size={16} />}>Send email</Button>
+      <Button rightIcon={<ArrowRight size={16} />} variant="outline">Continue</Button>
+      <Button leftIcon={<Plus size={16} />} variant="secondary">New item</Button>
+      <Button leftIcon={<Trash2 size={16} />} variant="destructive">Delete</Button>
+    </div>
+  )
+};
+
+export const IconsAllSizes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Button size="xs" leftIcon={<Mail size={12} />}>xs</Button>
+      <Button size="sm" leftIcon={<Mail size={14} />}>sm</Button>
+      <Button size="md" leftIcon={<Mail size={16} />}>md</Button>
+      <Button size="lg" leftIcon={<Mail size={18} />}>lg</Button>
+      <Button size="xl" leftIcon={<Mail size={20} />}>xl</Button>
+    </div>
+  )
+};
+
+export const LoadingReplacesIcon: Story = {
+  name: "Loading replaces leftIcon",
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Button leftIcon={<Mail size={16} />} isLoading={false}>Send email</Button>
+      <Button leftIcon={<Mail size={16} />} isLoading={true}>Send email</Button>
     </div>
   )
 };
