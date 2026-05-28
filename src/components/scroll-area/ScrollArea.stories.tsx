@@ -7,6 +7,7 @@ const meta: Meta<typeof ScrollArea> = {
   component: ScrollArea,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {},
 };
 export default meta;
 type Story = StoryObj<typeof ScrollArea>;

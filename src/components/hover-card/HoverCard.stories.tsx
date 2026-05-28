@@ -6,7 +6,11 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "./HoverCard";
 const meta = {
   title: "Components/HoverCard",
   component: HoverCard,
-  tags: ["autodocs"]
+  tags: ["autodocs"],
+  argTypes: {
+    openDelay:  { control: "number" },
+    closeDelay: { control: "number" },
+  },
 } satisfies Meta<typeof HoverCard>;
 
 export default meta;

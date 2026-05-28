@@ -6,6 +6,11 @@ const meta: Meta<typeof TagsInput> = {
   title: "Components/TagsInput",
   component: TagsInput,
   tags: ["autodocs"],
+  argTypes: {
+    placeholder: { control: "text" },
+    disabled:    { control: "boolean" },
+    size:        { control: "select", options: ["xs","sm","md","lg","xl"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof TagsInput>;

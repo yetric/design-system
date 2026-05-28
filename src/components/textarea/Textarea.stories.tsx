@@ -9,6 +9,13 @@ const meta = {
   args: {
     placeholder: "Type something…",
   },
+  argTypes: {
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    error:    { control: "boolean" },
+    disabled: { control: "boolean" },
+    rows:     { control: "number" },
+  },
 } satisfies Meta<typeof Textarea>;
 
 export default meta;

@@ -9,6 +9,10 @@ const meta: Meta = {
   tags: ["autodocs"],
   title: "Components/Popover",
   parameters: { layout: "centered" },
+  argTypes: {
+    radius: { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    shadow: { control: "select", options: ["none","sm","md","lg","xl"] },
+  },
 };
 export default meta;
 type Story = StoryObj;

@@ -8,6 +8,11 @@ const meta: Meta<typeof Indicator> = {
   component: Indicator,
   tags: ["autodocs"],
   title: "Components/Indicator",
+  argTypes: {
+    color:    { control: "select", options: ["default","primary","success","warning","destructive","info"] },
+    position: { control: "select", options: ["top-right","top-left","bottom-right","bottom-left"] },
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

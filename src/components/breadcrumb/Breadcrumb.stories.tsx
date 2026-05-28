@@ -9,6 +9,7 @@ const meta: Meta = {
   tags: ["autodocs"],
   title: "Components/Breadcrumb",
   parameters: { layout: "centered" },
+  argTypes: {},
 };
 export default meta;
 type Story = StoryObj;

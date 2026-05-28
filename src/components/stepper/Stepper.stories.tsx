@@ -7,6 +7,9 @@ const meta: Meta<typeof Stepper> = {
   component: Stepper,
   tags: ["autodocs"],
   title: "Components/Stepper",
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal","vertical"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

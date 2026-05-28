@@ -5,6 +5,11 @@ const meta: Meta<typeof Spoiler> = {
   title: "Components/Spoiler",
   component: Spoiler,
   tags: ["autodocs"],
+  argTypes: {
+    maxHeight: { control: "number" },
+    hideLabel: { control: "text" },
+    showLabel: { control: "text" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Spoiler>;

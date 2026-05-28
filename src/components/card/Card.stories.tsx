@@ -17,6 +17,12 @@ const meta = {
   component: Card,
   title: "Components/Card",
   tags: ["autodocs"],
+  argTypes: {
+    variant:     { control: "select", options: ["default","outlined","filled","ghost"] },
+    interactive: { control: "boolean" },
+    shadow:      { control: "select", options: ["none","sm","md","lg","xl"] },
+    radius:      { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+  },
 } satisfies Meta<typeof Card>;
 
 export default meta;

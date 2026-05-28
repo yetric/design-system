@@ -6,6 +6,9 @@ const meta = {
   title: "Components/Skeleton",
   component: Skeleton,
   tags: ["autodocs"],
+  argTypes: {
+    radius: { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+  },
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;

@@ -7,6 +7,7 @@ const meta: Meta<typeof Tabs> = {
   component: Tabs,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {},
 };
 export default meta;
 type Story = StoryObj<typeof Tabs>;

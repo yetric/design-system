@@ -8,6 +8,7 @@ const meta = {
   title: "Components/Table/Data-driven",
   component: Table,
   tags: ["autodocs"],
+  argTypes: {},
 } satisfies Meta<typeof Table>;
 
 export default meta;

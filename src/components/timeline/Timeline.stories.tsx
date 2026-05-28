@@ -6,6 +6,7 @@ const meta: Meta<typeof Timeline> = {
   title: "Components/Timeline",
   component: Timeline,
   tags: ["autodocs"],
+  argTypes: {},
 };
 export default meta;
 type Story = StoryObj<typeof Timeline>;

@@ -8,6 +8,10 @@ const meta: Meta<typeof Fieldset> = {
   component: Fieldset,
   tags: ["autodocs"],
   title: "Components/Fieldset",
+  argTypes: {
+    legend:   { control: "text" },
+    disabled: { control: "boolean" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

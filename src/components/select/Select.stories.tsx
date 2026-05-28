@@ -16,6 +16,11 @@ const meta = {
   title: "Components/Select",
   component: SelectTrigger,
   tags: ["autodocs"],
+  argTypes: {
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    disabled: { control: "boolean" },
+  },
 } satisfies Meta<typeof SelectTrigger>;
 
 export default meta;

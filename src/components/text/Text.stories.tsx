@@ -6,6 +6,7 @@ const meta = {
   title: "Components/Typography",
   component: Heading,
   tags: ["autodocs"],
+  argTypes: {},
 } satisfies Meta<typeof Heading>;
 
 export default meta;

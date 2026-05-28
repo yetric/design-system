@@ -7,6 +7,13 @@ const meta = {
   component: NumberInput,
   tags: ["autodocs"],
   title: "Components/NumberInput",
+  argTypes: {
+    min:      { control: "number" },
+    max:      { control: "number" },
+    step:     { control: "number" },
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    disabled: { control: "boolean" },
+  },
 } satisfies Meta<typeof NumberInput>;
 
 export default meta;

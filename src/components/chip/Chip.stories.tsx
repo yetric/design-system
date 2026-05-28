@@ -6,6 +6,12 @@ const meta = {
   component: Chip,
   title: "Components/Chip" ,
   tags: ["autodocs"],
+  argTypes: {
+    size:      { control: "select", options: ["xs","sm","md","lg","xl"] },
+    checked:   { control: "boolean" },
+    showCheck: { control: "boolean" },
+    disabled:  { control: "boolean" },
+  },
 } satisfies Meta<typeof Chip>;
 export default meta;
 type Story = StoryObj<typeof meta>;

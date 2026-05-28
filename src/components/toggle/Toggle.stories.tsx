@@ -6,6 +6,13 @@ const meta: Meta = {
   tags: ["autodocs"],
   title: "Components/Toggle",
   parameters: { layout: "centered" },
+  argTypes: {
+    variant:  { control: "select", options: ["default","outline","ghost"] },
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    pressed:  { control: "boolean" },
+    disabled: { control: "boolean" },
+  },
 };
 export default meta;
 type Story = StoryObj;

@@ -7,6 +7,13 @@ const meta: Meta<typeof Slider> = {
   component: Slider,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {
+    size:     { control: "select", options: ["sm","md","lg"] },
+    disabled: { control: "boolean" },
+    min:      { control: "number" },
+    max:      { control: "number" },
+    step:     { control: "number" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Slider>;

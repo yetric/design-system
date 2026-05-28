@@ -16,6 +16,11 @@ const meta: Meta<typeof MultiSelect> = {
   component: MultiSelect,
   tags: ["autodocs"],
   title: "Components/MultiSelect",
+  argTypes: {
+    placeholder: { control: "text" },
+    disabled:    { control: "boolean" },
+    size:        { control: "select", options: ["xs","sm","md","lg","xl"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

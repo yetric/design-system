@@ -7,6 +7,10 @@ const meta: Meta = {
   tags: ["autodocs"],
   title: "Components/Tooltip",
   parameters: { layout: "centered" },
+  argTypes: {
+    side:  { control: "select", options: ["top","right","bottom","left"] },
+    align: { control: "select", options: ["start","center","end"] },
+  },
 };
 export default meta;
 type Story = StoryObj;

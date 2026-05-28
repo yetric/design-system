@@ -5,6 +5,11 @@ const meta = {
   component: Code,
   title: "Components/Code" ,
   tags: ["autodocs"],
+  argTypes: {
+    block:     { control: "boolean" },
+    copyable:  { control: "boolean" },
+    language:  { control: "text" },
+  },
 } satisfies Meta<typeof Code>;
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -10,7 +10,14 @@ const meta = {
   args: {
     label: "Email address",
     placeholder: "you@example.com"
-  }
+  },
+  argTypes: {
+    label:    { control: "text" },
+    error:    { control: "text" },
+    required: { control: "boolean" },
+    disabled: { control: "boolean" },
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+  },
 } satisfies Meta<typeof InputField>;
 
 export default meta;

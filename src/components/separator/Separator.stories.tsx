@@ -6,6 +6,11 @@ const meta = {
   title: "Components/Separator",
   component: Separator,
   tags: ["autodocs"],
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal","vertical"] },
+    thickness:   { control: "select", options: ["thin","medium","thick"] },
+    color:       { control: "select", options: ["border","muted","accent"] },
+  },
 } satisfies Meta<typeof Separator>;
 
 export default meta;

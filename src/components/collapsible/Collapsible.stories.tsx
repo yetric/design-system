@@ -7,6 +7,10 @@ const meta: Meta<typeof Collapsible> = {
   component: Collapsible,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {
+    open:     { control: "boolean" },
+    disabled: { control: "boolean" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Collapsible>;

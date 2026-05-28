@@ -5,6 +5,9 @@ const meta = {
   component: AspectRatio,
   title: "Components/AspectRatio" ,
   tags: ["autodocs"],
+  argTypes: {
+    ratio: { control: "select", options: [16/9, 4/3, 1, 3/4, 9/16] },
+  },
 } satisfies Meta<typeof AspectRatio>;
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -6,6 +6,11 @@ const meta: Meta<typeof Progress> = {
   component: Progress,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {
+    value:   { control: { type: "range", min: 0, max: 100, step: 1 } },
+    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
+    variant: { control: "select", options: ["default","success","warning","destructive","info"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Progress>;

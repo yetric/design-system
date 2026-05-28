@@ -7,7 +7,10 @@ const meta: Meta<typeof Label> = {
   title: "Components/Label",
   component: Label,
   tags: ["autodocs"],
-  parameters: { layout: "centered" }
+  parameters: { layout: "centered" },
+  argTypes: {
+    required: { control: "boolean" },
+  },
 };
 
 export default meta;

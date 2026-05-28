@@ -17,6 +17,7 @@ const meta: Meta<typeof Menubar> = {
   title: "Components/Menubar",
   component: Menubar,
   tags: ["autodocs"],
+  argTypes: {},
 };
 export default meta;
 type Story = StoryObj<typeof Menubar>;

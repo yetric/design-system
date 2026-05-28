@@ -14,7 +14,8 @@ const meta: Meta<typeof Toaster> = {
       </div>
     )
   ],
-  parameters: { layout: "centered" }
+  parameters: { layout: "centered" },
+  argTypes: {},
 };
 
 export default meta;

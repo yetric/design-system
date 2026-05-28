@@ -5,6 +5,9 @@ const meta = {
   component: Kbd,
   title: "Components/Kbd" ,
   tags: ["autodocs"],
+  argTypes: {
+    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
+  },
 } satisfies Meta<typeof Kbd>;
 export default meta;
 type Story = StoryObj<typeof meta>;

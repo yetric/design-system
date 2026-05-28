@@ -7,6 +7,10 @@ const meta: Meta<typeof SegmentedControl> = {
   component: SegmentedControl,
   tags: ["autodocs"],
   title: "Components/SegmentedControl",
+  argTypes: {
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    disabled: { control: "boolean" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

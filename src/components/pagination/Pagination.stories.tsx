@@ -8,6 +8,12 @@ const meta: Meta = {
   tags: ["autodocs"],
   title: "Components/Pagination",
   parameters: { layout: "centered" },
+  argTypes: {
+    total:    { control: "number" },
+    page:     { control: "number" },
+    siblings: { control: "number" },
+    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+  },
 };
 export default meta;
 type Story = StoryObj;

@@ -22,6 +22,9 @@ const meta: Meta<typeof Toolbar> = {
   title: "Components/Toolbar",
   component: Toolbar,
   tags: ["autodocs"],
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal","vertical"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Toolbar>;

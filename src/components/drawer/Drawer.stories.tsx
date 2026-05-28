@@ -17,6 +17,7 @@ const meta = {
   component: Drawer,
   tags: ["autodocs"],
   title: "Components/Drawer",
+  argTypes: {},
 } satisfies Meta<typeof Drawer>;
 
 export default meta;

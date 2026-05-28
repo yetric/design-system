@@ -5,6 +5,11 @@ const meta: Meta<typeof Paper> = {
   title: "Components/Paper",
   component: Paper,
   tags: ["autodocs"],
+  argTypes: {
+    shadow: { control: "select", options: ["none","sm","md","lg","xl"] },
+    p:      { control: "select", options: [0,1,2,3,4,5,6,8,10,12] },
+    radius: { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Paper>;

@@ -5,6 +5,11 @@ const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",
   component: Anchor,
   tags: ["autodocs"],
+  argTypes: {
+    variant:   { control: "select", options: ["default","muted","destructive","subtle"] },
+    underline: { control: "select", options: ["always","hover","never"] },
+    external:  { control: "boolean" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Anchor>;

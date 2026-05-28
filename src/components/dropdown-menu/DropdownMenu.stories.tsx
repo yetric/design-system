@@ -23,6 +23,7 @@ const meta = {
   title: "Components/DropdownMenu",
   component: DropdownMenu,
   tags: ["autodocs"],
+  argTypes: {},
 } satisfies Meta<typeof DropdownMenu>;
 
 export default meta;

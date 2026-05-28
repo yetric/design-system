@@ -5,6 +5,10 @@ const meta: Meta<typeof Blockquote> = {
   title: "Components/Blockquote",
   component: Blockquote,
   tags: ["autodocs"],
+  argTypes: {
+    size: { control: "select", options: ["sm","md","lg"] },
+    cite: { control: "text" },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Blockquote>;

@@ -3,23 +3,32 @@
 import * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { cn } from "../../lib/cn";
+import { radiusClass, type Radius } from "../../lib/radius";
+import { shadowClass, type ShadowSize } from "../../lib/shadow";
 
 const Popover = PopoverPrimitive.Root;
 const PopoverTrigger = PopoverPrimitive.Trigger;
 const PopoverAnchor = PopoverPrimitive.Anchor;
 const PopoverClose = PopoverPrimitive.Close;
 
+export type PopoverContentProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & {
+  radius?: Radius;
+  shadow?: ShadowSize;
+};
+
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
+  PopoverContentProps
+>(({ className, align = "center", sideOffset = 4, radius = "md", shadow = "md", ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       ref={ref}
       align={align}
       sideOffset={sideOffset}
       className={cn(
-        "z-[var(--z-dropdown)] w-72 rounded-md border border-border bg-card p-4 text-card-foreground shadow-md outline-none",
+        "z-[var(--z-dropdown)] w-72 border border-border bg-card p-4 text-card-foreground outline-none",
+        radiusClass[radius],
+        shadowClass[shadow],
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",

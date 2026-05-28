@@ -14,7 +14,8 @@ import { RadioGroup, RadioGroupItem } from "../radio-group/RadioGroup";
 const meta: Meta = {
   tags: ["autodocs"],
   title: "Patterns/Form",
-  parameters: { layout: "centered" }
+  parameters: { layout: "centered" },
+  argTypes: {},
 };
 
 export default meta;
