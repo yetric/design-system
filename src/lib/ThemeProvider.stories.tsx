@@ -10,7 +10,7 @@ import { Badge } from "../components/badge/Badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/card/Card";
 import { Separator } from "../components/separator/Separator";
 import { Label } from "../components/label/Label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/select/Select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/select/Select";
 import { Input } from "../components/input/Input";
 
 const meta: Meta = {
@@ -20,6 +20,107 @@ const meta: Meta = {
 
 export default meta;
 type Story = StoryObj;
+
+// ─── Google Fonts catalogue ───────────────────────────────────────────────────
+
+interface GoogleFont {
+  name: string;
+  css: string;
+  category: "sans-serif" | "serif" | "monospace" | "display";
+}
+
+const GOOGLE_FONTS: GoogleFont[] = [
+  // Sans-serif
+  { name: "Inter",              css: '"Inter", sans-serif',              category: "sans-serif" },
+  { name: "Roboto",             css: '"Roboto", sans-serif',             category: "sans-serif" },
+  { name: "Open Sans",          css: '"Open Sans", sans-serif',          category: "sans-serif" },
+  { name: "Lato",               css: '"Lato", sans-serif',               category: "sans-serif" },
+  { name: "Poppins",            css: '"Poppins", sans-serif',            category: "sans-serif" },
+  { name: "DM Sans",            css: '"DM Sans", sans-serif',            category: "sans-serif" },
+  { name: "Plus Jakarta Sans",  css: '"Plus Jakarta Sans", sans-serif',  category: "sans-serif" },
+  { name: "Outfit",             css: '"Outfit", sans-serif',             category: "sans-serif" },
+  { name: "Figtree",            css: '"Figtree", sans-serif',            category: "sans-serif" },
+  { name: "Nunito",             css: '"Nunito", sans-serif',             category: "sans-serif" },
+  // Serif
+  { name: "Merriweather",       css: '"Merriweather", serif',            category: "serif" },
+  { name: "Playfair Display",   css: '"Playfair Display", serif',        category: "serif" },
+  { name: "Lora",               css: '"Lora", serif',                    category: "serif" },
+  { name: "EB Garamond",        css: '"EB Garamond", serif',             category: "serif" },
+  { name: "Libre Baskerville",  css: '"Libre Baskerville", serif',       category: "serif" },
+  // Monospace
+  { name: "Fira Code",          css: '"Fira Code", monospace',           category: "monospace" },
+  { name: "JetBrains Mono",     css: '"JetBrains Mono", monospace',      category: "monospace" },
+  { name: "Source Code Pro",    css: '"Source Code Pro", monospace',     category: "monospace" },
+  // Display
+  { name: "Montserrat",         css: '"Montserrat", sans-serif',         category: "display" },
+  { name: "Raleway",            css: '"Raleway", sans-serif',            category: "display" },
+  { name: "Space Grotesk",      css: '"Space Grotesk", sans-serif',      category: "display" },
+  { name: "Oswald",             css: '"Oswald", sans-serif',             category: "display" },
+];
+
+const FONT_CATEGORIES = ["sans-serif", "serif", "monospace", "display"] as const;
+
+/** Lazily injects a Google Fonts stylesheet. Safe to call multiple times. */
+function loadGoogleFont(name: string) {
+  const id = `gfont-${name.replace(/\s+/g, "-").toLowerCase()}`;
+  if (document.getElementById(id)) return;
+  const family = name.replace(/\s+/g, "+");
+  const link = document.createElement("link");
+  link.id = id;
+  link.rel = "stylesheet";
+  link.href = `https://fonts.googleapis.com/css2?family=${family}:wght@400;500;600;700&display=swap`;
+  document.head.appendChild(link);
+}
+
+// ─── Font select control ──────────────────────────────────────────────────────
+
+const NONE_VALUE = "__none__";
+
+interface FontSelectProps {
+  label: string;
+  value: string | undefined;
+  onChange: (css: string | undefined) => void;
+}
+
+function FontSelect({ label, value, onChange }: FontSelectProps) {
+  const selected = value ? GOOGLE_FONTS.find((f) => f.css === value) : undefined;
+
+  function handleChange(v: string) {
+    if (v === NONE_VALUE) {
+      onChange(undefined);
+      return;
+    }
+    const font = GOOGLE_FONTS.find((f) => f.css === v);
+    if (font) {
+      loadGoogleFont(font.name);
+      onChange(font.css);
+    }
+  }
+
+  return (
+    <div className="space-y-1.5">
+      <Label>{label}</Label>
+      <Select value={selected?.css ?? NONE_VALUE} onValueChange={handleChange}>
+        <SelectTrigger>
+          <SelectValue placeholder="System default" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value={NONE_VALUE}>System default</SelectItem>
+          {FONT_CATEGORIES.map((cat) => (
+            <SelectGroup key={cat}>
+              <SelectLabel className="capitalize">{cat}</SelectLabel>
+              {GOOGLE_FONTS.filter((f) => f.category === cat).map((f) => (
+                <SelectItem key={f.css} value={f.css} style={{ fontFamily: f.css }}>
+                  {f.name}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
 
 // ─── Full configurator demo ───────────────────────────────────────────────────
 
@@ -94,24 +195,18 @@ function Configurator() {
             </div>
 
             {/* Font — body */}
-            <div className="space-y-1.5">
-              <Label>Body font</Label>
-              <Input
-                placeholder='"Inter", sans-serif'
-                defaultValue={config.fontSans ?? ""}
-                onBlur={(e) => patch({ fontSans: e.target.value || undefined })}
-              />
-            </div>
+            <FontSelect
+              label="Body font"
+              value={config.fontSans}
+              onChange={(v) => patch({ fontSans: v })}
+            />
 
             {/* Font — heading */}
-            <div className="space-y-1.5">
-              <Label>Heading font</Label>
-              <Input
-                placeholder='"Georgia", serif'
-                defaultValue={config.fontHeading ?? ""}
-                onBlur={(e) => patch({ fontHeading: e.target.value || undefined })}
-              />
-            </div>
+            <FontSelect
+              label="Heading font"
+              value={config.fontHeading}
+              onChange={(v) => patch({ fontHeading: v })}
+            />
           </CardContent>
         </Card>
 
