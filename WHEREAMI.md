@@ -1,13 +1,15 @@
 # Where we are — @yetric/ui
 
-> Last updated: 2026-05-28 · v0.1.0 · 51 components · 333 tests passing
+> Last updated: 2026-05-28 · v0.1.0 · 51 components · 337 tests passing
 
 ## Components shipped
 
 | Component        | Variants        | Sizes       | Radius   | Notes |
 |------------------|-----------------|-------------|----------|-------|
 | Accordion        | —               | —           | —        | Radix, single/multiple, collapsible |
+| Alert            | ✅ 5            | ✅ sm–lg    | ✅       | Info/success/warning/destructive, icon, dismissible |
 | AlertDialog      | —               | ✅ sm–xl    | ✅       | Radix compound, destructive/primary action |
+| AspectRatio      | —               | —           | —        | Responsive ratio container (16/9, 1/1, etc.) |
 | Avatar           | —               | ✅ xs–xl    | ✅ (full default) | Image + initials fallback, status dot |
 | Badge            | ✅ 8            | ✅ xs–xl    | ✅       | Icon slot, dismiss button |
 | Box              | —               | ✅ token    | ✅       | Design-token layout primitive |
@@ -15,31 +17,43 @@
 | Button           | ✅ 8            | ✅ xs–xl    | ✅       | Loading state, icon-only size, asChild |
 | Card             | ✅ 4            | —           | ✅       | CardImage, CardHeader (actions), CardTitle (as), CardFooter (justify), interactive |
 | Checkbox         | —               | ✅ xs–xl    | ✅       | Radix, indeterminate, error state |
-| Collapsible      | —               | —           | —        | Radix Root/Trigger/Content |
+| Chip             | —               | ✅ xs–xl    | ✅       | Toggleable filter tag, role=checkbox |
+| Code             | ✅ inline/block | —           | ✅       | Language label, copy button |
+| Collapsible      | —               | —           | —        | Styled trigger (chevron animation) + animated content |
 | Command          | —               | —           | —        | cmdk-based search/combobox |
 | ContextMenu      | —               | —           | —        | Radix compound |
 | Dialog           | —               | ✅ sm–full  | ✅       | Radix |
+| Drawer           | ✅ 4 sides      | ✅ sm–xl    | ✅       | Slide-in panel, Radix Dialog base |
 | DropdownMenu     | —               | —           | —        | Radix compound: Item/CheckboxItem/RadioItem/Sub |
+| Fieldset         | —               | ✅ xs–xl    | ✅       | Native fieldset/legend, disabled propagation |
 | Form             | —               | —           | —        | react-hook-form + Zod integration |
 | HoverCard        | —               | —           | —        | Radix |
+| Indicator        | ✅ 6 colors     | ✅ xs–xl    | —        | Notification dot/count badge, 4 positions, overflow |
 | Input            | —               | ✅ xs–xl    | ✅       | leftIcon/rightIcon, error state |
 | InputField       | —               | ✅ xs–xl    | ✅       | label+input+helpText, textarea mode, icons |
+| Kbd              | ✅ 3            | ✅ xs–lg    | ✅       | Keyboard shortcut display, 3D shadow |
 | Label            | —               | —           | —        | Radix, required indicator |
+| Loader           | ✅ 6 colors     | ✅ xs–xl    | —        | Animated spinner, role=status |
+| MultiSelect      | —               | ✅ xs–xl    | ✅       | Searchable dropdown, tags, clear, maxValues |
 | NavigationMenu   | —               | —           | —        | Radix compound |
-| Pagination       | —               | ✅ xs–xl    | —        | Previous/Next/Link/Ellipsis |
+| NumberInput      | —               | ✅ xs–xl    | ✅       | +/– stepper, min/max/step |
+| Pagination       | —               | ✅ xs–xl    | —        | Previous/Next/Link/Ellipsis, disabled prop |
 | Popover          | —               | —           | ✅       | Radix compound |
 | Progress         | ✅ 5            | ✅ xs–xl    | ✅       | Radix, indeterminate |
 | RadioGroup       | —               | ✅ xs–xl    | —        | Radix, horizontal/vertical |
 | ScrollArea       | —               | —           | —        | Radix, vertical/horizontal |
+| SegmentedControl | —               | ✅ xs–xl    | ✅       | Radio-pill-group, icon support, fullWidth |
 | Select           | —               | ✅ xs–xl    | ✅       | Radix compound |
-| Separator        | —               | —           | —        | horizontal/vertical, decorative/semantic |
+| Separator        | —               | ✅ thin–thick | —      | horizontal/vertical, thickness + color tokens |
 | Skeleton         | ✅ 7 presets    | —           | ✅       | Animated pulse, presets: text/heading/avatar/button/card/badge |
 | Slider           | —               | ✅ sm–lg    | —        | Radix, range, steps, disabled |
 | Stack            | —               | —           | —        | Flex layout primitive, row/col, gap, align |
-| Switch           | —               | ✅ xs–xl    | —        | Radix, optional label |
+| Stepper          | ✅ h/v          | ✅ xs–xl    | —        | Horizontal/vertical, completed state, aria-current |
+| Switch           | —               | ✅ xs–xl    | —        | Radix, optional label, labelPlacement start/end |
 | Table            | —               | —           | —        | Data-driven + children mode (TanStack Table) |
 | Tabs             | ✅ 3            | ✅ sm–lg    | —        | Radix, default/underline/pills |
 | Text             | ✅ sizes        | ✅ xs–5xl   | —        | weights, colors, alignment |
+| Textarea         | —               | ✅ xs–xl    | ✅       | Standalone, autoResize, label/help/error |
 | Toast            | —               | —           | —        | Sonner-based |
 | Toggle           | ✅ 2            | ✅ sm–lg    | ✅       | Radix + ToggleGroup (single/multiple), radius via context |
 | Tooltip          | —               | —           | ✅       | Radix, TooltipProvider |
@@ -94,7 +108,7 @@ import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
 - Tailwind config extends all tokens (background, foreground, card, primary, secondary, muted, accent, destructive, warning, success, info, border, input, ring, shadow, z-index, duration, easing)
 
 ## Testing
-- **333 tests, all green** across 50 test files
+- **337 tests, all green** across 50 test files
 - Unit: Vitest + jsdom + @testing-library/react
 - Browser: Storybook + Playwright/Chromium via @storybook/addon-vitest
 - `src/test/setup.ts` polyfills pointer capture, scrollIntoView, ResizeObserver for Radix in jsdom
@@ -104,30 +118,28 @@ import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
 
 Matrix comparison against **Radix UI Primitives** (33 primitives) and **Mantine Core** (107 components) identified the following gaps. Grouped by priority.
 
-### 🔴 Tier A — High impact, most apps need these
+### ✅ Tier A — Shipped
+| Component | Notes |
+|-----------|-------|
+| **Alert** | 5 variants, icon, dismissible, sizes |
+| **Drawer** | 4 sides, 5 sizes, Radix Dialog base |
+| **Loader** | Animated SVG spinner, 5 sizes, 6 colors |
+| **NumberInput** | +/– stepper, min/max/step, keyboard |
+| **Heading** | h1–h6, token scale (extends Text) |
+| **Textarea** | Standalone, autoResize, label/help/error |
 
-| Component | Present in | Why it matters |
-|-----------|-----------|----------------|
-| **Alert** | Mantine | Inline contextual banners (success/warning/error/info). Different from Toast — stays on-page, not time-limited |
-| **Drawer** | Mantine | Slide-in side panel. Essential for mobile nav, settings sheets, detail panels |
-| **Loader / Spinner** | Mantine | Animated spinner for async states. Skeleton covers content placeholders; Loader covers in-button/inline loading |
-| **NumberInput** | Mantine | +/– stepper input with keyboard support. Required in nearly every data entry form |
-| **Heading** | Mantine | h1–h6 component with design token scale. `Text` exists but Heading has semantic props and scale variants |
-| **Textarea** | Mantine | Standalone `<textarea>` (currently only available via InputField's `multiline` prop) |
-
-### 🟡 Tier B — Common patterns, adds real value
-
-| Component | Present in | Why it matters |
-|-----------|-----------|----------------|
-| **Stepper** | Mantine | Multi-step wizard / form progress indicator |
-| **Kbd** | Mantine | Keyboard shortcut display — `⌘K`, `Ctrl+S`. Tiny but high-signal for dev tools / docs |
-| **Code** | Mantine | Inline `<code>` and block code with monospace styling and optional copy button |
-| **Indicator** | Mantine | Notification dot positioned on another element (Avatar, Icon, Button). Complements Avatar's `status` prop |
-| **SegmentedControl** | Mantine | Polished radio-as-pill-group. More opinionated than ToggleGroup — single select, active segment has background fill |
-| **Chip** | Mantine | Toggleable filter tag. Looks like a Badge but acts like a Checkbox |
-| **MultiSelect** | Mantine | Multi-value select with search. Critical for admin UIs, tag selection, permission pickers |
-| **AspectRatio** | Radix + Mantine | Responsive ratio container (16/9, 1/1, etc.) — needed for image/video cards |
-| **Fieldset** | Mantine | Grouped form section with optional legend and disabled propagation |
+### ✅ Tier B — Shipped
+| Component | Notes |
+|-----------|-------|
+| **Stepper** | Horizontal/vertical, completed state, aria-current |
+| **Kbd** | Keyboard shortcut display, 4 sizes, 3 variants |
+| **Code** | Inline + block, language label, copy button |
+| **Indicator** | Notification dot/count badge, 4 positions, overflow |
+| **SegmentedControl** | Radio-pill-group, icon support, fullWidth |
+| **Chip** | Toggleable tag, role=checkbox, aria-checked |
+| **MultiSelect** | Searchable dropdown with tags, maxValues, helpText |
+| **AspectRatio** | Radix wrapper, responsive ratio container |
+| **Fieldset** | Native fieldset/legend, size/radius, disabled propagation |
 
 ### 🟢 Tier C — Nice to have
 
