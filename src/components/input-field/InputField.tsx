@@ -7,6 +7,7 @@ import { cn } from "../../lib/cn";
 import { radiusClass, type Radius } from "../../lib/radius";
 import { type Size } from "../../lib/size";
 import { Label } from "../label/Label";
+import { Input } from "../input/Input";
 
 const fieldBase =
   "flex w-full border border-input bg-background " +
@@ -14,14 +15,6 @@ const fieldBase =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "disabled:cursor-not-allowed disabled:opacity-50";
-
-const inputSizeClass: Record<Size, string> = {
-  xs: "h-7 px-2 text-xs",
-  sm: "h-8 px-3 text-sm",
-  md: "h-10 px-3 text-sm",
-  lg: "h-12 px-4 text-base",
-  xl: "h-14 px-5 text-base"
-};
 
 const textareaSizeClass: Record<Size, string> = {
   xs: "px-2 py-1 text-xs",
@@ -60,10 +53,14 @@ type BaseProps = {
 type InputFieldInputProps = BaseProps &
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "error" | "size"> & {
     multiline?: false;
+    /** Icon rendered inside the left edge */
+    leftIcon?: React.ReactNode;
+    /** Icon rendered inside the right edge */
+    rightIcon?: React.ReactNode;
   };
 
 type InputFieldTextareaProps = BaseProps &
-  Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "error"> & {
+  Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "error" | "size"> & {
     multiline: true;
   };
 
@@ -85,15 +82,19 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
       ...rest
     } = props;
 
+    // pull leftIcon/rightIcon out for input branch only
+    const leftIcon = !multiline ? (rest as InputFieldInputProps).leftIcon : undefined;
+    const rightIcon = !multiline ? (rest as InputFieldInputProps).rightIcon : undefined;
+    if (!multiline) {
+      delete (rest as InputFieldInputProps).leftIcon;
+      delete (rest as InputFieldInputProps).rightIcon;
+    }
+
     const generatedId = useId();
     const id = idProp ?? generatedId;
     const helpTextId = helpText ? `${id}-help` : undefined;
     const errorId = typeof error === "string" ? `${id}-error` : undefined;
     const hasError = Boolean(error);
-
-    const errorClass = hasError
-      ? "border-destructive focus-visible:ring-destructive"
-      : undefined;
 
     const describedBy =
       [helpTextId, errorId].filter(Boolean).join(" ") || undefined;
@@ -111,24 +112,20 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
             id={id}
             aria-invalid={hasError || undefined}
             aria-describedby={describedBy}
-            className={cn(fieldBase, "min-h-[100px] resize-y", textareaSizeClass[size], radiusClass[radius], errorClass, className)}
+            className={cn(fieldBase, "min-h-[100px] resize-y", textareaSizeClass[size], radiusClass[radius], hasError && "border-destructive focus-visible:ring-destructive", className)}
             {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
           />
         ) : (
-          <input
+          <Input
             ref={ref as React.Ref<HTMLInputElement>}
             id={id}
-            aria-invalid={hasError || undefined}
+            size={size as Size}
+            error={hasError}
+            leftIcon={leftIcon}
+            rightIcon={rightIcon}
             aria-describedby={describedBy}
-            className={cn(
-              fieldBase,
-              inputSizeClass[size],
-              "file:border-0 file:bg-transparent file:text-sm file:font-medium",
-              radiusClass[radius],
-              errorClass,
-              className
-            )}
-            {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
+            className={cn(radiusClass[radius], className)}
+            {...(rest as Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">)}
           />
         )}
         {helpText && !hasError && (

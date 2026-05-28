@@ -128,6 +128,18 @@ export const LoadingReplacesIcon: Story = {
   )
 };
 
+export const IconOnly: Story = {
+  name: "Icon-only (size=icon)",
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      <Button size="icon" aria-label="Add"><Plus /></Button>
+      <Button size="icon" variant="secondary" aria-label="Send email"><Mail /></Button>
+      <Button size="icon" variant="destructive" aria-label="Delete"><Trash2 /></Button>
+      <Button size="icon" variant="outline" aria-label="Continue"><ArrowRight /></Button>
+    </div>
+  )
+};
+
 export const CssCheck: Story = {
   args: {
     children: "Styled button"

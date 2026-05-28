@@ -1,12 +1,13 @@
 "use client";
 
 import * as React from "react";
+import { X } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../lib/cn";
 
 const badgeVariants = cva(
-  "inline-flex items-center font-medium transition-colors",
+  "inline-flex items-center gap-1 font-medium transition-colors",
   {
     variants: {
       variant: {
@@ -46,11 +47,31 @@ const badgeVariants = cva(
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  /** Leading icon slot */
+  icon?: React.ReactNode;
+  /** When provided, renders a dismiss (×) button at the trailing edge */
+  onDismiss?: () => void;
+  /** Accessible label for the dismiss button */
+  dismissLabel?: string;
+}
 
-function Badge({ className, variant, size, radius, ...props }: BadgeProps) {
+function Badge({ className, variant, size, radius, icon, onDismiss, dismissLabel = "Dismiss", ...props }: BadgeProps) {
   return (
-    <span className={cn(badgeVariants({ variant, size, radius }), className)} {...props} />
+    <span className={cn(badgeVariants({ variant, size, radius }), className)} {...props}>
+      {icon && <span className="shrink-0" aria-hidden="true">{icon}</span>}
+      {props.children}
+      {onDismiss && (
+        <button
+          type="button"
+          onClick={onDismiss}
+          aria-label={dismissLabel}
+          className="ml-0.5 shrink-0 rounded-full opacity-70 hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-current"
+        >
+          <X className="h-3 w-3" aria-hidden="true" />
+        </button>
+      )}
+    </span>
   );
 }
 

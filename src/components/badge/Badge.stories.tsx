@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Star, CheckCircle } from "lucide-react";
 
 import { Badge } from "./Badge";
 
@@ -88,4 +89,30 @@ export const InContext: Story = {
       </div>
     </div>
   )
+};
+
+export const WithIcon: Story = {
+  name: "With leading icon",
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="success" icon={<CheckCircle className="h-3 w-3" />}>Verified</Badge>
+      <Badge variant="warning" icon={<Star className="h-3 w-3" />}>Featured</Badge>
+      <Badge variant="info" icon={<Star className="h-3 w-3" />}>Premium</Badge>
+    </div>
+  )
+};
+
+export const Dismissible: Story = {
+  render: () => {
+    const tags = ["React", "TypeScript", "Design System"];
+    return (
+      <div className="flex flex-wrap gap-2">
+        {tags.map(tag => (
+          <Badge key={tag} variant="secondary" onDismiss={() => {}}>
+            {tag}
+          </Badge>
+        ))}
+      </div>
+    );
+  }
 };

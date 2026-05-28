@@ -22,11 +22,12 @@ const buttonVariants = cva(
         info:        "bg-info text-info-foreground hover:bg-info/90"
       },
       size: {
-        xs: "h-6 px-2 text-xs",
-        sm: "h-8 px-3",
-        md: "h-10 px-4",
-        lg: "h-12 px-6",
-        xl: "h-14 px-8 text-base"
+        xs:   "h-6 px-2 text-xs",
+        sm:   "h-8 px-3",
+        md:   "h-10 px-4",
+        lg:   "h-12 px-6",
+        xl:   "h-14 px-8 text-base",
+        icon: "h-10 w-10 p-0"
       },
       radius: {
         none: "rounded-none",
