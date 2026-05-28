@@ -35,4 +35,16 @@ describe("Input", () => {
     render(<Input placeholder="Normal" />);
     expect(screen.getByPlaceholderText("Normal")).not.toHaveAttribute("aria-invalid");
   });
+
+  it("applies size prop classes", () => {
+    const { rerender } = render(<Input placeholder="sized" size="xs" />);
+    expect(screen.getByPlaceholderText("sized")).toHaveClass("h-7");
+    rerender(<Input placeholder="sized" size="lg" />);
+    expect(screen.getByPlaceholderText("sized")).toHaveClass("h-12");
+  });
+
+  it("defaults to md size", () => {
+    render(<Input placeholder="default" />);
+    expect(screen.getByPlaceholderText("default")).toHaveClass("h-10");
+  });
 });

@@ -1,8 +1,11 @@
+"use client";
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../lib/cn";
+import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -47,20 +50,36 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  /** Shows a spinner and disables the button during async operations. */
+  isLoading?: boolean;
+  /** Label read by screen readers when isLoading is true. Defaults to "Loading". */
+  loadingText?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, radius, asChild = false, disabled, ...props }, ref) => {
+  ({ className, variant, size, radius, asChild = false, disabled, isLoading = false, loadingText = "Loading", children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+    const isDisabled = disabled || isLoading;
+    const content = asChild ? children : (
+      <>
+        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
+        {isLoading && <span className="sr-only">{loadingText}</span>}
+        {children}
+      </>
+    );
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, radius, className }))}
         ref={ref}
-        aria-disabled={disabled || undefined}
-        data-disabled={disabled ? "" : undefined}
-        {...(asChild ? {} : { disabled })}
+        aria-disabled={isDisabled || undefined}
+        aria-busy={isLoading || undefined}
+        data-disabled={isDisabled ? "" : undefined}
+        data-loading={isLoading ? "" : undefined}
+        {...(asChild ? {} : { disabled: isDisabled })}
         {...props}
-      />
+      >
+        {content}
+      </Comp>
     );
   }
 );

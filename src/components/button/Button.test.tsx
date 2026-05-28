@@ -26,4 +26,18 @@ describe("Button", () => {
     );
     expect(screen.getByRole("link", { name: "Go" })).toBeInTheDocument();
   });
+
+  it("shows loading state", () => {
+    render(<Button isLoading>Save</Button>);
+    const btn = screen.getByRole("button");
+    expect(btn).toBeDisabled();
+    expect(btn).toHaveAttribute("aria-busy", "true");
+    expect(btn.querySelector("svg")).toBeInTheDocument();
+    expect(screen.getByText("Save")).toBeInTheDocument();
+  });
+
+  it("is disabled when loading", () => {
+    render(<Button isLoading>Submit</Button>);
+    expect(screen.getByRole("button")).toBeDisabled();
+  });
 });

@@ -84,6 +84,16 @@ export const AsChildLink: Story = {
   }
 };
 
+export const Loading: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Button isLoading>Saving…</Button>
+      <Button isLoading variant="secondary">Processing…</Button>
+      <Button isLoading variant="destructive">Deleting…</Button>
+    </div>
+  )
+};
+
 export const CssCheck: Story = {
   args: {
     children: "Styled button"

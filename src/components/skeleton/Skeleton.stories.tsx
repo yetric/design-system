@@ -1,0 +1,56 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Skeleton } from "./Skeleton";
+
+const meta = {
+  title: "Components/Skeleton",
+  component: Skeleton,
+  tags: ["autodocs"],
+} satisfies Meta<typeof Skeleton>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => <Skeleton className="h-4 w-48" />,
+};
+
+export const CardLoading: Story = {
+  name: "Card (loading)",
+  render: () => (
+    <div className="flex flex-col gap-3 w-64 p-4 border rounded-lg">
+      <Skeleton className="h-40 w-full rounded-md" />
+      <Skeleton className="h-4 w-3/4" />
+      <Skeleton className="h-4 w-1/2" />
+    </div>
+  ),
+};
+
+export const AvatarLoading: Story = {
+  name: "Avatar (loading)",
+  render: () => (
+    <div className="flex items-center gap-3">
+      <Skeleton className="h-10 w-10 rounded-full" />
+      <div className="flex flex-col gap-2">
+        <Skeleton className="h-4 w-32" />
+        <Skeleton className="h-3 w-24" />
+      </div>
+    </div>
+  ),
+};
+
+export const TableLoading: Story = {
+  name: "Table (loading)",
+  render: () => (
+    <div className="flex flex-col gap-2 w-full">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div key={i} className="flex gap-4">
+          <Skeleton className="h-8 w-1/4" />
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-8 w-1/5" />
+          <Skeleton className="h-8 flex-1" />
+        </div>
+      ))}
+    </div>
+  ),
+};
