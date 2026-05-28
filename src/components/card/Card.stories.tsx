@@ -186,3 +186,38 @@ export const Shadows: Story = {
     </div>
   )
 };
+
+export const Radius: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 max-w-sm">
+      {(["none", "xs", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
+        <Card key={r} radius={r} className="px-4 py-3">
+          <CardTitle className="text-sm">radius="{r}"</CardTitle>
+        </Card>
+      ))}
+    </div>
+  )
+};
+
+export const HeadingLevels: Story = {
+  name: "CardTitle — heading levels",
+  render: () => (
+    <Card className="max-w-sm">
+      <CardHeader>
+        <CardTitle as="h1">h1 — Page title</CardTitle>
+      </CardHeader>
+      <CardHeader>
+        <CardTitle as="h2">h2 — Section title</CardTitle>
+      </CardHeader>
+      <CardHeader>
+        <CardTitle as="h3">h3 — Default</CardTitle>
+      </CardHeader>
+      <CardHeader>
+        <CardTitle as="h4">h4 — Subsection</CardTitle>
+      </CardHeader>
+      <CardContent className="text-xs text-muted-foreground">
+        All same visual style, different semantic levels via the <code>as</code> prop.
+      </CardContent>
+    </Card>
+  )
+};
