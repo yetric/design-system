@@ -23,6 +23,7 @@ import { cn } from "../../lib/cn";
 import { Button } from "../button/Button";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Input } from "../input/Input";
+import { Skeleton } from "../skeleton/Skeleton";
 import {
   Select,
   SelectContent,
@@ -76,6 +77,9 @@ type TableDataModeProps<TData> = TableVisualProps & {
   searchable?: boolean;
   selectable?: boolean;
   pageSize?: number;
+  isLoading?: boolean;
+  /** Number of skeleton rows to show while loading. Defaults to 5. */
+  loadingRows?: number;
   children?: never;
 };
 
@@ -362,6 +366,8 @@ function DataMode<TData>({
   searchable = false,
   selectable = false,
   pageSize,
+  isLoading = false,
+  loadingRows = 5,
   density = "default",
   borders = "rows",
   striped = false,
@@ -575,7 +581,17 @@ function DataMode<TData>({
                 )}
               </TableHeader>
               <TableBody>
-                {table.getRowModel().rows.length ? (
+                {isLoading ? (
+                  Array.from({ length: loadingRows }).map((_, i) => (
+                    <TableRow key={`skeleton-${i}`}>
+                      {processedColumns.map((_, j) => (
+                        <TableCell key={j}>
+                          <Skeleton className="h-4 w-full" />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : table.getRowModel().rows.length ? (
                   table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id} data-selected={row.getIsSelected() || undefined}>
                       {row.getVisibleCells().map((cell) => (

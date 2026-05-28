@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
 
 import { Badge } from "../badge/Badge";
 import {
@@ -162,4 +163,35 @@ export const StickyHeader: Story = {
       </Table>
     </div>
   )
+};
+
+function LoadingStory() {
+  const [isLoading, setIsLoading] = useState(true);
+  const columns = [
+    { accessorKey: "id",     header: "Invoice"  },
+    { accessorKey: "client", header: "Client"   },
+    { accessorKey: "status", header: "Status"   },
+    { accessorKey: "amount", header: "Amount"   }
+  ];
+  return (
+    <div className="space-y-4 w-full min-w-[480px]">
+      <button
+        className="text-sm underline"
+        onClick={() => setIsLoading((v) => !v)}
+      >
+        Toggle loading ({isLoading ? "on" : "off"})
+      </button>
+      <Table
+        data={invoices}
+        columns={columns}
+        isLoading={isLoading}
+        loadingRows={4}
+      />
+    </div>
+  );
+}
+
+export const Loading: Story = {
+  name: "Loading State",
+  render: () => <LoadingStory />
 };
