@@ -19,6 +19,8 @@ export const Headings: Story = {
       <Heading size="h2">Heading 2 — The quick brown fox</Heading>
       <Heading size="h3">Heading 3 — The quick brown fox</Heading>
       <Heading size="h4">Heading 4 — The quick brown fox</Heading>
+      <Heading size="h5">Heading 5 — The quick brown fox</Heading>
+      <Heading size="h6">Heading 6 — The quick brown fox</Heading>
     </div>
   ),
 };

@@ -13,6 +13,16 @@ describe("Heading", () => {
     expect(container.querySelector("h1")).toBeInTheDocument();
   });
 
+  it("renders as h5 for size h5", () => {
+    const { container } = render(<Heading size="h5">Title</Heading>);
+    expect(container.querySelector("h5")).toBeInTheDocument();
+  });
+
+  it("renders as h6 for size h6", () => {
+    const { container } = render(<Heading size="h6">Title</Heading>);
+    expect(container.querySelector("h6")).toBeInTheDocument();
+  });
+
   it("renders as custom element via as prop", () => {
     const { container } = render(<Heading as="div">Title</Heading>);
     expect(container.querySelector("div")).toBeInTheDocument();

@@ -15,12 +15,14 @@ const headingVariants = cva("font-semibold tracking-tight text-foreground", {
       h2:      "text-3xl leading-snug",
       h3:      "text-2xl leading-snug",
       h4:      "text-xl leading-normal",
+      h5:      "text-lg leading-normal",
+      h6:      "text-base leading-normal",
     },
   },
   defaultVariants: { size: "h2" },
 });
 
-type HeadingAs = "h1" | "h2" | "h3" | "h4" | "p" | "div" | "span";
+type HeadingAs = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
 
 export interface HeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement>,
@@ -35,6 +37,8 @@ const defaultTagForSize: Record<NonNullable<HeadingProps["size"]>, HeadingAs> = 
   h2:      "h2",
   h3:      "h3",
   h4:      "h4",
+  h5:      "h5",
+  h6:      "h6",
 };
 
 const Heading = React.forwardRef<HTMLElement, HeadingProps>(
