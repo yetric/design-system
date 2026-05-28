@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Mail, Search, Lock, Eye } from "lucide-react";
 
 import { InputField } from "./InputField";
 
@@ -149,6 +150,49 @@ export const FullForm: Story = {
         multiline
         placeholder="Tell us about yourself…"
         helpText="Max 300 characters."
+      />
+    </div>
+  )
+};
+
+export const WithIcons: Story = {
+  name: "With icons",
+  render: () => (
+    <div className="flex flex-col gap-4 max-w-sm">
+      <InputField
+        label="Search"
+        leftIcon={<Search />}
+        placeholder="Search…"
+      />
+      <InputField
+        label="Email"
+        type="email"
+        leftIcon={<Mail />}
+        placeholder="you@example.com"
+        helpText="We'll never share your email."
+      />
+      <InputField
+        label="Password"
+        type="password"
+        leftIcon={<Lock />}
+        rightIcon={<Eye />}
+        placeholder="Min 8 characters"
+      />
+    </div>
+  )
+};
+
+export const IconsWithError: Story = {
+  name: "Icons — with error",
+  render: () => (
+    <div className="flex flex-col gap-4 max-w-sm">
+      <InputField
+        label="Email"
+        type="email"
+        leftIcon={<Mail />}
+        placeholder="you@example.com"
+        error="Enter a valid email address."
+        required
       />
     </div>
   )
