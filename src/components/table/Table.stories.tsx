@@ -29,11 +29,11 @@ const invoices = [
   { id: "INV-005", client: "Weyland Corp", amount:  6100, status: "pending" }
 ];
 
-const statusVariant = {
+const statusVariant: Record<string, "success" | "warning" | "destructive"> = {
   paid:    "success",
   pending: "warning",
   overdue: "destructive"
-} as const;
+};
 
 function InvoiceRows() {
   return (

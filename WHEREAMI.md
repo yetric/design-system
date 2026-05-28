@@ -4,17 +4,38 @@
 
 | Component    | Variants | Sizes | Radius | Notes |
 |--------------|----------|-------|--------|-------|
-| Button       | ✅ 8     | ✅ xs–xl | ✅ | asChild, disabled via data-attr |
+| Accordion    | —        | —     | —  | Radix, single/multiple, collapsible |
+| AlertDialog  | —        | —     | ✅ | Radix compound |
+| Avatar       | —        | ✅ xs–xl | ✅ | Image + initials fallback |
 | Badge        | ✅ 8     | ✅ xs–xl | ✅ full default | |
-| Card         | —        | —     | ✅ | |
+| Breadcrumb   | —        | —     | —  | HTML nav, slash/custom separator, ellipsis |
+| Button       | ✅ 8     | ✅ xs–xl | ✅ | asChild, disabled via data-attr, icon support |
+| Card         | —        | —     | ✅ | Header/Content/Footer sub-components |
+| Checkbox     | —        | ✅ xs–xl | — | Radix, indeterminate state |
+| Collapsible  | —        | —     | —  | Radix Root/Trigger/Content |
 | Dialog       | —        | —     | ✅ | Radix |
+| DropdownMenu | —        | —     | ✅ | Radix compound: Item/CheckboxItem/RadioItem/Sub |
+| Form         | —        | —     | —  | react-hook-form + Zod integration |
 | Input        | —        | —     | —  | Primitive, use InputField for forms |
 | InputField   | —        | ✅ xs–xl | ✅ | Merged textarea (multiline prop), helpText, error, useId |
 | Label        | —        | —     | —  | Radix, required indicator |
-| Checkbox     | —        | ✅ xs–xl | — | Radix, indeterminate state |
+| Pagination   | —        | —     | —  | HTML nav: Previous/Next/Link/Ellipsis |
+| Popover      | —        | —     | ✅ | Radix compound: Trigger/Content/Anchor/Close |
+| Progress     | ✅ 5     | ✅ xs–xl | ✅ | Radix, indeterminate support |
+| RadioGroup   | —        | —     | —  | Radix, horizontal/vertical |
+| ScrollArea   | —        | —     | —  | Radix, vertical/horizontal scrollbars |
 | Select       | —        | ✅ xs–xl | — | Radix compound: Trigger/Content/Item/Label/Separator/Group |
 | Separator    | —        | —     | —  | horizontal/vertical, decorative/semantic |
+| Skeleton     | —        | —     | —  | Animated pulse, arbitrary sizing |
+| Slider       | —        | —     | —  | Radix, range support, steps, disabled |
+| Stack        | —        | —     | —  | Flex layout primitive, row/col, gap, align, justify |
+| Switch       | —        | ✅ xs–xl | — | Radix, optional label prop |
 | Table        | —        | —     | —  | See below |
+| Tabs         | ✅ 3     | —     | —  | Radix, default/underline/pills variants |
+| Text         | ✅ sizes | ✅ | — | xs→5xl, weights, colors, alignment |
+| Toast        | —        | —     | —  | Sonner-based |
+| Toggle       | ✅ 2     | ✅ sm–lg | — | Radix, + ToggleGroup (single/multiple) |
+| Tooltip      | —        | —     | ✅ | Radix, TooltipProvider wrapping |
 
 ## Table — unified component
 

@@ -5,13 +5,14 @@ import { Toaster, toast } from "./Toast";
 
 // Mock sonner so tests don't depend on DOM internals
 vi.mock("sonner", () => {
-  const mockToast = vi.fn() as typeof import("sonner").toast;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mockToast = vi.fn() as any;
   mockToast.success = vi.fn();
   mockToast.error = vi.fn();
   mockToast.warning = vi.fn();
   mockToast.info = vi.fn();
   mockToast.loading = vi.fn();
-  mockToast.promise = vi.fn() as typeof import("sonner").toast.promise;
+  mockToast.promise = vi.fn();
   mockToast.dismiss = vi.fn();
   mockToast.custom = vi.fn();
 

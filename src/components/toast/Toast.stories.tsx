@@ -98,13 +98,14 @@ export const WithAction: Story = {
   )
 };
 
-export const Promise: Story = {
+export const WithPromise: Story = {
   name: "Promise",
   render: () => (
     <Button
       onClick={() =>
         toast.promise(
-          new Promise((resolve) => setTimeout(resolve, 2000)),
+          // eslint-disable-next-line no-restricted-globals
+          new globalThis.Promise((resolve) => setTimeout(resolve, 2000)),
           { loading: "Saving…", success: "Saved!", error: "Failed to save" }
         )
       }

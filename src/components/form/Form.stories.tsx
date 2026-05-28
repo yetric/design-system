@@ -184,8 +184,8 @@ export const Registration: Story = {
 // ─── Select form ─────────────────────────────────────────────────────────────
 
 const selectSchema = z.object({
-  country: z.string({ required_error: "Please select a country" }).min(1, "Please select a country"),
-  timezone: z.string({ required_error: "Please select a timezone" }).min(1, "Please select a timezone")
+  country: z.string().min(1, "Please select a country"),
+  timezone: z.string().min(1, "Please select a timezone")
 });
 
 function SelectForm() {
@@ -372,18 +372,18 @@ export const CheckboxExample: Story = {
 // ─── RadioGroup form ──────────────────────────────────────────────────────────
 
 const radioSchema = z.object({
-  plan: z.enum(["free", "pro", "enterprise"], {
-    required_error: "Please select a plan"
+  plan: z.enum(["free", "pro", "enterprise"] as const, {
+    message: "Please select a plan"
   }),
-  billing: z.enum(["monthly", "annual"], {
-    required_error: "Please select a billing cycle"
+  billing: z.enum(["monthly", "annual"] as const, {
+    message: "Please select a billing cycle"
   })
 });
 
 function RadioForm() {
   const form = useZodForm({
     schema: radioSchema,
-    defaultValues: { plan: undefined, billing: "monthly" }
+    defaultValues: { billing: "monthly" as "monthly" | "annual" }
   });
 
   function onSubmit(values: z.infer<typeof radioSchema>) {
@@ -461,7 +461,7 @@ export const RadioExample: Story = {
 const profileSchema = z.object({
   name:    z.string().min(2, "Name must be at least 2 characters"),
   email:   z.string().email("Enter a valid email address"),
-  role:    z.enum(["admin", "editor", "viewer"], { required_error: "Select a role" }),
+  role:    z.enum(["admin", "editor", "viewer"] as const, { message: "Select a role" }),
   country: z.string().min(1, "Select a country"),
   updates: z.boolean().default(false),
   terms:   z.boolean().refine((v) => v === true, { message: "You must accept the terms" })
@@ -470,7 +470,7 @@ const profileSchema = z.object({
 function ProfileForm() {
   const form = useZodForm({
     schema: profileSchema,
-    defaultValues: { name: "", email: "", role: undefined, country: "", updates: false, terms: false }
+    defaultValues: { name: "", email: "", country: "", updates: false, terms: false }
   });
 
   function onSubmit(values: z.infer<typeof profileSchema>) {
