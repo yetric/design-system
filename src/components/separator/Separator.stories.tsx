@@ -30,6 +30,32 @@ export const Vertical: Story = {
   )
 };
 
+export const Thickness: Story = {
+  render: () => (
+    <div className="w-64 space-y-4">
+      {(["thin", "medium", "thick"] as const).map((t) => (
+        <div key={t}>
+          <p className="text-xs text-muted-foreground mb-1">{t}</p>
+          <Separator thickness={t} />
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <div className="w-64 space-y-4">
+      {(["border", "muted", "accent"] as const).map((c) => (
+        <div key={c}>
+          <p className="text-xs text-muted-foreground mb-1">{c}</p>
+          <Separator color={c} thickness="medium" />
+        </div>
+      ))}
+    </div>
+  ),
+};
+
 export const InMenu: Story = {
   render: () => (
     <div className="w-48 rounded-md border border-border p-1 text-sm">

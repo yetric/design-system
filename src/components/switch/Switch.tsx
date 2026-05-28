@@ -42,12 +42,14 @@ export interface SwitchProps
     VariantProps<typeof switchRootVariants> {
   /** Optional label rendered next to the switch */
   label?: string;
+  /** Which side of the switch the label appears on. Defaults to "end" (right). */
+  labelPlacement?: "start" | "end";
 }
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitive.Root>,
   SwitchProps
->(({ className, size, label, id, ...props }, ref) => {
+>(({ className, size, label, labelPlacement = "end", id, ...props }, ref) => {
   const autoId = React.useId();
   const switchId = id ?? autoId;
 
@@ -64,15 +66,20 @@ const Switch = React.forwardRef<
 
   if (!label) return root;
 
+  const labelEl = (
+    <label
+      htmlFor={switchId}
+      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+    >
+      {label}
+    </label>
+  );
+
   return (
     <div className="flex items-center gap-2">
+      {labelPlacement === "start" && labelEl}
       {root}
-      <label
-        htmlFor={switchId}
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-      >
-        {label}
-      </label>
+      {labelPlacement === "end" && labelEl}
     </div>
   );
 });

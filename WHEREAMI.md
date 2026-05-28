@@ -1,6 +1,6 @@
 # Where we are — @yetric/ui
 
-> Last updated: 2026-05-28 · v0.1.0 · 37 components · 228 tests passing
+> Last updated: 2026-05-28 · v0.1.0 · 51 components · 333 tests passing
 
 ## Components shipped
 
@@ -94,7 +94,7 @@ import { VARIANT, SIZE, RADIUS } from "@yetric/ui";
 - Tailwind config extends all tokens (background, foreground, card, primary, secondary, muted, accent, destructive, warning, success, info, border, input, ring, shadow, z-index, duration, easing)
 
 ## Testing
-- **228 tests, all green** across 36 test files
+- **333 tests, all green** across 50 test files
 - Unit: Vitest + jsdom + @testing-library/react
 - Browser: Storybook + Playwright/Chromium via @storybook/addon-vitest
 - `src/test/setup.ts` polyfills pointer capture, scrollIntoView, ResizeObserver for Radix in jsdom

@@ -16,6 +16,15 @@ export const WithLabelChecked: Story = { args: { label: "Dark mode", defaultChec
 export const Disabled: Story = { args: { disabled: true, label: "Disabled (off)" } };
 export const DisabledChecked: Story = { args: { disabled: true, defaultChecked: true, label: "Disabled (on)" } };
 
+export const LabelPlacement: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <Switch label="Label on right (default)" labelPlacement="end" defaultChecked />
+      <Switch label="Label on left" labelPlacement="start" defaultChecked />
+    </div>
+  ),
+};
+
 export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col gap-4">

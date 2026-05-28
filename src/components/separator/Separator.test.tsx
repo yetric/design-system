@@ -32,4 +32,24 @@ describe("Separator", () => {
     const { container } = render(<Separator className="my-4" />);
     expect(container.firstChild).toHaveClass("my-4");
   });
+
+  it("applies medium thickness", () => {
+    const { container } = render(<Separator thickness="medium" />);
+    expect(container.firstChild).toHaveClass("h-0.5");
+  });
+
+  it("applies thick thickness", () => {
+    const { container } = render(<Separator thickness="thick" />);
+    expect(container.firstChild).toHaveClass("h-1");
+  });
+
+  it("applies muted color", () => {
+    const { container } = render(<Separator color="muted" />);
+    expect(container.firstChild).toHaveClass("bg-muted");
+  });
+
+  it("applies accent color", () => {
+    const { container } = render(<Separator color="accent" />);
+    expect(container.firstChild).toHaveClass("bg-accent");
+  });
 });

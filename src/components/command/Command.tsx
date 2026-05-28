@@ -4,8 +4,8 @@ import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { Search } from "lucide-react";
 
-import { Dialog, DialogContent } from "@/components/dialog/Dialog";
-import { cn } from "@/lib/utils";
+import { Dialog, DialogContent } from "../../components/dialog/Dialog";
+import { cn } from "../../lib/cn";
 
 export type CommandProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive>;
 export type CommandInputProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>;

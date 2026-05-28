@@ -64,16 +64,28 @@ const PaginationLink = ({ className, isActive, size = "md", ...props }: Paginati
 );
 PaginationLink.displayName = "PaginationLink";
 
-const PaginationPrevious = ({ className, size, ...props }: React.ComponentProps<"a"> & { size?: Size }) => (
-  <PaginationLink aria-label="Go to previous page" size={size} className={cn("gap-1 w-auto px-3", className)} {...props}>
+const PaginationPrevious = ({ className, size, disabled, ...props }: React.ComponentProps<"a"> & { size?: Size; disabled?: boolean }) => (
+  <PaginationLink
+    aria-label="Go to previous page"
+    aria-disabled={disabled || undefined}
+    size={size}
+    className={cn("gap-1 w-auto px-3", disabled && "pointer-events-none opacity-50", className)}
+    {...props}
+  >
     <ChevronLeft className="h-4 w-4" />
     <span>Previous</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
 
-const PaginationNext = ({ className, size, ...props }: React.ComponentProps<"a"> & { size?: Size }) => (
-  <PaginationLink aria-label="Go to next page" size={size} className={cn("gap-1 w-auto px-3", className)} {...props}>
+const PaginationNext = ({ className, size, disabled, ...props }: React.ComponentProps<"a"> & { size?: Size; disabled?: boolean }) => (
+  <PaginationLink
+    aria-label="Go to next page"
+    aria-disabled={disabled || undefined}
+    size={size}
+    className={cn("gap-1 w-auto px-3", disabled && "pointer-events-none opacity-50", className)}
+    {...props}
+  >
     <span>Next</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
