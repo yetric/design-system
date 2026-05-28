@@ -23,21 +23,31 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
+const dialogSizeClass: Record<string, string> = {
+  sm:   "max-w-sm",
+  md:   "max-w-lg",
+  lg:   "max-w-2xl",
+  xl:   "max-w-4xl",
+  full: "max-w-[calc(100vw-2rem)] h-[calc(100vh-2rem)]",
+};
+
 export type DialogContentProps =
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     radius?: Radius;
+    size?: "sm" | "md" | "lg" | "xl" | "full";
   };
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   DialogContentProps
->(({ className, children, radius = "lg", ...props }, ref) => (
+>(({ className, children, radius = "lg", size = "md", ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-1/2 top-1/2 z-modal w-full max-w-lg -translate-x-1/2 -translate-y-1/2 border bg-card text-card-foreground p-6 shadow-lg",
+        "fixed left-1/2 top-1/2 z-modal w-full -translate-x-1/2 -translate-y-1/2 border bg-card text-card-foreground p-6 shadow-lg",
+        dialogSizeClass[size],
         radiusClass[radius],
         className
       )}

@@ -4,6 +4,7 @@ import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 
 import { cn } from "../../lib/cn";
+import { radiusClass, type Radius } from "../../lib/radius";
 import { type Size } from "../../lib/size";
 
 const Select = SelectPrimitive.Root;
@@ -21,22 +22,24 @@ const triggerSizeClass: Record<Size, string> = {
 export interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
   size?: Size;
+  radius?: Radius;
 }
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, size = "md", children, ...props }, ref) => (
+>(({ className, size = "md", radius = "md", children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex w-full items-center justify-between rounded-md border border-input bg-background",
+      "flex w-full items-center justify-between border border-input bg-background",
       "ring-offset-background transition-colors",
       "placeholder:text-muted-foreground",
       "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
       "disabled:cursor-not-allowed disabled:opacity-50",
       "[&>span]:line-clamp-1",
       triggerSizeClass[size],
+      radiusClass[radius],
       className
     )}
     {...props}

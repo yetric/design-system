@@ -4,13 +4,29 @@ import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "../../lib/cn";
 
+type SliderSize = "sm" | "md" | "lg";
+
+const trackClass: Record<SliderSize, string> = {
+  sm: "h-1",
+  md: "h-1.5",
+  lg: "h-2",
+};
+
+const thumbClass: Record<SliderSize, string> = {
+  sm: "h-3 w-3",
+  md: "h-4 w-4",
+  lg: "h-5 w-5",
+};
+
 export interface SliderProps
-  extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {}
+  extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
+  size?: SliderSize;
+}
 
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   SliderProps
->(({ className, ...props }, ref) => (
+>(({ className, size = "md", ...props }, ref) => (
   <SliderPrimitive.Root
     ref={ref}
     className={cn(
@@ -19,13 +35,23 @@ const Slider = React.forwardRef<
     )}
     {...props}
   >
-    <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-secondary">
+    <SliderPrimitive.Track
+      className={cn(
+        "relative w-full grow overflow-hidden rounded-full bg-secondary",
+        trackClass[size]
+      )}
+    >
       <SliderPrimitive.Range className="absolute h-full bg-primary" />
     </SliderPrimitive.Track>
     {(props.defaultValue ?? props.value ?? [0]).map((_, i) => (
       <SliderPrimitive.Thumb
         key={i}
-        className="block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        className={cn(
+          "block rounded-full border border-primary/50 bg-background shadow transition-colors",
+          "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+          "disabled:pointer-events-none disabled:opacity-50",
+          thumbClass[size]
+        )}
       />
     ))}
   </SliderPrimitive.Root>

@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { cn } from "../../lib/cn";
+import { radiusClass, type Radius } from "../../lib/radius";
 import { type Size } from "../../lib/size";
 
 const inputSizeClass: Record<Size, string> = {
@@ -60,6 +61,7 @@ const iconClass: Record<Size, string> = {
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   error?: boolean;
   size?: Size;
+  radius?: Radius;
   /** Icon rendered inside the left edge of the input */
   leftIcon?: React.ReactNode;
   /** Icon rendered inside the right edge of the input */
@@ -67,20 +69,21 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error, size = "md", leftIcon, rightIcon, ...props }, ref) => {
+  ({ className, type, error, size = "md", radius = "md", leftIcon, rightIcon, ...props }, ref) => {
     const input = (
       <input
         type={type}
         ref={ref}
         aria-invalid={error || undefined}
         className={cn(
-          "flex w-full rounded-md border border-input bg-background",
+          "flex w-full border border-input bg-background",
           "placeholder:text-muted-foreground",
           "transition-colors duration-base",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "file:border-0 file:bg-transparent file:text-sm file:font-medium",
           inputSizeClass[size],
+          radiusClass[radius],
           leftIcon && iconPaddingLeft[size],
           rightIcon && iconPaddingRight[size],
           error && "border-destructive focus-visible:ring-destructive",

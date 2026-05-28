@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { cn } from "../../lib/cn";
+import { radiusClass, type Radius } from "../../lib/radius";
 import { type Size } from "../../lib/size";
 
 const avatarSizeClass: Record<Size, string> = {
@@ -13,6 +14,23 @@ const avatarSizeClass: Record<Size, string> = {
   xl: "h-16 w-16 text-lg",
 };
 
+const statusSizeClass: Record<Size, string> = {
+  xs: "h-1.5 w-1.5 ring-1",
+  sm: "h-2 w-2 ring-1",
+  md: "h-2.5 w-2.5 ring-2",
+  lg: "h-3 w-3 ring-2",
+  xl: "h-3.5 w-3.5 ring-2",
+};
+
+const statusColor: Record<string, string> = {
+  online:  "bg-success",
+  away:    "bg-warning",
+  offline: "bg-muted-foreground",
+  busy:    "bg-destructive",
+};
+
+export type AvatarStatus = "online" | "away" | "offline" | "busy";
+
 export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Image source URL. Falls back to initials if not provided or fails to load. */
   src?: string;
@@ -21,10 +39,13 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Fallback text — typically 1–2 initials. Shown when src is absent or broken. */
   fallback?: string;
   size?: Size;
+  radius?: Radius;
+  /** Optional online/away/offline/busy indicator dot. */
+  status?: AvatarStatus;
 }
 
 const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
-  ({ className, src, alt, fallback, size = "md", ...props }, ref) => {
+  ({ className, src, alt, fallback, size = "md", radius = "full", status, ...props }, ref) => {
     const [imgError, setImgError] = React.useState(false);
     const showImage = src && !imgError;
     const initials = fallback
@@ -39,26 +60,39 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
         : "?";
 
     return (
-      <span
-        ref={ref}
-        role="img"
-        aria-label={alt ?? fallback ?? "avatar"}
-        className={cn(
-          "inline-flex shrink-0 select-none items-center justify-center overflow-hidden rounded-full bg-muted font-medium text-muted-foreground",
-          avatarSizeClass[size],
-          className
-        )}
-        {...props}
-      >
-        {showImage ? (
-          <img
-            src={src}
-            alt={alt ?? ""}
-            className="h-full w-full object-cover"
-            onError={() => setImgError(true)}
+      <span className="relative inline-flex shrink-0">
+        <span
+          ref={ref}
+          role="img"
+          aria-label={alt ?? fallback ?? "avatar"}
+          className={cn(
+            "inline-flex select-none items-center justify-center overflow-hidden bg-muted font-medium text-muted-foreground",
+            avatarSizeClass[size],
+            radiusClass[radius],
+            className
+          )}
+          {...props}
+        >
+          {showImage ? (
+            <img
+              src={src}
+              alt={alt ?? ""}
+              className="h-full w-full object-cover"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <span aria-hidden="true">{initials}</span>
+          )}
+        </span>
+        {status && (
+          <span
+            aria-label={status}
+            className={cn(
+              "absolute bottom-0 right-0 rounded-full ring-background",
+              statusSizeClass[size],
+              statusColor[status]
+            )}
           />
-        ) : (
-          <span aria-hidden="true">{initials}</span>
         )}
       </span>
     );

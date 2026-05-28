@@ -5,10 +5,18 @@ import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 
+type TabsSize = "sm" | "md" | "lg";
+
+const listSizeClass: Record<TabsSize, string> = {
+  sm: "h-8",
+  md: "h-10",
+  lg: "h-12",
+};
+
 const tabsListVariants = cva("inline-flex items-center", {
   variants: {
     variant: {
-      default:   "h-10 rounded-md bg-muted p-1 text-muted-foreground",
+      default:   "rounded-md bg-muted p-1 text-muted-foreground",
       underline: "border-b border-border w-full gap-0",
       pills:     "gap-1",
     },
@@ -22,20 +30,27 @@ const tabsTriggerVariants = cva(
     variants: {
       variant: {
         default:
-          "rounded-sm px-3 py-1.5 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+          "rounded-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
         underline:
-          "rounded-none border-b-2 border-transparent px-4 py-2 text-sm text-muted-foreground data-[state=active]:border-primary data-[state=active]:text-foreground -mb-px",
+          "rounded-none border-b-2 border-transparent text-muted-foreground data-[state=active]:border-primary data-[state=active]:text-foreground -mb-px",
         pills:
-          "rounded-full px-4 py-1.5 text-sm text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+          "rounded-full text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+      },
+      size: {
+        sm: "px-2.5 py-1 text-xs",
+        md: "px-3 py-1.5 text-sm",
+        lg: "px-4 py-2 text-sm",
       },
     },
-    defaultVariants: { variant: "default" },
+    defaultVariants: { variant: "default", size: "md" },
   }
 );
 
 export interface TabsListProps
   extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>,
-    VariantProps<typeof tabsListVariants> {}
+    VariantProps<typeof tabsListVariants> {
+  size?: TabsSize;
+}
 
 export interface TabsTriggerProps
   extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>,
@@ -46,10 +61,14 @@ const Tabs = TabsPrimitive.Root;
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   TabsListProps
->(({ className, variant, ...props }, ref) => (
+>(({ className, variant, size = "md", ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
-    className={cn(tabsListVariants({ variant }), className)}
+    className={cn(
+      tabsListVariants({ variant }),
+      variant === "default" && listSizeClass[size],
+      className
+    )}
     {...props}
   />
 ));
@@ -58,10 +77,10 @@ TabsList.displayName = "TabsList";
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   TabsTriggerProps
->(({ className, variant, ...props }, ref) => (
+>(({ className, variant, size = "md", ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
-    className={cn(tabsTriggerVariants({ variant }), className)}
+    className={cn(tabsTriggerVariants({ variant, size }), className)}
     {...props}
   />
 ));

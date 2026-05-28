@@ -8,6 +8,7 @@ import { radiusClass, type Radius } from "../../lib/radius";
 import { type Size } from "../../lib/size";
 import { Label } from "../label/Label";
 import { Input } from "../input/Input";
+import type { Radius as RadiusType } from "../../lib/radius";
 
 const fieldBase =
   "flex w-full border border-input bg-background " +
@@ -120,11 +121,12 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
             ref={ref as React.Ref<HTMLInputElement>}
             id={id}
             size={size as Size}
+            radius={radius as RadiusType}
             error={hasError}
             leftIcon={leftIcon}
             rightIcon={rightIcon}
             aria-describedby={describedBy}
-            className={cn(radiusClass[radius], className)}
+            className={className}
             {...(rest as Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">)}
           />
         )}

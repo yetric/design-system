@@ -5,6 +5,23 @@ import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { Circle } from "lucide-react";
 
 import { cn } from "../../lib/cn";
+import { type Size } from "../../lib/size";
+
+const radioItemSizeClass: Record<Size, string> = {
+  xs: "h-3 w-3",
+  sm: "h-3.5 w-3.5",
+  md: "h-4 w-4",
+  lg: "h-5 w-5",
+  xl: "h-6 w-6",
+};
+
+const radioIndicatorSizeClass: Record<Size, string> = {
+  xs: "h-1.5 w-1.5",
+  sm: "h-2 w-2",
+  md: "h-2.5 w-2.5",
+  lg: "h-3 w-3",
+  xl: "h-3.5 w-3.5",
+};
 
 // ─── RadioGroup ───────────────────────────────────────────────────────────────
 
@@ -26,12 +43,13 @@ export interface RadioGroupItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
   /** Visual label rendered next to the radio button. */
   label?: string;
+  size?: Size;
 }
 
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioGroupItemProps
->(({ className, label, id, ...props }, ref) => {
+>(({ className, label, id, size = "md", ...props }, ref) => {
   const autoId = React.useId();
   const inputId = id ?? autoId;
 
@@ -41,16 +59,17 @@ const RadioGroupItem = React.forwardRef<
         ref={ref}
         id={inputId}
         className={cn(
-          "aspect-square h-4 w-4 rounded-full border border-primary text-primary",
+          "aspect-square rounded-full border border-primary text-primary",
           "ring-offset-background focus:outline-none focus-visible:ring-2",
           "focus-visible:ring-ring focus-visible:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
+          radioItemSizeClass[size],
           className
         )}
         {...props}
       >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-          <Circle className="h-2.5 w-2.5 fill-current text-current" />
+          <Circle className={cn("fill-current text-current", radioIndicatorSizeClass[size])} />
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
       {label && (

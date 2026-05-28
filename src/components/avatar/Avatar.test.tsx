@@ -46,4 +46,21 @@ describe("Avatar", () => {
     render(<Avatar fallback="AB" className="border-2" />);
     expect(screen.getByRole("img")).toHaveClass("border-2");
   });
+
+  it("applies radius prop", () => {
+    render(<Avatar fallback="AB" radius="sm" />);
+    expect(screen.getByRole("img")).toHaveClass("rounded");
+  });
+
+  it("renders status indicator when status is provided", () => {
+    render(<Avatar fallback="AB" status="online" />);
+    const dot = screen.getByLabelText("online");
+    expect(dot).toBeInTheDocument();
+    expect(dot).toHaveClass("bg-success");
+  });
+
+  it("renders correct status color for busy", () => {
+    render(<Avatar fallback="AB" status="busy" />);
+    expect(screen.getByLabelText("busy")).toHaveClass("bg-destructive");
+  });
 });
