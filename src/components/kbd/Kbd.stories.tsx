@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Kbd } from "./Kbd";
 
-const meta = { component: Kbd } satisfies Meta<typeof Kbd>;
+const meta = { component: Kbd, title: "Components/Kbd" } satisfies Meta<typeof Kbd>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

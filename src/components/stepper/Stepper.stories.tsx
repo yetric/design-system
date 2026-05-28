@@ -3,7 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stepper } from "./Stepper";
 import { Button } from "../button/Button";
 
-const meta: Meta<typeof Stepper> = { component: Stepper };
+const meta: Meta<typeof Stepper> = {
+  component: Stepper,
+  title: "Components/Stepper",
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

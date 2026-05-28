@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AspectRatio } from "./AspectRatio";
 
-const meta = { component: AspectRatio } satisfies Meta<typeof AspectRatio>;
+const meta = { component: AspectRatio, title: "Components/AspectRatio" } satisfies Meta<typeof AspectRatio>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

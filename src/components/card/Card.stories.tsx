@@ -15,6 +15,7 @@ import { Badge } from "../badge";
 
 const meta = {
   component: Card,
+  title: "Components/Card",
   tags: ["autodocs"],
 } satisfies Meta<typeof Card>;
 

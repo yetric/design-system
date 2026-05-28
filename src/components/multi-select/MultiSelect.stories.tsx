@@ -12,7 +12,10 @@ const techOptions = [
   { value: "nuxt", label: "Nuxt" },
 ];
 
-const meta: Meta<typeof MultiSelect> = { component: MultiSelect };
+const meta: Meta<typeof MultiSelect> = {
+  component: MultiSelect,
+  title: "Components/MultiSelect",
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -4,7 +4,10 @@ import { Input } from "../input/Input";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Label } from "../label/Label";
 
-const meta: Meta<typeof Fieldset> = { component: Fieldset };
+const meta: Meta<typeof Fieldset> = {
+  component: Fieldset,
+  title: "Components/Fieldset",
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

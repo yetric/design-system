@@ -5,6 +5,7 @@ import { Badge } from "./Badge";
 
 const meta = {
   component: Badge,
+  title: "Components/Badge",
   args: {
     children: "Badge"
   }

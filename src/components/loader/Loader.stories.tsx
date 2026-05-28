@@ -4,6 +4,7 @@ import { Loader } from "./Loader";
 
 const meta = {
   component: Loader,
+  title: "Components/Loader",
   args: {
     size: "md",
     variant: "default",

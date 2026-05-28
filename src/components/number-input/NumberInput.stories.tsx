@@ -5,6 +5,7 @@ import { NumberInput } from "./NumberInput";
 
 const meta = {
   component: NumberInput,
+  title: "Components/NumberInput",
 } satisfies Meta<typeof NumberInput>;
 
 export default meta;

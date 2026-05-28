@@ -5,6 +5,7 @@ import { Input } from "./Input";
 
 const meta = {
   component: Input,
+  title: "Components/Input",
   tags: ["autodocs"],
   args: {
     placeholder: "Placeholder…"

@@ -3,7 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AlignLeft, LayoutGrid, List } from "lucide-react";
 import { SegmentedControl } from "./SegmentedControl";
 
-const meta: Meta<typeof SegmentedControl> = { component: SegmentedControl };
+const meta: Meta<typeof SegmentedControl> = {
+  component: SegmentedControl,
+  title: "Components/SegmentedControl",
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 

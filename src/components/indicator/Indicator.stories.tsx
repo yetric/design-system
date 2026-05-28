@@ -4,7 +4,10 @@ import { Indicator } from "./Indicator";
 import { Avatar } from "../avatar/Avatar";
 import { Button } from "../button/Button";
 
-const meta: Meta<typeof Indicator> = { component: Indicator };
+const meta: Meta<typeof Indicator> = {
+  component: Indicator,
+  title: "Components/Indicator",
+};
 export default meta;
 type Story = StoryObj<typeof meta>;
 
