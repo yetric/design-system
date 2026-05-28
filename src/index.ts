@@ -12,6 +12,7 @@ export * from "./components/input";
 export * from "./components/form";
 export * from "./components/input-field";
 export * from "./components/label";
+export * from "./components/radio-group";
 export * from "./components/select";
 export * from "./components/separator";
 export * from "./components/skeleton";
