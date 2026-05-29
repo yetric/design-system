@@ -35,7 +35,7 @@ import { Checkbox } from "@/components/checkbox/Checkbox";
 import { Switch } from "@/components/switch/Switch";
 import { Badge } from "@/components/badge/Badge";
 import { Alert } from "@/components/alert/Alert";
-import { Avatar, AvatarFallback } from "@/components/avatar/Avatar";
+import { Avatar } from "@/components/avatar/Avatar";
 import { Separator } from "@/components/separator/Separator";
 import { Slider } from "@/components/slider/Slider";
 import { Textarea } from "@/components/textarea/Textarea";
@@ -133,9 +133,7 @@ describe("a11y — primitives", () => {
   it("Avatar with fallback", async () => {
     await expectNoViolations(
       wrap(
-        <Avatar>
-          <AvatarFallback>AB</AvatarFallback>
-        </Avatar>
+        <Avatar fallback="AB" alt="Test user" />
       )
     );
   });
