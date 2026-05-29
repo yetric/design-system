@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FolderOpen, PackageSearch, Plus, ShieldOff, WifiOff } from "lucide-react";
 
-import { Grid } from "../components/grid/Grid";
-import { EmptyState } from "../components/empty-state/EmptyState";
+import { Grid } from "../grid/Grid";
+import { EmptyState } from "./EmptyState";
 
 const meta = {
-  title: "Patterns/Empty States",
+  title: "Components/EmptyState",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta;
