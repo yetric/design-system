@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toaster, toast } from "./Toast";
+import { toast as sonnerToast } from "sonner";
 import { Button } from "../button/Button";
+import { Toaster } from "./Toast";
+import { toast } from "./toast";
 
 const meta: Meta<typeof Toaster> = {
   title: "Components/Toast",
@@ -23,7 +25,7 @@ type Story = StoryObj<typeof Toaster>;
 
 export const Default: Story = {
   name: "Default",
-  render: () => <Button onClick={() => toast("This is a notification")}>Show toast</Button>,
+  render: () => <Button onClick={() => sonnerToast("This is a notification")}>Show toast</Button>,
 };
 
 export const Success: Story = {
@@ -64,7 +66,7 @@ export const AllVariants: Story = {
   name: "All Variants",
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Button variant="outline" onClick={() => toast("Default")}>
+      <Button variant="outline" onClick={() => sonnerToast("Default")}>
         Default
       </Button>
       <Button variant="outline" onClick={() => toast.success("Success!")}>
@@ -106,7 +108,7 @@ export const WithAction: Story = {
   render: () => (
     <Button
       onClick={() =>
-        toast("Message sent", {
+        sonnerToast("Message sent", {
           action: { label: "Undo", onClick: () => toast.info("Undone") },
         })
       }
@@ -133,12 +135,36 @@ export const WithPromise: Story = {
   ),
 };
 
+export const Programmatic: Story = {
+  name: "Programmatic",
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Button onClick={() => toast.success("Order synced")}>Success</Button>
+      <Button variant="destructive" onClick={() => toast.error("Sync failed")}>
+        Error
+      </Button>
+      <Button variant="secondary" onClick={() => toast.info("New data available")}>
+        Info
+      </Button>
+      <Button variant="outline" onClick={() => toast.warning("Review pending changes")}>
+        Warning
+      </Button>
+      <Button variant="outline" onClick={() => toast.loading("Publishing release…")}>
+        Loading
+      </Button>
+      <Button variant="ghost" onClick={() => toast.dismiss()}>
+        Dismiss
+      </Button>
+    </div>
+  ),
+};
+
 export const PositionTopRight: Story = {
   name: "Position: Top Right",
   render: () => (
     <>
       <Toaster position="top-right" />
-      <Button onClick={() => toast("Top right!")}>Top right</Button>
+      <Button onClick={() => sonnerToast("Top right!")}>Top right</Button>
     </>
   ),
 };
@@ -148,7 +174,7 @@ export const CloseButton: Story = {
   render: () => (
     <>
       <Toaster closeButton duration={999999} />
-      <Button onClick={() => toast("Dismiss me with the X")}>Show persistent</Button>
+      <Button onClick={() => sonnerToast("Dismiss me with the X")}>Show persistent</Button>
     </>
   ),
 };
