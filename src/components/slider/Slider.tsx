@@ -20,10 +20,22 @@ const thumbClass: Record<SliderSize, string> = {
 
 export interface SliderProps extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
   size?: SliderSize;
+  /** Accessible label forwarded to the slider thumb(s). Required when no visible label is associated. */
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
 }
 
 const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
-  ({ className, size = "md", ...props }, ref) => (
+  (
+    {
+      className,
+      size = "md",
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledby,
+      ...props
+    },
+    ref
+  ) => (
     <SliderPrimitive.Root
       ref={ref}
       className={cn("relative flex w-full touch-none select-none items-center", className)}
@@ -40,6 +52,8 @@ const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, S
       {(props.defaultValue ?? props.value ?? [0]).map((_, i) => (
         <SliderPrimitive.Thumb
           key={i}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
           className={cn(
             "block rounded-full border border-primary/50 bg-background shadow transition-colors",
             "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
