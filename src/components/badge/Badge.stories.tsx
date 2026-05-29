@@ -8,12 +8,24 @@ const meta = {
   tags: ["autodocs"],
   title: "Components/Badge",
   args: {
-    children: "Badge"
+    children: "Badge",
   },
   argTypes: {
-    variant: { control: "select", options: ["default","secondary","outline","ghost","destructive","warning","success","info"] },
-    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
-    radius:  { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    variant: {
+      control: "select",
+      options: [
+        "default",
+        "secondary",
+        "outline",
+        "ghost",
+        "destructive",
+        "warning",
+        "success",
+        "info",
+      ],
+    },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    radius: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl", "full"] },
   },
 } satisfies Meta<typeof Badge>;
 
@@ -34,7 +46,7 @@ export const Variants: Story = {
       <Badge variant="success">Success</Badge>
       <Badge variant="info">Info</Badge>
     </div>
-  )
+  ),
 };
 
 export const Sizes: Story = {
@@ -46,7 +58,7 @@ export const Sizes: Story = {
       <Badge size="lg">Large</Badge>
       <Badge size="xl">XLarge</Badge>
     </div>
-  )
+  ),
 };
 
 export const Radius: Story = {
@@ -60,7 +72,7 @@ export const Radius: Story = {
       <Badge radius="xl">XLarge</Badge>
       <Badge radius="full">Full</Badge>
     </div>
-  )
+  ),
 };
 
 export const InContext: Story = {
@@ -95,18 +107,24 @@ export const InContext: Story = {
         <Badge variant="outline">Deprecated</Badge>
       </div>
     </div>
-  )
+  ),
 };
 
 export const WithIcon: Story = {
   name: "With leading icon",
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Badge variant="success" icon={<CheckCircle className="h-3 w-3" />}>Verified</Badge>
-      <Badge variant="warning" icon={<Star className="h-3 w-3" />}>Featured</Badge>
-      <Badge variant="info" icon={<Star className="h-3 w-3" />}>Premium</Badge>
+      <Badge variant="success" icon={<CheckCircle className="h-3 w-3" />}>
+        Verified
+      </Badge>
+      <Badge variant="warning" icon={<Star className="h-3 w-3" />}>
+        Featured
+      </Badge>
+      <Badge variant="info" icon={<Star className="h-3 w-3" />}>
+        Premium
+      </Badge>
     </div>
-  )
+  ),
 };
 
 export const Dismissible: Story = {
@@ -114,12 +132,12 @@ export const Dismissible: Story = {
     const tags = ["React", "TypeScript", "Design System"];
     return (
       <div className="flex flex-wrap gap-2">
-        {tags.map(tag => (
+        {tags.map((tag) => (
           <Badge key={tag} variant="secondary" onDismiss={() => {}}>
             {tag}
           </Badge>
         ))}
       </div>
     );
-  }
+  },
 };

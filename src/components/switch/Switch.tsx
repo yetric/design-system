@@ -38,7 +38,8 @@ const switchThumbVariants = cva(
 );
 
 export interface SwitchProps
-  extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
+  extends
+    React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
     VariantProps<typeof switchRootVariants> {
   /** Optional label rendered next to the switch */
   label?: string;
@@ -46,43 +47,42 @@ export interface SwitchProps
   labelPlacement?: "start" | "end";
 }
 
-const Switch = React.forwardRef<
-  React.ElementRef<typeof SwitchPrimitive.Root>,
-  SwitchProps
->(({ className, size, label, labelPlacement = "end", id, ...props }, ref) => {
-  const autoId = React.useId();
-  const switchId = id ?? autoId;
+const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, SwitchProps>(
+  ({ className, size, label, labelPlacement = "end", id, ...props }, ref) => {
+    const autoId = React.useId();
+    const switchId = id ?? autoId;
 
-  const root = (
-    <SwitchPrimitive.Root
-      id={switchId}
-      ref={ref}
-      className={cn(switchRootVariants({ size }), className)}
-      {...props}
-    >
-      <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
-    </SwitchPrimitive.Root>
-  );
+    const root = (
+      <SwitchPrimitive.Root
+        id={switchId}
+        ref={ref}
+        className={cn(switchRootVariants({ size }), className)}
+        {...props}
+      >
+        <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
+      </SwitchPrimitive.Root>
+    );
 
-  if (!label) return root;
+    if (!label) return root;
 
-  const labelEl = (
-    <label
-      htmlFor={switchId}
-      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-    >
-      {label}
-    </label>
-  );
+    const labelEl = (
+      <label
+        htmlFor={switchId}
+        className="cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        {label}
+      </label>
+    );
 
-  return (
-    <div className="flex items-center gap-2">
-      {labelPlacement === "start" && labelEl}
-      {root}
-      {labelPlacement === "end" && labelEl}
-    </div>
-  );
-});
+    return (
+      <div className="flex items-center gap-2">
+        {labelPlacement === "start" && labelEl}
+        {root}
+        {labelPlacement === "end" && labelEl}
+      </div>
+    );
+  }
+);
 Switch.displayName = "Switch";
 
 export { Switch };

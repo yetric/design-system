@@ -4,7 +4,13 @@ import { Check } from "lucide-react";
 import { Badge } from "../components/badge/Badge";
 import { Box } from "../components/box/Box";
 import { Button } from "../components/button/Button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "../components/card/Card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "../components/card/Card";
 import { Grid } from "../components/grid/Grid";
 import { Separator } from "../components/separator/Separator";
 import { Stack } from "../components/stack/Stack";
@@ -25,12 +31,7 @@ const plans = [
     period: "/ month",
     description: "Perfect for side projects and personal use.",
     badge: null,
-    features: [
-      "Up to 3 projects",
-      "5 GB storage",
-      "Basic analytics",
-      "Email support",
-    ],
+    features: ["Up to 3 projects", "5 GB storage", "Basic analytics", "Email support"],
     cta: "Get started",
     ctaVariant: "outline" as const,
     highlighted: false,
@@ -80,9 +81,10 @@ function PricingGrid({ annual = false }: { annual?: boolean }) {
     <Box maxWidth="4xl" width="full">
       <Grid cols={{ base: 1, md: 3 }} gap={6} align="start">
         {plans.map((plan) => {
-          const price = annual && plan.price !== "$0"
-            ? `$${Math.round(parseInt(plan.price.slice(1), 10) * 12 * 0.8)}`
-            : plan.price;
+          const price =
+            annual && plan.price !== "$0"
+              ? `$${Math.round(parseInt(plan.price.slice(1), 10) * 12 * 0.8)}`
+              : plan.price;
           const period = annual ? "/ year" : plan.period;
 
           return (
@@ -93,15 +95,30 @@ function PricingGrid({ annual = false }: { annual?: boolean }) {
               style={plan.highlighted ? { boxShadow: "0 0 0 2px hsl(var(--primary))" } : undefined}
             >
               {plan.badge && (
-                <Box style={{ position: "absolute", top: "-0.75rem", left: "50%", transform: "translateX(-50%)" }}>
-                  <Badge variant="info" size="sm">{plan.badge}</Badge>
+                <Box
+                  style={{
+                    position: "absolute",
+                    top: "-0.75rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                >
+                  <Badge variant="info" size="sm">
+                    {plan.badge}
+                  </Badge>
                 </Box>
               )}
               <CardHeader>
-                <Heading as="h3" size="h6">{plan.name}</Heading>
+                <Heading as="h3" size="h6">
+                  {plan.name}
+                </Heading>
                 <Stack direction="row" align="end" gap={1} style={{ marginTop: "0.25rem" }}>
-                  <Heading as="p" size="h2">{price}</Heading>
-                  <Text as="span" size="body-sm" color="muted" style={{ marginBottom: "0.25rem" }}>{period}</Text>
+                  <Heading as="p" size="h2">
+                    {price}
+                  </Heading>
+                  <Text as="span" size="body-sm" color="muted" style={{ marginBottom: "0.25rem" }}>
+                    {period}
+                  </Text>
                 </Stack>
                 <CardDescription>{plan.description}</CardDescription>
               </CardHeader>
@@ -112,14 +129,18 @@ function PricingGrid({ annual = false }: { annual?: boolean }) {
                     {plan.features.map((feat) => (
                       <Stack key={feat} as="li" direction="row" align="center" gap={2}>
                         <Check style={checkStyle} />
-                        <Text as="span" size="body-sm">{feat}</Text>
+                        <Text as="span" size="body-sm">
+                          {feat}
+                        </Text>
                       </Stack>
                     ))}
                   </Stack>
                 </Stack>
               </CardContent>
               <CardFooter>
-                <Button variant={plan.ctaVariant} fullWidth>{plan.cta}</Button>
+                <Button variant={plan.ctaVariant} fullWidth>
+                  {plan.cta}
+                </Button>
               </CardFooter>
             </Card>
           );
@@ -138,9 +159,15 @@ export const Annual: Story = {
   render: () => (
     <Stack align="center" gap={6}>
       <Stack direction="row" align="center" gap={2}>
-        <Text as="span" size="body-sm" color="muted">Monthly</Text>
-        <Text as="span" size="body-sm" weight="medium">Annual</Text>
-        <Badge variant="success" size="xs">Save 20%</Badge>
+        <Text as="span" size="body-sm" color="muted">
+          Monthly
+        </Text>
+        <Text as="span" size="body-sm" weight="medium">
+          Annual
+        </Text>
+        <Badge variant="success" size="xs">
+          Save 20%
+        </Badge>
       </Stack>
       <PricingGrid annual />
     </Stack>

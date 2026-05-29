@@ -8,7 +8,7 @@ const meta: Meta<typeof SegmentedControl> = {
   tags: ["autodocs"],
   title: "Components/SegmentedControl",
   argTypes: {
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
     disabled: { control: "boolean" },
   },
 };
@@ -40,8 +40,8 @@ export const WithIcons: Story = {
         value={v}
         onChange={setV}
         options={[
-          { value: "list",  label: "List",  icon: <List className="h-3.5 w-3.5" /> },
-          { value: "grid",  label: "Grid",  icon: <LayoutGrid className="h-3.5 w-3.5" /> },
+          { value: "list", label: "List", icon: <List className="h-3.5 w-3.5" /> },
+          { value: "grid", label: "Grid", icon: <LayoutGrid className="h-3.5 w-3.5" /> },
           { value: "plain", label: "Plain", icon: <AlignLeft className="h-3.5 w-3.5" /> },
         ]}
       />

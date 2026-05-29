@@ -6,8 +6,16 @@ import { radiusClass, type Radius } from "../../lib/radius";
 import { shadowClass, type ShadowSize } from "../../lib/shadow";
 
 const paddingClass: Record<number, string> = {
-  0: "p-0", 1: "p-1", 2: "p-2", 3: "p-3", 4: "p-4",
-  5: "p-5", 6: "p-6", 8: "p-8", 10: "p-10", 12: "p-12",
+  0: "p-0",
+  1: "p-1",
+  2: "p-2",
+  3: "p-3",
+  4: "p-4",
+  5: "p-5",
+  6: "p-6",
+  8: "p-8",
+  10: "p-10",
+  12: "p-12",
 };
 
 export interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,7 +32,7 @@ const Paper = React.forwardRef<HTMLDivElement, PaperProps>(
     <Comp
       ref={ref}
       className={cn(
-        "bg-card text-card-foreground border border-border",
+        "border border-border bg-card text-card-foreground",
         radiusClass[radius],
         shadowClass[shadow],
         paddingClass[p],

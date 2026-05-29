@@ -16,9 +16,10 @@ const kbdVariants = cva(
         lg: "min-w-[2rem] h-8 px-2.5 text-sm rounded-md",
       },
       variant: {
-        default: "border border-border bg-muted text-muted-foreground shadow-[0_2px_0_1px] shadow-border",
+        default:
+          "border border-border bg-muted text-muted-foreground shadow-[0_2px_0_1px] shadow-border",
         outline: "border border-border bg-background text-foreground",
-        ghost:   "bg-muted text-muted-foreground",
+        ghost: "bg-muted text-muted-foreground",
       },
     },
     defaultVariants: { size: "md", variant: "default" },
@@ -26,8 +27,7 @@ const kbdVariants = cva(
 );
 
 export interface KbdProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof kbdVariants> {}
+  extends React.HTMLAttributes<HTMLElement>, VariantProps<typeof kbdVariants> {}
 
 const Kbd = React.forwardRef<HTMLElement, KbdProps>(
   ({ className, size, variant, ...props }, ref) => (

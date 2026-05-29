@@ -8,7 +8,7 @@ const meta = {
   component: HoverCard,
   tags: ["autodocs"],
   argTypes: {
-    openDelay:  { control: "number" },
+    openDelay: { control: "number" },
     closeDelay: { control: "number" },
   },
 } satisfies Meta<typeof HoverCard>;
@@ -29,13 +29,15 @@ export const Default: Story = {
           <Avatar src="https://github.com/yetric.png" alt="Yetric" fallback="YT" />
           <div className="space-y-1">
             <h4 className="text-sm font-semibold">Yetric</h4>
-            <p className="text-sm text-muted-foreground">Building shared UI primitives for product teams.</p>
+            <p className="text-sm text-muted-foreground">
+              Building shared UI primitives for product teams.
+            </p>
           </div>
         </div>
         <p className="text-sm text-muted-foreground">12 repositories · Joined January 2024</p>
       </HoverCardContent>
     </HoverCard>
-  )
+  ),
 };
 
 export const WithCustomDelay: Story = {
@@ -52,5 +54,5 @@ export const WithCustomDelay: Story = {
         </p>
       </HoverCardContent>
     </HoverCard>
-  )
+  ),
 };

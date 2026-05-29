@@ -1,21 +1,34 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 import {
-  ThemeProvider, useTheme,
-  PRIMARY_COLORS, RADIUS_PRESETS,
-  type Theme, type PrimaryColor, type RadiusPreset, type ThemeConfig,
+  ThemeProvider,
+  useTheme,
+  PRIMARY_COLORS,
+  RADIUS_PRESETS,
+  type Theme,
+  type PrimaryColor,
+  type RadiusPreset,
+  type ThemeConfig,
 } from "./theme";
 import { Button } from "../components/button/Button";
 import { Badge } from "../components/badge/Badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/card/Card";
 import { Separator } from "../components/separator/Separator";
 import { Label } from "../components/label/Label";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/select/Select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../components/select/Select";
 import { Input } from "../components/input/Input";
 
 const meta: Meta = {
   title: "Foundation/ThemeProvider",
-  parameters: { layout: "centered" }
+  parameters: { layout: "centered" },
 };
 
 export default meta;
@@ -31,31 +44,31 @@ interface GoogleFont {
 
 const GOOGLE_FONTS: GoogleFont[] = [
   // Sans-serif
-  { name: "Inter",              css: '"Inter", sans-serif',              category: "sans-serif" },
-  { name: "Roboto",             css: '"Roboto", sans-serif',             category: "sans-serif" },
-  { name: "Open Sans",          css: '"Open Sans", sans-serif',          category: "sans-serif" },
-  { name: "Lato",               css: '"Lato", sans-serif',               category: "sans-serif" },
-  { name: "Poppins",            css: '"Poppins", sans-serif',            category: "sans-serif" },
-  { name: "DM Sans",            css: '"DM Sans", sans-serif',            category: "sans-serif" },
-  { name: "Plus Jakarta Sans",  css: '"Plus Jakarta Sans", sans-serif',  category: "sans-serif" },
-  { name: "Outfit",             css: '"Outfit", sans-serif',             category: "sans-serif" },
-  { name: "Figtree",            css: '"Figtree", sans-serif',            category: "sans-serif" },
-  { name: "Nunito",             css: '"Nunito", sans-serif',             category: "sans-serif" },
+  { name: "Inter", css: '"Inter", sans-serif', category: "sans-serif" },
+  { name: "Roboto", css: '"Roboto", sans-serif', category: "sans-serif" },
+  { name: "Open Sans", css: '"Open Sans", sans-serif', category: "sans-serif" },
+  { name: "Lato", css: '"Lato", sans-serif', category: "sans-serif" },
+  { name: "Poppins", css: '"Poppins", sans-serif', category: "sans-serif" },
+  { name: "DM Sans", css: '"DM Sans", sans-serif', category: "sans-serif" },
+  { name: "Plus Jakarta Sans", css: '"Plus Jakarta Sans", sans-serif', category: "sans-serif" },
+  { name: "Outfit", css: '"Outfit", sans-serif', category: "sans-serif" },
+  { name: "Figtree", css: '"Figtree", sans-serif', category: "sans-serif" },
+  { name: "Nunito", css: '"Nunito", sans-serif', category: "sans-serif" },
   // Serif
-  { name: "Merriweather",       css: '"Merriweather", serif',            category: "serif" },
-  { name: "Playfair Display",   css: '"Playfair Display", serif',        category: "serif" },
-  { name: "Lora",               css: '"Lora", serif',                    category: "serif" },
-  { name: "EB Garamond",        css: '"EB Garamond", serif',             category: "serif" },
-  { name: "Libre Baskerville",  css: '"Libre Baskerville", serif',       category: "serif" },
+  { name: "Merriweather", css: '"Merriweather", serif', category: "serif" },
+  { name: "Playfair Display", css: '"Playfair Display", serif', category: "serif" },
+  { name: "Lora", css: '"Lora", serif', category: "serif" },
+  { name: "EB Garamond", css: '"EB Garamond", serif', category: "serif" },
+  { name: "Libre Baskerville", css: '"Libre Baskerville", serif', category: "serif" },
   // Monospace
-  { name: "Fira Code",          css: '"Fira Code", monospace',           category: "monospace" },
-  { name: "JetBrains Mono",     css: '"JetBrains Mono", monospace',      category: "monospace" },
-  { name: "Source Code Pro",    css: '"Source Code Pro", monospace',     category: "monospace" },
+  { name: "Fira Code", css: '"Fira Code", monospace', category: "monospace" },
+  { name: "JetBrains Mono", css: '"JetBrains Mono", monospace', category: "monospace" },
+  { name: "Source Code Pro", css: '"Source Code Pro", monospace', category: "monospace" },
   // Display
-  { name: "Montserrat",         css: '"Montserrat", sans-serif',         category: "display" },
-  { name: "Raleway",            css: '"Raleway", sans-serif',            category: "display" },
-  { name: "Space Grotesk",      css: '"Space Grotesk", sans-serif',      category: "display" },
-  { name: "Oswald",             css: '"Oswald", sans-serif',             category: "display" },
+  { name: "Montserrat", css: '"Montserrat", sans-serif', category: "display" },
+  { name: "Raleway", css: '"Raleway", sans-serif', category: "display" },
+  { name: "Space Grotesk", css: '"Space Grotesk", sans-serif', category: "display" },
+  { name: "Oswald", css: '"Oswald", sans-serif', category: "display" },
 ];
 
 const FONT_CATEGORIES = ["sans-serif", "serif", "monospace", "display"] as const;
@@ -139,8 +152,7 @@ function Configurator() {
 
   return (
     <ThemeProvider config={config} defaultTheme={theme}>
-      <div className="flex gap-6 items-start">
-
+      <div className="flex items-start gap-6">
         {/* Controls */}
         <Card className="w-[280px] shrink-0">
           <CardHeader>
@@ -148,14 +160,18 @@ function Configurator() {
             <CardDescription>Adjust tokens live</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-
             {/* Light / dark */}
             <div className="space-y-1.5">
               <Label>Color scheme</Label>
               <div className="flex gap-1.5">
                 {themeOptions.map((t) => (
-                  <Button key={t} size="xs" variant={theme === t ? "primary" : "outline"}
-                    onClick={() => setTheme(t)} className="capitalize flex-1">
+                  <Button
+                    key={t}
+                    size="xs"
+                    variant={theme === t ? "primary" : "outline"}
+                    onClick={() => setTheme(t)}
+                    className="flex-1 capitalize"
+                  >
                     {t}
                   </Button>
                 ))}
@@ -169,10 +185,14 @@ function Configurator() {
                 value={config.primaryColor ?? "violet"}
                 onValueChange={(v) => patch({ primaryColor: v as PrimaryColor })}
               >
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
                   {PRIMARY_COLORS.map((c) => (
-                    <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>
+                    <SelectItem key={c} value={c} className="capitalize">
+                      {c}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -185,10 +205,14 @@ function Configurator() {
                 value={config.radius ?? "md"}
                 onValueChange={(v) => patch({ radius: v as RadiusPreset })}
               >
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
                   {RADIUS_PRESETS.map((r) => (
-                    <SelectItem key={r} value={r}>{r}</SelectItem>
+                    <SelectItem key={r} value={r}>
+                      {r}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -211,13 +235,13 @@ function Configurator() {
         </Card>
 
         {/* Preview */}
-        <div className="space-y-4 w-[320px]">
+        <div className="w-[320px] space-y-4">
           <div>
-            <p className="text-xs text-muted-foreground mb-1">
+            <p className="mb-1 text-xs text-muted-foreground">
               resolved: <Badge variant="outline">{resolvedTheme}</Badge>
             </p>
             <h2 className="text-2xl font-semibold">The quick brown fox</h2>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="mt-1 text-sm text-muted-foreground">
               Body text using the configured font and primary color.
             </p>
           </div>
@@ -256,7 +280,7 @@ export const Default: Story = {
     <ThemeProvider defaultTheme="system">
       <Configurator />
     </ThemeProvider>
-  )
+  ),
 };
 
 // ─── Static variants ──────────────────────────────────────────────────────────
@@ -276,7 +300,7 @@ export const StartDark: Story = {
         </CardContent>
       </Card>
     </ThemeProvider>
-  )
+  ),
 };
 
 export const RoundedFull: Story = {
@@ -295,7 +319,7 @@ export const RoundedFull: Story = {
         </CardContent>
       </Card>
     </ThemeProvider>
-  )
+  ),
 };
 
 export const SquareGreen: Story = {
@@ -314,5 +338,5 @@ export const SquareGreen: Story = {
         </CardContent>
       </Card>
     </ThemeProvider>
-  )
+  ),
 };

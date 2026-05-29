@@ -19,8 +19,14 @@ describe("Badge", () => {
   });
 
   it.each([
-    "default", "secondary", "outline", "ghost",
-    "destructive", "warning", "success", "info"
+    "default",
+    "secondary",
+    "outline",
+    "ghost",
+    "destructive",
+    "warning",
+    "success",
+    "info",
   ] as const)("renders variant %s without crashing", (variant) => {
     render(<Badge variant={variant}>{variant}</Badge>);
     expect(screen.getByText(variant)).toBeInTheDocument();

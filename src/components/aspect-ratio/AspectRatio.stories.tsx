@@ -3,10 +3,10 @@ import { AspectRatio } from "./AspectRatio";
 
 const meta = {
   component: AspectRatio,
-  title: "Components/AspectRatio" ,
+  title: "Components/AspectRatio",
   tags: ["autodocs"],
   argTypes: {
-    ratio: { control: "select", options: [16/9, 4/3, 1, 3/4, 9/16] },
+    ratio: { control: "select", options: [16 / 9, 4 / 3, 1, 3 / 4, 9 / 16] },
   },
 } satisfies Meta<typeof AspectRatio>;
 export default meta;
@@ -17,7 +17,7 @@ export const SixteenByNine: Story = {
   render: () => (
     <div className="w-80">
       <AspectRatio ratio={16 / 9}>
-        <div className="flex h-full w-full items-center justify-center rounded-md bg-muted text-muted-foreground text-sm">
+        <div className="flex h-full w-full items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
           16 / 9
         </div>
       </AspectRatio>
@@ -30,7 +30,7 @@ export const Square: Story = {
   render: () => (
     <div className="w-48">
       <AspectRatio ratio={1}>
-        <div className="flex h-full w-full items-center justify-center rounded-md bg-muted text-muted-foreground text-sm">
+        <div className="flex h-full w-full items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
           1 / 1
         </div>
       </AspectRatio>

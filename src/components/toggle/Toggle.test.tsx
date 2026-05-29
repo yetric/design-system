@@ -23,7 +23,11 @@ describe("Toggle", () => {
 
   it("calls onPressedChange on click", async () => {
     const handler = vi.fn();
-    render(<Toggle aria-label="Bold" onPressedChange={handler}>B</Toggle>);
+    render(
+      <Toggle aria-label="Bold" onPressedChange={handler}>
+        B
+      </Toggle>
+    );
     await userEvent.click(screen.getByRole("button"));
     expect(handler).toHaveBeenCalledWith(true);
   });
@@ -33,8 +37,12 @@ describe("ToggleGroup", () => {
   it("renders all items", () => {
     render(
       <ToggleGroup type="single">
-        <ToggleGroupItem value="b" aria-label="Bold"><Bold /></ToggleGroupItem>
-        <ToggleGroupItem value="i" aria-label="Italic">I</ToggleGroupItem>
+        <ToggleGroupItem value="b" aria-label="Bold">
+          <Bold />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="i" aria-label="Italic">
+          I
+        </ToggleGroupItem>
       </ToggleGroup>
     );
     // type="single" renders items as role="radio"
@@ -45,8 +53,12 @@ describe("ToggleGroup", () => {
   it("selects an item on click", async () => {
     render(
       <ToggleGroup type="single">
-        <ToggleGroupItem value="b" aria-label="Bold">B</ToggleGroupItem>
-        <ToggleGroupItem value="i" aria-label="Italic">I</ToggleGroupItem>
+        <ToggleGroupItem value="b" aria-label="Bold">
+          B
+        </ToggleGroupItem>
+        <ToggleGroupItem value="i" aria-label="Italic">
+          I
+        </ToggleGroupItem>
       </ToggleGroup>
     );
     await userEvent.click(screen.getByRole("radio", { name: "Bold" }));

@@ -11,24 +11,24 @@ import { radiusClass, type Radius } from "../../lib/radius";
 type AccordionVariant = "default" | "contained" | "separated" | "filled";
 
 const variantItemClass: Record<AccordionVariant, string> = {
-  default:   "border-b border-border",
+  default: "border-b border-border",
   contained: "border-b border-border first:border-t",
   separated: "border border-border mb-2 last:mb-0",
-  filled:    "border-b border-border",
+  filled: "border-b border-border",
 };
 
 const variantContentClass: Record<AccordionVariant, string> = {
-  default:   "",
+  default: "",
   contained: "",
   separated: "px-4",
-  filled:    "bg-muted/40",
+  filled: "bg-muted/40",
 };
 
 const variantTriggerClass: Record<AccordionVariant, string> = {
-  default:   "",
+  default: "",
   contained: "",
   separated: "px-4",
-  filled:    "px-4 data-[state=open]:bg-muted/40",
+  filled: "px-4 data-[state=open]:bg-muted/40",
 };
 
 // ─── Context ──────────────────────────────────────────────────────────────────
@@ -59,18 +59,23 @@ type AccordionRootProps = React.ComponentPropsWithoutRef<typeof AccordionPrimiti
 const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   AccordionRootProps
->(({ className, variant = "default", radius = "none", chevronPosition = "right", ...props }, ref) => (
-  <AccordionContext.Provider value={{ variant, radius, chevronPosition }}>
-    <AccordionPrimitive.Root
-      ref={ref}
-      className={cn(
-        variant === "contained" && ["border border-border overflow-hidden", radiusClass[radius]],
-        className
-      )}
-      {...props}
-    />
-  </AccordionContext.Provider>
-));
+>(
+  (
+    { className, variant = "default", radius = "none", chevronPosition = "right", ...props },
+    ref
+  ) => (
+    <AccordionContext.Provider value={{ variant, radius, chevronPosition }}>
+      <AccordionPrimitive.Root
+        ref={ref}
+        className={cn(
+          variant === "contained" && ["overflow-hidden border border-border", radiusClass[radius]],
+          className
+        )}
+        {...props}
+      />
+    </AccordionContext.Provider>
+  )
+);
 Accordion.displayName = "Accordion";
 
 // ─── Item ─────────────────────────────────────────────────────────────────────
@@ -96,8 +101,9 @@ AccordionItem.displayName = "AccordionItem";
 
 // ─── Trigger ──────────────────────────────────────────────────────────────────
 
-interface AccordionTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
+interface AccordionTriggerProps extends React.ComponentPropsWithoutRef<
+  typeof AccordionPrimitive.Trigger
+> {
   /** Hide the chevron entirely. */
   hideChevron?: boolean;
 }
@@ -123,7 +129,7 @@ const AccordionTrigger = React.forwardRef<
       <AccordionPrimitive.Trigger
         ref={ref}
         className={cn(
-          "flex flex-1 items-center py-4 text-sm font-medium transition-all hover:underline text-left",
+          "flex flex-1 items-center py-4 text-left text-sm font-medium transition-all hover:underline",
           "[&[data-state=open]>svg]:rotate-180",
           variantTriggerClass[variant],
           className
@@ -167,4 +173,3 @@ export type AccordionProps = React.ComponentPropsWithoutRef<typeof Accordion>;
 export type AccordionItemProps = React.ComponentPropsWithoutRef<typeof AccordionItem>;
 export type { AccordionTriggerProps };
 export type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionContent>;
-

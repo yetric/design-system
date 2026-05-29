@@ -45,7 +45,11 @@ describe("Alert", () => {
   );
 
   it("renders without icon when icon=false", () => {
-    const { container } = render(<Alert icon={false} title="No icon">msg</Alert>);
+    const { container } = render(
+      <Alert icon={false} title="No icon">
+        msg
+      </Alert>
+    );
     expect(container.querySelector("[aria-hidden=true]")).not.toBeInTheDocument();
   });
 

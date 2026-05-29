@@ -15,7 +15,7 @@ import {
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-  ContextMenuTrigger
+  ContextMenuTrigger,
 } from "./ContextMenu";
 
 const meta = {
@@ -51,7 +51,7 @@ export const Basic: Story = {
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
-  )
+  ),
 };
 
 export const WithCheckboxItems: Story = {
@@ -76,7 +76,7 @@ export const WithCheckboxItems: Story = {
         </ContextMenuContent>
       </ContextMenu>
     );
-  }
+  },
 };
 
 export const WithSubMenu: Story = {
@@ -99,7 +99,7 @@ export const WithSubMenu: Story = {
         </ContextMenuSub>
       </ContextMenuContent>
     </ContextMenu>
-  )
+  ),
 };
 
 export const WithRadioGroup: Story = {
@@ -122,5 +122,5 @@ export const WithRadioGroup: Story = {
         </ContextMenuContent>
       </ContextMenu>
     );
-  }
+  },
 };

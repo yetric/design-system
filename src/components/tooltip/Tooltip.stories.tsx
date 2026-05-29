@@ -8,8 +8,8 @@ const meta: Meta = {
   title: "Components/Tooltip",
   parameters: { layout: "centered" },
   argTypes: {
-    side:  { control: "select", options: ["top","right","bottom","left"] },
-    align: { control: "select", options: ["start","center","end"] },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
   },
 };
 export default meta;
@@ -31,11 +31,13 @@ export const Default: Story = {
 export const Sides: Story = {
   render: () => (
     <TooltipProvider>
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         {(["top", "right", "bottom", "left"] as const).map((side) => (
           <Tooltip key={side}>
             <TooltipTrigger asChild>
-              <Button variant="outline" size="sm">{side}</Button>
+              <Button variant="outline" size="sm">
+                {side}
+              </Button>
             </TooltipTrigger>
             <TooltipContent side={side}>Tooltip on {side}</TooltipContent>
           </Tooltip>
@@ -50,7 +52,7 @@ export const WithIcon: Story = {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button className="text-muted-foreground hover:text-foreground transition-colors">
+          <button className="text-muted-foreground transition-colors hover:text-foreground">
             <Info className="h-4 w-4" />
           </button>
         </TooltipTrigger>

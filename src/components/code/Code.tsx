@@ -19,7 +19,10 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
     const [copied, setCopied] = React.useState(false);
 
     const handleCopy = () => {
-      const text = typeof children === "string" ? children : (ref as React.RefObject<HTMLElement>)?.current?.textContent ?? "";
+      const text =
+        typeof children === "string"
+          ? children
+          : ((ref as React.RefObject<HTMLElement>)?.current?.textContent ?? "");
       navigator.clipboard.writeText(text).then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -55,7 +58,7 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
                 type="button"
                 onClick={handleCopy}
                 aria-label={copied ? "Copied!" : "Copy code"}
-                className="flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                className="flex items-center gap-1 rounded text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {copied ? (
                   <>
@@ -76,7 +79,7 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
           ref={ref as React.Ref<HTMLPreElement>}
           className={cn(
             "overflow-x-auto border border-border bg-muted/30 p-4 font-mono text-sm text-foreground",
-            (language || copyable) ? "rounded-b-md" : "rounded-md",
+            language || copyable ? "rounded-b-md" : "rounded-md",
             className
           )}
           {...(props as React.HTMLAttributes<HTMLPreElement>)}

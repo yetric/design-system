@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { BarChart2, Bell, FileText, LayoutDashboard, Settings, ShoppingCart, Users } from "lucide-react";
+import {
+  BarChart2,
+  Bell,
+  FileText,
+  LayoutDashboard,
+  Settings,
+  ShoppingCart,
+  Users,
+} from "lucide-react";
 
 import { Avatar } from "../components/avatar/Avatar";
 import { Box } from "../components/box/Box";
@@ -155,10 +163,22 @@ export const Default: Story = {
       <Box p="lg">
         <Stack gap={6}>
           <Grid cols={{ base: 1, md: 2 }} gap={4}>
-            <ContentCard title="Active roadmap" description="Track product bets, delivery milestones, and owners across the quarter." />
-            <ContentCard title="Customer highlights" description="Surface new enterprise wins, renewal risks, and strategic expansion work." />
-            <ContentCard title="Launch checklist" description="Review design QA, stakeholder approvals, and release readiness in one place." />
-            <ContentCard title="Team health" description="Monitor response times, workload balance, and support coverage by squad." />
+            <ContentCard
+              title="Active roadmap"
+              description="Track product bets, delivery milestones, and owners across the quarter."
+            />
+            <ContentCard
+              title="Customer highlights"
+              description="Surface new enterprise wins, renewal risks, and strategic expansion work."
+            />
+            <ContentCard
+              title="Launch checklist"
+              description="Review design QA, stakeholder approvals, and release readiness in one place."
+            />
+            <ContentCard
+              title="Team health"
+              description="Monitor response times, workload balance, and support coverage by squad."
+            />
           </Grid>
           <Box
             p="lg"
@@ -173,9 +193,18 @@ export const Default: Story = {
                 Upcoming work
               </Heading>
               <Grid cols={{ base: 1, lg: 3 }} gap={4}>
-                <ContentCard title="Design review" description="Approve navigation states for desktop and mobile shells." />
-                <ContentCard title="Billing sync" description="Confirm payment retries, renewals, and cart alerts." />
-                <ContentCard title="Support rotation" description="Assign on-call coverage for the next release window." />
+                <ContentCard
+                  title="Design review"
+                  description="Approve navigation states for desktop and mobile shells."
+                />
+                <ContentCard
+                  title="Billing sync"
+                  description="Confirm payment retries, renewals, and cart alerts."
+                />
+                <ContentCard
+                  title="Support rotation"
+                  description="Assign on-call coverage for the next release window."
+                />
               </Grid>
             </Stack>
           </Box>

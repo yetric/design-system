@@ -90,13 +90,22 @@ export const Default: Story = {
       radius="xl"
       shadow="md"
       overflow="hidden"
-      style={{ width: "100%", maxWidth: 380, border: "1px solid hsl(var(--border))", backgroundColor: "hsl(var(--background))" }}
+      style={{
+        width: "100%",
+        maxWidth: 380,
+        border: "1px solid hsl(var(--border))",
+        backgroundColor: "hsl(var(--background))",
+      }}
     >
       <Box style={{ padding: "0.75rem 1rem", borderBottom: "1px solid hsl(var(--border))" }}>
         <Stack direction="row" align="center" justify="between">
           <Stack direction="row" align="center" gap={2}>
-            <Heading as="h2" size="h6">Notifications</Heading>
-            <Badge size="xs" variant="info">2</Badge>
+            <Heading as="h2" size="h6">
+              Notifications
+            </Heading>
+            <Badge size="xs" variant="info">
+              2
+            </Badge>
           </Stack>
           <Button variant="ghost" size="icon" aria-label="More options">
             <MoreHorizontal style={iconStyle} />
@@ -116,7 +125,13 @@ export const Default: Story = {
               >
                 <Stack direction="row" gap={3}>
                   <Box shrink={false} style={{ position: "relative", marginTop: "0.125rem" }}>
-                    <Avatar src={n.src} alt={n.name} size="sm" status={n.status} fallback={n.name[0]} />
+                    <Avatar
+                      src={n.src}
+                      alt={n.name}
+                      size="sm"
+                      status={n.status}
+                      fallback={n.name[0]}
+                    />
                     {n.unread && (
                       <Box
                         as="span"
@@ -135,11 +150,19 @@ export const Default: Story = {
                   </Box>
                   <Box grow style={{ minWidth: 0 }}>
                     <Text as="p" size="body-sm" style={{ lineHeight: 1.35 }}>
-                      <Text as="span" size="body-sm" weight="medium">{n.name}</Text>{" "}
-                      <Text as="span" size="body-sm" color="muted">{n.action}</Text>{" "}
-                      <Text as="span" size="body-sm" weight="medium">{n.target}</Text>
+                      <Text as="span" size="body-sm" weight="medium">
+                        {n.name}
+                      </Text>{" "}
+                      <Text as="span" size="body-sm" color="muted">
+                        {n.action}
+                      </Text>{" "}
+                      <Text as="span" size="body-sm" weight="medium">
+                        {n.target}
+                      </Text>
                     </Text>
-                    <Text as="p" size="caption" color="muted" style={{ marginTop: "0.125rem" }}>{n.time}</Text>
+                    <Text as="p" size="caption" color="muted" style={{ marginTop: "0.125rem" }}>
+                      {n.time}
+                    </Text>
                   </Box>
                 </Stack>
               </Box>
@@ -150,7 +173,9 @@ export const Default: Story = {
       </ScrollArea>
 
       <Box style={{ borderTop: "1px solid hsl(var(--border))", padding: "0.5rem 1rem" }}>
-        <Button variant="ghost" size="sm" fullWidth>View all notifications</Button>
+        <Button variant="ghost" size="sm" fullWidth>
+          View all notifications
+        </Button>
       </Box>
     </Box>
   ),
@@ -162,15 +187,28 @@ export const Empty: Story = {
       radius="xl"
       shadow="md"
       overflow="hidden"
-      style={{ width: "100%", maxWidth: 380, border: "1px solid hsl(var(--border))", backgroundColor: "hsl(var(--background))" }}
+      style={{
+        width: "100%",
+        maxWidth: 380,
+        border: "1px solid hsl(var(--border))",
+        backgroundColor: "hsl(var(--background))",
+      }}
     >
       <Box style={{ padding: "0.75rem 1rem", borderBottom: "1px solid hsl(var(--border))" }}>
-        <Heading as="h2" size="h6">Notifications</Heading>
+        <Heading as="h2" size="h6">
+          Notifications
+        </Heading>
       </Box>
       <Stack align="center" gap={2} style={{ padding: "4rem 1rem", textAlign: "center" }}>
-        <Text as="span" style={{ fontSize: "1.875rem", lineHeight: 1 }}>🎉</Text>
-        <Text size="body-sm" weight="medium">You&apos;re all caught up!</Text>
-        <Text size="caption" color="muted">No new notifications right now.</Text>
+        <Text as="span" style={{ fontSize: "1.875rem", lineHeight: 1 }}>
+          🎉
+        </Text>
+        <Text size="body-sm" weight="medium">
+          You&apos;re all caught up!
+        </Text>
+        <Text size="caption" color="muted">
+          No new notifications right now.
+        </Text>
       </Stack>
     </Box>
   ),

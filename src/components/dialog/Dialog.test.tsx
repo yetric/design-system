@@ -2,13 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { Button } from "../button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger
-} from "./Dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "./Dialog";
 
 describe("Dialog", () => {
   it("renders trigger", () => {

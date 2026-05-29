@@ -1,13 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "./Select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./Select";
 
 function SimpleSelect({ onValueChange }: { onValueChange?: (v: string) => void }) {
   return (

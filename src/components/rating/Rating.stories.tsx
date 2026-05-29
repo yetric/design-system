@@ -6,10 +6,10 @@ const meta: Meta<typeof Rating> = {
   component: Rating,
   tags: ["autodocs"],
   argTypes: {
-    count:    { control: { type: "range", min: 1, max: 10, step: 1 } },
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    count: { control: { type: "range", min: 1, max: 10, step: 1 } },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
     readOnly: { control: "boolean" },
-    value:    { control: { type: "range", min: 0, max: 10, step: 1 } },
+    value: { control: { type: "range", min: 0, max: 10, step: 1 } },
   },
 };
 export default meta;

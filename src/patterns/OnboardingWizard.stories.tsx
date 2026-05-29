@@ -4,7 +4,13 @@ import { Building2, CheckCircle2, CreditCard, User } from "lucide-react";
 
 import { Box } from "../components/box/Box";
 import { Button } from "../components/button/Button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "../components/card/Card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "../components/card/Card";
 import { Checkbox } from "../components/checkbox/Checkbox";
 import { Grid } from "../components/grid/Grid";
 import { Input } from "../components/input/Input";
@@ -45,7 +51,9 @@ function WizardTitle({ icon: Icon, children }: { icon: typeof User; children: st
   return (
     <Stack direction="row" align="center" gap={2}>
       <Icon style={smallIconStyle} />
-      <Heading as="h3" size="h5">{children}</Heading>
+      <Heading as="h3" size="h5">
+        {children}
+      </Heading>
     </Stack>
   );
 }
@@ -86,7 +94,9 @@ function OnboardingWizard() {
                 </Grid>
                 <Stack direction="row" align="center" gap={2}>
                   <Checkbox id="ob-terms" />
-                  <Label htmlFor="ob-terms" style={{ fontWeight: 400 }}>I agree to the terms of service</Label>
+                  <Label htmlFor="ob-terms" style={{ fontWeight: 400 }}>
+                    I agree to the terms of service
+                  </Label>
                 </Stack>
               </Stack>
             </CardContent>
@@ -144,9 +154,24 @@ function OnboardingWizard() {
               <RadioGroup value={plan} onValueChange={setPlan}>
                 <Stack gap={3}>
                   {[
-                    { value: "free", label: "Free", price: "$0/mo", desc: "Up to 3 projects, basic features." },
-                    { value: "pro", label: "Pro", price: "$29/mo", desc: "Unlimited projects, priority support." },
-                    { value: "team", label: "Team", price: "$79/mo", desc: "Everything in Pro, plus team seats." },
+                    {
+                      value: "free",
+                      label: "Free",
+                      price: "$0/mo",
+                      desc: "Up to 3 projects, basic features.",
+                    },
+                    {
+                      value: "pro",
+                      label: "Pro",
+                      price: "$29/mo",
+                      desc: "Unlimited projects, priority support.",
+                    },
+                    {
+                      value: "team",
+                      label: "Team",
+                      price: "$79/mo",
+                      desc: "Everything in Pro, plus team seats.",
+                    },
                   ].map((option) => (
                     <label
                       key={option.value}
@@ -157,7 +182,8 @@ function OnboardingWizard() {
                         borderRadius: "0.75rem",
                         padding: "0.75rem",
                         border: `1px solid ${plan === option.value ? "hsl(var(--primary))" : "hsl(var(--border))"}`,
-                        backgroundColor: plan === option.value ? "hsl(var(--primary) / 0.05)" : undefined,
+                        backgroundColor:
+                          plan === option.value ? "hsl(var(--primary) / 0.05)" : undefined,
                         cursor: "pointer",
                       }}
                     >
@@ -166,10 +192,16 @@ function OnboardingWizard() {
                       </Box>
                       <Box grow>
                         <Stack direction="row" align="center" justify="between">
-                          <Text as="span" size="body-sm" weight="medium">{option.label}</Text>
-                          <Text as="span" size="body-sm" weight="semibold">{option.price}</Text>
+                          <Text as="span" size="body-sm" weight="medium">
+                            {option.label}
+                          </Text>
+                          <Text as="span" size="body-sm" weight="semibold">
+                            {option.price}
+                          </Text>
                         </Stack>
-                        <Text as="p" size="caption" color="muted" style={{ marginTop: "0.125rem" }}>{option.desc}</Text>
+                        <Text as="p" size="caption" color="muted" style={{ marginTop: "0.125rem" }}>
+                          {option.desc}
+                        </Text>
                       </Box>
                     </label>
                   ))}
@@ -184,13 +216,16 @@ function OnboardingWizard() {
             <CardHeader>
               <Stack direction="row" align="center" gap={2}>
                 <CheckCircle2 style={{ width: 20, height: 20, color: "hsl(var(--success))" }} />
-                <Heading as="h3" size="h5">You&apos;re all set!</Heading>
+                <Heading as="h3" size="h5">
+                  You&apos;re all set!
+                </Heading>
               </Stack>
               <CardDescription>Your account is ready. Welcome aboard 🎉</CardDescription>
             </CardHeader>
             <CardContent>
               <Text size="body-sm" color="muted">
-                We&apos;ve sent a confirmation email. Check your inbox to verify your address before signing in.
+                We&apos;ve sent a confirmation email. Check your inbox to verify your address before
+                signing in.
               </Text>
             </CardContent>
           </Card>
@@ -199,10 +234,14 @@ function OnboardingWizard() {
         <Separator />
 
         <CardFooter justify="between" style={{ padding: 0 }}>
-          <Button variant="outline" disabled={active === 0} onClick={prev}>Back</Button>
-          {active < steps.length - 1
-            ? <Button onClick={next}>Continue</Button>
-            : <Button variant="success">Go to dashboard</Button>}
+          <Button variant="outline" disabled={active === 0} onClick={prev}>
+            Back
+          </Button>
+          {active < steps.length - 1 ? (
+            <Button onClick={next}>Continue</Button>
+          ) : (
+            <Button variant="success">Go to dashboard</Button>
+          )}
         </CardFooter>
       </Stack>
     </Box>

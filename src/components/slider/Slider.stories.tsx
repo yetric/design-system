@@ -8,11 +8,11 @@ const meta: Meta<typeof Slider> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    size:     { control: "select", options: ["sm","md","lg"] },
+    size: { control: "select", options: ["sm", "md", "lg"] },
     disabled: { control: "boolean" },
-    min:      { control: "number" },
-    max:      { control: "number" },
-    step:     { control: "number" },
+    min: { control: "number" },
+    max: { control: "number" },
+    step: { control: "number" },
   },
 };
 export default meta;
@@ -34,9 +34,9 @@ export const Controlled: Story = {
   render: () => {
     const [value, setValue] = React.useState([40]);
     return (
-      <div className="space-y-3 w-[300px]">
+      <div className="w-[300px] space-y-3">
         <Slider value={value} onValueChange={setValue} max={100} />
-        <p className="text-sm text-center text-muted-foreground">Value: {value[0]}</p>
+        <p className="text-center text-sm text-muted-foreground">Value: {value[0]}</p>
       </div>
     );
   },
@@ -49,7 +49,7 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   name: "Size variants",
   render: () => (
-    <div className="flex flex-col gap-6 w-[300px]">
+    <div className="flex w-[300px] flex-col gap-6">
       <div className="space-y-1">
         <p className="text-xs text-muted-foreground">sm</p>
         <Slider defaultValue={[40]} size="sm" />

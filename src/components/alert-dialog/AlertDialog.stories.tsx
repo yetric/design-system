@@ -80,9 +80,7 @@ export const Sizes: Story = {
           <AlertDialogContent size={s}>
             <AlertDialogHeader>
               <AlertDialogTitle>Confirm — size: {s}</AlertDialogTitle>
-              <AlertDialogDescription>
-                This alert dialog uses size="{s}".
-              </AlertDialogDescription>
+              <AlertDialogDescription>This alert dialog uses size="{s}".</AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>

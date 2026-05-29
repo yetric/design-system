@@ -7,8 +7,8 @@ const meta = {
   component: Heading,
   tags: ["autodocs"],
   argTypes: {
-    size: { control: "select", options: ["display","h1","h2","h3","h4","h5","h6"] },
-    as:   { control: "select", options: ["h1","h2","h3","h4","h5","h6","p","div","span"] },
+    size: { control: "select", options: ["display", "h1", "h2", "h3", "h4", "h5", "h6"] },
+    as: { control: "select", options: ["h1", "h2", "h3", "h4", "h5", "h6", "p", "div", "span"] },
   },
 } satisfies Meta<typeof Heading>;
 
@@ -35,7 +35,9 @@ export const TextSizes: Story = {
       <Text size="body-lg">body-lg — The quick brown fox jumps over the lazy dog.</Text>
       <Text size="body">body — The quick brown fox jumps over the lazy dog.</Text>
       <Text size="body-sm">body-sm — The quick brown fox jumps over the lazy dog.</Text>
-      <Text size="caption" color="muted">caption — The quick brown fox jumps over the lazy dog.</Text>
+      <Text size="caption" color="muted">
+        caption — The quick brown fox jumps over the lazy dog.
+      </Text>
       <Text size="label">label — Form field label</Text>
     </div>
   ),

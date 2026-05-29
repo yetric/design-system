@@ -1,6 +1,14 @@
 import { render, screen } from "@testing-library/react";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardImage, CardTitle } from "./Card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardImage,
+  CardTitle,
+} from "./Card";
 
 describe("Card", () => {
   it("renders children", () => {

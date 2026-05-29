@@ -16,9 +16,9 @@ const listSizeClass: Record<TabsSize, string> = {
 const tabsListVariants = cva("inline-flex items-center", {
   variants: {
     variant: {
-      default:   "rounded-md bg-muted p-1 text-muted-foreground",
+      default: "rounded-md bg-muted p-1 text-muted-foreground",
       underline: "border-b border-border w-full gap-0",
-      pills:     "gap-1",
+      pills: "gap-1",
     },
   },
   defaultVariants: { variant: "default" },
@@ -47,31 +47,32 @@ const tabsTriggerVariants = cva(
 );
 
 export interface TabsListProps
-  extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>,
+  extends
+    React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>,
     VariantProps<typeof tabsListVariants> {
   size?: TabsSize;
 }
 
 export interface TabsTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>,
+  extends
+    React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>,
     VariantProps<typeof tabsTriggerVariants> {}
 
 const Tabs = TabsPrimitive.Root;
 
-const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
-  TabsListProps
->(({ className, variant, size = "md", ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    className={cn(
-      tabsListVariants({ variant }),
-      variant === "default" && listSizeClass[size],
-      className
-    )}
-    {...props}
-  />
-));
+const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, TabsListProps>(
+  ({ className, variant, size = "md", ...props }, ref) => (
+    <TabsPrimitive.List
+      ref={ref}
+      className={cn(
+        tabsListVariants({ variant }),
+        variant === "default" && listSizeClass[size],
+        className
+      )}
+      {...props}
+    />
+  )
+);
 TabsList.displayName = "TabsList";
 
 const TabsTrigger = React.forwardRef<
@@ -94,7 +95,7 @@ const TabsContent = React.forwardRef<
     ref={ref}
     className={cn(
       "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      "data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:duration-150",
+      "data-[state=active]:duration-150 data-[state=active]:animate-in data-[state=active]:fade-in-0",
       className
     )}
     {...props}

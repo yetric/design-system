@@ -14,14 +14,22 @@ describe("Anchor", () => {
   });
 
   it("external adds target and rel", () => {
-    render(<Anchor href="https://example.com" external>Example</Anchor>);
+    render(
+      <Anchor href="https://example.com" external>
+        Example
+      </Anchor>
+    );
     const link = screen.getByRole("link");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });
 
   it("external renders icon", () => {
-    render(<Anchor href="https://example.com" external>External</Anchor>);
+    render(
+      <Anchor href="https://example.com" external>
+        External
+      </Anchor>
+    );
     expect(document.querySelector("svg")).toBeInTheDocument();
   });
 

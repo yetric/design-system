@@ -7,22 +7,22 @@ import { radiusClass, type Radius } from "../../lib/radius";
 
 const presetClass: Record<string, string> = {
   default: "",
-  text:    "h-4 w-full",
+  text: "h-4 w-full",
   heading: "h-6 w-3/4",
-  avatar:  "h-10 w-10",
-  button:  "h-10 w-24",
-  card:    "h-32 w-full",
-  badge:   "h-5 w-16",
+  avatar: "h-10 w-10",
+  button: "h-10 w-24",
+  card: "h-32 w-full",
+  badge: "h-5 w-16",
 };
 
 const presetRadius: Record<string, Radius> = {
   default: "md",
-  text:    "sm",
+  text: "sm",
   heading: "sm",
-  avatar:  "full",
-  button:  "md",
-  card:    "lg",
-  badge:   "full",
+  avatar: "full",
+  button: "md",
+  card: "lg",
+  badge: "full",
 };
 
 type SkeletonPreset = keyof typeof presetClass;

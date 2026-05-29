@@ -12,9 +12,12 @@ const meta = {
     children: "This is an informational alert with some helpful context.",
   },
   argTypes: {
-    variant: { control: "select", options: ["default", "info", "success", "warning", "destructive"] },
-    size:    { control: "select", options: ["sm", "md", "lg"] },
-    radius:  { control: "select", options: ["none", "sm", "md", "lg", "xl", "full"] },
+    variant: {
+      control: "select",
+      options: ["default", "info", "success", "warning", "destructive"],
+    },
+    size: { control: "select", options: ["sm", "md", "lg"] },
+    radius: { control: "select", options: ["none", "sm", "md", "lg", "xl", "full"] },
   },
 } satisfies Meta<typeof Alert>;
 
@@ -25,19 +28,29 @@ export const Default: Story = {};
 
 export const Variants: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
-      <Alert variant="default" title="Default">Something you should know.</Alert>
-      <Alert variant="info" title="Info">Your session will expire in 10 minutes.</Alert>
-      <Alert variant="success" title="Success">Your changes have been saved.</Alert>
-      <Alert variant="warning" title="Warning">This action cannot be undone.</Alert>
-      <Alert variant="destructive" title="Error">Failed to save — please try again.</Alert>
+    <div className="flex max-w-lg flex-col gap-3">
+      <Alert variant="default" title="Default">
+        Something you should know.
+      </Alert>
+      <Alert variant="info" title="Info">
+        Your session will expire in 10 minutes.
+      </Alert>
+      <Alert variant="success" title="Success">
+        Your changes have been saved.
+      </Alert>
+      <Alert variant="warning" title="Warning">
+        This action cannot be undone.
+      </Alert>
+      <Alert variant="destructive" title="Error">
+        Failed to save — please try again.
+      </Alert>
     </div>
   ),
 };
 
 export const TitleOnly: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
+    <div className="flex max-w-lg flex-col gap-3">
       <Alert variant="success" title="Email verified successfully." />
       <Alert variant="warning" title="Storage is almost full." />
     </div>
@@ -46,15 +59,17 @@ export const TitleOnly: Story = {
 
 export const BodyOnly: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
-      <Alert variant="info">Your account is pending review. We'll notify you within 24 hours.</Alert>
+    <div className="flex max-w-lg flex-col gap-3">
+      <Alert variant="info">
+        Your account is pending review. We'll notify you within 24 hours.
+      </Alert>
     </div>
   ),
 };
 
 export const Dismissible: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
+    <div className="flex max-w-lg flex-col gap-3">
       <Alert variant="info" title="New features available" onClose={() => {}}>
         Check out the latest updates in the changelog.
       </Alert>
@@ -67,7 +82,7 @@ export const Dismissible: Story = {
 
 export const CustomIcon: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
+    <div className="flex max-w-lg flex-col gap-3">
       <Alert variant="info" title="Mission control" icon={<Rocket className="h-4 w-4" />}>
         All systems nominal. Awaiting launch window.
       </Alert>
@@ -83,22 +98,38 @@ export const CustomIcon: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
-      <Alert variant="info" size="sm" title="Small">Compact alert for tight layouts.</Alert>
-      <Alert variant="info" size="md" title="Medium">Default alert size.</Alert>
-      <Alert variant="info" size="lg" title="Large">More spacious alert for prominent messages.</Alert>
+    <div className="flex max-w-lg flex-col gap-3">
+      <Alert variant="info" size="sm" title="Small">
+        Compact alert for tight layouts.
+      </Alert>
+      <Alert variant="info" size="md" title="Medium">
+        Default alert size.
+      </Alert>
+      <Alert variant="info" size="lg" title="Large">
+        More spacious alert for prominent messages.
+      </Alert>
     </div>
   ),
 };
 
 export const RadiusVariants: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-lg">
-      <Alert variant="success" radius="none" title="No radius">Sharp corners.</Alert>
-      <Alert variant="success" radius="sm" title="Small radius">Subtle rounding.</Alert>
-      <Alert variant="success" radius="md" title="Medium radius (default)">Standard rounding.</Alert>
-      <Alert variant="success" radius="lg" title="Large radius">More rounded.</Alert>
-      <Alert variant="success" radius="xl" title="XL radius">Very rounded.</Alert>
+    <div className="flex max-w-lg flex-col gap-3">
+      <Alert variant="success" radius="none" title="No radius">
+        Sharp corners.
+      </Alert>
+      <Alert variant="success" radius="sm" title="Small radius">
+        Subtle rounding.
+      </Alert>
+      <Alert variant="success" radius="md" title="Medium radius (default)">
+        Standard rounding.
+      </Alert>
+      <Alert variant="success" radius="lg" title="Large radius">
+        More rounded.
+      </Alert>
+      <Alert variant="success" radius="xl" title="XL radius">
+        Very rounded.
+      </Alert>
     </div>
   ),
 };

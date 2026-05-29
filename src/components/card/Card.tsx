@@ -15,11 +15,11 @@ const cardVariants = cva(
     variants: {
       variant: {
         /** Border + card background + subtle shadow (default) */
-        default:  "border border-border bg-card",
+        default: "border border-border bg-card",
         /** Stronger border, no shadow, transparent-compatible */
         outlined: "border-2 border-border bg-card",
         /** No border or shadow — blends into the page background */
-        ghost:    "bg-transparent",
+        ghost: "bg-transparent",
         /** Elevated appearance using a more prominent shadow */
         elevated: "border border-border bg-card",
       },
@@ -31,8 +31,7 @@ const cardVariants = cva(
 );
 
 export interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {
   radius?: Radius;
   /** Box shadow. Defaults to "sm". Use "none" on ghost/outlined variants if desired. */
   shadow?: ShadowSize;
@@ -42,14 +41,7 @@ export interface CardProps
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (
-    {
-      className,
-      variant = "default",
-      radius = "lg",
-      shadow,
-      interactive = false,
-      ...props
-    },
+    { className, variant = "default", radius = "lg", shadow, interactive = false, ...props },
     ref
   ) => {
     const resolvedShadow: ShadowSize =
@@ -63,7 +55,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           radiusClass[radius],
           shadowClass[resolvedShadow],
           interactive &&
-            "cursor-pointer hover:shadow-md hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "cursor-pointer hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           className
         )}
         {...props}
@@ -86,11 +78,7 @@ const CardImage = React.forwardRef<HTMLDivElement, CardImageProps & { wrapperCla
       ref={ref}
       className={cn("overflow-hidden rounded-t-[inherit]", aspectClass, wrapperClassName)}
     >
-      <img
-        alt={alt}
-        className={cn("h-full w-full object-cover", className)}
-        {...props}
-      />
+      <img alt={alt} className={cn("h-full w-full object-cover", className)} {...props} />
     </div>
   )
 );
@@ -149,12 +137,11 @@ CardDescription.displayName = "CardDescription";
 
 // ─── CardContent ──────────────────────────────────────────────────────────────
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex-1 px-6 pb-6", className)} {...props} />
-));
+const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("flex-1 px-6 pb-6", className)} {...props} />
+  )
+);
 CardContent.displayName = "CardContent";
 
 // ─── CardFooter ───────────────────────────────────────────────────────────────
@@ -165,10 +152,10 @@ export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const justifyClass: Record<NonNullable<CardFooterProps["justify"]>, string> = {
-  start:   "justify-start",
-  end:     "justify-end",
+  start: "justify-start",
+  end: "justify-end",
   between: "justify-between",
-  center:  "justify-center",
+  center: "justify-center",
 };
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
@@ -184,12 +171,4 @@ CardFooter.displayName = "CardFooter";
 
 // ─── Exports ──────────────────────────────────────────────────────────────────
 
-export {
-  Card,
-  CardImage,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-};
+export { Card, CardImage, CardContent, CardDescription, CardFooter, CardHeader, CardTitle };

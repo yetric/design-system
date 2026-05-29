@@ -5,10 +5,10 @@ import * as React from "react";
 // ─── Default breakpoints (matches Tailwind defaults) ─────────────────────────
 
 export const DEFAULT_BREAKPOINTS = {
-  sm:    640,
-  md:    768,
-  lg:    1024,
-  xl:    1280,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
   "2xl": 1536,
 } as const;
 

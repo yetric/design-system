@@ -1,12 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import {
-  Menubar,
-  MenubarMenu,
-  MenubarTrigger,
-  MenubarContent,
-  MenubarItem,
-} from "./Menubar";
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem } from "./Menubar";
 
 describe("Menubar", () => {
   it("renders menubar", () => {

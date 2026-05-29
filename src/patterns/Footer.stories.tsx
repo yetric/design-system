@@ -27,7 +27,11 @@ const socialLinks = [
 
 export const Simple: Story = {
   render: () => (
-    <Box py="xl" px="lg" style={{ borderTop: "1px solid hsl(var(--border))", background: "hsl(var(--background))" }}>
+    <Box
+      py="xl"
+      px="lg"
+      style={{ borderTop: "1px solid hsl(var(--border))", background: "hsl(var(--background))" }}
+    >
       <Stack direction="row" align="center" justify="between" wrap="wrap" gap={4}>
         <Text as="p" size="body-sm" color="muted">
           © 2025 Yetric. All rights reserved.
@@ -73,7 +77,11 @@ export const Marketing: Story = {
     ];
 
     return (
-      <Box py="xl" px="lg" style={{ borderTop: "1px solid hsl(var(--border))", background: "hsl(var(--background))" }}>
+      <Box
+        py="xl"
+        px="lg"
+        style={{ borderTop: "1px solid hsl(var(--border))", background: "hsl(var(--background))" }}
+      >
         <Stack gap={8}>
           <Grid cols={{ base: 1, md: 2, lg: 4 }} gap={8}>
             <Stack gap={3}>
@@ -81,7 +89,8 @@ export const Marketing: Story = {
                 Yetric
               </Text>
               <Text as="p" size="body-sm" color="muted">
-                Modern workflows for product, support, and revenue teams that need one shared operating system.
+                Modern workflows for product, support, and revenue teams that need one shared
+                operating system.
               </Text>
             </Stack>
             {columns.map((column) => (

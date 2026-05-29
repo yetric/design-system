@@ -9,7 +9,9 @@ function BasicTabs() {
       <TabsList>
         <TabsTrigger value="a">Tab A</TabsTrigger>
         <TabsTrigger value="b">Tab B</TabsTrigger>
-        <TabsTrigger value="c" disabled>Tab C</TabsTrigger>
+        <TabsTrigger value="c" disabled>
+          Tab C
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="a">Content A</TabsContent>
       <TabsContent value="b">Content B</TabsContent>

@@ -6,16 +6,24 @@ import { ChevronDown } from "lucide-react";
 
 import { cn } from "../../lib/cn";
 
-export type NavigationMenuProps = React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>;
-export type NavigationMenuListProps = React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>;
-export type NavigationMenuItemProps = React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Item>;
+export type NavigationMenuProps = React.ComponentPropsWithoutRef<
+  typeof NavigationMenuPrimitive.Root
+>;
+export type NavigationMenuListProps = React.ComponentPropsWithoutRef<
+  typeof NavigationMenuPrimitive.List
+>;
+export type NavigationMenuItemProps = React.ComponentPropsWithoutRef<
+  typeof NavigationMenuPrimitive.Item
+>;
 export type NavigationMenuTriggerProps = React.ComponentPropsWithoutRef<
   typeof NavigationMenuPrimitive.Trigger
 >;
 export type NavigationMenuContentProps = React.ComponentPropsWithoutRef<
   typeof NavigationMenuPrimitive.Content
 >;
-export type NavigationMenuLinkProps = React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>;
+export type NavigationMenuLinkProps = React.ComponentPropsWithoutRef<
+  typeof NavigationMenuPrimitive.Link
+>;
 export type NavigationMenuViewportProps = React.ComponentPropsWithoutRef<
   typeof NavigationMenuPrimitive.Viewport
 >;
@@ -98,7 +106,7 @@ const NavigationMenuViewport = React.forwardRef<
     <NavigationMenuPrimitive.Viewport
       ref={ref}
       className={cn(
-        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow",
+        "origin-top-center bg-popover text-popover-foreground relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow",
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
         "md:w-[var(--radix-navigation-menu-viewport-width)]",
         className
@@ -136,5 +144,5 @@ export {
   NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuViewport,
-  NavigationMenuIndicator
+  NavigationMenuIndicator,
 };

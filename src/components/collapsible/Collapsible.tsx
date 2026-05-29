@@ -18,7 +18,7 @@ const CollapsibleTrigger = React.forwardRef<
   <CollapsiblePrimitive.CollapsibleTrigger
     ref={ref}
     className={cn(
-      "flex items-center justify-between gap-2 w-full rounded-md p-2",
+      "flex w-full items-center justify-between gap-2 rounded-md p-2",
       "text-sm font-medium transition-colors",
       "hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
       "disabled:pointer-events-none disabled:opacity-50",
@@ -29,7 +29,10 @@ const CollapsibleTrigger = React.forwardRef<
   >
     {children}
     {!hideChevron && (
-      <ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
+      <ChevronDown
+        aria-hidden="true"
+        className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200"
+      />
     )}
   </CollapsiblePrimitive.CollapsibleTrigger>
 ));
@@ -44,7 +47,7 @@ const CollapsibleContent = React.forwardRef<
     ref={ref}
     className={cn(
       "overflow-hidden",
-      "data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up",
+      "data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down",
       className
     )}
     {...props}

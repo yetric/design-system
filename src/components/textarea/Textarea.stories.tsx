@@ -10,11 +10,11 @@ const meta = {
     placeholder: "Type something…",
   },
   argTypes: {
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
-    radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
-    error:    { control: "boolean" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    radius: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl", "full"] },
+    error: { control: "boolean" },
     disabled: { control: "boolean" },
-    rows:     { control: "number" },
+    rows: { control: "number" },
   },
 } satisfies Meta<typeof Textarea>;
 
@@ -49,7 +49,7 @@ export const Disabled: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 max-w-md">
+    <div className="flex max-w-md flex-col gap-4">
       <Textarea size="xs" placeholder="XSmall" />
       <Textarea size="sm" placeholder="Small" />
       <Textarea size="md" placeholder="Medium (default)" />
@@ -61,7 +61,7 @@ export const Sizes: Story = {
 
 export const RadiusVariants: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 max-w-md">
+    <div className="flex max-w-md flex-col gap-4">
       <Textarea radius="none" placeholder="No radius" />
       <Textarea radius="sm" placeholder="Small radius" />
       <Textarea radius="md" placeholder="Medium radius (default)" />

@@ -17,19 +17,19 @@ const indicatorSizeClass: Record<Size, string> = {
 };
 
 const indicatorPositionClass: Record<IndicatorPosition, string> = {
-  "top-right":    "-top-1 -right-1",
-  "top-left":     "-top-1 -left-1",
+  "top-right": "-top-1 -right-1",
+  "top-left": "-top-1 -left-1",
   "bottom-right": "-bottom-1 -right-1",
-  "bottom-left":  "-bottom-1 -left-1",
+  "bottom-left": "-bottom-1 -left-1",
 };
 
 const indicatorColorClass: Record<IndicatorColor, string> = {
-  default:     "bg-foreground text-background",
-  primary:     "bg-primary text-primary-foreground",
-  success:     "bg-success text-success-foreground",
-  warning:     "bg-warning text-warning-foreground",
+  default: "bg-foreground text-background",
+  primary: "bg-primary text-primary-foreground",
+  success: "bg-success text-success-foreground",
+  warning: "bg-warning text-warning-foreground",
   destructive: "bg-destructive text-destructive-foreground",
-  info:        "bg-info text-info-foreground",
+  info: "bg-info text-info-foreground",
 };
 
 export interface IndicatorProps {
@@ -71,11 +71,7 @@ function Indicator({
   }
 
   const displayCount =
-    !dot && hasCount
-      ? count > overflowCount
-        ? `${overflowCount}+`
-        : String(count)
-      : undefined;
+    !dot && hasCount ? (count > overflowCount ? `${overflowCount}+` : String(count)) : undefined;
 
   return (
     <span className={cn("relative inline-flex shrink-0", className)}>

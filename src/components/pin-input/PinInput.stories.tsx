@@ -7,10 +7,10 @@ const meta: Meta<typeof PinInput> = {
   component: PinInput,
   tags: ["autodocs"],
   argTypes: {
-    length:   { control: "number" },
-    mask:     { control: "boolean" },
+    length: { control: "number" },
+    mask: { control: "boolean" },
     disabled: { control: "boolean" },
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
   },
 };
 export default meta;

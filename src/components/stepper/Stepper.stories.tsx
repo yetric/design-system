@@ -8,7 +8,7 @@ const meta: Meta<typeof Stepper> = {
   tags: ["autodocs"],
   title: "Components/Stepper",
   argTypes: {
-    orientation: { control: "select", options: ["horizontal","vertical"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
   },
 };
 export default meta;
@@ -32,10 +32,19 @@ export const Interactive: Story = {
       <div className="flex flex-col gap-6">
         <Stepper steps={steps} activeStep={active} />
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" disabled={active === 0} onClick={() => setActive((s) => s - 1)}>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={active === 0}
+            onClick={() => setActive((s) => s - 1)}
+          >
             Back
           </Button>
-          <Button size="sm" disabled={active === steps.length - 1} onClick={() => setActive((s) => s + 1)}>
+          <Button
+            size="sm"
+            disabled={active === steps.length - 1}
+            onClick={() => setActive((s) => s + 1)}
+          >
             Next
           </Button>
         </div>

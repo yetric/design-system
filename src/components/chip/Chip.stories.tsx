@@ -4,13 +4,13 @@ import { Chip } from "./Chip";
 
 const meta = {
   component: Chip,
-  title: "Components/Chip" ,
+  title: "Components/Chip",
   tags: ["autodocs"],
   argTypes: {
-    size:      { control: "select", options: ["xs","sm","md","lg","xl"] },
-    checked:   { control: "boolean" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    checked: { control: "boolean" },
     showCheck: { control: "boolean" },
-    disabled:  { control: "boolean" },
+    disabled: { control: "boolean" },
   },
 } satisfies Meta<typeof Chip>;
 export default meta;
@@ -23,7 +23,7 @@ export const ToggleGroup: Story = {
     const tags = ["React", "Vue", "Angular", "Svelte", "Solid"];
     const [selected, setSelected] = useState<string[]>(["React"]);
     const toggle = (tag: string) =>
-      setSelected((s) => s.includes(tag) ? s.filter((t) => t !== tag) : [...s, tag]);
+      setSelected((s) => (s.includes(tag) ? s.filter((t) => t !== tag) : [...s, tag]));
     return (
       <div className="flex flex-wrap gap-2">
         {tags.map((tag) => (
@@ -52,7 +52,9 @@ export const Disabled: Story = {
   render: () => (
     <div className="flex gap-2">
       <Chip disabled>Disabled unchecked</Chip>
-      <Chip disabled checked>Disabled checked</Chip>
+      <Chip disabled checked>
+        Disabled checked
+      </Chip>
     </div>
   ),
 };

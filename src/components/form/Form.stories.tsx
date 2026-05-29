@@ -1,6 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { z } from "zod";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "./Form";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+} from "./Form";
 import { useZodForm } from "./useZodForm";
 import { Input } from "../input/Input";
 import { Button } from "../button/Button";
@@ -25,13 +33,13 @@ type Story = StoryObj;
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters")
+  password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 function LoginForm() {
   const form = useZodForm({
     schema: loginSchema,
-    defaultValues: { email: "", password: "" }
+    defaultValues: { email: "", password: "" },
   });
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
@@ -88,7 +96,7 @@ function LoginForm() {
 
 export const Login: Story = {
   name: "Login Form",
-  render: () => <LoginForm />
+  render: () => <LoginForm />,
 };
 
 // ─── Registration form ────────────────────────────────────────────────────────
@@ -100,13 +108,13 @@ const registerSchema = z.object({
     .string()
     .min(8, "Password must be at least 8 characters")
     .regex(/[A-Z]/, "Must contain an uppercase letter")
-    .regex(/[0-9]/, "Must contain a number")
+    .regex(/[0-9]/, "Must contain a number"),
 });
 
 function RegistrationForm() {
   const form = useZodForm({
     schema: registerSchema,
-    defaultValues: { name: "", email: "", password: "" }
+    defaultValues: { name: "", email: "", password: "" },
   });
 
   function onSubmit(values: z.infer<typeof registerSchema>) {
@@ -159,9 +167,7 @@ function RegistrationForm() {
                     <FormControl>
                       <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
-                    <FormDescription>
-                      8+ characters, one uppercase, one number.
-                    </FormDescription>
+                    <FormDescription>8+ characters, one uppercase, one number.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -180,20 +186,20 @@ function RegistrationForm() {
 
 export const Registration: Story = {
   name: "Registration Form",
-  render: () => <RegistrationForm />
+  render: () => <RegistrationForm />,
 };
 
 // ─── Select form ─────────────────────────────────────────────────────────────
 
 const selectSchema = z.object({
   country: z.string().min(1, "Please select a country"),
-  timezone: z.string().min(1, "Please select a timezone")
+  timezone: z.string().min(1, "Please select a timezone"),
 });
 
 function SelectForm() {
   const form = useZodForm({
     schema: selectSchema,
-    defaultValues: { country: "", timezone: "" }
+    defaultValues: { country: "", timezone: "" },
   });
 
   function onSubmit(values: z.infer<typeof selectSchema>) {
@@ -254,14 +260,18 @@ function SelectForm() {
                         <SelectItem value="europe/stockholm">Europe/Stockholm (UTC+1)</SelectItem>
                         <SelectItem value="europe/london">Europe/London (UTC+0)</SelectItem>
                         <SelectItem value="america/new_york">America/New_York (UTC−5)</SelectItem>
-                        <SelectItem value="america/los_angeles">America/Los_Angeles (UTC−8)</SelectItem>
+                        <SelectItem value="america/los_angeles">
+                          America/Los_Angeles (UTC−8)
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">Save settings</Button>
+              <Button type="submit" className="w-full">
+                Save settings
+              </Button>
             </form>
           </Form>
         </CardContent>
@@ -272,18 +282,18 @@ function SelectForm() {
 
 export const SelectExample: Story = {
   name: "Select Fields",
-  render: () => <SelectForm />
+  render: () => <SelectForm />,
 };
 
 // ─── Checkbox form ────────────────────────────────────────────────────────────
 
 const checkboxSchema = z.object({
   notifications: z.object({
-    email:   z.boolean().default(false),
-    sms:     z.boolean().default(false),
-    push:    z.boolean().default(false)
+    email: z.boolean().default(false),
+    sms: z.boolean().default(false),
+    push: z.boolean().default(false),
   }),
-  terms: z.boolean().refine((v) => v === true, { message: "You must accept the terms" })
+  terms: z.boolean().refine((v) => v === true, { message: "You must accept the terms" }),
 });
 
 function CheckboxForm() {
@@ -291,15 +301,16 @@ function CheckboxForm() {
     schema: checkboxSchema,
     defaultValues: {
       notifications: { email: false, sms: false, push: false },
-      terms: false
-    }
+      terms: false,
+    },
   });
 
   function onSubmit(values: z.infer<typeof checkboxSchema>) {
-    const enabled = Object.entries(values.notifications)
-      .filter(([, v]) => v)
-      .map(([k]) => k)
-      .join(", ") || "none";
+    const enabled =
+      Object.entries(values.notifications)
+        .filter(([, v]) => v)
+        .map(([k]) => k)
+        .join(", ") || "none";
     toast.success(`Saved! Notifications: ${enabled}`);
   }
 
@@ -324,10 +335,7 @@ function CheckboxForm() {
                     render={({ field }) => (
                       <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                         <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
+                          <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
                         <FormLabel className="font-normal capitalize">{channel}</FormLabel>
                       </FormItem>
@@ -342,10 +350,7 @@ function CheckboxForm() {
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>I accept the terms and conditions</FormLabel>
@@ -357,7 +362,9 @@ function CheckboxForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">Save preferences</Button>
+              <Button type="submit" className="w-full">
+                Save preferences
+              </Button>
             </form>
           </Form>
         </CardContent>
@@ -368,24 +375,24 @@ function CheckboxForm() {
 
 export const CheckboxExample: Story = {
   name: "Checkbox Fields",
-  render: () => <CheckboxForm />
+  render: () => <CheckboxForm />,
 };
 
 // ─── RadioGroup form ──────────────────────────────────────────────────────────
 
 const radioSchema = z.object({
   plan: z.enum(["free", "pro", "enterprise"] as const, {
-    message: "Please select a plan"
+    message: "Please select a plan",
   }),
   billing: z.enum(["monthly", "annual"] as const, {
-    message: "Please select a billing cycle"
-  })
+    message: "Please select a billing cycle",
+  }),
 });
 
 function RadioForm() {
   const form = useZodForm({
     schema: radioSchema,
-    defaultValues: { billing: "monthly" as "monthly" | "annual" }
+    defaultValues: { billing: "monthly" as "monthly" | "annual" },
   });
 
   function onSubmit(values: z.infer<typeof radioSchema>) {
@@ -415,8 +422,8 @@ function RadioForm() {
                         defaultValue={field.value}
                         className="flex flex-col space-y-1"
                       >
-                        <RadioGroupItem value="free"       label="Free — up to 3 projects" />
-                        <RadioGroupItem value="pro"        label="Pro — unlimited projects, $12/mo" />
+                        <RadioGroupItem value="free" label="Free — up to 3 projects" />
+                        <RadioGroupItem value="pro" label="Pro — unlimited projects, $12/mo" />
                         <RadioGroupItem value="enterprise" label="Enterprise — custom pricing" />
                       </RadioGroup>
                     </FormControl>
@@ -437,14 +444,16 @@ function RadioForm() {
                         className="flex flex-row gap-6"
                       >
                         <RadioGroupItem value="monthly" label="Monthly" />
-                        <RadioGroupItem value="annual"  label="Annual (save 20%)" />
+                        <RadioGroupItem value="annual" label="Annual (save 20%)" />
                       </RadioGroup>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">Continue</Button>
+              <Button type="submit" className="w-full">
+                Continue
+              </Button>
             </form>
           </Form>
         </CardContent>
@@ -455,24 +464,24 @@ function RadioForm() {
 
 export const RadioExample: Story = {
   name: "Radio Group Fields",
-  render: () => <RadioForm />
+  render: () => <RadioForm />,
 };
 
 // ─── Kitchen sink ─────────────────────────────────────────────────────────────
 
 const profileSchema = z.object({
-  name:    z.string().min(2, "Name must be at least 2 characters"),
-  email:   z.string().email("Enter a valid email address"),
-  role:    z.enum(["admin", "editor", "viewer"] as const, { message: "Select a role" }),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Enter a valid email address"),
+  role: z.enum(["admin", "editor", "viewer"] as const, { message: "Select a role" }),
   country: z.string().min(1, "Select a country"),
   updates: z.boolean().default(false),
-  terms:   z.boolean().refine((v) => v === true, { message: "You must accept the terms" })
+  terms: z.boolean().refine((v) => v === true, { message: "You must accept the terms" }),
 });
 
 function ProfileForm() {
   const form = useZodForm({
     schema: profileSchema,
-    defaultValues: { name: "", email: "", country: "", updates: false, terms: false }
+    defaultValues: { name: "", email: "", country: "", updates: false, terms: false },
   });
 
   function onSubmit(values: z.infer<typeof profileSchema>) {
@@ -492,72 +501,108 @@ function ProfileForm() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <FormField control={form.control} name="name" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl><Input placeholder="Alice" {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
-                <FormField control={form.control} name="email" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl><Input type="email" placeholder="alice@example.com" {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Alice" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="alice@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
-              <FormField control={form.control} name="country" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Country</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger><SelectValue placeholder="Select country" /></SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="se">Sweden</SelectItem>
-                      <SelectItem value="no">Norway</SelectItem>
-                      <SelectItem value="gb">United Kingdom</SelectItem>
-                      <SelectItem value="us">United States</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )} />
-              <FormField control={form.control} name="role" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel>Role</FormLabel>
-                  <FormControl>
-                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex gap-4">
-                      <RadioGroupItem value="admin"  label="Admin"  />
-                      <RadioGroupItem value="editor" label="Editor" />
-                      <RadioGroupItem value="viewer" label="Viewer" />
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
-              <Separator />
-              <FormField control={form.control} name="updates" render={({ field }) => (
-                <FormItem className="flex items-center space-x-3 space-y-0">
-                  <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
-                  <FormLabel className="font-normal">Send me product updates</FormLabel>
-                </FormItem>
-              )} />
-              <FormField control={form.control} name="terms" render={({ field }) => (
-                <FormItem className="flex items-start space-x-3 space-y-0">
-                  <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
-                  <div>
-                    <FormLabel>Accept terms and conditions</FormLabel>
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select country" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="se">Sweden</SelectItem>
+                        <SelectItem value="no">Norway</SelectItem>
+                        <SelectItem value="gb">United Kingdom</SelectItem>
+                        <SelectItem value="us">United States</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
-                  </div>
-                </FormItem>
-              )} />
-              <Button type="submit" className="w-full">Save profile</Button>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel>Role</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex gap-4"
+                      >
+                        <RadioGroupItem value="admin" label="Admin" />
+                        <RadioGroupItem value="editor" label="Editor" />
+                        <RadioGroupItem value="viewer" label="Viewer" />
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Separator />
+              <FormField
+                control={form.control}
+                name="updates"
+                render={({ field }) => (
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                    </FormControl>
+                    <FormLabel className="font-normal">Send me product updates</FormLabel>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="terms"
+                render={({ field }) => (
+                  <FormItem className="flex items-start space-x-3 space-y-0">
+                    <FormControl>
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                    </FormControl>
+                    <div>
+                      <FormLabel>Accept terms and conditions</FormLabel>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                Save profile
+              </Button>
             </form>
           </Form>
         </CardContent>
@@ -568,5 +613,5 @@ function ProfileForm() {
 
 export const KitchenSink: Story = {
   name: "Kitchen Sink (all field types)",
-  render: () => <ProfileForm />
+  render: () => <ProfileForm />,
 };

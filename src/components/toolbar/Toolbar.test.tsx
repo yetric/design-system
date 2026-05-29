@@ -24,8 +24,12 @@ describe("Toolbar", () => {
   it("renders buttons", () => {
     render(
       <Toolbar aria-label="Formatting">
-        <ToolbarButton aria-label="Bold"><Bold className="h-4 w-4" /></ToolbarButton>
-        <ToolbarButton aria-label="Italic"><Italic className="h-4 w-4" /></ToolbarButton>
+        <ToolbarButton aria-label="Bold">
+          <Bold className="h-4 w-4" />
+        </ToolbarButton>
+        <ToolbarButton aria-label="Italic">
+          <Italic className="h-4 w-4" />
+        </ToolbarButton>
       </Toolbar>
     );
     expect(screen.getAllByRole("button")).toHaveLength(2);
@@ -34,9 +38,13 @@ describe("Toolbar", () => {
   it("renders separator", () => {
     render(
       <Toolbar aria-label="Tools">
-        <ToolbarButton aria-label="Bold"><Bold className="h-4 w-4" /></ToolbarButton>
+        <ToolbarButton aria-label="Bold">
+          <Bold className="h-4 w-4" />
+        </ToolbarButton>
         <ToolbarSeparator />
-        <ToolbarButton aria-label="Italic"><Italic className="h-4 w-4" /></ToolbarButton>
+        <ToolbarButton aria-label="Italic">
+          <Italic className="h-4 w-4" />
+        </ToolbarButton>
       </Toolbar>
     );
     expect(document.querySelector('[role="separator"]')).toBeInTheDocument();
@@ -46,8 +54,12 @@ describe("Toolbar", () => {
     render(
       <Toolbar aria-label="Align">
         <ToolbarToggleGroup type="single" aria-label="Text alignment">
-          <ToolbarToggleItem value="left" aria-label="Left">L</ToolbarToggleItem>
-          <ToolbarToggleItem value="right" aria-label="Right">R</ToolbarToggleItem>
+          <ToolbarToggleItem value="left" aria-label="Left">
+            L
+          </ToolbarToggleItem>
+          <ToolbarToggleItem value="right" aria-label="Right">
+            R
+          </ToolbarToggleItem>
         </ToolbarToggleGroup>
       </Toolbar>
     );

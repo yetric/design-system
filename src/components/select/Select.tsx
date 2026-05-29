@@ -16,11 +16,12 @@ const triggerSizeClass: Record<Size, string> = {
   sm: "h-8 px-3 text-sm",
   md: "h-10 px-3 text-sm",
   lg: "h-12 px-4 text-base",
-  xl: "h-14 px-5 text-base"
+  xl: "h-14 px-5 text-base",
 };
 
-export interface SelectTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
+export interface SelectTriggerProps extends React.ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Trigger
+> {
   size?: Size;
   radius?: Radius;
   /** Marks the trigger as invalid for form validation. */
@@ -80,8 +81,7 @@ const SelectContent = React.forwardRef<
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
-        position === "popper" &&
-          "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
+        position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
         className
       )}
       position={position}
@@ -167,5 +167,5 @@ export {
   SelectContent,
   SelectLabel,
   SelectItem,
-  SelectSeparator
+  SelectSeparator,
 };

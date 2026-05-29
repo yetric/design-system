@@ -9,7 +9,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport
+  NavigationMenuViewport,
 } from "./NavigationMenu";
 
 describe("NavigationMenu", () => {

@@ -70,7 +70,17 @@ const thread: Comment[] = [
   },
 ];
 
-function CommentAction({ liked, onClick, icon, children }: { liked?: boolean; onClick: () => void; icon: React.ReactNode; children: React.ReactNode }) {
+function CommentAction({
+  liked,
+  onClick,
+  icon,
+  children,
+}: {
+  liked?: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <button
       onClick={onClick}
@@ -98,29 +108,57 @@ function CommentCard({ comment, nested = false }: { comment: Comment; nested?: b
       <Stack gap={3}>
         <Stack direction="row" gap={3}>
           <Box shrink={false} style={{ marginTop: "0.125rem" }}>
-            <Avatar src={comment.avatar} alt={comment.author} size="sm" fallback={comment.author[0]} />
+            <Avatar
+              src={comment.avatar}
+              alt={comment.author}
+              size="sm"
+              fallback={comment.author[0]}
+            />
           </Box>
           <Box grow style={{ minWidth: 0 }}>
             <Box
               radius="lg"
               p="sm"
-              style={{ border: "1px solid hsl(var(--border))", backgroundColor: "hsl(var(--muted) / 0.3)" }}
+              style={{
+                border: "1px solid hsl(var(--border))",
+                backgroundColor: "hsl(var(--muted) / 0.3)",
+              }}
             >
               <Stack gap={2} style={{ gap: "0.375rem" }}>
                 <Stack direction="row" align="center" justify="between" gap={2}>
                   <Stack direction="row" align="center" gap={2}>
-                    <Text as="span" size="body-sm" weight="semibold">{comment.author}</Text>
-                    {comment.isAuthor && <Badge size="xs" variant="info">Author</Badge>}
-                    <Text as="span" size="caption" color="muted">{comment.time}</Text>
+                    <Text as="span" size="body-sm" weight="semibold">
+                      {comment.author}
+                    </Text>
+                    {comment.isAuthor && (
+                      <Badge size="xs" variant="info">
+                        Author
+                      </Badge>
+                    )}
+                    <Text as="span" size="caption" color="muted">
+                      {comment.time}
+                    </Text>
                   </Stack>
-                  <Button size="icon" variant="ghost" aria-label="More options" style={{ width: 24, height: 24 }}>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    aria-label="More options"
+                    style={{ width: 24, height: 24 }}
+                  >
                     <MoreHorizontal style={{ width: 14, height: 14 }} />
                   </Button>
                 </Stack>
-                <Text size="body-sm" style={{ lineHeight: 1.625 }}>{comment.body}</Text>
+                <Text size="body-sm" style={{ lineHeight: 1.625 }}>
+                  {comment.body}
+                </Text>
               </Stack>
             </Box>
-            <Stack direction="row" align="center" gap={3} style={{ marginTop: "0.375rem", marginLeft: "0.25rem" }}>
+            <Stack
+              direction="row"
+              align="center"
+              gap={3}
+              style={{ marginTop: "0.375rem", marginLeft: "0.25rem" }}
+            >
               <CommentAction
                 liked={liked}
                 onClick={() => setLiked((v) => !v)}
@@ -153,7 +191,9 @@ function CommentCard({ comment, nested = false }: { comment: Comment; nested?: b
                   <Textarea placeholder="Write a reply…" rows={2} />
                   <Box style={{ marginLeft: "auto" }}>
                     <Stack direction="row" gap={2}>
-                      <Button size="sm" variant="ghost" onClick={() => setShowReply(false)}>Cancel</Button>
+                      <Button size="sm" variant="ghost" onClick={() => setShowReply(false)}>
+                        Cancel
+                      </Button>
                       <Button size="sm">Post reply</Button>
                     </Stack>
                   </Box>
@@ -175,8 +215,12 @@ function CommentThreadStory() {
       <Stack gap={5}>
         <Stack direction="row" align="center" justify="between">
           <Stack direction="row" align="center" gap={2}>
-            <Text as="span" size="body-sm" weight="semibold">Comments</Text>
-            <Badge size="xs" variant="secondary">4</Badge>
+            <Text as="span" size="body-sm" weight="semibold">
+              Comments
+            </Text>
+            <Badge size="xs" variant="secondary">
+              4
+            </Badge>
           </Stack>
           <Button size="sm" variant="outline" onClick={() => setShowForm((v) => !v)}>
             {showForm ? "Cancel" : "Add comment"}
@@ -193,7 +237,9 @@ function CommentThreadStory() {
                 <Textarea placeholder="Share your thoughts…" rows={3} />
                 <Box style={{ marginLeft: "auto" }}>
                   <Stack direction="row" gap={2}>
-                    <Button size="sm" variant="ghost" onClick={() => setShowForm(false)}>Cancel</Button>
+                    <Button size="sm" variant="ghost" onClick={() => setShowForm(false)}>
+                      Cancel
+                    </Button>
                     <Button size="sm">Post comment</Button>
                   </Stack>
                 </Box>

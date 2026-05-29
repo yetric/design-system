@@ -8,8 +8,12 @@ import { radiusClass, type Radius } from "../../lib/radius";
 import { shadowClass, type ShadowSize } from "../../lib/shadow";
 
 export type HoverCardProps = React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Root>;
-export type HoverCardTriggerProps = React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Trigger>;
-export type HoverCardContentProps = React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content> & {
+export type HoverCardTriggerProps = React.ComponentPropsWithoutRef<
+  typeof HoverCardPrimitive.Trigger
+>;
+export type HoverCardContentProps = React.ComponentPropsWithoutRef<
+  typeof HoverCardPrimitive.Content
+> & {
   radius?: Radius;
   shadow?: ShadowSize;
 };
@@ -24,27 +28,32 @@ HoverCard.displayName = HoverCardPrimitive.Root.displayName;
 const HoverCardContent = React.forwardRef<
   React.ElementRef<typeof HoverCardPrimitive.Content>,
   HoverCardContentProps
->(({ className, align = "center", sideOffset = 4, radius = "md", shadow = "md", ...props }, ref) => (
-  <HoverCardPrimitive.Portal>
-    <HoverCardPrimitive.Content
-      ref={ref}
-      align={align}
-      sideOffset={sideOffset}
-      className={cn(
-        "z-50 w-64 border border-border bg-popover p-4 text-popover-foreground outline-none",
-        radiusClass[radius],
-        shadowClass[shadow],
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
-        "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
-      )}
-      {...props}
-    />
-  </HoverCardPrimitive.Portal>
-));
+>(
+  (
+    { className, align = "center", sideOffset = 4, radius = "md", shadow = "md", ...props },
+    ref
+  ) => (
+    <HoverCardPrimitive.Portal>
+      <HoverCardPrimitive.Content
+        ref={ref}
+        align={align}
+        sideOffset={sideOffset}
+        className={cn(
+          "bg-popover text-popover-foreground z-50 w-64 border border-border p-4 outline-none",
+          radiusClass[radius],
+          shadowClass[shadow],
+          "data-[state=open]:animate-in data-[state=closed]:animate-out",
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
+          "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          className
+        )}
+        {...props}
+      />
+    </HoverCardPrimitive.Portal>
+  )
+);
 HoverCardContent.displayName = HoverCardPrimitive.Content.displayName;
 
 export { HoverCard, HoverCardTrigger, HoverCardContent };

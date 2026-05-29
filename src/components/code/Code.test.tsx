@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import _userEvent from "@testing-library/user-event";
 import { Code } from "./Code";
 
 describe("Code (inline)", () => {
@@ -21,12 +21,20 @@ describe("Code (block)", () => {
   });
 
   it("shows language label when provided", () => {
-    render(<Code block language="TypeScript">const x = 1;</Code>);
+    render(
+      <Code block language="TypeScript">
+        const x = 1;
+      </Code>
+    );
     expect(screen.getByText("TypeScript")).toBeInTheDocument();
   });
 
   it("shows copy button when copyable", () => {
-    render(<Code block copyable>code here</Code>);
+    render(
+      <Code block copyable>
+        code here
+      </Code>
+    );
     expect(screen.getByRole("button", { name: /copy/i })).toBeInTheDocument();
   });
 });

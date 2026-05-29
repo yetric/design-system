@@ -8,11 +8,14 @@ const meta = {
   component: Stack,
   tags: ["autodocs"],
   argTypes: {
-    direction: { control: "select", options: ["row","column","row-reverse","column-reverse"] },
-    gap:       { control: "select", options: [0,1,2,3,4,5,6,8,10,12,16] },
-    align:     { control: "select", options: ["start","center","end","stretch","baseline"] },
-    justify:   { control: "select", options: ["start","center","end","between","around","evenly"] },
-    wrap:      { control: "select", options: ["wrap","nowrap","wrap-reverse"] },
+    direction: { control: "select", options: ["row", "column", "row-reverse", "column-reverse"] },
+    gap: { control: "select", options: [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16] },
+    align: { control: "select", options: ["start", "center", "end", "stretch", "baseline"] },
+    justify: {
+      control: "select",
+      options: ["start", "center", "end", "between", "around", "evenly"],
+    },
+    wrap: { control: "select", options: ["wrap", "nowrap", "wrap-reverse"] },
   },
 } satisfies Meta<typeof Stack>;
 
@@ -33,7 +36,9 @@ export const Row: Story = {
   render: () => (
     <Stack direction="row" align="center" gap={2}>
       <Button size="sm">Save</Button>
-      <Button size="sm" variant="outline">Cancel</Button>
+      <Button size="sm" variant="outline">
+        Cancel
+      </Button>
     </Stack>
   ),
 };
@@ -46,9 +51,9 @@ export const Nested: Story = {
         <Button size="sm">Action</Button>
       </Stack>
       <Stack gap={2}>
-        <div className="h-4 w-full bg-muted rounded" />
-        <div className="h-4 w-3/4 bg-muted rounded" />
-        <div className="h-4 w-1/2 bg-muted rounded" />
+        <div className="h-4 w-full rounded bg-muted" />
+        <div className="h-4 w-3/4 rounded bg-muted" />
+        <div className="h-4 w-1/2 rounded bg-muted" />
       </Stack>
     </Stack>
   ),

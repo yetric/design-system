@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   BarChart2,
   Bell,
-  ChevronRight,
   FileText,
   HelpCircle,
   LayoutDashboard,
@@ -219,8 +218,16 @@ export const Compact: Story = {
           </Stack>
         </Box>
         <Stack align="center" gap={2} style={{ padding: "1rem 0" }}>
-          <CompactItem label="Support" icon={<HelpCircle size={16} />} onClick={() => setActive("support")} />
-          <CompactItem label="Sign out" icon={<LogOut size={16} />} onClick={() => setActive("logout")} />
+          <CompactItem
+            label="Support"
+            icon={<HelpCircle size={16} />}
+            onClick={() => setActive("support")}
+          />
+          <CompactItem
+            label="Sign out"
+            icon={<LogOut size={16} />}
+            onClick={() => setActive("logout")}
+          />
           <Avatar alt="Maya Chen" fallback="MC" size="sm" />
         </Stack>
       </SidebarShell>

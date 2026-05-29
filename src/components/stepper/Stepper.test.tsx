@@ -17,7 +17,7 @@ describe("Stepper", () => {
 
   it("marks current step with aria-current=step", () => {
     render(<Stepper steps={steps} activeStep={1} />);
-    const circles = screen.getAllByText(/\d/);
+    const _circles = screen.getAllByText(/\d/);
     // The step at index 1 should have aria-current
     const currentStep = document.querySelector('[aria-current="step"]');
     expect(currentStep).toBeInTheDocument();

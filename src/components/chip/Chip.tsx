@@ -18,7 +18,7 @@ const chipVariants = cva(
         xl: "h-9 px-5 text-sm rounded-full",
       },
       checked: {
-        true:  "border-primary bg-primary text-primary-foreground",
+        true: "border-primary bg-primary text-primary-foreground",
         false: "border-border bg-background text-foreground hover:bg-muted",
       },
     },
@@ -27,7 +27,8 @@ const chipVariants = cva(
 );
 
 export interface ChipProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange">,
+  extends
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange">,
     Omit<VariantProps<typeof chipVariants>, "checked"> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
@@ -73,11 +74,11 @@ const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
         )}
         {...props}
       >
-        {checked && showCheck && (
-          <Check className="h-3 w-3 shrink-0" aria-hidden="true" />
-        )}
+        {checked && showCheck && <Check className="h-3 w-3 shrink-0" aria-hidden="true" />}
         {!checked && icon && (
-          <span className="shrink-0" aria-hidden="true">{icon}</span>
+          <span className="shrink-0" aria-hidden="true">
+            {icon}
+          </span>
         )}
         {children}
       </button>

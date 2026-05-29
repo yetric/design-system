@@ -92,7 +92,9 @@ function PinInput({
         {digits.map((digit, index) => (
           <input
             key={index}
-            ref={(el) => { inputsRef.current[index] = el; }}
+            ref={(el) => {
+              inputsRef.current[index] = el;
+            }}
             type={mask ? "password" : "text"}
             inputMode="numeric"
             maxLength={1}
@@ -105,12 +107,12 @@ function PinInput({
             onPaste={handlePaste}
             onFocus={(e) => e.target.select()}
             className={cn(
-              "border bg-background text-foreground text-center font-mono tabular-nums outline-none",
+              "border bg-background text-center font-mono tabular-nums text-foreground outline-none",
               "transition-colors focus:ring-2 focus:ring-ring focus:ring-offset-2",
               boxSizeClass[size],
               radiusClass[radius],
               hasError ? "border-destructive" : "border-input",
-              disabled && "opacity-50 cursor-not-allowed"
+              disabled && "cursor-not-allowed opacity-50"
             )}
           />
         ))}

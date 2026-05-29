@@ -9,9 +9,15 @@ const meta: Meta<typeof Indicator> = {
   tags: ["autodocs"],
   title: "Components/Indicator",
   argTypes: {
-    color:    { control: "select", options: ["default","primary","success","warning","destructive","info"] },
-    position: { control: "select", options: ["top-right","top-left","bottom-right","bottom-left"] },
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    color: {
+      control: "select",
+      options: ["default", "primary", "success", "warning", "destructive", "info"],
+    },
+    position: {
+      control: "select",
+      options: ["top-right", "top-left", "bottom-right", "bottom-left"],
+    },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
   },
 };
 export default meta;
@@ -40,7 +46,9 @@ export const Dot: Story = {
         <Bell className="h-6 w-6" />
       </Indicator>
       <Indicator dot color="destructive">
-        <Button size="sm" variant="outline">Messages</Button>
+        <Button size="sm" variant="outline">
+          Messages
+        </Button>
       </Indicator>
     </div>
   ),
@@ -62,11 +70,13 @@ export const OnAvatar: Story = {
 export const Colors: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      {(["default", "primary", "success", "warning", "destructive", "info"] as const).map((color) => (
-        <Indicator key={color} count={5} color={color}>
-          <Bell className="h-6 w-6" />
-        </Indicator>
-      ))}
+      {(["default", "primary", "success", "warning", "destructive", "info"] as const).map(
+        (color) => (
+          <Indicator key={color} count={5} color={color}>
+            <Bell className="h-6 w-6" />
+          </Indicator>
+        )
+      )}
     </div>
   ),
 };

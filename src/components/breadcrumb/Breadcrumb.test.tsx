@@ -12,7 +12,11 @@ import {
 
 describe("Breadcrumb", () => {
   it("renders with aria-label breadcrumb", () => {
-    render(<Breadcrumb><BreadcrumbList /></Breadcrumb>);
+    render(
+      <Breadcrumb>
+        <BreadcrumbList />
+      </Breadcrumb>
+    );
     expect(screen.getByRole("navigation", { name: "breadcrumb" })).toBeInTheDocument();
   });
 
@@ -56,7 +60,9 @@ describe("Breadcrumb", () => {
     render(
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbEllipsis />
+          </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     );

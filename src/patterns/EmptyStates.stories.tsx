@@ -54,11 +54,19 @@ function EmptyState({
           <Icon style={{ width: 24, height: 24, color: "hsl(var(--muted-foreground))" }} />
         </Box>
         <Stack gap={2} style={{ gap: "0.375rem" }}>
-          <Heading as="h3" size="h6">{title}</Heading>
-          <Text size="body-sm" color="muted" style={{ lineHeight: 1.625 }}>{description}</Text>
+          <Heading as="h3" size="h6">
+            {title}
+          </Heading>
+          <Text size="body-sm" color="muted" style={{ lineHeight: 1.625 }}>
+            {description}
+          </Text>
         </Stack>
         {action && (
-          <Button variant={action.variant ?? "primary"} size="sm" leftIcon={<Plus style={{ width: 14, height: 14 }} />}>
+          <Button
+            variant={action.variant ?? "primary"}
+            size="sm"
+            leftIcon={<Plus style={{ width: 14, height: 14 }} />}
+          >
             {action.label}
           </Button>
         )}
@@ -73,7 +81,7 @@ export const NoData: Story = {
     <EmptyState
       icon={PackageSearch}
       title="No items yet"
-      description="You haven&apos;t created any items. Get started by adding your first one."
+      description="You haven't created any items. Get started by adding your first one."
       action={{ label: "New item" }}
     />
   ),
@@ -85,7 +93,9 @@ export const NoResults: Story = {
     <EmptyState
       icon={FolderOpen}
       title="No results found"
-      description={"We couldn't find anything matching \"design tokens\". Try a different search term."}
+      description={
+        'We couldn\'t find anything matching "design tokens". Try a different search term.'
+      }
       action={{ label: "Clear search", variant: "outline" }}
     />
   ),
@@ -97,7 +107,7 @@ export const NoAccess: Story = {
     <EmptyState
       icon={ShieldOff}
       title="Access restricted"
-      description="You don&apos;t have permission to view this page. Contact your admin to request access."
+      description="You don't have permission to view this page. Contact your admin to request access."
       action={{ label: "Request access", variant: "outline" }}
     />
   ),
@@ -119,10 +129,30 @@ export const AllVariants: Story = {
   name: "All variants",
   render: () => (
     <Grid cols={{ base: 1, md: 2 }} gap={6}>
-      <EmptyState icon={PackageSearch} title="No items yet" description="Create your first item to get started." action={{ label: "New item" }} />
-      <EmptyState icon={FolderOpen} title="No results found" description="Try adjusting your search or filters." action={{ label: "Clear filters", variant: "outline" }} />
-      <EmptyState icon={ShieldOff} title="Access restricted" description="Contact your admin to request access." action={{ label: "Request access", variant: "outline" }} />
-      <EmptyState icon={WifiOff} title="Something went wrong" description="Check your connection and try again." action={{ label: "Retry", variant: "ghost" }} />
+      <EmptyState
+        icon={PackageSearch}
+        title="No items yet"
+        description="Create your first item to get started."
+        action={{ label: "New item" }}
+      />
+      <EmptyState
+        icon={FolderOpen}
+        title="No results found"
+        description="Try adjusting your search or filters."
+        action={{ label: "Clear filters", variant: "outline" }}
+      />
+      <EmptyState
+        icon={ShieldOff}
+        title="Access restricted"
+        description="Contact your admin to request access."
+        action={{ label: "Request access", variant: "outline" }}
+      />
+      <EmptyState
+        icon={WifiOff}
+        title="Something went wrong"
+        description="Check your connection and try again."
+        action={{ label: "Retry", variant: "ghost" }}
+      />
     </Grid>
   ),
 };

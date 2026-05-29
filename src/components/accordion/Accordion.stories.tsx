@@ -36,7 +36,14 @@ const faqs = [
 
 export const Single: Story = {
   render: (args) => (
-    <Accordion type="single" collapsible className="w-[400px]" variant={args.variant} radius={args.radius} chevronPosition={args.chevronPosition}>
+    <Accordion
+      type="single"
+      collapsible
+      className="w-[400px]"
+      variant={args.variant}
+      radius={args.radius}
+      chevronPosition={args.chevronPosition}
+    >
       {faqs.map((f, i) => (
         <AccordionItem key={i} value={`item-${i}`}>
           <AccordionTrigger>{f.q}</AccordionTrigger>
@@ -49,7 +56,13 @@ export const Single: Story = {
 
 export const Multiple: Story = {
   render: (args) => (
-    <Accordion type="multiple" className="w-[400px]" variant={args.variant} radius={args.radius} chevronPosition={args.chevronPosition}>
+    <Accordion
+      type="multiple"
+      className="w-[400px]"
+      variant={args.variant}
+      radius={args.radius}
+      chevronPosition={args.chevronPosition}
+    >
       {faqs.map((f, i) => (
         <AccordionItem key={i} value={`item-${i}`}>
           <AccordionTrigger>{f.q}</AccordionTrigger>
@@ -62,10 +75,10 @@ export const Multiple: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div className="flex flex-col gap-8 w-[400px]">
+    <div className="flex w-[400px] flex-col gap-8">
       {(["default", "contained", "separated", "filled"] as const).map((variant) => (
         <div key={variant}>
-          <p className="text-xs text-muted-foreground mb-2 font-mono">variant="{variant}"</p>
+          <p className="mb-2 font-mono text-xs text-muted-foreground">variant="{variant}"</p>
           <Accordion type="single" collapsible variant={variant} radius="md">
             {faqs.slice(0, 2).map((f, i) => (
               <AccordionItem key={i} value={`${variant}-${i}`}>
@@ -105,4 +118,3 @@ export const NoChevron: Story = {
     </Accordion>
   ),
 };
-

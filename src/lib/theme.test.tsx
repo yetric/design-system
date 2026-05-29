@@ -2,9 +2,12 @@ import { render, screen, act } from "@testing-library/react";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import * as React from "react";
 import {
-  ThemeProvider, useTheme,
-  applyConfig, removeConfig,
-  COLOR_PALETTES, RADIUS_VALUES,
+  ThemeProvider,
+  useTheme,
+  applyConfig,
+  removeConfig,
+  COLOR_PALETTES,
+  RADIUS_VALUES,
   type ThemeConfig,
 } from "./theme";
 
@@ -156,12 +159,16 @@ describe("applyConfig — radius", () => {
 describe("applyConfig — fonts", () => {
   it("sets --font-sans", () => {
     applyConfig({ fontSans: '"Inter", sans-serif' });
-    expect(document.documentElement.style.getPropertyValue("--font-sans")).toBe('"Inter", sans-serif');
+    expect(document.documentElement.style.getPropertyValue("--font-sans")).toBe(
+      '"Inter", sans-serif'
+    );
   });
 
   it("sets --font-heading", () => {
     applyConfig({ fontHeading: '"Cal Sans", serif' });
-    expect(document.documentElement.style.getPropertyValue("--font-heading")).toBe('"Cal Sans", serif');
+    expect(document.documentElement.style.getPropertyValue("--font-heading")).toBe(
+      '"Cal Sans", serif'
+    );
   });
 });
 

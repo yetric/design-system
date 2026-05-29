@@ -23,12 +23,12 @@ const loaderStrokeWidth: Record<Size, number> = {
 export type LoaderVariant = "default" | "primary" | "success" | "warning" | "destructive" | "muted";
 
 const loaderColorClass: Record<LoaderVariant, string> = {
-  default:     "text-foreground",
-  primary:     "text-primary",
-  success:     "text-success",
-  warning:     "text-warning",
+  default: "text-foreground",
+  primary: "text-primary",
+  success: "text-success",
+  warning: "text-warning",
   destructive: "text-destructive",
-  muted:       "text-muted-foreground",
+  muted: "text-muted-foreground",
 };
 
 export interface LoaderProps extends React.SVGAttributes<SVGSVGElement> {
@@ -53,12 +53,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
       strokeWidth={loaderStrokeWidth[size]}
       role="status"
       aria-label={label}
-      className={cn(
-        loaderSizeClass[size],
-        loaderColorClass[variant],
-        "animate-spin",
-        className
-      )}
+      className={cn(loaderSizeClass[size], loaderColorClass[variant], "animate-spin", className)}
       {...props}
     >
       {/* Full circle track */}

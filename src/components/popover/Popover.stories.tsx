@@ -10,8 +10,8 @@ const meta: Meta = {
   title: "Components/Popover",
   parameters: { layout: "centered" },
   argTypes: {
-    radius: { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
-    shadow: { control: "select", options: ["none","sm","md","lg","xl"] },
+    radius: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl", "full"] },
+    shadow: { control: "select", options: ["none", "sm", "md", "lg", "xl"] },
   },
 };
 export default meta;
@@ -40,10 +40,12 @@ export const WithForm: Story = {
         <Button variant="outline">Edit profile</Button>
       </PopoverTrigger>
       <PopoverContent className="w-80">
-        <div className="flex items-center justify-between mb-3">
+        <div className="mb-3 flex items-center justify-between">
           <h4 className="font-medium">Edit name</h4>
           <PopoverClose asChild>
-            <button className="text-muted-foreground hover:text-foreground"><X className="h-4 w-4" /></button>
+            <button className="text-muted-foreground hover:text-foreground">
+              <X className="h-4 w-4" />
+            </button>
           </PopoverClose>
         </div>
         <div className="space-y-3">
@@ -55,7 +57,9 @@ export const WithForm: Story = {
             <Label htmlFor="last">Last name</Label>
             <Input id="last" defaultValue="Smith" />
           </div>
-          <Button className="w-full" size="sm">Save changes</Button>
+          <Button className="w-full" size="sm">
+            Save changes
+          </Button>
         </div>
       </PopoverContent>
     </Popover>

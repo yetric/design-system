@@ -7,10 +7,10 @@ const meta: Meta<typeof Switch> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    size:           { control: "select", options: ["xs","sm","md","lg","xl"] },
-    labelPlacement: { control: "select", options: ["start","end"] },
-    label:          { control: "text" },
-    disabled:       { control: "boolean" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    labelPlacement: { control: "select", options: ["start", "end"] },
+    label: { control: "text" },
+    disabled: { control: "boolean" },
   },
 };
 export default meta;
@@ -21,7 +21,9 @@ export const Checked: Story = { args: { defaultChecked: true } };
 export const WithLabel: Story = { args: { label: "Enable notifications", defaultChecked: false } };
 export const WithLabelChecked: Story = { args: { label: "Dark mode", defaultChecked: true } };
 export const Disabled: Story = { args: { disabled: true, label: "Disabled (off)" } };
-export const DisabledChecked: Story = { args: { disabled: true, defaultChecked: true, label: "Disabled (on)" } };
+export const DisabledChecked: Story = {
+  args: { disabled: true, defaultChecked: true, label: "Disabled (on)" },
+};
 
 export const LabelPlacement: Story = {
   render: () => (

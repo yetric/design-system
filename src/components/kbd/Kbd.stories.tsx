@@ -3,10 +3,10 @@ import { Kbd } from "./Kbd";
 
 const meta = {
   component: Kbd,
-  title: "Components/Kbd" ,
+  title: "Components/Kbd",
   tags: ["autodocs"],
   argTypes: {
-    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
   },
 } satisfies Meta<typeof Kbd>;
 export default meta;
@@ -18,16 +18,20 @@ export const Shortcuts: Story = {
   render: () => (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-1.5 text-sm">
-        Save <Kbd>⌘</Kbd><Kbd>S</Kbd>
+        Save <Kbd>⌘</Kbd>
+        <Kbd>S</Kbd>
       </div>
       <div className="flex items-center gap-1.5 text-sm">
-        Copy <Kbd>Ctrl</Kbd><Kbd>C</Kbd>
+        Copy <Kbd>Ctrl</Kbd>
+        <Kbd>C</Kbd>
       </div>
       <div className="flex items-center gap-1.5 text-sm">
-        Command palette <Kbd>⌘</Kbd><Kbd>K</Kbd>
+        Command palette <Kbd>⌘</Kbd>
+        <Kbd>K</Kbd>
       </div>
       <div className="flex items-center gap-1.5 text-sm">
-        Find <Kbd>Ctrl</Kbd><Kbd>F</Kbd>
+        Find <Kbd>Ctrl</Kbd>
+        <Kbd>F</Kbd>
       </div>
     </div>
   ),

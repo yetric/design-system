@@ -12,7 +12,10 @@ describe("Collapsible", () => {
       </Collapsible>
     );
     // Radix Collapsible removes content from DOM when closed; check trigger aria-expanded
-    expect(screen.getByRole("button", { name: "Toggle" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: "Toggle" })).toHaveAttribute(
+      "aria-expanded",
+      "false"
+    );
   });
 
   it("opens when trigger is clicked", async () => {
@@ -23,7 +26,10 @@ describe("Collapsible", () => {
       </Collapsible>
     );
     await userEvent.click(screen.getByText("Toggle"));
-    expect(screen.getByText("Revealed content").closest("[data-state]")).toHaveAttribute("data-state", "open");
+    expect(screen.getByText("Revealed content").closest("[data-state]")).toHaveAttribute(
+      "data-state",
+      "open"
+    );
   });
 
   it("can start open with defaultOpen", () => {
@@ -33,6 +39,9 @@ describe("Collapsible", () => {
         <CollapsibleContent>Open content</CollapsibleContent>
       </Collapsible>
     );
-    expect(screen.getByText("Open content").closest("[data-state]")).toHaveAttribute("data-state", "open");
+    expect(screen.getByText("Open content").closest("[data-state]")).toHaveAttribute(
+      "data-state",
+      "open"
+    );
   });
 });

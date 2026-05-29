@@ -35,21 +35,29 @@ export const DeleteResource: Story = {
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" leftIcon={<Trash2 style={{ width: 14, height: 14 }} />}>Delete project</Button>
+        <Button variant="destructive" leftIcon={<Trash2 style={{ width: 14, height: 14 }} />}>
+          Delete project
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
             <Stack direction="row" align="center" gap={2}>
               <AlertTriangle style={{ width: 20, height: 20, color: "hsl(var(--destructive))" }} />
-              <Heading as="span" size="h5">Delete project</Heading>
+              <Heading as="span" size="h5">
+                Delete project
+              </Heading>
             </Stack>
           </AlertDialogTitle>
           <AlertDialogDescription>
             <Stack gap={3} as="div">
               <Text as="span" size="body-sm" color="muted">
-                This will permanently delete <Text as="strong" size="body-sm" weight="bold">design-system</Text> and all of its data,
-                including repositories, issues, and members. This action cannot be undone.
+                This will permanently delete{" "}
+                <Text as="strong" size="body-sm" weight="bold">
+                  design-system
+                </Text>{" "}
+                and all of its data, including repositories, issues, and members. This action cannot
+                be undone.
               </Text>
               <Box
                 radius="md"
@@ -60,7 +68,9 @@ export const DeleteResource: Story = {
                   color: "hsl(var(--destructive))",
                 }}
               >
-                <Text as="span" size="body-sm" color="destructive"><strong>Warning:</strong> 3 active collaborators will lose access immediately.</Text>
+                <Text as="span" size="body-sm" color="destructive">
+                  <strong>Warning:</strong> 3 active collaborators will lose access immediately.
+                </Text>
               </Box>
             </Stack>
           </AlertDialogDescription>
@@ -84,23 +94,35 @@ export const TypeToConfirm: Story = {
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" leftIcon={<Trash2 style={{ width: 14, height: 14 }} />}>Delete database</Button>
+          <Button variant="destructive" leftIcon={<Trash2 style={{ width: 14, height: 14 }} />}>
+            Delete database
+          </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              <Heading as="span" size="h5">Delete database</Heading>
+              <Heading as="span" size="h5">
+                Delete database
+              </Heading>
             </AlertDialogTitle>
             <AlertDialogDescription>
               <Stack gap={4} as="div">
                 <Text as="span" size="body-sm" color="muted">
-                  This action is <Text as="strong" size="body-sm" weight="bold">irreversible</Text>. All data in {" "}
-                  <Badge variant="secondary" size="sm" style={{ fontFamily: "monospace" }}>{resourceName}</Badge>{" "}
+                  This action is{" "}
+                  <Text as="strong" size="body-sm" weight="bold">
+                    irreversible
+                  </Text>
+                  . All data in{" "}
+                  <Badge variant="secondary" size="sm" style={{ fontFamily: "monospace" }}>
+                    {resourceName}
+                  </Badge>{" "}
                   will be permanently deleted.
                 </Text>
                 <Stack gap={2} style={{ gap: "0.375rem" }}>
                   <Label htmlFor="confirm-name">
-                    Type <span style={{ fontFamily: "monospace", fontWeight: 600 }}>{resourceName}</span> to confirm:
+                    Type{" "}
+                    <span style={{ fontFamily: "monospace", fontWeight: 600 }}>{resourceName}</span>{" "}
+                    to confirm:
                   </Label>
                   <Input
                     id="confirm-name"
@@ -140,12 +162,16 @@ export const LoadingState: Story = {
     return (
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" leftIcon={<Trash2 style={{ width: 14, height: 14 }} />}>Delete account</Button>
+          <Button variant="destructive" leftIcon={<Trash2 style={{ width: 14, height: 14 }} />}>
+            Delete account
+          </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              <Heading as="span" size="h5">Delete your account?</Heading>
+              <Heading as="span" size="h5">
+                Delete your account?
+              </Heading>
             </AlertDialogTitle>
             <AlertDialogDescription>
               All your data will be permanently removed. This cannot be undone.

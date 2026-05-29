@@ -40,7 +40,13 @@ export const WithBadge: Story = {
 };
 
 export const ActiveWithBadge: Story = {
-  args: { label: "Notifications", icon: <Bell size={16} />, badge: 3, active: true, asButton: true },
+  args: {
+    label: "Notifications",
+    icon: <Bell size={16} />,
+    badge: 3,
+    active: true,
+    asButton: true,
+  },
 };
 
 export const Disabled: Story = {

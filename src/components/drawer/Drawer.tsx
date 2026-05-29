@@ -10,25 +10,27 @@ export type DrawerSide = "left" | "right" | "top" | "bottom";
 export type DrawerSize = "sm" | "md" | "lg" | "xl" | "full";
 
 const drawerSideClass: Record<DrawerSide, string> = {
-  left:   "inset-y-0 left-0 h-full border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
-  right:  "inset-y-0 right-0 h-full border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
-  top:    "inset-x-0 top-0 w-full border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
-  bottom: "inset-x-0 bottom-0 w-full border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+  left: "inset-y-0 left-0 h-full border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
+  right:
+    "inset-y-0 right-0 h-full border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+  top: "inset-x-0 top-0 w-full border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+  bottom:
+    "inset-x-0 bottom-0 w-full border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
 };
 
 const drawerSizeWidthClass: Record<DrawerSize, string> = {
-  sm:   "max-w-xs",
-  md:   "max-w-sm",
-  lg:   "max-w-md",
-  xl:   "max-w-lg",
+  sm: "max-w-xs",
+  md: "max-w-sm",
+  lg: "max-w-md",
+  xl: "max-w-lg",
   full: "max-w-none",
 };
 
 const drawerSizeHeightClass: Record<DrawerSize, string> = {
-  sm:   "max-h-64",
-  md:   "max-h-80",
-  lg:   "max-h-[50vh]",
-  xl:   "max-h-[75vh]",
+  sm: "max-h-64",
+  md: "max-h-80",
+  lg: "max-h-[50vh]",
+  xl: "max-h-[75vh]",
   full: "max-h-none",
 };
 
@@ -54,7 +56,9 @@ const DrawerOverlay = React.forwardRef<
 ));
 DrawerOverlay.displayName = "DrawerOverlay";
 
-export interface DrawerContentProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+export interface DrawerContentProps extends React.ComponentPropsWithoutRef<
+  typeof DialogPrimitive.Content
+> {
   side?: DrawerSide;
   size?: DrawerSize;
   /** When true renders a close (×) button in the top-right corner */
@@ -73,8 +77,8 @@ const DrawerContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "fixed z-modal flex flex-col bg-card text-card-foreground shadow-lg overflow-y-auto",
-          "transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-300",
+          "fixed z-modal flex flex-col overflow-y-auto bg-card text-card-foreground shadow-lg",
+          "transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out",
           drawerSideClass[side],
           isVertical ? drawerSizeWidthClass[size] : drawerSizeHeightClass[size],
           isVertical ? "w-full" : "",

@@ -6,7 +6,7 @@ const meta: Meta<typeof Blockquote> = {
   component: Blockquote,
   tags: ["autodocs"],
   argTypes: {
-    size: { control: "select", options: ["sm","md","lg"] },
+    size: { control: "select", options: ["sm", "md", "lg"] },
     cite: { control: "text" },
   },
 };

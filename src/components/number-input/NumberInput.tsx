@@ -49,8 +49,10 @@ const helperSizeClass: Record<Size, string> = {
   xl: "text-sm",
 };
 
-export interface NumberInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "type" | "value" | "onChange"> {
+export interface NumberInputProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size" | "type" | "value" | "onChange"
+> {
   value?: number;
   onChange?: (value: number) => void;
   min?: number;
@@ -210,7 +212,11 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           </p>
         )}
         {typeof error === "string" && (
-          <p id={errorId} role="alert" className={cn("mt-1 text-destructive", helperSizeClass[size])}>
+          <p
+            id={errorId}
+            role="alert"
+            className={cn("mt-1 text-destructive", helperSizeClass[size])}
+          >
             {error}
           </p>
         )}

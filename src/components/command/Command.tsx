@@ -13,7 +13,9 @@ export type CommandListProps = React.ComponentPropsWithoutRef<typeof CommandPrim
 export type CommandEmptyProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>;
 export type CommandGroupProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>;
 export type CommandItemProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>;
-export type CommandSeparatorProps = React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>;
+export type CommandSeparatorProps = React.ComponentPropsWithoutRef<
+  typeof CommandPrimitive.Separator
+>;
 export type CommandShortcutProps = React.HTMLAttributes<HTMLSpanElement>;
 export type CommandDialogProps = React.ComponentPropsWithoutRef<typeof Dialog>;
 
@@ -22,7 +24,7 @@ const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, Comm
     <CommandPrimitive
       ref={ref}
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
+        "bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md",
         className
       )}
       {...props}
@@ -110,12 +112,19 @@ const CommandSeparator = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Separator>,
   CommandSeparatorProps
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive.Separator ref={ref} className={cn("-mx-1 h-px bg-border", className)} {...props} />
+  <CommandPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 h-px bg-border", className)}
+    {...props}
+  />
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
 const CommandShortcut = ({ className, ...props }: CommandShortcutProps) => (
-  <span className={cn("ml-auto text-xs tracking-widest text-muted-foreground", className)} {...props} />
+  <span
+    className={cn("ml-auto text-xs tracking-widest text-muted-foreground", className)}
+    {...props}
+  />
 );
 CommandShortcut.displayName = "CommandShortcut";
 
@@ -139,5 +148,5 @@ export {
   CommandItem,
   CommandSeparator,
   CommandShortcut,
-  CommandDialog
+  CommandDialog,
 };

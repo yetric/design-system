@@ -22,7 +22,7 @@ const textareaSizeClass: Record<Size, string> = {
   sm: "px-3 py-1.5 text-sm",
   md: "px-3 py-2 text-sm",
   lg: "px-4 py-3 text-base",
-  xl: "px-5 py-4 text-base"
+  xl: "px-5 py-4 text-base",
 };
 
 const labelSizeClass: Record<Size, string> = {
@@ -97,8 +97,7 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
     const errorId = typeof error === "string" ? `${id}-error` : undefined;
     const hasError = Boolean(error);
 
-    const describedBy =
-      [helpTextId, errorId].filter(Boolean).join(" ") || undefined;
+    const describedBy = [helpTextId, errorId].filter(Boolean).join(" ") || undefined;
 
     return (
       <div className={cn("flex flex-col", wrapperClassName)}>
@@ -113,7 +112,14 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
             id={id}
             aria-invalid={hasError || undefined}
             aria-describedby={describedBy}
-            className={cn(fieldBase, "min-h-[100px] resize-y", textareaSizeClass[size], radiusClass[radius], hasError && "border-destructive focus-visible:ring-destructive", className)}
+            className={cn(
+              fieldBase,
+              "min-h-[100px] resize-y",
+              textareaSizeClass[size],
+              radiusClass[radius],
+              hasError && "border-destructive focus-visible:ring-destructive",
+              className
+            )}
             {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
           />
         ) : (
@@ -131,12 +137,22 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           />
         )}
         {helpText && !hasError && (
-          <div id={helpTextId} className={cn("mt-1 flex items-center gap-1 text-muted-foreground", helperSizeClass[size])}>
+          <div
+            id={helpTextId}
+            className={cn(
+              "mt-1 flex items-center gap-1 text-muted-foreground",
+              helperSizeClass[size]
+            )}
+          >
             {helpText}
           </div>
         )}
         {typeof error === "string" && (
-          <div id={errorId} role="alert" className={cn("mt-1 flex items-center gap-1 text-destructive", helperSizeClass[size])}>
+          <div
+            id={errorId}
+            role="alert"
+            className={cn("mt-1 flex items-center gap-1 text-destructive", helperSizeClass[size])}
+          >
             {error}
           </div>
         )}

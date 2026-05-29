@@ -10,14 +10,14 @@ const anchorVariants = cva(
   {
     variants: {
       variant: {
-        default:     "text-primary",
-        muted:       "text-muted-foreground",
+        default: "text-primary",
+        muted: "text-muted-foreground",
         destructive: "text-destructive",
       },
       underline: {
         always: "underline underline-offset-4",
-        hover:  "hover:underline underline-offset-4",
-        never:  "no-underline",
+        hover: "hover:underline underline-offset-4",
+        never: "no-underline",
       },
     },
     defaultVariants: {
@@ -28,8 +28,7 @@ const anchorVariants = cva(
 );
 
 export interface AnchorProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    VariantProps<typeof anchorVariants> {
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement>, VariantProps<typeof anchorVariants> {
   /** Automatically append an external link icon and set rel/target. */
   external?: boolean;
 }
@@ -44,9 +43,7 @@ const Anchor = React.forwardRef<HTMLAnchorElement, AnchorProps>(
       {...props}
     >
       {children}
-      {external && (
-        <ExternalLink aria-hidden="true" className="h-3 w-3 shrink-0 opacity-70" />
-      )}
+      {external && <ExternalLink aria-hidden="true" className="h-3 w-3 shrink-0 opacity-70" />}
     </a>
   )
 );

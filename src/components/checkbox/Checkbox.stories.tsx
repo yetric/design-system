@@ -8,11 +8,11 @@ const meta = {
   component: Checkbox,
   tags: ["autodocs"],
   argTypes: {
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
-    radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
-    label:    { control: "text" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    radius: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl", "full"] },
+    label: { control: "text" },
     disabled: { control: "boolean" },
-    error:    { control: "boolean" },
+    error: { control: "boolean" },
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -22,19 +22,19 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Checked: Story = {
-  args: { defaultChecked: true }
+  args: { defaultChecked: true },
 };
 
 export const Indeterminate: Story = {
-  args: { checked: "indeterminate" }
+  args: { checked: "indeterminate" },
 };
 
 export const Disabled: Story = {
-  args: { disabled: true }
+  args: { disabled: true },
 };
 
 export const DisabledChecked: Story = {
-  args: { disabled: true, defaultChecked: true }
+  args: { disabled: true, defaultChecked: true },
 };
 
 export const WithLabel: Story = {
@@ -43,7 +43,7 @@ export const WithLabel: Story = {
       <Checkbox id="terms" />
       <Label htmlFor="terms">Accept terms and conditions</Label>
     </div>
-  )
+  ),
 };
 
 export const Sizes: Story = {
@@ -52,17 +52,19 @@ export const Sizes: Story = {
       {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
         <div key={s} className="flex items-center gap-2">
           <Checkbox id={`size-${s}`} size={s} defaultChecked />
-          <Label htmlFor={`size-${s}`} className="text-sm">{s}</Label>
+          <Label htmlFor={`size-${s}`} className="text-sm">
+            {s}
+          </Label>
         </div>
       ))}
     </div>
-  )
+  ),
 };
 
 export const CheckboxList: Story = {
   render: () => (
     <fieldset className="flex flex-col gap-3 border-none p-0">
-      <legend className="text-sm font-medium mb-1">Notifications</legend>
+      <legend className="mb-1 text-sm font-medium">Notifications</legend>
       {["Email", "Push", "SMS"].map((item) => (
         <div key={item} className="flex items-center gap-2">
           <Checkbox id={`notify-${item}`} />
@@ -70,7 +72,7 @@ export const CheckboxList: Story = {
         </div>
       ))}
     </fieldset>
-  )
+  ),
 };
 
 export const Error: Story = {
@@ -78,7 +80,7 @@ export const Error: Story = {
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
         <Checkbox id="error-unchecked" error />
-        <Label htmlFor="error-unchecked" className="text-destructive text-sm">
+        <Label htmlFor="error-unchecked" className="text-sm text-destructive">
           You must accept the terms
         </Label>
       </div>
@@ -89,7 +91,7 @@ export const Error: Story = {
         </Label>
       </div>
     </div>
-  )
+  ),
 };
 
 export const RadiusVariants: Story = {
@@ -99,9 +101,11 @@ export const RadiusVariants: Story = {
       {(["none", "xs", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
         <div key={r} className="flex items-center gap-2">
           <Checkbox id={`radius-${r}`} radius={r} defaultChecked />
-          <Label htmlFor={`radius-${r}`} className="text-sm">radius: {r}</Label>
+          <Label htmlFor={`radius-${r}`} className="text-sm">
+            radius: {r}
+          </Label>
         </div>
       ))}
     </div>
-  )
+  ),
 };

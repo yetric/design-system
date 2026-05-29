@@ -22,8 +22,18 @@ export function getSystemTheme(): "light" | "dark" {
 // ─── Primary color palette ────────────────────────────────────────────────────
 
 export const PRIMARY_COLORS = [
-  "violet", "blue", "green", "red", "orange",
-  "teal", "pink", "grape", "indigo", "cyan", "lime", "yellow",
+  "violet",
+  "blue",
+  "green",
+  "red",
+  "orange",
+  "teal",
+  "pink",
+  "grape",
+  "indigo",
+  "cyan",
+  "lime",
+  "yellow",
 ] as const;
 
 export type PrimaryColor = (typeof PRIMARY_COLORS)[number];
@@ -40,57 +50,57 @@ interface ColorPaletteEntry {
   dark: ColorStop;
 }
 
-const WHITE  = "0 0% 100%";
-const DARK   = "210 11% 15%";
+const WHITE = "0 0% 100%";
+const DARK = "210 11% 15%";
 
 export const COLOR_PALETTES: Record<PrimaryColor, ColorPaletteEntry> = {
   violet: {
-    light: { primary: "255 86% 63%",  foreground: WHITE },
-    dark:  { primary: "255 94% 79%",  foreground: DARK  },
+    light: { primary: "255 86% 63%", foreground: WHITE },
+    dark: { primary: "255 94% 79%", foreground: DARK },
   },
   blue: {
-    light: { primary: "208 80% 52%",  foreground: WHITE },
-    dark:  { primary: "207 91% 64%",  foreground: DARK  },
+    light: { primary: "208 80% 52%", foreground: WHITE },
+    dark: { primary: "207 91% 64%", foreground: DARK },
   },
   green: {
-    light: { primary: "129 52% 40%",  foreground: WHITE },
-    dark:  { primary: "130 57% 57%",  foreground: DARK  },
+    light: { primary: "129 52% 40%", foreground: WHITE },
+    dark: { primary: "130 57% 57%", foreground: DARK },
   },
   red: {
-    light: { primary: "0 86% 59%",    foreground: WHITE },
-    dark:  { primary: "0 100% 71%",   foreground: DARK  },
+    light: { primary: "0 86% 59%", foreground: WHITE },
+    dark: { primary: "0 100% 71%", foreground: DARK },
   },
   orange: {
-    light: { primary: "24 95% 50%",   foreground: WHITE },
-    dark:  { primary: "27 100% 58%",  foreground: DARK  },
+    light: { primary: "24 95% 50%", foreground: WHITE },
+    dark: { primary: "27 100% 58%", foreground: DARK },
   },
   teal: {
-    light: { primary: "162 73% 32%",  foreground: WHITE },
-    dark:  { primary: "162 66% 54%",  foreground: DARK  },
+    light: { primary: "162 73% 32%", foreground: WHITE },
+    dark: { primary: "162 66% 54%", foreground: DARK },
   },
   pink: {
-    light: { primary: "339 77% 58%",  foreground: WHITE },
-    dark:  { primary: "337 88% 73%",  foreground: DARK  },
+    light: { primary: "339 77% 58%", foreground: WHITE },
+    dark: { primary: "337 88% 73%", foreground: DARK },
   },
   grape: {
-    light: { primary: "290 59% 51%",  foreground: WHITE },
-    dark:  { primary: "288 83% 71%",  foreground: DARK  },
+    light: { primary: "290 59% 51%", foreground: WHITE },
+    dark: { primary: "288 83% 71%", foreground: DARK },
   },
   indigo: {
-    light: { primary: "231 79% 58%",  foreground: WHITE },
-    dark:  { primary: "232 94% 72%",  foreground: DARK  },
+    light: { primary: "231 79% 58%", foreground: WHITE },
+    dark: { primary: "232 94% 72%", foreground: DARK },
   },
   cyan: {
-    light: { primary: "188 83% 37%",  foreground: WHITE },
-    dark:  { primary: "185 67% 55%",  foreground: DARK  },
+    light: { primary: "188 83% 37%", foreground: WHITE },
+    dark: { primary: "185 67% 55%", foreground: DARK },
   },
   lime: {
-    light: { primary: "86 77% 33%",   foreground: WHITE },
-    dark:  { primary: "89 72% 58%",   foreground: DARK  },
+    light: { primary: "86 77% 33%", foreground: WHITE },
+    dark: { primary: "89 72% 58%", foreground: DARK },
   },
   yellow: {
-    light: { primary: "38 100% 45%",  foreground: DARK  },
-    dark:  { primary: "44 100% 61%",  foreground: DARK  },
+    light: { primary: "38 100% 45%", foreground: DARK },
+    dark: { primary: "44 100% 61%", foreground: DARK },
   },
 };
 
@@ -101,11 +111,11 @@ export type RadiusPreset = (typeof RADIUS_PRESETS)[number];
 
 export const RADIUS_VALUES: Record<RadiusPreset, string> = {
   none: "0rem",
-  xs:   "0.25rem",
-  sm:   "0.375rem",
-  md:   "0.5rem",
-  lg:   "0.75rem",
-  xl:   "1rem",
+  xs: "0.25rem",
+  sm: "0.375rem",
+  md: "0.5rem",
+  lg: "0.75rem",
+  xl: "1rem",
   full: "9999px",
 };
 
@@ -221,10 +231,12 @@ export function ThemeProvider({
     return theme;
   }, [theme]);
 
+  const breakpointsKey = JSON.stringify(config?.breakpoints);
   const breakpoints = React.useMemo<Breakpoints>(
     () => ({ ...DEFAULT_BREAKPOINTS, ...config?.breakpoints }),
+    // breakpointsKey is a stable primitive derived from the config object
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [JSON.stringify(config?.breakpoints)]
+    [breakpointsKey]
   );
 
   React.useEffect(() => {

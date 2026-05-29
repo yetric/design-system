@@ -72,12 +72,14 @@ function MultiSelect({
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const id = idProp ?? React.useId();
+  const generatedId = React.useId();
+  const id = idProp ?? generatedId;
   const hasError = Boolean(error);
 
-  const filteredOptions = searchable && search
-    ? options.filter((o) => o.label.toLowerCase().includes(search.toLowerCase()))
-    : options;
+  const filteredOptions =
+    searchable && search
+      ? options.filter((o) => o.label.toLowerCase().includes(search.toLowerCase()))
+      : options;
 
   const toggleOption = (optValue: string) => {
     if (value.includes(optValue)) {
@@ -99,6 +101,7 @@ function MultiSelect({
   };
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (!open) setSearch("");
   }, [open]);
 
@@ -130,12 +133,15 @@ function MultiSelect({
         aria-haspopup="listbox"
         tabIndex={disabled ? -1 : 0}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen((o) => !o); }
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen((o) => !o);
+          }
           if (e.key === "Escape") setOpen(false);
         }}
         onClick={() => !disabled && setOpen((o) => !o)}
         className={cn(
-          "relative flex w-full flex-wrap items-center border bg-background transition-colors cursor-pointer",
+          "relative flex w-full cursor-pointer flex-wrap items-center border bg-background transition-colors",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           triggerSizeClass[size],
           radiusClass[radius],
@@ -182,7 +188,10 @@ function MultiSelect({
             </button>
           )}
           <ChevronDown
-            className={cn("h-4 w-4 text-muted-foreground transition-transform", open && "rotate-180")}
+            className={cn(
+              "h-4 w-4 text-muted-foreground transition-transform",
+              open && "rotate-180"
+            )}
             aria-hidden="true"
           />
         </div>
@@ -194,14 +203,14 @@ function MultiSelect({
           role="listbox"
           aria-multiselectable="true"
           className={cn(
-            "absolute z-dropdown mt-1 w-full border border-border bg-popover shadow-md overflow-hidden",
+            "bg-popover absolute z-dropdown mt-1 w-full overflow-hidden border border-border shadow-md",
             radiusClass[radius]
           )}
-          style={{ minWidth: containerRef.current?.offsetWidth }}
+          style={{ minWidth: containerRef.current?.offsetWidth /* eslint-disable-line react-hooks/refs */ }}
         >
           {searchable && (
-            <div className="flex items-center border-b border-border px-3 py-2 gap-2">
-              <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" aria-hidden="true" />
+            <div className="flex items-center gap-2 border-b border-border px-3 py-2">
+              <Search className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
               <input
                 type="text"
                 value={search}
@@ -226,14 +235,33 @@ function MultiSelect({
                     onClick={() => !opt.disabled && toggleOption(opt.value)}
                     className={cn(
                       "flex cursor-pointer items-center gap-2 px-3 py-1.5 text-sm transition-colors",
-                      isSelected ? "bg-primary/10 text-foreground font-medium" : "hover:bg-muted",
+                      isSelected ? "bg-primary/10 font-medium text-foreground" : "hover:bg-muted",
                       opt.disabled && "pointer-events-none opacity-40"
                     )}
                   >
-                    <span className={cn("flex h-4 w-4 shrink-0 items-center justify-center rounded border", isSelected ? "border-primary bg-primary text-primary-foreground" : "border-input")}>
+                    <span
+                      className={cn(
+                        "flex h-4 w-4 shrink-0 items-center justify-center rounded border",
+                        isSelected
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-input"
+                      )}
+                    >
                       {isSelected && (
-                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
-                          <path d="M1 4l2.5 2.5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg
+                          width="10"
+                          height="8"
+                          viewBox="0 0 10 8"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M1 4l2.5 2.5L9 1"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
                         </svg>
                       )}
                     </span>
@@ -247,11 +275,11 @@ function MultiSelect({
       )}
 
       {typeof error === "string" && (
-        <p role="alert" className="mt-1 text-xs text-destructive">{error}</p>
+        <p role="alert" className="mt-1 text-xs text-destructive">
+          {error}
+        </p>
       )}
-      {!error && helpText && (
-        <p className="mt-1 text-xs text-muted-foreground">{helpText}</p>
-      )}
+      {!error && helpText && <p className="mt-1 text-xs text-muted-foreground">{helpText}</p>}
     </div>
   );
 }

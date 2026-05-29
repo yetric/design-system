@@ -3,7 +3,13 @@ import { Globe, Mail, User } from "lucide-react";
 
 import { Box } from "../components/box/Box";
 import { Button } from "../components/button/Button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "../components/card/Card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "../components/card/Card";
 import { Checkbox } from "../components/checkbox/Checkbox";
 import { Fieldset } from "../components/fieldset/Fieldset";
 import { Input } from "../components/input/Input";
@@ -43,7 +49,9 @@ export const CreateProject: Story = {
   render: () => (
     <Card style={{ width: "100%", maxWidth: 540 }}>
       <CardHeader>
-        <Heading as="h2" size="h5">New project</Heading>
+        <Heading as="h2" size="h5">
+          New project
+        </Heading>
         <CardDescription>Set up a new project workspace for your team.</CardDescription>
       </CardHeader>
       <CardContent>
@@ -51,13 +59,25 @@ export const CreateProject: Story = {
           <Fieldset legend="Basic information">
             <Stack gap={4}>
               <Stack gap={2} style={fieldGapStyle}>
-                <Label htmlFor="proj-name">Project name <RequiredMark /></Label>
-                <Input id="proj-name" placeholder="My awesome project" leftIcon={<User style={iconStyle} />} />
+                <Label htmlFor="proj-name">
+                  Project name <RequiredMark />
+                </Label>
+                <Input
+                  id="proj-name"
+                  placeholder="My awesome project"
+                  leftIcon={<User style={iconStyle} />}
+                />
               </Stack>
               <Stack gap={2} style={fieldGapStyle}>
                 <Label htmlFor="proj-url">Slug / URL</Label>
-                <Input id="proj-url" placeholder="my-awesome-project" leftIcon={<Globe style={iconStyle} />} />
-                <Text as="p" size="caption" color="muted">app.example.com/<strong>my-awesome-project</strong></Text>
+                <Input
+                  id="proj-url"
+                  placeholder="my-awesome-project"
+                  leftIcon={<Globe style={iconStyle} />}
+                />
+                <Text as="p" size="caption" color="muted">
+                  app.example.com/<strong>my-awesome-project</strong>
+                </Text>
               </Stack>
               <Stack gap={2} style={fieldGapStyle}>
                 <Label htmlFor="proj-desc">Description</Label>
@@ -89,7 +109,10 @@ export const CreateProject: Story = {
                 <Label>Visibility</Label>
                 <RadioGroup defaultValue="private">
                   <Stack gap={2}>
-                    <RadioGroupItem value="private" label="Private — only team members can access" />
+                    <RadioGroupItem
+                      value="private"
+                      label="Private — only team members can access"
+                    />
                     <RadioGroupItem value="internal" label="Internal — all employees can view" />
                     <RadioGroupItem value="public" label="Public — anyone with the link" />
                   </Stack>
@@ -107,7 +130,12 @@ export const CreateProject: Story = {
               <Switch label="Weekly digest email" />
               <Stack gap={2} style={{ ...fieldGapStyle, paddingTop: "0.25rem" }}>
                 <Label htmlFor="notify-email">Send notifications to</Label>
-                <Input id="notify-email" type="email" placeholder="you@example.com" leftIcon={<Mail style={iconStyle} />} />
+                <Input
+                  id="notify-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  leftIcon={<Mail style={iconStyle} />}
+                />
               </Stack>
             </Stack>
           </Fieldset>
@@ -120,8 +148,11 @@ export const CreateProject: Story = {
             </Box>
             <Label htmlFor="proj-terms">
               <Text as="span" size="body-sm" style={{ fontWeight: 400, lineHeight: 1.625 }}>
-                I agree that this project complies with our {" "}
-                <a href="#" style={{ textDecoration: "underline" }}>acceptable use policy</a>.
+                I agree that this project complies with our{" "}
+                <a href="#" style={{ textDecoration: "underline" }}>
+                  acceptable use policy
+                </a>
+                .
               </Text>
             </Label>
           </Stack>
@@ -143,25 +174,40 @@ export const WithValidationErrors: Story = {
   render: () => (
     <Card style={{ width: "100%", maxWidth: 540 }}>
       <CardHeader>
-        <Heading as="h2" size="h5">New project</Heading>
+        <Heading as="h2" size="h5">
+          New project
+        </Heading>
         <CardDescription>Fix the errors below to continue.</CardDescription>
       </CardHeader>
       <CardContent>
         <Stack gap={4}>
           <Stack gap={2} style={fieldGapStyle}>
-            <Label htmlFor="ve-name">Project name <RequiredMark /></Label>
+            <Label htmlFor="ve-name">
+              Project name <RequiredMark />
+            </Label>
             <Input id="ve-name" error defaultValue="" placeholder="Required" />
-            <Text as="p" size="caption" color="destructive">Project name is required.</Text>
+            <Text as="p" size="caption" color="destructive">
+              Project name is required.
+            </Text>
           </Stack>
           <Stack gap={2} style={fieldGapStyle}>
             <Label htmlFor="ve-url">Slug / URL</Label>
-            <Input id="ve-url" error defaultValue="My Project!!" leftIcon={<Globe style={iconStyle} />} />
-            <Text as="p" size="caption" color="destructive">Only lowercase letters, numbers, and hyphens are allowed.</Text>
+            <Input
+              id="ve-url"
+              error
+              defaultValue="My Project!!"
+              leftIcon={<Globe style={iconStyle} />}
+            />
+            <Text as="p" size="caption" color="destructive">
+              Only lowercase letters, numbers, and hyphens are allowed.
+            </Text>
           </Stack>
           <Stack gap={2} style={fieldGapStyle}>
             <Label htmlFor="ve-desc">Description</Label>
             <Textarea id="ve-desc" error placeholder="Too short" defaultValue="ok" rows={3} />
-            <Text as="p" size="caption" color="destructive">Description must be at least 20 characters.</Text>
+            <Text as="p" size="caption" color="destructive">
+              Description must be at least 20 characters.
+            </Text>
           </Stack>
         </Stack>
       </CardContent>

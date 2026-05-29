@@ -9,7 +9,7 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "./Select";
 
 const meta = {
@@ -17,8 +17,8 @@ const meta = {
   component: SelectTrigger,
   tags: ["autodocs"],
   argTypes: {
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
-    radius:   { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    radius: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl", "full"] },
     disabled: { control: "boolean" },
   },
 } satisfies Meta<typeof SelectTrigger>;
@@ -38,12 +38,12 @@ export const Default: Story = {
         <SelectItem value="cherry">Cherry</SelectItem>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="flex flex-col gap-1.5 w-48">
+    <div className="flex w-48 flex-col gap-1.5">
       <Label htmlFor="country">Country</Label>
       <Select>
         <SelectTrigger id="country">
@@ -57,7 +57,7 @@ export const WithLabel: Story = {
         </SelectContent>
       </Select>
     </div>
-  )
+  ),
 };
 
 export const WithGroups: Story = {
@@ -80,12 +80,12 @@ export const WithGroups: Story = {
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 w-56">
+    <div className="flex w-56 flex-col gap-3">
       {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
         <Select key={s}>
           <SelectTrigger size={s}>
@@ -98,7 +98,7 @@ export const Sizes: Story = {
         </Select>
       ))}
     </div>
-  )
+  ),
 };
 
 export const Disabled: Story = {
@@ -111,7 +111,7 @@ export const Disabled: Story = {
         <SelectItem value="x">X</SelectItem>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const WithDisabledItem: Story = {
@@ -123,16 +123,18 @@ export const WithDisabledItem: Story = {
       <SelectContent>
         <SelectItem value="free">Free</SelectItem>
         <SelectItem value="pro">Pro</SelectItem>
-        <SelectItem value="enterprise" disabled>Enterprise (contact us)</SelectItem>
+        <SelectItem value="enterprise" disabled>
+          Enterprise (contact us)
+        </SelectItem>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const RadiusVariants: Story = {
   name: "Radius variants",
   render: () => (
-    <div className="flex flex-col gap-3 w-56">
+    <div className="flex w-56 flex-col gap-3">
       {(["none", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
         <Select key={r}>
           <SelectTrigger radius={r}>
@@ -145,5 +147,5 @@ export const RadiusVariants: Story = {
         </Select>
       ))}
     </div>
-  )
+  ),
 };

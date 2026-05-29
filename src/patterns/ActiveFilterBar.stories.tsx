@@ -50,9 +50,12 @@ function FilterBarStory() {
   const [roles, setRoles] = useState<string[]>([]);
   const [countries, setCountries] = useState<string[]>(["Germany", "USA"]);
 
-  const toggleStatus = (v: string) => setStatuses((s) => s.includes(v) ? s.filter((x) => x !== v) : [...s, v]);
-  const toggleRole = (v: string) => setRoles((s) => s.includes(v) ? s.filter((x) => x !== v) : [...s, v]);
-  const toggleCountry = (v: string) => setCountries((s) => s.includes(v) ? s.filter((x) => x !== v) : [...s, v]);
+  const toggleStatus = (v: string) =>
+    setStatuses((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+  const toggleRole = (v: string) =>
+    setRoles((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+  const toggleCountry = (v: string) =>
+    setCountries((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
 
   const activeFilters: { label: string; onRemove: () => void }[] = [
     ...statuses.map((v) => ({ label: `Status: ${v}`, onRemove: () => toggleStatus(v) })),
@@ -77,20 +80,35 @@ function FilterBarStory() {
               leftIcon={<Search style={searchIconStyle} />}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              rightIcon={search ? <X style={{ ...searchIconStyle, cursor: "pointer" }} onClick={() => setSearch("")} /> : undefined}
+              rightIcon={
+                search ? (
+                  <X
+                    style={{ ...searchIconStyle, cursor: "pointer" }}
+                    onClick={() => setSearch("")}
+                  />
+                ) : undefined
+              }
             />
           </Box>
           <Separator orientation="vertical" style={{ height: 28 }} />
           <Stack direction="row" align="center" gap={1}>
             <SlidersHorizontal style={smallIconStyle} />
-            <Text as="span" size="caption" color="muted">Filters</Text>
+            <Text as="span" size="caption" color="muted">
+              Filters
+            </Text>
           </Stack>
         </Stack>
 
         <FilterSection label="Status">
           <Stack direction="row" wrap="wrap" gap={2}>
             {STATUS_OPTIONS.map((v) => (
-              <Chip key={v} size="sm" checked={statuses.includes(v)} onChange={() => toggleStatus(v)} showCheck>
+              <Chip
+                key={v}
+                size="sm"
+                checked={statuses.includes(v)}
+                onChange={() => toggleStatus(v)}
+                showCheck
+              >
                 {v}
               </Chip>
             ))}
@@ -100,7 +118,13 @@ function FilterBarStory() {
         <FilterSection label="Role">
           <Stack direction="row" wrap="wrap" gap={2}>
             {ROLE_OPTIONS.map((v) => (
-              <Chip key={v} size="sm" checked={roles.includes(v)} onChange={() => toggleRole(v)} showCheck>
+              <Chip
+                key={v}
+                size="sm"
+                checked={roles.includes(v)}
+                onChange={() => toggleRole(v)}
+                showCheck
+              >
                 {v}
               </Chip>
             ))}
@@ -110,7 +134,13 @@ function FilterBarStory() {
         <FilterSection label="Country">
           <Stack direction="row" wrap="wrap" gap={2}>
             {COUNTRY_OPTIONS.map((v) => (
-              <Chip key={v} size="sm" checked={countries.includes(v)} onChange={() => toggleCountry(v)} showCheck>
+              <Chip
+                key={v}
+                size="sm"
+                checked={countries.includes(v)}
+                onChange={() => toggleCountry(v)}
+                showCheck
+              >
                 {v}
               </Chip>
             ))}
@@ -121,14 +151,20 @@ function FilterBarStory() {
 
         <Stack direction="row" wrap="wrap" align="center" gap={2} style={{ minHeight: 32 }}>
           {activeFilters.length === 0 ? (
-            <Text as="span" size="caption" color="muted">No filters applied.</Text>
+            <Text as="span" size="caption" color="muted">
+              No filters applied.
+            </Text>
           ) : (
             <>
-              <Text as="span" size="caption" color="muted">Active:</Text>
+              <Text as="span" size="caption" color="muted">
+                Active:
+              </Text>
               {activeFilters.map(({ label, onRemove }) => (
                 <Badge key={label} variant="secondary" size="sm">
                   <Stack as="span" direction="row" align="center" gap={1}>
-                    <Text as="span" size="caption">{label}</Text>
+                    <Text as="span" size="caption">
+                      {label}
+                    </Text>
                     <button
                       onClick={onRemove}
                       aria-label={`Remove ${label}`}
@@ -146,7 +182,9 @@ function FilterBarStory() {
                   </Stack>
                 </Badge>
               ))}
-              <Button size="xs" variant="ghost" onClick={clearAll}>Clear all</Button>
+              <Button size="xs" variant="ghost" onClick={clearAll}>
+                Clear all
+              </Button>
             </>
           )}
         </Stack>

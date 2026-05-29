@@ -23,7 +23,7 @@ const meta: Meta<typeof Toolbar> = {
   component: Toolbar,
   tags: ["autodocs"],
   argTypes: {
-    orientation: { control: "select", options: ["horizontal","vertical"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
   },
 };
 export default meta;

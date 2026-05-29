@@ -23,10 +23,10 @@ const statusSizeClass: Record<Size, string> = {
 };
 
 const statusColor: Record<string, string> = {
-  online:  "bg-success",
-  away:    "bg-warning",
+  online: "bg-success",
+  away: "bg-warning",
   offline: "bg-muted-foreground",
-  busy:    "bg-destructive",
+  busy: "bg-destructive",
 };
 
 export type AvatarStatus = "online" | "away" | "offline" | "busy";

@@ -9,7 +9,7 @@ const meta: Meta<typeof Fieldset> = {
   tags: ["autodocs"],
   title: "Components/Fieldset",
   argTypes: {
-    legend:   { control: "text" },
+    legend: { control: "text" },
     disabled: { control: "boolean" },
   },
 };

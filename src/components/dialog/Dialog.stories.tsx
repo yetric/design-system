@@ -9,7 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "./Dialog";
 
 const meta = {
@@ -45,7 +45,7 @@ export const Default: Story = {
     const body = within(canvasElement.ownerDocument.body);
     await expect(await body.findByRole("dialog")).toBeVisible();
     await expect(body.getByText("Confirm action")).toBeVisible();
-  }
+  },
 };
 
 export const InitiallyOpen: Story = {
@@ -61,7 +61,7 @@ export const InitiallyOpen: Story = {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  ),
 };
 
 export const WithCustomFooter: Story = {
@@ -81,7 +81,7 @@ export const WithCustomFooter: Story = {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  ),
 };
 
 export const Sizes: Story = {
@@ -96,7 +96,17 @@ export const Sizes: Story = {
           <DialogContent size={s}>
             <DialogHeader>
               <DialogTitle>Dialog — size: {s}</DialogTitle>
-              <DialogDescription>This dialog uses size="{s}" ({s === "sm" ? "max-w-sm" : s === "md" ? "max-w-lg" : s === "lg" ? "max-w-2xl" : "max-w-4xl"}).</DialogDescription>
+              <DialogDescription>
+                This dialog uses size="{s}" (
+                {s === "sm"
+                  ? "max-w-sm"
+                  : s === "md"
+                    ? "max-w-lg"
+                    : s === "lg"
+                      ? "max-w-2xl"
+                      : "max-w-4xl"}
+                ).
+              </DialogDescription>
             </DialogHeader>
             <DialogFooter>
               <Button>Close</Button>
@@ -105,5 +115,5 @@ export const Sizes: Story = {
         </Dialog>
       ))}
     </div>
-  )
+  ),
 };

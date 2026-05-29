@@ -9,14 +9,26 @@ const meta = {
   title: "Components/Button",
   tags: ["autodocs"],
   args: {
-    children: "Save"
+    children: "Save",
   },
   argTypes: {
-    variant:     { control: "select", options: ["primary","secondary","ghost","outline","destructive","warning","success","info"] },
-    size:        { control: "select", options: ["xs","sm","md","lg","xl","icon"] },
-    radius:      { control: "select", options: ["none","xs","sm","md","lg","xl","full"] },
-    isLoading:   { control: "boolean" },
-    disabled:    { control: "boolean" },
+    variant: {
+      control: "select",
+      options: [
+        "primary",
+        "secondary",
+        "ghost",
+        "outline",
+        "destructive",
+        "warning",
+        "success",
+        "info",
+      ],
+    },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl", "icon"] },
+    radius: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl", "full"] },
+    isLoading: { control: "boolean" },
+    disabled: { control: "boolean" },
   },
 } satisfies Meta<typeof Button>;
 
@@ -37,7 +49,7 @@ export const Variants: Story = {
       <Button variant="success">Success</Button>
       <Button variant="info">Info</Button>
     </div>
-  )
+  ),
 };
 
 export const Sizes: Story = {
@@ -49,7 +61,7 @@ export const Sizes: Story = {
       <Button size="lg">Large</Button>
       <Button size="xl">XLarge</Button>
     </div>
-  )
+  ),
 };
 
 export const Radius: Story = {
@@ -63,20 +75,20 @@ export const Radius: Story = {
       <Button radius="xl">XLarge</Button>
       <Button radius="full">Full</Button>
     </div>
-  )
+  ),
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
-    children: "Disabled"
+    children: "Disabled",
   },
   play: async ({ canvas }) => {
     await expect(canvas.getByRole("button", { name: "Disabled" })).toHaveAttribute(
       "aria-disabled",
       "true"
     );
-  }
+  },
 };
 
 export const AsChildLink: Story = {
@@ -86,74 +98,103 @@ export const AsChildLink: Story = {
     </Button>
   ),
   play: async ({ canvas }) => {
-    await expect(canvas.getByRole("link", { name: "Read docs" })).toHaveAttribute(
-      "href",
-      "/docs"
-    );
-  }
+    await expect(canvas.getByRole("link", { name: "Read docs" })).toHaveAttribute("href", "/docs");
+  },
 };
 
 export const Loading: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button isLoading>Saving…</Button>
-      <Button isLoading variant="secondary">Processing…</Button>
-      <Button isLoading variant="destructive">Deleting…</Button>
+      <Button isLoading variant="secondary">
+        Processing…
+      </Button>
+      <Button isLoading variant="destructive">
+        Deleting…
+      </Button>
     </div>
-  )
+  ),
 };
 
 export const WithIcons: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button leftIcon={<Mail size={16} />}>Send email</Button>
-      <Button rightIcon={<ArrowRight size={16} />} variant="outline">Continue</Button>
-      <Button leftIcon={<Plus size={16} />} variant="secondary">New item</Button>
-      <Button leftIcon={<Trash2 size={16} />} variant="destructive">Delete</Button>
+      <Button rightIcon={<ArrowRight size={16} />} variant="outline">
+        Continue
+      </Button>
+      <Button leftIcon={<Plus size={16} />} variant="secondary">
+        New item
+      </Button>
+      <Button leftIcon={<Trash2 size={16} />} variant="destructive">
+        Delete
+      </Button>
     </div>
-  )
+  ),
 };
 
 export const IconsAllSizes: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
-      <Button size="xs" leftIcon={<Mail size={12} />}>xs</Button>
-      <Button size="sm" leftIcon={<Mail size={14} />}>sm</Button>
-      <Button size="md" leftIcon={<Mail size={16} />}>md</Button>
-      <Button size="lg" leftIcon={<Mail size={18} />}>lg</Button>
-      <Button size="xl" leftIcon={<Mail size={20} />}>xl</Button>
+      <Button size="xs" leftIcon={<Mail size={12} />}>
+        xs
+      </Button>
+      <Button size="sm" leftIcon={<Mail size={14} />}>
+        sm
+      </Button>
+      <Button size="md" leftIcon={<Mail size={16} />}>
+        md
+      </Button>
+      <Button size="lg" leftIcon={<Mail size={18} />}>
+        lg
+      </Button>
+      <Button size="xl" leftIcon={<Mail size={20} />}>
+        xl
+      </Button>
     </div>
-  )
+  ),
 };
 
 export const LoadingReplacesIcon: Story = {
   name: "Loading replaces leftIcon",
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Button leftIcon={<Mail size={16} />} isLoading={false}>Send email</Button>
-      <Button leftIcon={<Mail size={16} />} isLoading={true}>Send email</Button>
+      <Button leftIcon={<Mail size={16} />} isLoading={false}>
+        Send email
+      </Button>
+      <Button leftIcon={<Mail size={16} />} isLoading={true}>
+        Send email
+      </Button>
     </div>
-  )
+  ),
 };
 
 export const IconOnly: Story = {
   name: "Icon-only (size=icon)",
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
-      <Button size="icon" aria-label="Add"><Plus /></Button>
-      <Button size="icon" variant="secondary" aria-label="Send email"><Mail /></Button>
-      <Button size="icon" variant="destructive" aria-label="Delete"><Trash2 /></Button>
-      <Button size="icon" variant="outline" aria-label="Continue"><ArrowRight /></Button>
+      <Button size="icon" aria-label="Add">
+        <Plus />
+      </Button>
+      <Button size="icon" variant="secondary" aria-label="Send email">
+        <Mail />
+      </Button>
+      <Button size="icon" variant="destructive" aria-label="Delete">
+        <Trash2 />
+      </Button>
+      <Button size="icon" variant="outline" aria-label="Continue">
+        <ArrowRight />
+      </Button>
     </div>
-  )
+  ),
 };
 
 export const CssCheck: Story = {
   args: {
-    children: "Styled button"
+    children: "Styled button",
   },
   play: async ({ canvas }) => {
     const button = canvas.getByRole("button", { name: "Styled button" });
     await expect(getComputedStyle(button).borderRadius).toBe("6px");
-  }
+  },
 };

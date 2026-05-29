@@ -8,8 +8,8 @@ const meta: Meta<typeof TagsInput> = {
   tags: ["autodocs"],
   argTypes: {
     placeholder: { control: "text" },
-    disabled:    { control: "boolean" },
-    size:        { control: "select", options: ["xs","sm","md","lg","xl"] },
+    disabled: { control: "boolean" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
   },
 };
 export default meta;
@@ -40,11 +40,15 @@ export const WithMax: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 max-w-sm">
+    <div className="flex max-w-sm flex-col gap-3">
       {(["sm", "md", "lg"] as const).map((size) => (
-        <ControlledTagsInput key={size} initial={["hello"]} size={size} placeholder={`size="${size}"`} />
+        <ControlledTagsInput
+          key={size}
+          initial={["hello"]}
+          size={size}
+          placeholder={`size="${size}"`}
+        />
       ))}
     </div>
   ),
 };
-

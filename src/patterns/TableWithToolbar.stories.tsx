@@ -115,8 +115,12 @@ function UsersTableStory() {
           </Box>
           <Box style={{ marginLeft: "auto" }}>
             <Stack direction="row" gap={2}>
-              <Button variant="destructive" size="sm" leftIcon={<Trash2 style={smallIconStyle} />}>Delete</Button>
-              <Button size="sm" leftIcon={<Plus style={smallIconStyle} />}>Add user</Button>
+              <Button variant="destructive" size="sm" leftIcon={<Trash2 style={smallIconStyle} />}>
+                Delete
+              </Button>
+              <Button size="sm" leftIcon={<Plus style={smallIconStyle} />}>
+                Add user
+              </Button>
             </Stack>
           </Box>
         </Stack>
@@ -134,7 +138,12 @@ function UsersTableStory() {
             {paginated.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4}>
-                  <Text as="div" size="body-sm" color="muted" style={{ textAlign: "center", padding: "2rem 0" }}>
+                  <Text
+                    as="div"
+                    size="body-sm"
+                    color="muted"
+                    style={{ textAlign: "center", padding: "2rem 0" }}
+                  >
                     No users match your search.
                   </Text>
                 </TableCell>
@@ -142,11 +151,26 @@ function UsersTableStory() {
             ) : (
               paginated.map((user) => (
                 <TableRow key={user.id}>
-                  <TableCell><Text as="span" size="body-sm" weight="medium">{user.name}</Text></TableCell>
-                  <TableCell><Text as="span" size="body-sm" color="muted">{user.email}</Text></TableCell>
-                  <TableCell><Text as="span" size="body-sm">{user.role}</Text></TableCell>
                   <TableCell>
-                    <Badge variant={statusVariant[user.status as keyof typeof statusVariant]} size="sm">
+                    <Text as="span" size="body-sm" weight="medium">
+                      {user.name}
+                    </Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text as="span" size="body-sm" color="muted">
+                      {user.email}
+                    </Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text as="span" size="body-sm">
+                      {user.role}
+                    </Text>
+                  </TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={statusVariant[user.status as keyof typeof statusVariant]}
+                      size="sm"
+                    >
                       {user.status}
                     </Badge>
                   </TableCell>
@@ -158,24 +182,50 @@ function UsersTableStory() {
 
         <Stack direction="row" align="center" justify="between">
           <Text as="span" size="caption" color="muted">
-            Showing {Math.min((page - 1) * pageSize + 1, filtered.length)}–{Math.min(page * pageSize, filtered.length)} of {filtered.length}
+            Showing {Math.min((page - 1) * pageSize + 1, filtered.length)}–
+            {Math.min(page * pageSize, filtered.length)} of {filtered.length}
           </Text>
           <Pagination>
             <PaginationContent>
               <PaginationItem>
-                <PaginationPrevious href="#" aria-disabled={page === 1} onClick={(e) => { e.preventDefault(); setPage((p) => Math.max(1, p - 1)); }} />
+                <PaginationPrevious
+                  href="#"
+                  aria-disabled={page === 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage((p) => Math.max(1, p - 1));
+                  }}
+                />
               </PaginationItem>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) =>
                 p === 1 || p === totalPages || Math.abs(p - page) <= 1 ? (
                   <PaginationItem key={p}>
-                    <PaginationLink href="#" isActive={p === page} onClick={(e) => { e.preventDefault(); setPage(p); }}>{p}</PaginationLink>
+                    <PaginationLink
+                      href="#"
+                      isActive={p === page}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setPage(p);
+                      }}
+                    >
+                      {p}
+                    </PaginationLink>
                   </PaginationItem>
                 ) : Math.abs(p - page) === 2 ? (
-                  <PaginationItem key={`ellipsis-${p}`}><PaginationEllipsis /></PaginationItem>
+                  <PaginationItem key={`ellipsis-${p}`}>
+                    <PaginationEllipsis />
+                  </PaginationItem>
                 ) : null
               )}
               <PaginationItem>
-                <PaginationNext href="#" aria-disabled={page === totalPages} onClick={(e) => { e.preventDefault(); setPage((p) => Math.min(totalPages, p + 1)); }} />
+                <PaginationNext
+                  href="#"
+                  aria-disabled={page === totalPages}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage((p) => Math.min(totalPages, p + 1));
+                  }}
+                />
               </PaginationItem>
             </PaginationContent>
           </Pagination>

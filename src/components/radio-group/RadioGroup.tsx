@@ -29,18 +29,15 @@ const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
 >(({ className, ...props }, ref) => (
-  <RadioGroupPrimitive.Root
-    ref={ref}
-    className={cn("grid gap-2", className)}
-    {...props}
-  />
+  <RadioGroupPrimitive.Root ref={ref} className={cn("grid gap-2", className)} {...props} />
 ));
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
 // ─── RadioGroupItem ───────────────────────────────────────────────────────────
 
-export interface RadioGroupItemProps
-  extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
+export interface RadioGroupItemProps extends React.ComponentPropsWithoutRef<
+  typeof RadioGroupPrimitive.Item
+> {
   /** Visual label rendered next to the radio button. */
   label?: string;
   size?: Size;

@@ -7,9 +7,12 @@ const meta: Meta<typeof Progress> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    value:   { control: { type: "range", min: 0, max: 100, step: 1 } },
-    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
-    variant: { control: "select", options: ["default","success","warning","destructive","info"] },
+    value: { control: { type: "range", min: 0, max: 100, step: 1 } },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    variant: {
+      control: "select",
+      options: ["default", "success", "warning", "destructive", "info"],
+    },
   },
 };
 export default meta;
@@ -20,10 +23,10 @@ export const Indeterminate: Story = { render: () => <Progress className="w-[300p
 
 export const Variants: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 w-[300px]">
+    <div className="flex w-[300px] flex-col gap-3">
       {(["default", "success", "warning", "destructive", "info"] as const).map((v) => (
         <div key={v} className="space-y-1">
-          <p className="text-xs text-muted-foreground capitalize">{v}</p>
+          <p className="text-xs capitalize text-muted-foreground">{v}</p>
           <Progress value={65} variant={v} />
         </div>
       ))}
@@ -33,7 +36,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 w-[300px]">
+    <div className="flex w-[300px] flex-col gap-3">
       {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
         <div key={s} className="space-y-1">
           <p className="text-xs text-muted-foreground">{s}</p>

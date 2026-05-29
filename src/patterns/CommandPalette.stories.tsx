@@ -70,23 +70,53 @@ function RecentItem({ Icon, label, type }: { Icon: typeof Home; label: string; t
     <CommandItem style={{ gap: "0.75rem" }}>
       <Icon style={mutedIconStyle} />
       <span style={{ flex: 1 }}>{label}</span>
-      <Text as="span" size="caption" color="muted">{type}</Text>
+      <Text as="span" size="caption" color="muted">
+        {type}
+      </Text>
     </CommandItem>
   );
 }
 
-function NavigationItem({ Icon, label, shortcut, badge, onSelect }: { Icon: typeof Home; label: string; shortcut?: string; badge?: number; onSelect?: () => void }) {
+function NavigationItem({
+  Icon,
+  label,
+  shortcut,
+  badge,
+  onSelect,
+}: {
+  Icon: typeof Home;
+  label: string;
+  shortcut?: string;
+  badge?: number;
+  onSelect?: () => void;
+}) {
   return (
     <CommandItem style={{ gap: "0.75rem" }} onSelect={onSelect}>
       <Icon style={mutedIconStyle} />
       <span style={{ flex: 1 }}>{label}</span>
-      {badge && <Badge size="xs" variant="info">{badge}</Badge>}
+      {badge && (
+        <Badge size="xs" variant="info">
+          {badge}
+        </Badge>
+      )}
       {shortcut && <CommandShortcut>{shortcut}</CommandShortcut>}
     </CommandItem>
   );
 }
 
-function AccountItem({ Icon, label, shortcut, destructive, onSelect }: { Icon: typeof Home; label: string; shortcut?: string; destructive?: boolean; onSelect?: () => void }) {
+function AccountItem({
+  Icon,
+  label,
+  shortcut,
+  destructive,
+  onSelect,
+}: {
+  Icon: typeof Home;
+  label: string;
+  shortcut?: string;
+  destructive?: boolean;
+  onSelect?: () => void;
+}) {
   const color = destructive ? "hsl(var(--destructive))" : undefined;
 
   return (
@@ -115,7 +145,14 @@ function CommandContent({ close }: { close?: () => void }) {
 
         <CommandGroup heading="Navigate">
           {navigationItems.map(({ icon: Icon, label, shortcut, badge }) => (
-            <NavigationItem key={label} Icon={Icon} label={label} shortcut={shortcut} badge={badge} onSelect={close} />
+            <NavigationItem
+              key={label}
+              Icon={Icon}
+              label={label}
+              shortcut={shortcut}
+              badge={badge}
+              onSelect={close}
+            />
           ))}
         </CommandGroup>
 
@@ -123,7 +160,14 @@ function CommandContent({ close }: { close?: () => void }) {
 
         <CommandGroup heading="Account">
           {accountItems.map(({ icon: Icon, label, shortcut, destructive }) => (
-            <AccountItem key={label} Icon={Icon} label={label} shortcut={shortcut} destructive={destructive} onSelect={close} />
+            <AccountItem
+              key={label}
+              Icon={Icon}
+              label={label}
+              shortcut={shortcut}
+              destructive={destructive}
+              onSelect={close}
+            />
           ))}
         </CommandGroup>
       </CommandList>
@@ -156,7 +200,13 @@ export const Inline: Story = {
 
         <CommandGroup heading="Navigate">
           {navigationItems.map(({ icon: Icon, label, shortcut, badge }) => (
-            <NavigationItem key={label} Icon={Icon} label={label} shortcut={shortcut} badge={badge} />
+            <NavigationItem
+              key={label}
+              Icon={Icon}
+              label={label}
+              shortcut={shortcut}
+              badge={badge}
+            />
           ))}
         </CommandGroup>
 
@@ -164,7 +214,13 @@ export const Inline: Story = {
 
         <CommandGroup heading="Account">
           {accountItems.map(({ icon: Icon, label, shortcut, destructive }) => (
-            <AccountItem key={label} Icon={Icon} label={label} shortcut={shortcut} destructive={destructive} />
+            <AccountItem
+              key={label}
+              Icon={Icon}
+              label={label}
+              shortcut={shortcut}
+              destructive={destructive}
+            />
           ))}
         </CommandGroup>
       </CommandList>
@@ -180,11 +236,22 @@ export const Dialog: Story = {
     return (
       <Stack align="center" gap={4}>
         <Stack direction="row" align="center" gap={2}>
-          <Text as="span" size="body-sm" color="muted">Press</Text>
-          <Stack direction="row" align="center" gap={1}><Kbd>⌘</Kbd><Kbd>K</Kbd></Stack>
-          <Text as="span" size="body-sm" color="muted">or click the button to open</Text>
+          <Text as="span" size="body-sm" color="muted">
+            Press
+          </Text>
+          <Stack direction="row" align="center" gap={1}>
+            <Kbd>⌘</Kbd>
+            <Kbd>K</Kbd>
+          </Stack>
+          <Text as="span" size="body-sm" color="muted">
+            or click the button to open
+          </Text>
         </Stack>
-        <Button variant="outline" onClick={() => setOpen(true)} leftIcon={<Search style={{ width: 14, height: 14 }} />}>
+        <Button
+          variant="outline"
+          onClick={() => setOpen(true)}
+          leftIcon={<Search style={{ width: 14, height: 14 }} />}
+        >
           Search…
           <Box
             as="span"
@@ -198,7 +265,8 @@ export const Dialog: Story = {
               paddingLeft: "1rem",
             }}
           >
-            <Kbd size="xs">⌘</Kbd><Kbd size="xs">K</Kbd>
+            <Kbd size="xs">⌘</Kbd>
+            <Kbd size="xs">K</Kbd>
           </Box>
         </Button>
 

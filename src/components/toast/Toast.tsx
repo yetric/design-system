@@ -30,7 +30,7 @@ export function Toaster({
   closeButton = false,
   expand = false,
   duration = 4000,
-  className
+  className,
 }: ToasterProps) {
   return (
     <Sonner
@@ -44,8 +44,8 @@ export function Toaster({
         classNames: {
           toast: "font-sans",
           title: "font-medium",
-          description: "text-sm"
-        }
+          description: "text-sm",
+        },
       }}
     />
   );

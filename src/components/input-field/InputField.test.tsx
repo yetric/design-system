@@ -25,9 +25,7 @@ describe("InputField — input", () => {
   });
 
   it("hides helpText when error is shown", () => {
-    render(
-      <InputField label="Email" helpText="We respect your privacy" error="Invalid email" />
-    );
+    render(<InputField label="Email" helpText="We respect your privacy" error="Invalid email" />);
     expect(screen.queryByText("We respect your privacy")).not.toBeInTheDocument();
     expect(screen.getByText("Invalid email")).toBeInTheDocument();
   });

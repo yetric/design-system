@@ -7,7 +7,9 @@ import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../../lib/cn";
 
 export type ContextMenuProps = React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Root>;
-export type ContextMenuTriggerProps = React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Trigger>;
+export type ContextMenuTriggerProps = React.ComponentPropsWithoutRef<
+  typeof ContextMenuPrimitive.Trigger
+>;
 export type ContextMenuRadioGroupProps = React.ComponentPropsWithoutRef<
   typeof ContextMenuPrimitive.RadioGroup
 >;
@@ -18,7 +20,9 @@ export type ContextMenuContentProps = React.ComponentPropsWithoutRef<
 export type ContextMenuSubContentProps = React.ComponentPropsWithoutRef<
   typeof ContextMenuPrimitive.SubContent
 >;
-export type ContextMenuItemProps = React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Item> & {
+export type ContextMenuItemProps = React.ComponentPropsWithoutRef<
+  typeof ContextMenuPrimitive.Item
+> & {
   inset?: boolean;
 };
 export type ContextMenuCheckboxItemProps = React.ComponentPropsWithoutRef<
@@ -27,7 +31,9 @@ export type ContextMenuCheckboxItemProps = React.ComponentPropsWithoutRef<
 export type ContextMenuRadioItemProps = React.ComponentPropsWithoutRef<
   typeof ContextMenuPrimitive.RadioItem
 >;
-export type ContextMenuLabelProps = React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Label> & {
+export type ContextMenuLabelProps = React.ComponentPropsWithoutRef<
+  typeof ContextMenuPrimitive.Label
+> & {
   inset?: boolean;
 };
 export type ContextMenuSeparatorProps = React.ComponentPropsWithoutRef<
@@ -53,7 +59,7 @@ const ContextMenuContent = React.forwardRef<
     <ContextMenuPrimitive.Content
       ref={ref}
       className={cn(
-        "z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md outline-none",
+        "bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-hidden rounded-md border border-border p-1 shadow-md outline-none",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -141,7 +147,11 @@ const ContextMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <ContextMenuPrimitive.Label
     ref={ref}
-    className={cn("px-2 py-1.5 text-xs font-semibold text-muted-foreground", inset && "pl-8", className)}
+    className={cn(
+      "px-2 py-1.5 text-xs font-semibold text-muted-foreground",
+      inset && "pl-8",
+      className
+    )}
     {...props}
   />
 ));
@@ -186,7 +196,7 @@ const ContextMenuSubContent = React.forwardRef<
   <ContextMenuPrimitive.SubContent
     ref={ref}
     className={cn(
-      "z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md outline-none",
+      "bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-hidden rounded-md border border-border p-1 shadow-md outline-none",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -217,5 +227,5 @@ export {
   ContextMenuSub,
   ContextMenuSubTrigger,
   ContextMenuSubContent,
-  ContextMenuShortcut
+  ContextMenuShortcut,
 };

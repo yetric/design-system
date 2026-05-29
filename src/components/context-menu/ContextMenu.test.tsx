@@ -7,7 +7,7 @@ import {
   ContextMenuItem,
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
-  ContextMenuTrigger
+  ContextMenuTrigger,
 } from "./ContextMenu";
 
 describe("ContextMenu", () => {

@@ -2,14 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "./Table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./Table";
 
 // ─── Children mode ───────────────────────────────────────────────────────────
 
@@ -58,14 +51,14 @@ describe("Table — children mode", () => {
 type Row = { id: string; name: string; role: string };
 
 const data: Row[] = [
-  { id: "1", name: "Alice", role: "Admin"  },
-  { id: "2", name: "Bob",   role: "Viewer" },
-  { id: "3", name: "Carol", role: "Editor" }
+  { id: "1", name: "Alice", role: "Admin" },
+  { id: "2", name: "Bob", role: "Viewer" },
+  { id: "3", name: "Carol", role: "Editor" },
 ];
 
 const columns: ColumnDef<Row>[] = [
   { accessorKey: "name", header: "Name" },
-  { accessorKey: "role", header: "Role" }
+  { accessorKey: "role", header: "Role" },
 ];
 
 describe("Table — data-driven mode", () => {

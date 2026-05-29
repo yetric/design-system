@@ -81,16 +81,24 @@ function ProductCard({ product }: { product: Product }) {
     <Card variant="outlined" interactive tabIndex={0} style={{ overflow: "hidden" }}>
       <Box style={{ position: "relative" }}>
         <AspectRatio ratio={4 / 3}>
-          <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <img
+            src={product.image}
+            alt={product.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
         </AspectRatio>
         {product.badge && (
           <Box style={{ position: "absolute", top: 8, left: 8 }}>
-            <Badge size="sm" variant={product.badge.variant}>{product.badge.label}</Badge>
+            <Badge size="sm" variant={product.badge.variant}>
+              {product.badge.label}
+            </Badge>
           </Box>
         )}
         {discount && (
           <Box style={{ position: "absolute", top: 8, right: 8 }}>
-            <Badge size="sm" variant="destructive">−{discount}%</Badge>
+            <Badge size="sm" variant="destructive">
+              −{discount}%
+            </Badge>
           </Box>
         )}
       </Box>
@@ -105,19 +113,32 @@ function ProductCard({ product }: { product: Product }) {
         <Stack gap={2} style={{ gap: "0.375rem" }}>
           <Stack direction="row" align="center" gap={2}>
             <Rating value={product.rating} count={5} readOnly size="xs" />
-            <Text as="span" size="caption" color="muted">({product.reviewCount.toLocaleString()})</Text>
+            <Text as="span" size="caption" color="muted">
+              ({product.reviewCount.toLocaleString()})
+            </Text>
           </Stack>
           <Stack direction="row" align="center" gap={2}>
-            <Text as="span" weight="semibold">${product.price.toFixed(2)}</Text>
+            <Text as="span" weight="semibold">
+              ${product.price.toFixed(2)}
+            </Text>
             {product.originalPrice && (
-              <Text as="span" size="body-sm" color="muted" style={{ textDecoration: "line-through" }}>${product.originalPrice.toFixed(2)}</Text>
+              <Text
+                as="span"
+                size="body-sm"
+                color="muted"
+                style={{ textDecoration: "line-through" }}
+              >
+                ${product.originalPrice.toFixed(2)}
+              </Text>
             )}
           </Stack>
         </Stack>
       </CardContent>
 
       <CardFooter>
-        <Button fullWidth size="sm" leftIcon={<ShoppingCart style={{ width: 14, height: 14 }} />}>Add to cart</Button>
+        <Button fullWidth size="sm" leftIcon={<ShoppingCart style={{ width: 14, height: 14 }} />}>
+          Add to cart
+        </Button>
       </CardFooter>
     </Card>
   );
@@ -127,7 +148,9 @@ export const Default: Story = {
   render: () => (
     <Box p="xl">
       <Grid cols={{ base: 1, sm: 2, lg: 4 }} gap={4}>
-        {products.map((p) => <ProductCard key={p.id} product={p} />)}
+        {products.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
       </Grid>
     </Box>
   ),
@@ -145,7 +168,7 @@ export const Loading: Story = {
             </AspectRatio>
             <CardHeader style={{ paddingBottom: 4 }}>
               <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-3/4 mt-1" />
+              <Skeleton className="mt-1 h-4 w-3/4" />
             </CardHeader>
             <CardContent style={{ paddingBottom: 8 }}>
               <Stack gap={2}>
@@ -170,22 +193,41 @@ export const WithReviews: Story = {
       {products.slice(0, 1).map((p) => (
         <Card key={p.id} variant="outlined" style={{ overflow: "hidden" }}>
           <AspectRatio ratio={16 / 9}>
-            <img src={p.image} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img
+              src={p.image}
+              alt={p.name}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </AspectRatio>
           <CardHeader>
-            <Text as="div" weight="semibold">{p.name}</Text>
+            <Text as="div" weight="semibold">
+              {p.name}
+            </Text>
           </CardHeader>
           <CardContent>
             <Stack gap={3}>
               <Stack direction="row" align="center" gap={3}>
                 <Rating value={p.rating} count={5} readOnly size="sm" />
-                <Text as="span" size="body-sm" weight="semibold">{p.rating}.0</Text>
-                <Text as="span" size="body-sm" color="muted">· {p.reviewCount.toLocaleString()} reviews</Text>
+                <Text as="span" size="body-sm" weight="semibold">
+                  {p.rating}.0
+                </Text>
+                <Text as="span" size="body-sm" color="muted">
+                  · {p.reviewCount.toLocaleString()} reviews
+                </Text>
               </Stack>
               {[5, 4, 3, 2, 1].map((star) => (
                 <Stack key={star} direction="row" align="center" gap={2}>
-                  <Text as="span" size="caption" color="muted" style={{ width: 12 }}>{star}</Text>
-                  <Star style={{ width: 12, height: 12, color: "hsl(var(--warning))", fill: "currentColor" }} />
+                  <Text as="span" size="caption" color="muted" style={{ width: 12 }}>
+                    {star}
+                  </Text>
+                  <Star
+                    style={{
+                      width: 12,
+                      height: 12,
+                      color: "hsl(var(--warning))",
+                      fill: "currentColor",
+                    }}
+                  />
                   <Box
                     grow
                     radius="full"
@@ -201,13 +243,22 @@ export const WithReviews: Story = {
                       }}
                     />
                   </Box>
-                  <Text as="span" size="caption" color="muted" style={{ width: 24, textAlign: "right" }}>{[60, 20, 10, 5, 5][5 - star]}%</Text>
+                  <Text
+                    as="span"
+                    size="caption"
+                    color="muted"
+                    style={{ width: 24, textAlign: "right" }}
+                  >
+                    {[60, 20, 10, 5, 5][5 - star]}%
+                  </Text>
                 </Stack>
               ))}
             </Stack>
           </CardContent>
           <CardFooter>
-            <Button fullWidth leftIcon={<ShoppingCart style={{ width: 14, height: 14 }} />}>Add to cart — ${p.price}</Button>
+            <Button fullWidth leftIcon={<ShoppingCart style={{ width: 14, height: 14 }} />}>
+              Add to cart — ${p.price}
+            </Button>
           </CardFooter>
         </Card>
       ))}

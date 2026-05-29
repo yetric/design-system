@@ -11,8 +11,7 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: "bg-transparent",
-        outline:
-          "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
+        outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
       },
       size: {
         sm: "h-8 px-2.5 text-xs [&_svg]:size-3.5",
@@ -25,21 +24,21 @@ const toggleVariants = cva(
 );
 
 export interface ToggleProps
-  extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,
+  extends
+    React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,
     VariantProps<typeof toggleVariants> {
   radius?: Radius;
 }
 
-const Toggle = React.forwardRef<
-  React.ElementRef<typeof TogglePrimitive.Root>,
-  ToggleProps
->(({ className, variant, size, radius = "md", ...props }, ref) => (
-  <TogglePrimitive.Root
-    ref={ref}
-    className={cn(toggleVariants({ variant, size }), radiusClass[radius], className)}
-    {...props}
-  />
-));
+const Toggle = React.forwardRef<React.ElementRef<typeof TogglePrimitive.Root>, ToggleProps>(
+  ({ className, variant, size, radius = "md", ...props }, ref) => (
+    <TogglePrimitive.Root
+      ref={ref}
+      className={cn(toggleVariants({ variant, size }), radiusClass[radius], className)}
+      {...props}
+    />
+  )
+);
 Toggle.displayName = "Toggle";
 
 // ─── ToggleGroup ──────────────────────────────────────────────────────────────
@@ -51,9 +50,7 @@ const ToggleGroupContext = React.createContext<ToggleGroupContextValue>({
   radius: "md",
 });
 
-type ToggleGroupProps = React.ComponentPropsWithoutRef<
-  typeof ToggleGroupPrimitive.Root
-> &
+type ToggleGroupProps = React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> &
   VariantProps<typeof toggleVariants> & { radius?: Radius };
 
 const ToggleGroup = React.forwardRef<

@@ -24,7 +24,11 @@ describe("Paper", () => {
   });
 
   it("renders as a different element", () => {
-    render(<Paper as="section" aria-label="test-section">Content</Paper>);
+    render(
+      <Paper as="section" aria-label="test-section">
+        Content
+      </Paper>
+    );
     expect(screen.getByRole("region", { name: "test-section" })).toBeInTheDocument();
   });
 });

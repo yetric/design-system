@@ -24,24 +24,16 @@ const PaginationRoot = ({ className, ...props }: React.ComponentProps<"nav">) =>
 );
 PaginationRoot.displayName = "Pagination";
 
-const PaginationContent = React.forwardRef<
-  HTMLUListElement,
-  React.ComponentProps<"ul">
->(({ className, ...props }, ref) => (
-  <ul
-    ref={ref}
-    className={cn("flex flex-row items-center gap-1", className)}
-    {...props}
-  />
-));
+const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProps<"ul">>(
+  ({ className, ...props }, ref) => (
+    <ul ref={ref} className={cn("flex flex-row items-center gap-1", className)} {...props} />
+  )
+);
 PaginationContent.displayName = "PaginationContent";
 
-const PaginationItem = React.forwardRef<
-  HTMLLIElement,
-  React.ComponentProps<"li">
->(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("", className)} {...props} />
-));
+const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<"li">>(
+  ({ className, ...props }, ref) => <li ref={ref} className={cn("", className)} {...props} />
+);
 PaginationItem.displayName = "PaginationItem";
 
 export type PaginationLinkProps = {
@@ -64,12 +56,17 @@ const PaginationLink = ({ className, isActive, size = "md", ...props }: Paginati
 );
 PaginationLink.displayName = "PaginationLink";
 
-const PaginationPrevious = ({ className, size, disabled, ...props }: React.ComponentProps<"a"> & { size?: Size; disabled?: boolean }) => (
+const PaginationPrevious = ({
+  className,
+  size,
+  disabled,
+  ...props
+}: React.ComponentProps<"a"> & { size?: Size; disabled?: boolean }) => (
   <PaginationLink
     aria-label="Go to previous page"
     aria-disabled={disabled || undefined}
     size={size}
-    className={cn("gap-1 w-auto px-3", disabled && "pointer-events-none opacity-50", className)}
+    className={cn("w-auto gap-1 px-3", disabled && "pointer-events-none opacity-50", className)}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
@@ -78,12 +75,17 @@ const PaginationPrevious = ({ className, size, disabled, ...props }: React.Compo
 );
 PaginationPrevious.displayName = "PaginationPrevious";
 
-const PaginationNext = ({ className, size, disabled, ...props }: React.ComponentProps<"a"> & { size?: Size; disabled?: boolean }) => (
+const PaginationNext = ({
+  className,
+  size,
+  disabled,
+  ...props
+}: React.ComponentProps<"a"> & { size?: Size; disabled?: boolean }) => (
   <PaginationLink
     aria-label="Go to next page"
     aria-disabled={disabled || undefined}
     size={size}
-    className={cn("gap-1 w-auto px-3", disabled && "pointer-events-none opacity-50", className)}
+    className={cn("w-auto gap-1 px-3", disabled && "pointer-events-none opacity-50", className)}
     {...props}
   >
     <span>Next</span>
@@ -92,7 +94,11 @@ const PaginationNext = ({ className, size, disabled, ...props }: React.Component
 );
 PaginationNext.displayName = "PaginationNext";
 
-const PaginationEllipsis = ({ className, size = "md", ...props }: React.ComponentProps<"span"> & { size?: Size }) => (
+const PaginationEllipsis = ({
+  className,
+  size = "md",
+  ...props
+}: React.ComponentProps<"span"> & { size?: Size }) => (
   <span
     aria-hidden
     className={cn("flex items-center justify-center", paginationItemSizeClass[size], className)}

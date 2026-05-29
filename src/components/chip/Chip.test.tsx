@@ -25,7 +25,11 @@ describe("Chip", () => {
 
   it("calls onChange with toggled value on click", async () => {
     const onChange = vi.fn();
-    render(<Chip checked={false} onChange={onChange}>React</Chip>);
+    render(
+      <Chip checked={false} onChange={onChange}>
+        React
+      </Chip>
+    );
     await userEvent.click(screen.getByRole("checkbox"));
     expect(onChange).toHaveBeenCalledWith(true);
   });

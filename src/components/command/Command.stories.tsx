@@ -12,7 +12,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut
+  CommandShortcut,
 } from "./Command";
 
 const meta = {
@@ -63,7 +63,7 @@ function CommandPalette() {
 }
 
 export const Default: Story = {
-  render: () => <CommandPalette />
+  render: () => <CommandPalette />,
 };
 
 export const WithDialog: Story = {
@@ -88,7 +88,7 @@ export const WithDialog: Story = {
         </CommandDialog>
       </div>
     );
-  }
+  },
 };
 
 export const WithGroups: Story = {
@@ -109,5 +109,5 @@ export const WithGroups: Story = {
         </CommandGroup>
       </CommandList>
     </Command>
-  )
+  ),
 };

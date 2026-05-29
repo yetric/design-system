@@ -9,7 +9,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut
+  CommandShortcut,
 } from "./Command";
 
 describe("Command", () => {

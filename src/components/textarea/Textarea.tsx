@@ -32,7 +32,10 @@ const helperSizeClass: Record<Size, string> = {
   xl: "text-sm",
 };
 
-export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
+export interface TextareaProps extends Omit<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  "size"
+> {
   /** Visual label rendered above the textarea */
   label?: string;
   /** Helper text shown below the textarea */
@@ -116,7 +119,11 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           </p>
         )}
         {typeof error === "string" && (
-          <p id={errorId} role="alert" className={cn("mt-1 text-destructive", helperSizeClass[size])}>
+          <p
+            id={errorId}
+            role="alert"
+            className={cn("mt-1 text-destructive", helperSizeClass[size])}
+          >
             {error}
           </p>
         )}

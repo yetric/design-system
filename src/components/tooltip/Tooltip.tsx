@@ -5,8 +5,16 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "../../lib/cn";
 
 /** Wraps @radix-ui/react-tooltip Provider with sensible defaults for delay. */
-const TooltipProvider = ({ delayDuration = 400, skipDelayDuration = 300, ...props }: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>) => (
-  <TooltipPrimitive.Provider delayDuration={delayDuration} skipDelayDuration={skipDelayDuration} {...props} />
+const TooltipProvider = ({
+  delayDuration = 400,
+  skipDelayDuration = 300,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>) => (
+  <TooltipPrimitive.Provider
+    delayDuration={delayDuration}
+    skipDelayDuration={skipDelayDuration}
+    {...props}
+  />
 );
 TooltipProvider.displayName = "TooltipProvider";
 

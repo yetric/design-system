@@ -8,14 +8,14 @@ type SeparatorThickness = "thin" | "medium" | "thick";
 type SeparatorColor = "border" | "muted" | "accent";
 
 const thicknessClass: Record<SeparatorThickness, Record<"horizontal" | "vertical", string>> = {
-  thin:   { horizontal: "h-px",  vertical: "w-px" },
+  thin: { horizontal: "h-px", vertical: "w-px" },
   medium: { horizontal: "h-0.5", vertical: "w-0.5" },
-  thick:  { horizontal: "h-1",   vertical: "w-1" },
+  thick: { horizontal: "h-1", vertical: "w-1" },
 };
 
 const colorClass: Record<SeparatorColor, string> = {
   border: "bg-border",
-  muted:  "bg-muted",
+  muted: "bg-muted",
   accent: "bg-accent",
 };
 
@@ -27,7 +27,17 @@ export interface SeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
-  ({ className, orientation = "horizontal", decorative = true, thickness = "thin", color = "border", ...props }, ref) => (
+  (
+    {
+      className,
+      orientation = "horizontal",
+      decorative = true,
+      thickness = "thin",
+      color = "border",
+      ...props
+    },
+    ref
+  ) => (
     <div
       ref={ref}
       role={decorative ? "none" : "separator"}

@@ -35,11 +35,12 @@ const alertDialogSizeClass: Record<string, string> = {
   xl: "max-w-4xl",
 };
 
-export type AlertDialogContentProps =
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content> & {
-    radius?: Radius;
-    size?: "sm" | "md" | "lg" | "xl";
-  };
+export type AlertDialogContentProps = React.ComponentPropsWithoutRef<
+  typeof AlertDialogPrimitive.Content
+> & {
+  radius?: Radius;
+  size?: "sm" | "md" | "lg" | "xl";
+};
 
 const AlertDialogContent = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Content>,
@@ -73,7 +74,10 @@ const AlertDialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
 AlertDialogHeader.displayName = "AlertDialogHeader";
 
 const AlertDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)} {...props} />
+  <div
+    className={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)}
+    {...props}
+  />
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
 

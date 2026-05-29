@@ -12,7 +12,11 @@ import {
 
 describe("Pagination", () => {
   it("renders nav with pagination role", () => {
-    render(<Pagination><PaginationContent /></Pagination>);
+    render(
+      <Pagination>
+        <PaginationContent />
+      </Pagination>
+    );
     expect(screen.getByRole("navigation", { name: "pagination" })).toBeInTheDocument();
   });
 
@@ -20,9 +24,17 @@ describe("Pagination", () => {
     render(
       <Pagination>
         <PaginationContent>
-          <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              2
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
         </PaginationContent>
       </Pagination>
     );
@@ -35,7 +47,11 @@ describe("Pagination", () => {
     render(
       <Pagination>
         <PaginationContent>
-          <PaginationItem><PaginationLink isActive href="#">2</PaginationLink></PaginationItem>
+          <PaginationItem>
+            <PaginationLink isActive href="#">
+              2
+            </PaginationLink>
+          </PaginationItem>
         </PaginationContent>
       </Pagination>
     );
@@ -46,8 +62,12 @@ describe("Pagination", () => {
     render(
       <Pagination>
         <PaginationContent>
-          <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-          <PaginationItem><PaginationNext href="#" /></PaginationItem>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
         </PaginationContent>
       </Pagination>
     );
@@ -59,7 +79,9 @@ describe("Pagination", () => {
     render(
       <Pagination>
         <PaginationContent>
-          <PaginationItem><PaginationEllipsis /></PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
         </PaginationContent>
       </Pagination>
     );

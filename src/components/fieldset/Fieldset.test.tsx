@@ -13,7 +13,11 @@ describe("Fieldset", () => {
   });
 
   it("renders legend when provided", () => {
-    render(<Fieldset legend="Personal info"><span>content</span></Fieldset>);
+    render(
+      <Fieldset legend="Personal info">
+        <span>content</span>
+      </Fieldset>
+    );
     expect(screen.getByText("Personal info")).toBeInTheDocument();
   });
 
@@ -27,7 +31,11 @@ describe("Fieldset", () => {
   });
 
   it("renders as a fieldset element", () => {
-    const { container } = render(<Fieldset><span>x</span></Fieldset>);
+    const { container } = render(
+      <Fieldset>
+        <span>x</span>
+      </Fieldset>
+    );
     expect(container.querySelector("fieldset")).toBeInTheDocument();
   });
 });

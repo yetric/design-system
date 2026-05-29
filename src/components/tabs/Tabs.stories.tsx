@@ -23,9 +23,19 @@ export const Default: Story = {
   render: () => (
     <Tabs defaultValue="overview" className="w-[400px]">
       <TabsList>
-        {items.map((i) => <TabsTrigger key={i.value} value={i.value} disabled={i.disabled}>{i.label}</TabsTrigger>)}
+        {items.map((i) => (
+          <TabsTrigger key={i.value} value={i.value} disabled={i.disabled}>
+            {i.label}
+          </TabsTrigger>
+        ))}
       </TabsList>
-      {items.map((i) => <TabsContent key={i.value} value={i.value}><Card><CardContent className="pt-4">{i.content}</CardContent></Card></TabsContent>)}
+      {items.map((i) => (
+        <TabsContent key={i.value} value={i.value}>
+          <Card>
+            <CardContent className="pt-4">{i.content}</CardContent>
+          </Card>
+        </TabsContent>
+      ))}
     </Tabs>
   ),
 };
@@ -34,9 +44,21 @@ export const Underline: Story = {
   render: () => (
     <Tabs defaultValue="overview" className="w-[400px]">
       <TabsList variant="underline">
-        {items.filter(i => !i.disabled).map((i) => <TabsTrigger key={i.value} value={i.value} variant="underline">{i.label}</TabsTrigger>)}
+        {items
+          .filter((i) => !i.disabled)
+          .map((i) => (
+            <TabsTrigger key={i.value} value={i.value} variant="underline">
+              {i.label}
+            </TabsTrigger>
+          ))}
       </TabsList>
-      {items.filter(i => !i.disabled).map((i) => <TabsContent key={i.value} value={i.value}><p className="pt-4 text-sm">{i.content}</p></TabsContent>)}
+      {items
+        .filter((i) => !i.disabled)
+        .map((i) => (
+          <TabsContent key={i.value} value={i.value}>
+            <p className="pt-4 text-sm">{i.content}</p>
+          </TabsContent>
+        ))}
     </Tabs>
   ),
 };
@@ -45,9 +67,21 @@ export const Pills: Story = {
   render: () => (
     <Tabs defaultValue="overview" className="w-[400px]">
       <TabsList variant="pills">
-        {items.filter(i => !i.disabled).map((i) => <TabsTrigger key={i.value} value={i.value} variant="pills">{i.label}</TabsTrigger>)}
+        {items
+          .filter((i) => !i.disabled)
+          .map((i) => (
+            <TabsTrigger key={i.value} value={i.value} variant="pills">
+              {i.label}
+            </TabsTrigger>
+          ))}
       </TabsList>
-      {items.filter(i => !i.disabled).map((i) => <TabsContent key={i.value} value={i.value}><p className="pt-4 text-sm">{i.content}</p></TabsContent>)}
+      {items
+        .filter((i) => !i.disabled)
+        .map((i) => (
+          <TabsContent key={i.value} value={i.value}>
+            <p className="pt-4 text-sm">{i.content}</p>
+          </TabsContent>
+        ))}
     </Tabs>
   ),
 };
@@ -61,9 +95,17 @@ export const Sizes: Story = {
           <p className="text-xs text-muted-foreground">size: {s}</p>
           <Tabs defaultValue="overview" className="w-[400px]">
             <TabsList size={s}>
-              {items.slice(0, 3).map((i) => <TabsTrigger key={i.value} value={i.value} size={s}>{i.label}</TabsTrigger>)}
+              {items.slice(0, 3).map((i) => (
+                <TabsTrigger key={i.value} value={i.value} size={s}>
+                  {i.label}
+                </TabsTrigger>
+              ))}
             </TabsList>
-            {items.slice(0, 3).map((i) => <TabsContent key={i.value} value={i.value}><p className="pt-4 text-sm">{i.content}</p></TabsContent>)}
+            {items.slice(0, 3).map((i) => (
+              <TabsContent key={i.value} value={i.value}>
+                <p className="pt-4 text-sm">{i.content}</p>
+              </TabsContent>
+            ))}
           </Tabs>
         </div>
       ))}

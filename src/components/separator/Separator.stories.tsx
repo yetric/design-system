@@ -7,9 +7,9 @@ const meta = {
   component: Separator,
   tags: ["autodocs"],
   argTypes: {
-    orientation: { control: "select", options: ["horizontal","vertical"] },
-    thickness:   { control: "select", options: ["thin","medium","thick"] },
-    color:       { control: "select", options: ["border","muted","accent"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    thickness: { control: "select", options: ["thin", "medium", "thick"] },
+    color: { control: "select", options: ["border", "muted", "accent"] },
   },
 } satisfies Meta<typeof Separator>;
 
@@ -23,7 +23,7 @@ export const Horizontal: Story = {
       <Separator className="my-4" />
       <p className="text-sm">Below the line</p>
     </div>
-  )
+  ),
 };
 
 export const Vertical: Story = {
@@ -33,7 +33,7 @@ export const Vertical: Story = {
       <Separator orientation="vertical" />
       <span className="text-sm">Right</span>
     </div>
-  )
+  ),
 };
 
 export const Thickness: Story = {
@@ -41,7 +41,7 @@ export const Thickness: Story = {
     <div className="w-64 space-y-4">
       {(["thin", "medium", "thick"] as const).map((t) => (
         <div key={t}>
-          <p className="text-xs text-muted-foreground mb-1">{t}</p>
+          <p className="mb-1 text-xs text-muted-foreground">{t}</p>
           <Separator thickness={t} />
         </div>
       ))}
@@ -54,7 +54,7 @@ export const Colors: Story = {
     <div className="w-64 space-y-4">
       {(["border", "muted", "accent"] as const).map((c) => (
         <div key={c}>
-          <p className="text-xs text-muted-foreground mb-1">{c}</p>
+          <p className="mb-1 text-xs text-muted-foreground">{c}</p>
           <Separator color={c} thickness="medium" />
         </div>
       ))}
@@ -65,10 +65,12 @@ export const Colors: Story = {
 export const InMenu: Story = {
   render: () => (
     <div className="w-48 rounded-md border border-border p-1 text-sm">
-      <div className="px-2 py-1.5 hover:bg-accent rounded-sm cursor-default">Profile</div>
-      <div className="px-2 py-1.5 hover:bg-accent rounded-sm cursor-default">Settings</div>
+      <div className="cursor-default rounded-sm px-2 py-1.5 hover:bg-accent">Profile</div>
+      <div className="cursor-default rounded-sm px-2 py-1.5 hover:bg-accent">Settings</div>
       <Separator className="my-1" />
-      <div className="px-2 py-1.5 hover:bg-accent rounded-sm cursor-default text-destructive">Sign out</div>
+      <div className="cursor-default rounded-sm px-2 py-1.5 text-destructive hover:bg-accent">
+        Sign out
+      </div>
     </div>
-  )
+  ),
 };

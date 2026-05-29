@@ -9,12 +9,25 @@ const meta: Meta<typeof Box> = {
     layout: "padded",
   },
   argTypes: {
-    p:      { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
-    px:     { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
-    py:     { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
-    m:      { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    p: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    px: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    py: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
+    m: { control: "select", options: ["none", "xs", "sm", "md", "lg", "xl"] },
     shadow: { control: "select", options: ["none", "sm", "md", "lg", "xl"] },
-    display: { control: "select", options: ["block", "inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "hidden", "contents"] },
+    display: {
+      control: "select",
+      options: [
+        "block",
+        "inline",
+        "inline-block",
+        "flex",
+        "inline-flex",
+        "grid",
+        "inline-grid",
+        "hidden",
+        "contents",
+      ],
+    },
   },
 };
 
@@ -53,9 +66,15 @@ export const FlexContainer: Story = {
     className: "gap-4 items-center bg-muted rounded",
     children: (
       <>
-        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">Item 1</Box>
-        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">Item 2</Box>
-        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">Item 3</Box>
+        <Box p="sm" className="rounded bg-primary text-sm text-primary-foreground">
+          Item 1
+        </Box>
+        <Box p="sm" className="rounded bg-primary text-sm text-primary-foreground">
+          Item 2
+        </Box>
+        <Box p="sm" className="rounded bg-primary text-sm text-primary-foreground">
+          Item 3
+        </Box>
       </>
     ),
   },
@@ -63,9 +82,9 @@ export const FlexContainer: Story = {
 
 export const ShadowTokens: Story = {
   render: () => (
-    <Box display="flex" className="gap-4 flex-col">
+    <Box display="flex" className="flex-col gap-4">
       {(["none", "sm", "md", "lg", "xl"] as const).map((s) => (
-        <Box key={s} p="md" shadow={s} className="bg-card border rounded-lg text-sm">
+        <Box key={s} p="md" shadow={s} className="rounded-lg border bg-card text-sm">
           shadow="{s}"
         </Box>
       ))}
@@ -75,9 +94,9 @@ export const ShadowTokens: Story = {
 
 export const SpacingTokens: Story = {
   render: () => (
-    <Box display="flex" className="gap-4 flex-col">
+    <Box display="flex" className="flex-col gap-4">
       {(["none", "xs", "sm", "md", "lg", "xl"] as const).map((size) => (
-        <Box key={size} p={size} className="bg-muted rounded text-sm">
+        <Box key={size} p={size} className="rounded bg-muted text-sm">
           p="{size}"
         </Box>
       ))}
@@ -87,11 +106,17 @@ export const SpacingTokens: Story = {
 
 export const NestedBoxes: Story = {
   render: () => (
-    <Box p="lg" className="bg-muted rounded-lg">
-      <Box mb="md" className="text-lg font-semibold">Outer Box</Box>
+    <Box p="lg" className="rounded-lg bg-muted">
+      <Box mb="md" className="text-lg font-semibold">
+        Outer Box
+      </Box>
       <Box display="flex" className="gap-4">
-        <Box p="md" className="flex-1 bg-background border rounded">Inner 1</Box>
-        <Box p="md" className="flex-1 bg-background border rounded">Inner 2</Box>
+        <Box p="md" className="flex-1 rounded border bg-background">
+          Inner 1
+        </Box>
+        <Box p="md" className="flex-1 rounded border bg-background">
+          Inner 2
+        </Box>
       </Box>
     </Box>
   ),
@@ -104,7 +129,9 @@ export const AsArticle: Story = {
     className: "bg-card border rounded-lg",
     children: (
       <Box>
-        <Box as="h2" mb="sm" className="text-xl font-bold">Article Title</Box>
+        <Box as="h2" mb="sm" className="text-xl font-bold">
+          Article Title
+        </Box>
         <Box as="p" className="text-muted-foreground">
           Use the <code>as</code> prop to render semantic HTML with design token spacing.
         </Box>

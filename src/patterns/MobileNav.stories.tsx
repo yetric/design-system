@@ -109,7 +109,12 @@ export const HamburgerDrawer: Story = {
           </Box>
           <DrawerFooter>
             <Separator />
-            <Stack direction="row" align="center" justify="between" style={{ paddingTop: "0.75rem" }}>
+            <Stack
+              direction="row"
+              align="center"
+              justify="between"
+              style={{ paddingTop: "0.75rem" }}
+            >
               <Stack direction="row" align="center" gap={3}>
                 <Avatar alt="Taylor Green" fallback="TG" size="sm" />
                 <Box>
@@ -150,15 +155,25 @@ export const BottomNav: Story = {
       <PhoneFrame>
         <Box style={{ height: "100%", padding: "1.5rem 1rem 5.5rem" }}>
           <Stack gap={4}>
-            <Text as="p" size="caption" color="muted" style={{ textTransform: "uppercase", letterSpacing: "0.08em" }}>
+            <Text
+              as="p"
+              size="caption"
+              color="muted"
+              style={{ textTransform: "uppercase", letterSpacing: "0.08em" }}
+            >
               Mobile pattern
             </Text>
             <Text as="p" weight="bold" style={{ fontSize: 24, lineHeight: 1.2 }}>
               {active?.label}
             </Text>
-            <Box radius="lg" p="md" style={{ background: "hsl(var(--muted))", border: "1px solid hsl(var(--border))" }}>
+            <Box
+              radius="lg"
+              p="md"
+              style={{ background: "hsl(var(--muted))", border: "1px solid hsl(var(--border))" }}
+            >
               <Text as="p" size="body-sm" color="muted">
-                This screen keeps primary destinations pinned to the bottom edge for thumb-friendly access.
+                This screen keeps primary destinations pinned to the bottom edge for thumb-friendly
+                access.
               </Text>
             </Box>
           </Stack>
@@ -188,7 +203,13 @@ export const BottomNav: Story = {
                 aria-pressed={isActive}
                 style={{ flex: 1, height: "100%" }}
               >
-                <Stack direction="column" gap={1} align="center" justify="center" style={{ width: "100%" }}>
+                <Stack
+                  direction="column"
+                  gap={1}
+                  align="center"
+                  justify="center"
+                  style={{ width: "100%" }}
+                >
                   {tab.icon}
                   <Text as="span" size="caption" weight={isActive ? "semibold" : "medium"}>
                     {tab.label}

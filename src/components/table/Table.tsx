@@ -17,7 +17,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 
 import { cn } from "../../lib/cn";
@@ -25,13 +25,7 @@ import { Button } from "../button/Button";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Input } from "../input/Input";
 import { Skeleton } from "../skeleton/Skeleton";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "../select/Select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../select/Select";
 
 // ─── Module augmentation ────────────────────────────────────────────────────
 
@@ -106,7 +100,7 @@ const TableContext = createContext<TableContextValue>({
   density: "default",
   borders: "rows",
   striped: false,
-  stickyHeader: false
+  stickyHeader: false,
 });
 
 const useTableContext = () => useContext(TableContext);
@@ -114,15 +108,15 @@ const useTableContext = () => useContext(TableContext);
 // ─── Density maps ───────────────────────────────────────────────────────────
 
 const cellPadding: Record<TableDensity, string> = {
-  compact:     "px-3 py-1.5",
-  default:     "px-4 py-3",
-  comfortable: "px-4 py-5"
+  compact: "px-3 py-1.5",
+  default: "px-4 py-3",
+  comfortable: "px-4 py-5",
 };
 
 const headPadding: Record<TableDensity, string> = {
-  compact:     "h-9 px-3",
-  default:     "h-11 px-4",
-  comfortable: "h-14 px-4"
+  compact: "h-9 px-3",
+  default: "h-11 px-4",
+  comfortable: "h-14 px-4",
 };
 
 // ─── Primitive sub-components ────────────────────────────────────────────────
@@ -166,26 +160,25 @@ const TableFooter = React.forwardRef<
 ));
 TableFooter.displayName = "TableFooter";
 
-const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => {
-  const { borders, striped } = useTableContext();
-  return (
-    <tr
-      ref={ref}
-      className={cn(
-        "transition-colors",
-        (borders === "rows" || borders === "grid") && "border-b",
-        "hover:bg-muted/50",
-        striped && "even:bg-muted/30",
-        "data-[selected]:!bg-muted",
-        className
-      )}
-      {...props}
-    />
-  );
-});
+const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(
+  ({ className, ...props }, ref) => {
+    const { borders, striped } = useTableContext();
+    return (
+      <tr
+        ref={ref}
+        className={cn(
+          "transition-colors",
+          (borders === "rows" || borders === "grid") && "border-b",
+          "hover:bg-muted/50",
+          striped && "even:bg-muted/30",
+          "data-[selected]:!bg-muted",
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
 TableRow.displayName = "TableRow";
 
 const TableHead = React.forwardRef<
@@ -233,11 +226,7 @@ const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
   React.HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref) => (
-  <caption
-    ref={ref}
-    className={cn("mt-4 text-sm text-muted-foreground", className)}
-    {...props}
-  />
+  <caption ref={ref} className={cn("mt-4 text-sm text-muted-foreground", className)} {...props} />
 ));
 TableCaption.displayName = "TableCaption";
 
@@ -327,7 +316,9 @@ function ColumnFilter<TData>({ column }: { column: Column<TData> }) {
         <SelectContent>
           <SelectItem value="__all__">All</SelectItem>
           {options.map((opt) => (
-            <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+            <SelectItem key={opt} value={opt}>
+              {opt}
+            </SelectItem>
           ))}
         </SelectContent>
       </Select>
@@ -373,7 +364,7 @@ function DataMode<TData>({
   borders = "rows",
   striped = false,
   stickyHeader = false,
-  className
+  className,
 }: TableDataModeProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -428,7 +419,7 @@ function DataMode<TData>({
         />
       ),
       enableSorting: false,
-      enableHiding: false
+      enableHiding: false,
     };
     return [selectCol, ...columns];
   }, [columns, selectable]);
@@ -440,10 +431,13 @@ function DataMode<TData>({
       return {
         ...col,
         filterFn:
-          ft === "date"   ? ("dateRange" as const)     :
-          ft === "number" ? ("inNumberRange" as const) :
-          ft === "select" ? ("equals" as const)        :
-                            ("includesString" as const)
+          ft === "date"
+            ? ("dateRange" as const)
+            : ft === "number"
+              ? ("inNumberRange" as const)
+              : ft === "select"
+                ? ("equals" as const)
+                : ("includesString" as const),
       };
     });
   }, [allColumns]);
@@ -464,13 +458,13 @@ function DataMode<TData>({
     getPaginationRowModel: getPaginationRowModel(),
     initialState: { pagination: { pageSize: pageSize ?? 999999 } },
     enableRowSelection: selectable,
-    autoResetPageIndex: true
+    autoResetPageIndex: true,
   });
 
   const selectedCount = Object.keys(rowSelection).length;
   const hideable = table.getAllLeafColumns().filter((col) => col.getCanHide());
   const activeFilterCount = columnFilters.length;
-  const leafHeaders = (table.getHeaderGroups().slice(-1)[0]?.headers) ?? [];
+  const leafHeaders = table.getHeaderGroups().slice(-1)[0]?.headers ?? [];
 
   return (
     <div className={cn("space-y-3", className)}>
@@ -622,8 +616,7 @@ function DataMode<TData>({
       {pageSize && (
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">
-            Page {table.getState().pagination.pageIndex + 1} of{" "}
-            {Math.max(1, table.getPageCount())}
+            Page {table.getState().pagination.pageIndex + 1} of {Math.max(1, table.getPageCount())}
           </span>
           <div className="flex gap-2">
             <Button
@@ -668,10 +661,7 @@ function Table<TData = unknown>(props: TableProps<TData>) {
   return (
     <TableContext.Provider value={{ density, borders, striped, stickyHeader }}>
       <div className="relative w-full overflow-auto">
-        <table
-          className={cn("w-full caption-bottom text-sm", className)}
-          {...htmlProps}
-        >
+        <table className={cn("w-full caption-bottom text-sm", className)} {...htmlProps}>
           {children}
         </table>
       </div>
@@ -681,13 +671,4 @@ function Table<TData = unknown>(props: TableProps<TData>) {
 
 Table.displayName = "Table";
 
-export {
-  Table,
-  TableHeader,
-  TableBody,
-  TableFooter,
-  TableRow,
-  TableHead,
-  TableCell,
-  TableCaption
-};
+export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption };

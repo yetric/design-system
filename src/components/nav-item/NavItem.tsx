@@ -8,7 +8,10 @@ import { Badge } from "../badge/Badge";
 
 // ─── NavItem ─────────────────────────────────────────────────────────────────
 
-export interface NavItemProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "children"> {
+export interface NavItemProps extends Omit<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  "children"
+> {
   /** Optional icon rendered before the label. */
   icon?: React.ReactNode;
   /** The visible navigation label. */
@@ -32,8 +35,8 @@ const itemBase =
   "group flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 const itemVariants = {
-  default:  "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-  active:   "bg-accent text-accent-foreground",
+  default: "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+  active: "bg-accent text-accent-foreground",
   disabled: "pointer-events-none opacity-40 text-muted-foreground",
 };
 
@@ -63,7 +66,7 @@ export const NavItem = React.forwardRef<HTMLElement, NavItemProps>(
     const content = (
       <>
         {icon && (
-          <span className="shrink-0 flex items-center justify-center w-4 h-4" aria-hidden="true">
+          <span className="flex h-4 w-4 shrink-0 items-center justify-center" aria-hidden="true">
             {icon}
           </span>
         )}
@@ -75,7 +78,7 @@ export const NavItem = React.forwardRef<HTMLElement, NavItemProps>(
         )}
         {children && (
           <ChevronRight
-            className="ml-auto shrink-0 h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-90"
+            className="ml-auto h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-90"
             aria-hidden="true"
           />
         )}
@@ -85,14 +88,11 @@ export const NavItem = React.forwardRef<HTMLElement, NavItemProps>(
     if (children) {
       return (
         <Collapsible defaultOpen={defaultOpen} disabled={disabled}>
-          <CollapsibleTrigger
-            className={cn(itemBase, stateClass, className)}
-            onClick={onClick}
-          >
+          <CollapsibleTrigger className={cn(itemBase, stateClass, className)} onClick={onClick}>
             {content}
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="ml-4 mt-0.5 border-l border-border pl-3 flex flex-col gap-0.5">
+            <div className="ml-4 mt-0.5 flex flex-col gap-0.5 border-l border-border pl-3">
               {children}
             </div>
           </CollapsibleContent>
@@ -144,7 +144,7 @@ export function NavGroup({ label, children, className }: NavGroupProps) {
   return (
     <div className={cn("flex flex-col gap-0.5", className)}>
       {label && (
-        <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
+        <p className="mb-1 select-none px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           {label}
         </p>
       )}

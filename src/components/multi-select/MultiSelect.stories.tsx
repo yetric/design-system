@@ -18,8 +18,8 @@ const meta: Meta<typeof MultiSelect> = {
   title: "Components/MultiSelect",
   argTypes: {
     placeholder: { control: "text" },
-    disabled:    { control: "boolean" },
-    size:        { control: "select", options: ["xs","sm","md","lg","xl"] },
+    disabled: { control: "boolean" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
   },
 };
 export default meta;
@@ -90,9 +90,16 @@ export const Sizes: Story = {
   render: () => {
     const [v, setV] = useState<string[]>(["react"]);
     return (
-      <div className="flex flex-col gap-4 w-80">
+      <div className="flex w-80 flex-col gap-4">
         {(["sm", "md", "lg"] as const).map((size) => (
-          <MultiSelect key={size} options={techOptions} value={v} onChange={setV} size={size} placeholder={`Size: ${size}`} />
+          <MultiSelect
+            key={size}
+            options={techOptions}
+            value={v}
+            onChange={setV}
+            size={size}
+            placeholder={`Size: ${size}`}
+          />
         ))}
       </div>
     );

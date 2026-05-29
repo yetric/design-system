@@ -120,7 +120,12 @@ export const RightDrawer: Story = {
           </Box>
           <DrawerFooter>
             <Separator />
-            <Stack direction="row" align="center" justify="between" style={{ paddingTop: "0.75rem" }}>
+            <Stack
+              direction="row"
+              align="center"
+              justify="between"
+              style={{ paddingTop: "0.75rem" }}
+            >
               <Heading as="p" size="h6">
                 Total
               </Heading>

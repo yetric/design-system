@@ -6,7 +6,6 @@ import { useId } from "react";
 import { cn } from "../../lib/cn";
 import { radiusClass, type Radius } from "../../lib/radius";
 import { type Size } from "../../lib/size";
-import { Label } from "../label/Label";
 
 const fieldsetSizeClass: Record<Size, string> = {
   xs: "p-2 gap-2",
@@ -24,7 +23,10 @@ const legendSizeClass: Record<Size, string> = {
   xl: "text-base px-2.5",
 };
 
-export interface FieldsetProps extends Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, "children"> {
+export interface FieldsetProps extends Omit<
+  React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
+  "children"
+> {
   /** Legend text rendered at the top border of the fieldset */
   legend?: string;
   children: React.ReactNode;
@@ -52,10 +54,7 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
         {legend && (
           <legend
             id={legendId}
-            className={cn(
-              "float-left -mt-px font-medium text-foreground",
-              legendSizeClass[size]
-            )}
+            className={cn("float-left -mt-px font-medium text-foreground", legendSizeClass[size])}
           >
             {legend}
           </legend>

@@ -35,7 +35,7 @@ export const Horizontal: Story = {
     <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
       <div className="flex w-max space-x-4 p-4">
         {Array.from({ length: 20 }, (_, i) => (
-          <div key={i} className="shrink-0 rounded-md bg-muted p-4 text-sm w-32">
+          <div key={i} className="w-32 shrink-0 rounded-md bg-muted p-4 text-sm">
             Item {i + 1}
           </div>
         ))}

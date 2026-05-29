@@ -39,7 +39,9 @@ export const Right: Story = {
         </DrawerBody>
         <DrawerFooter>
           <DrawerClose asChild>
-            <Button variant="outline" className="w-full">Cancel</Button>
+            <Button variant="outline" className="w-full">
+              Cancel
+            </Button>
           </DrawerClose>
           <Button className="w-full">Save changes</Button>
         </DrawerFooter>
@@ -60,9 +62,15 @@ export const Left: Story = {
         </DrawerHeader>
         <DrawerBody>
           <nav className="flex flex-col gap-2">
-            <a href="#" className="text-sm hover:underline">Dashboard</a>
-            <a href="#" className="text-sm hover:underline">Projects</a>
-            <a href="#" className="text-sm hover:underline">Settings</a>
+            <a href="#" className="text-sm hover:underline">
+              Dashboard
+            </a>
+            <a href="#" className="text-sm hover:underline">
+              Projects
+            </a>
+            <a href="#" className="text-sm hover:underline">
+              Settings
+            </a>
           </nav>
         </DrawerBody>
       </DrawerContent>
@@ -82,10 +90,16 @@ export const Bottom: Story = {
           <DrawerDescription>Choose where to share this post.</DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
-          <div className="flex gap-4 justify-center py-4">
-            <Button variant="outline" size="sm">Twitter</Button>
-            <Button variant="outline" size="sm">LinkedIn</Button>
-            <Button variant="outline" size="sm">Copy link</Button>
+          <div className="flex justify-center gap-4 py-4">
+            <Button variant="outline" size="sm">
+              Twitter
+            </Button>
+            <Button variant="outline" size="sm">
+              LinkedIn
+            </Button>
+            <Button variant="outline" size="sm">
+              Copy link
+            </Button>
           </div>
         </DrawerBody>
       </DrawerContent>
@@ -95,18 +109,22 @@ export const Bottom: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex flex-wrap gap-2">
       {(["sm", "md", "lg", "xl", "full"] as const).map((size) => (
         <Drawer key={size}>
           <DrawerTrigger asChild>
-            <Button variant="outline" size="sm">{size}</Button>
+            <Button variant="outline" size="sm">
+              {size}
+            </Button>
           </DrawerTrigger>
           <DrawerContent side="right" size={size}>
             <DrawerHeader>
               <DrawerTitle>Size: {size}</DrawerTitle>
             </DrawerHeader>
             <DrawerBody>
-              <p className="text-sm text-muted-foreground">Width controlled by size=&quot;{size}&quot;.</p>
+              <p className="text-sm text-muted-foreground">
+                Width controlled by size=&quot;{size}&quot;.
+              </p>
             </DrawerBody>
           </DrawerContent>
         </Drawer>

@@ -62,7 +62,7 @@ function SegmentedControl({
         "inline-flex items-center gap-px rounded-[inherit] border border-border bg-muted p-0.5",
         radiusClass[radius],
         fullWidth && "w-full",
-        disabled && "opacity-50 pointer-events-none",
+        disabled && "pointer-events-none opacity-50",
         segmentedSizeClass[size],
         className
       )}
@@ -88,7 +88,11 @@ function SegmentedControl({
               opt.disabled && "pointer-events-none opacity-40"
             )}
           >
-            {opt.icon && <span className="shrink-0" aria-hidden="true">{opt.icon}</span>}
+            {opt.icon && (
+              <span className="shrink-0" aria-hidden="true">
+                {opt.icon}
+              </span>
+            )}
             {opt.label}
           </button>
         );

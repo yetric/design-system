@@ -6,9 +6,9 @@ const meta: Meta<typeof Anchor> = {
   component: Anchor,
   tags: ["autodocs"],
   argTypes: {
-    variant:   { control: "select", options: ["default","muted","destructive","subtle"] },
-    underline: { control: "select", options: ["always","hover","never"] },
-    external:  { control: "boolean" },
+    variant: { control: "select", options: ["default", "muted", "destructive", "subtle"] },
+    underline: { control: "select", options: ["always", "hover", "never"] },
+    external: { control: "boolean" },
   },
 };
 export default meta;
@@ -21,9 +21,15 @@ export const Default: Story = {
 export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
-      <Anchor href="#" variant="default">Default link</Anchor>
-      <Anchor href="#" variant="muted">Muted link</Anchor>
-      <Anchor href="#" variant="destructive">Destructive link</Anchor>
+      <Anchor href="#" variant="default">
+        Default link
+      </Anchor>
+      <Anchor href="#" variant="muted">
+        Muted link
+      </Anchor>
+      <Anchor href="#" variant="destructive">
+        Destructive link
+      </Anchor>
     </div>
   ),
 };
@@ -31,9 +37,15 @@ export const Variants: Story = {
 export const Underline: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
-      <Anchor href="#" underline="always">Always underlined</Anchor>
-      <Anchor href="#" underline="hover">Underline on hover (default)</Anchor>
-      <Anchor href="#" underline="never">Never underlined</Anchor>
+      <Anchor href="#" underline="always">
+        Always underlined
+      </Anchor>
+      <Anchor href="#" underline="hover">
+        Underline on hover (default)
+      </Anchor>
+      <Anchor href="#" underline="never">
+        Never underlined
+      </Anchor>
     </div>
   ),
 };

@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormControl,
   FormDescription,
-  FormMessage
+  FormMessage,
 } from "./Form";
 import { useZodForm } from "./useZodForm";
 import { Input } from "../input/Input";
@@ -17,7 +17,7 @@ import { Button } from "../button/Button";
 
 const schema = z.object({
   email: z.string().email("Invalid email"),
-  name: z.string().min(2, "Name must be at least 2 characters")
+  name: z.string().min(2, "Name must be at least 2 characters"),
 });
 
 function TestForm({ onSubmit = () => {} }: { onSubmit?: (data: z.infer<typeof schema>) => void }) {

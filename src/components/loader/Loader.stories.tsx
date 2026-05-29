@@ -11,8 +11,11 @@ const meta = {
     variant: "default",
   },
   argTypes: {
-    size:    { control: "select", options: ["xs","sm","md","lg","xl"] },
-    variant: { control: "select", options: ["default","primary","success","warning","destructive","muted"] },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
+    variant: {
+      control: "select",
+      options: ["default", "primary", "success", "warning", "destructive", "muted"],
+    },
   },
 } satisfies Meta<typeof Loader>;
 

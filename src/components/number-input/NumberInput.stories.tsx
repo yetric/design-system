@@ -8,10 +8,10 @@ const meta = {
   tags: ["autodocs"],
   title: "Components/NumberInput",
   argTypes: {
-    min:      { control: "number" },
-    max:      { control: "number" },
-    step:     { control: "number" },
-    size:     { control: "select", options: ["xs","sm","md","lg","xl"] },
+    min: { control: "number" },
+    max: { control: "number" },
+    step: { control: "number" },
+    size: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
     disabled: { control: "boolean" },
   },
 } satisfies Meta<typeof NumberInput>;
@@ -30,21 +30,14 @@ export const WithLabel: Story = {
   render: () => {
     const [value, setValue] = useState(1);
     return (
-      <NumberInput
-        label="Quantity"
-        value={value}
-        onChange={setValue}
-        min={1}
-        max={99}
-        step={1}
-      />
+      <NumberInput label="Quantity" value={value} onChange={setValue} min={1} max={99} step={1} />
     );
   },
 };
 
 export const WithHelperAndError: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 max-w-xs">
+    <div className="flex max-w-xs flex-col gap-4">
       <NumberInput
         label="Port number"
         value={3000}
@@ -67,7 +60,7 @@ export const Sizes: Story = {
   render: () => {
     const [v, setV] = useState(5);
     return (
-      <div className="flex flex-col gap-3 max-w-xs">
+      <div className="flex max-w-xs flex-col gap-3">
         <NumberInput size="xs" value={v} onChange={setV} label="XSmall" />
         <NumberInput size="sm" value={v} onChange={setV} label="Small" />
         <NumberInput size="md" value={v} onChange={setV} label="Medium" />
