@@ -24,6 +24,10 @@ export default tseslint.config(
       ],
       // Allow empty interfaces (common in component prop types)
       "@typescript-eslint/no-empty-object-type": "off",
+      // TanStack Table triggers react-hooks/incompatible-library (false positive)
+      "react-hooks/incompatible-library": "warn",
+      // MultiSelect reads containerRef.current in render for sizing (intentional)
+      "react-hooks/refs": "warn",
     },
   },
 
