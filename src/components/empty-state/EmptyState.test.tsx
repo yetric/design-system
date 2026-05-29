@@ -16,7 +16,7 @@ describe("EmptyState", () => {
 
   it("does not render description when omitted", () => {
     render(<EmptyState title="No items" />);
-    expect(screen.queryByRole("paragraph")).not.toBeInTheDocument();
+    expect(screen.queryByText("Get started by adding your first item.")).not.toBeInTheDocument();
   });
 
   it("renders action button with label", () => {
