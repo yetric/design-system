@@ -121,10 +121,11 @@ export const WithPromise: Story = {
   render: () => (
     <Button
       onClick={() =>
-        toast.promise(
-          new globalThis.Promise((resolve) => setTimeout(resolve, 2000)),
-          { loading: "Saving…", success: "Saved!", error: "Failed to save" }
-        )
+        toast.promise(new globalThis.Promise((resolve) => setTimeout(resolve, 2000)), {
+          loading: "Saving…",
+          success: "Saved!",
+          error: "Failed to save",
+        })
       }
     >
       Save (with promise)

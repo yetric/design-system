@@ -206,7 +206,9 @@ function MultiSelect({
             "bg-popover absolute z-dropdown mt-1 w-full overflow-hidden border border-border shadow-md",
             radiusClass[radius]
           )}
-          style={{ minWidth: containerRef.current?.offsetWidth /* eslint-disable-line react-hooks/refs */ }}
+          style={{
+            minWidth: containerRef.current?.offsetWidth /* eslint-disable-line react-hooks/refs */,
+          }}
         >
           {searchable && (
             <div className="flex items-center gap-2 border-b border-border px-3 py-2">
