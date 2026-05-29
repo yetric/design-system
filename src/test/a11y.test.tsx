@@ -131,11 +131,7 @@ describe("a11y — primitives", () => {
   });
 
   it("Avatar with fallback", async () => {
-    await expectNoViolations(
-      wrap(
-        <Avatar fallback="AB" alt="Test user" />
-      )
-    );
+    await expectNoViolations(wrap(<Avatar fallback="AB" alt="Test user" />));
   });
 
   it("Separator", async () => {
