@@ -46,7 +46,7 @@ const DrawerOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-overlay bg-black/50",
+      "z-overlay fixed inset-0 bg-black/50",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
@@ -77,8 +77,8 @@ const DrawerContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "fixed z-modal flex flex-col overflow-y-auto bg-card text-card-foreground shadow-lg",
-          "transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out",
+          "z-modal bg-card text-card-foreground fixed flex flex-col overflow-y-auto shadow-lg",
+          "data-[state=open]:animate-in data-[state=closed]:animate-out transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-300",
           drawerSideClass[side],
           isVertical ? drawerSizeWidthClass[size] : drawerSizeHeightClass[size],
           isVertical ? "w-full" : "",
@@ -87,7 +87,7 @@ const DrawerContent = React.forwardRef<
         {...props}
       >
         {showClose && (
-          <DialogPrimitive.Close className="absolute right-4 top-4 rounded opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <DialogPrimitive.Close className="focus-visible:ring-ring absolute top-4 right-4 rounded opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:outline-none">
             <X className="h-4 w-4" aria-hidden="true" />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
@@ -115,7 +115,7 @@ const DrawerTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+    className={cn("text-lg leading-none font-semibold tracking-tight", className)}
     {...props}
   />
 ));
@@ -127,7 +127,7 @@ const DrawerDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-muted-foreground text-sm", className)}
     {...props}
   />
 ));

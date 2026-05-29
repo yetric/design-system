@@ -46,13 +46,13 @@ function TourDemo({ autoStart = false }: { autoStart?: boolean }) {
   return (
     <Stack gap={4} style={{ width: "100%", maxWidth: 560 }}>
       {autoStart ? <Tour autoStart steps={steps} /> : null}
-      <div className="tour-step-one rounded-md border border-border bg-card px-4 py-3">
+      <div className="tour-step-one border-border bg-card rounded-md border px-4 py-3">
         <Text>Primary navigation area</Text>
       </div>
-      <div className="tour-step-two rounded-md border border-border bg-card px-4 py-3">
+      <div className="tour-step-two border-border bg-card rounded-md border px-4 py-3">
         <Text>Filter controls</Text>
       </div>
-      <div className="tour-step-three rounded-md border border-border bg-card px-4 py-3">
+      <div className="tour-step-three border-border bg-card rounded-md border px-4 py-3">
         <Text>Action shortcuts</Text>
       </div>
       <Stack direction="row" gap={3}>

@@ -52,7 +52,7 @@ export const WithIcon: Story = {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button className="text-muted-foreground transition-colors hover:text-foreground">
+          <button className="text-muted-foreground hover:text-foreground transition-colors">
             <Info className="h-4 w-4" />
           </button>
         </TooltipTrigger>

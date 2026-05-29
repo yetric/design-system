@@ -64,7 +64,7 @@ export const Controlled: Story = {
     return (
       <div className="space-y-2">
         <DatePicker value={value} onChange={setValue} />
-        <p className="text-sm text-muted-foreground">Selected: {value?.toDateString() ?? "None"}</p>
+        <p className="text-muted-foreground text-sm">Selected: {value?.toDateString() ?? "None"}</p>
       </div>
     );
   },

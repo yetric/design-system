@@ -140,7 +140,7 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           <div
             id={helpTextId}
             className={cn(
-              "mt-1 flex items-center gap-1 text-muted-foreground",
+              "text-muted-foreground mt-1 flex items-center gap-1",
               helperSizeClass[size]
             )}
           >
@@ -151,7 +151,7 @@ const InputField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           <div
             id={errorId}
             role="alert"
-            className={cn("mt-1 flex items-center gap-1 text-destructive", helperSizeClass[size])}
+            className={cn("text-destructive mt-1 flex items-center gap-1", helperSizeClass[size])}
           >
             {error}
           </div>

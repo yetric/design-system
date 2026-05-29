@@ -92,7 +92,7 @@ export const Sizes: Story = {
     <div className="flex flex-col gap-8">
       {(["sm", "md", "lg"] as const).map((s) => (
         <div key={s} className="space-y-2">
-          <p className="text-xs text-muted-foreground">size: {s}</p>
+          <p className="text-muted-foreground text-xs">size: {s}</p>
           <Tabs defaultValue="overview" className="w-[400px]">
             <TabsList size={s}>
               {items.slice(0, 3).map((i) => (

@@ -31,7 +31,7 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
         <a
           ref={ref}
           className={[
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
+            "block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
             "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className,
           ]
@@ -39,8 +39,8 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
             .join(" ")}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">{children}</p>
         </a>
       </NavigationMenuLink>
     </li>
@@ -95,7 +95,7 @@ export const WithLinks: Story = {
         <NavigationMenuItem>
           <NavigationMenuLink
             href="/overview"
-            className="inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
           >
             Overview
           </NavigationMenuLink>
@@ -103,7 +103,7 @@ export const WithLinks: Story = {
         <NavigationMenuItem>
           <NavigationMenuLink
             href="/pricing"
-            className="inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
           >
             Pricing
           </NavigationMenuLink>
@@ -111,7 +111,7 @@ export const WithLinks: Story = {
         <NavigationMenuItem>
           <NavigationMenuLink
             href="/contact"
-            className="inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
           >
             Contact
           </NavigationMenuLink>

@@ -31,13 +31,13 @@ const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
     <figure className="space-y-1">
       <blockquote
         ref={ref}
-        className={cn("border-primary italic text-foreground", sizeClass[size], className)}
+        className={cn("border-primary text-foreground italic", sizeClass[size], className)}
         {...props}
       >
         {children}
       </blockquote>
       {cite && (
-        <figcaption className={cn("not-italic text-muted-foreground", citeSizeClass[size])}>
+        <figcaption className={cn("text-muted-foreground not-italic", citeSizeClass[size])}>
           — <cite>{cite}</cite>
         </figcaption>
       )}

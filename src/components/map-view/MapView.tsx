@@ -77,7 +77,7 @@ export function MapView({
 
   return (
     <div
-      className={cn("overflow-hidden rounded-lg border border-border", className)}
+      className={cn("border-border overflow-hidden rounded-lg border", className)}
       style={{ height }}
     >
       <MapContainer center={center} zoom={zoom} className="h-full w-full">
@@ -99,10 +99,10 @@ export function MapView({
               <Popup>
                 <div className="space-y-1">
                   {marker.title ? (
-                    <p className="font-medium text-foreground">{marker.title}</p>
+                    <p className="text-foreground font-medium">{marker.title}</p>
                   ) : null}
                   {marker.description ? (
-                    <p className="text-sm text-muted-foreground">{marker.description}</p>
+                    <p className="text-muted-foreground text-sm">{marker.description}</p>
                   ) : null}
                 </div>
               </Popup>

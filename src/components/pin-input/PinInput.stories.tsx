@@ -35,7 +35,7 @@ export const WithError: Story = {
     return (
       <div className="space-y-2">
         <PinInput length={4} value={value} onChange={setValue} error />
-        <p className="text-sm text-destructive">Invalid PIN.</p>
+        <p className="text-destructive text-sm">Invalid PIN.</p>
       </div>
     );
   },
@@ -50,7 +50,7 @@ export const Sizes: Story = {
     <div className="flex flex-col gap-4">
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size} className="flex items-center gap-3">
-          <span className="w-8 text-sm text-muted-foreground">{size}</span>
+          <span className="text-muted-foreground w-8 text-sm">{size}</span>
           <ControlledPinInput length={4} size={size} />
         </div>
       ))}

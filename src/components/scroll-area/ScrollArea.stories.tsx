@@ -18,7 +18,7 @@ export const Vertical: Story = {
   render: () => (
     <ScrollArea className="h-64 w-48 rounded-md border">
       <div className="p-4">
-        <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+        <h4 className="mb-4 text-sm leading-none font-medium">Tags</h4>
         {tags.map((tag) => (
           <div key={tag}>
             <p className="text-sm">{tag}</p>
@@ -32,10 +32,10 @@ export const Vertical: Story = {
 
 export const Horizontal: Story = {
   render: () => (
-    <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
+    <ScrollArea className="w-96 rounded-md border whitespace-nowrap">
       <div className="flex w-max space-x-4 p-4">
         {Array.from({ length: 20 }, (_, i) => (
-          <div key={i} className="w-32 shrink-0 rounded-md bg-muted p-4 text-sm">
+          <div key={i} className="bg-muted w-32 shrink-0 rounded-md p-4 text-sm">
             Item {i + 1}
           </div>
         ))}

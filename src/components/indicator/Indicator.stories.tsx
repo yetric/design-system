@@ -85,16 +85,16 @@ export const Positions: Story = {
   render: () => (
     <div className="flex items-center gap-8">
       <Indicator count={3} position="top-right">
-        <div className="h-10 w-10 rounded-md bg-muted" />
+        <div className="bg-muted h-10 w-10 rounded-md" />
       </Indicator>
       <Indicator count={3} position="top-left">
-        <div className="h-10 w-10 rounded-md bg-muted" />
+        <div className="bg-muted h-10 w-10 rounded-md" />
       </Indicator>
       <Indicator count={3} position="bottom-right">
-        <div className="h-10 w-10 rounded-md bg-muted" />
+        <div className="bg-muted h-10 w-10 rounded-md" />
       </Indicator>
       <Indicator count={3} position="bottom-left">
-        <div className="h-10 w-10 rounded-md bg-muted" />
+        <div className="bg-muted h-10 w-10 rounded-md" />
       </Indicator>
     </div>
   ),

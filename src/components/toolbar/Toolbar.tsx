@@ -11,7 +11,7 @@ const Toolbar = React.forwardRef<
   <ToolbarPrimitive.Root
     ref={ref}
     className={cn(
-      "flex h-10 items-center gap-1 rounded-md border border-input bg-background px-1",
+      "border-input bg-background flex h-10 items-center gap-1 rounded-md border px-1",
       className
     )}
     {...props}
@@ -25,7 +25,7 @@ const ToolbarSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToolbarPrimitive.Separator
     ref={ref}
-    className={cn("mx-1 h-5 w-px bg-border", className)}
+    className={cn("bg-border mx-1 h-5 w-px", className)}
     {...props}
   />
 ));
@@ -38,9 +38,9 @@ const ToolbarButton = React.forwardRef<
   <ToolbarPrimitive.Button
     ref={ref}
     className={cn(
-      "inline-flex h-7 w-7 items-center justify-center rounded text-muted-foreground",
+      "text-muted-foreground inline-flex h-7 w-7 items-center justify-center rounded",
       "hover:bg-accent hover:text-accent-foreground",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       "transition-colors",
       className
@@ -69,10 +69,10 @@ const ToolbarToggleItem = React.forwardRef<
   <ToolbarPrimitive.ToggleItem
     ref={ref}
     className={cn(
-      "inline-flex h-7 w-7 items-center justify-center rounded text-muted-foreground",
+      "text-muted-foreground inline-flex h-7 w-7 items-center justify-center rounded",
       "hover:bg-accent hover:text-accent-foreground",
       "data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       "transition-colors",
       className
@@ -89,8 +89,8 @@ const ToolbarLink = React.forwardRef<
   <ToolbarPrimitive.Link
     ref={ref}
     className={cn(
-      "inline-flex items-center px-2 text-sm text-muted-foreground hover:text-foreground",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "text-muted-foreground hover:text-foreground inline-flex items-center px-2 text-sm",
+      "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
       className
     )}
     {...props}

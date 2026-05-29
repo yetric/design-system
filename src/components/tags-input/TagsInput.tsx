@@ -73,11 +73,11 @@ function TagsInput({
   return (
     <div
       className={cn(
-        "flex cursor-text flex-wrap items-center gap-1.5 border border-input bg-background",
+        "border-input bg-background flex cursor-text flex-wrap items-center gap-1.5 border",
         inputSizeClass[size],
         radiusClass[radius],
         disabled && "cursor-not-allowed opacity-50",
-        "focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+        "focus-within:ring-ring focus-within:ring-2 focus-within:ring-offset-2",
         className
       )}
       onClick={() => inputRef.current?.focus()}
@@ -86,7 +86,7 @@ function TagsInput({
         <span
           key={tag}
           className={cn(
-            "inline-flex items-center rounded-full bg-secondary font-medium text-secondary-foreground",
+            "bg-secondary text-secondary-foreground inline-flex items-center rounded-full font-medium",
             tagSizeClass[size]
           )}
         >
@@ -99,7 +99,7 @@ function TagsInput({
                 e.stopPropagation();
                 removeTag(tag);
               }}
-              className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none"
+              className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none"
             >
               <X className="h-3 w-3" aria-hidden="true" />
             </button>
@@ -119,7 +119,7 @@ function TagsInput({
         }}
         placeholder={value.length === 0 ? placeholder : ""}
         disabled={disabled}
-        className="min-w-[80px] flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+        className="text-foreground placeholder:text-muted-foreground min-w-[80px] flex-1 bg-transparent text-sm outline-none"
         aria-label={placeholder}
         {...props}
       />

@@ -51,9 +51,9 @@ export const Nested: Story = {
         <Button size="sm">Action</Button>
       </Stack>
       <Stack gap={2}>
-        <div className="h-4 w-full rounded bg-muted" />
-        <div className="h-4 w-3/4 rounded bg-muted" />
-        <div className="h-4 w-1/2 rounded bg-muted" />
+        <div className="bg-muted h-4 w-full rounded" />
+        <div className="bg-muted h-4 w-3/4 rounded" />
+        <div className="bg-muted h-4 w-1/2 rounded" />
       </Stack>
     </Stack>
   ),

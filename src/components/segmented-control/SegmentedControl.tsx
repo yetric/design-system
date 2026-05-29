@@ -59,7 +59,7 @@ function SegmentedControl({
       role="group"
       aria-label={ariaLabel ?? "Segmented control"}
       className={cn(
-        "inline-flex items-center gap-px rounded-[inherit] border border-border bg-muted p-0.5",
+        "border-border bg-muted inline-flex items-center gap-px rounded-[inherit] border p-0.5",
         radiusClass[radius],
         fullWidth && "w-full",
         disabled && "pointer-events-none opacity-50",
@@ -78,7 +78,7 @@ function SegmentedControl({
             disabled={disabled || opt.disabled}
             onClick={() => !opt.disabled && onChange?.(opt.value)}
             className={cn(
-              "inline-flex flex-1 items-center justify-center gap-1.5 font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "focus-visible:ring-ring inline-flex flex-1 items-center justify-center gap-1.5 font-medium transition-all focus-visible:ring-2 focus-visible:outline-none",
               "h-full",
               segmentedPaddingClass[size],
               radiusClass[radius],

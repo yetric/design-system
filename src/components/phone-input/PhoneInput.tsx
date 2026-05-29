@@ -55,9 +55,9 @@ const CountrySelect = React.forwardRef<HTMLSelectElement, CountrySelectProps>(
           onChange={handleChange}
           disabled={disabled}
           className={cn(
-            "flex h-10 w-full appearance-none items-center rounded-md border border-input bg-background px-3 pr-9 text-sm",
-            "transition-colors duration-base",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "border-input bg-background flex h-10 w-full appearance-none items-center rounded-md border px-3 pr-9 text-sm",
+            "duration-base transition-colors",
+            "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:opacity-50"
           )}
           {...props}
@@ -83,7 +83,7 @@ const CountrySelect = React.forwardRef<HTMLSelectElement, CountrySelectProps>(
         </select>
         <ChevronDown
           aria-hidden="true"
-          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+          className="text-muted-foreground pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2"
         />
       </div>
     );

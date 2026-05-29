@@ -150,7 +150,7 @@ export function DateRangePicker(props: DateRangePickerProps) {
           variant="outline"
           disabled={disabled}
           className={cn(
-            "justify-start bg-background text-left font-normal",
+            "bg-background justify-start text-left font-normal",
             !displayValue && "text-muted-foreground",
             className
           )}

@@ -67,7 +67,7 @@ export const ObjectFit: Story = {
         alt="Contain fit"
         fit="contain"
         aspectRatio="square"
-        className="w-48 bg-card"
+        className="bg-card w-48"
       />
       <Image src={src} alt="Fill fit" fit="fill" aspectRatio="square" className="w-48" />
     </Stack>

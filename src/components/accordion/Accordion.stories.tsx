@@ -78,7 +78,7 @@ export const Variants: Story = {
     <div className="flex w-[400px] flex-col gap-8">
       {(["default", "contained", "separated", "filled"] as const).map((variant) => (
         <div key={variant}>
-          <p className="mb-2 font-mono text-xs text-muted-foreground">variant="{variant}"</p>
+          <p className="text-muted-foreground mb-2 font-mono text-xs">variant="{variant}"</p>
           <Accordion type="single" collapsible variant={variant} radius="md">
             {faqs.slice(0, 2).map((f, i) => (
               <AccordionItem key={i} value={`${variant}-${i}`}>

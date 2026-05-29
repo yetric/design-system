@@ -32,7 +32,7 @@ const Paper = React.forwardRef<HTMLDivElement, PaperProps>(
     <Comp
       ref={ref}
       className={cn(
-        "border border-border bg-card text-card-foreground",
+        "border-border bg-card text-card-foreground border",
         radiusClass[radius],
         shadowClass[shadow],
         paddingClass[p],

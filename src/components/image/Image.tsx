@@ -83,7 +83,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     return (
       <figure
         className={cn(
-          "relative overflow-hidden bg-muted",
+          "bg-muted relative overflow-hidden",
           radiusClass[radius],
           aspectRatioClass[aspectRatio],
           className
@@ -107,7 +107,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             />
           ) : (
             <div
-              className="flex h-full min-h-24 w-full items-center justify-center bg-muted px-4 text-center text-sm font-medium text-muted-foreground"
+              className="bg-muted text-muted-foreground flex h-full min-h-24 w-full items-center justify-center px-4 text-center text-sm font-medium"
               aria-label={alt}
             >
               {fallbackText}

@@ -140,8 +140,8 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
 
         <div
           className={cn(
-            "inline-flex items-center border bg-background transition-colors duration-base",
-            "focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-background",
+            "bg-background duration-base inline-flex items-center border transition-colors",
+            "focus-within:ring-offset-background focus-within:ring-2 focus-within:ring-offset-2 focus-within:outline-none",
             borderColor,
             ringColor,
             radiusClass[radius],
@@ -156,7 +156,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             onClick={decrement}
             disabled={!canDecrement}
             className={cn(
-              "flex shrink-0 items-center justify-center text-muted-foreground transition-colors",
+              "text-muted-foreground flex shrink-0 items-center justify-center transition-colors",
               "hover:text-foreground focus-visible:outline-none",
               "disabled:pointer-events-none disabled:opacity-40",
               stepBtnSizeClass[size]
@@ -196,7 +196,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             onClick={increment}
             disabled={!canIncrement}
             className={cn(
-              "flex shrink-0 items-center justify-center text-muted-foreground transition-colors",
+              "text-muted-foreground flex shrink-0 items-center justify-center transition-colors",
               "hover:text-foreground focus-visible:outline-none",
               "disabled:pointer-events-none disabled:opacity-40",
               stepBtnSizeClass[size]
@@ -207,7 +207,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         </div>
 
         {helpText && !hasError && (
-          <p id={helpTextId} className={cn("mt-1 text-muted-foreground", helperSizeClass[size])}>
+          <p id={helpTextId} className={cn("text-muted-foreground mt-1", helperSizeClass[size])}>
             {helpText}
           </p>
         )}
@@ -215,7 +215,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           <p
             id={errorId}
             role="alert"
-            className={cn("mt-1 text-destructive", helperSizeClass[size])}
+            className={cn("text-destructive mt-1", helperSizeClass[size])}
           >
             {error}
           </p>

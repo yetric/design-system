@@ -109,7 +109,7 @@ export function DatePicker(props: DatePickerProps) {
           variant="outline"
           disabled={disabled}
           className={cn(
-            "justify-start bg-background text-left font-normal",
+            "bg-background justify-start text-left font-normal",
             !selectedValue && "text-muted-foreground",
             className
           )}

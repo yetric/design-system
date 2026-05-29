@@ -17,7 +17,7 @@ export const SixteenByNine: Story = {
   render: () => (
     <div className="w-80">
       <AspectRatio ratio={16 / 9}>
-        <div className="flex h-full w-full items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
+        <div className="bg-muted text-muted-foreground flex h-full w-full items-center justify-center rounded-md text-sm">
           16 / 9
         </div>
       </AspectRatio>
@@ -30,7 +30,7 @@ export const Square: Story = {
   render: () => (
     <div className="w-48">
       <AspectRatio ratio={1}>
-        <div className="flex h-full w-full items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
+        <div className="bg-muted text-muted-foreground flex h-full w-full items-center justify-center rounded-md text-sm">
           1 / 1
         </div>
       </AspectRatio>

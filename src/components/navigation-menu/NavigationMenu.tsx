@@ -66,7 +66,7 @@ const NavigationMenuTrigger = React.forwardRef<
   <NavigationMenuPrimitive.Trigger
     ref={ref}
     className={cn(
-      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors",
+      "group bg-background inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors",
       "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       className
@@ -86,7 +86,7 @@ const NavigationMenuContent = React.forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "absolute left-0 top-0 w-auto data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
+      "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out absolute top-0 left-0 w-auto",
       "data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52",
       "data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto",
       className
@@ -102,7 +102,7 @@ const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   NavigationMenuViewportProps
 >(({ className, ...props }, ref) => (
-  <div className="absolute left-0 top-full flex w-full justify-center">
+  <div className="absolute top-full left-0 flex w-full justify-center">
     <NavigationMenuPrimitive.Viewport
       ref={ref}
       className={cn(
@@ -131,7 +131,7 @@ const NavigationMenuIndicator = React.forwardRef<
     )}
     {...props}
   >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
+    <div className="bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md" />
   </NavigationMenuPrimitive.Indicator>
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName;

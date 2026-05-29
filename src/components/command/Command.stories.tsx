@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 
 function CommandPalette() {
   return (
-    <Command className="w-full max-w-md border border-border shadow-md">
+    <Command className="border-border w-full max-w-md border shadow-md">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
@@ -93,7 +93,7 @@ export const WithDialog: Story = {
 
 export const WithGroups: Story = {
   render: () => (
-    <Command className="w-full max-w-md border border-border shadow-md">
+    <Command className="border-border w-full max-w-md border shadow-md">
       <CommandInput placeholder="Jump to..." />
       <CommandList>
         <CommandEmpty>No matching entries.</CommandEmpty>

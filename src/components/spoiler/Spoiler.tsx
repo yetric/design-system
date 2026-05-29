@@ -51,7 +51,7 @@ function Spoiler({
         <button
           type="button"
           onClick={() => setExpanded((p) => !p)}
-          className="mt-2 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="text-primary focus-visible:ring-ring mt-2 text-sm font-medium underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
         >
           {expanded ? hideLabel : showLabel}
         </button>

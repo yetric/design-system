@@ -36,7 +36,7 @@ export const Controlled: Story = {
     return (
       <div className="w-[300px] space-y-3">
         <Slider value={value} onValueChange={setValue} max={100} />
-        <p className="text-center text-sm text-muted-foreground">Value: {value[0]}</p>
+        <p className="text-muted-foreground text-center text-sm">Value: {value[0]}</p>
       </div>
     );
   },
@@ -51,15 +51,15 @@ export const Sizes: Story = {
   render: () => (
     <div className="flex w-[300px] flex-col gap-6">
       <div className="space-y-1">
-        <p className="text-xs text-muted-foreground">sm</p>
+        <p className="text-muted-foreground text-xs">sm</p>
         <Slider defaultValue={[40]} size="sm" />
       </div>
       <div className="space-y-1">
-        <p className="text-xs text-muted-foreground">md (default)</p>
+        <p className="text-muted-foreground text-xs">md (default)</p>
         <Slider defaultValue={[60]} size="md" />
       </div>
       <div className="space-y-1">
-        <p className="text-xs text-muted-foreground">lg</p>
+        <p className="text-muted-foreground text-xs">lg</p>
         <Slider defaultValue={[80]} size="lg" />
       </div>
     </div>

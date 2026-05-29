@@ -36,7 +36,7 @@ export const Default: Story = {
         title="Deployed to production"
         time="Just now"
         description="v1.0.0 is live."
-        bullet={<Rocket className="h-3.5 w-3.5 text-primary" />}
+        bullet={<Rocket className="text-primary h-3.5 w-3.5" />}
         last
       />
     </Timeline>

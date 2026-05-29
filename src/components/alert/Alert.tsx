@@ -102,7 +102,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         )}
 
         <div className="min-w-0 flex-1">
-          {title && <p className="mb-0.5 font-semibold leading-snug">{title}</p>}
+          {title && <p className="mb-0.5 leading-snug font-semibold">{title}</p>}
           {children && <div className="leading-relaxed opacity-90">{children}</div>}
         </div>
 
@@ -111,7 +111,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             type="button"
             onClick={handleDismiss}
             aria-label={closeLabel}
-            className="ml-auto shrink-0 rounded opacity-60 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="focus-visible:ring-ring ml-auto shrink-0 rounded opacity-60 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:outline-none"
           >
             <X className="h-4 w-4" aria-hidden="true" />
           </button>

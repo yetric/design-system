@@ -97,7 +97,7 @@ export const Density: Story = {
     <div className="flex flex-col gap-8">
       {(["compact", "default", "comfortable"] as const).map((d) => (
         <div key={d}>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="text-muted-foreground mb-2 text-xs font-semibold tracking-wide uppercase">
             {d}
           </p>
           <Table density={d}>
@@ -119,7 +119,7 @@ export const Borders: Story = {
     <div className="flex flex-col gap-8">
       {(["rows", "grid", "outer", "none"] as const).map((b) => (
         <div key={b}>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="text-muted-foreground mb-2 text-xs font-semibold tracking-wide uppercase">
             {b}
           </p>
           <Table borders={b}>
@@ -164,7 +164,7 @@ export const StripedGrid: Story = {
 
 export const StickyHeader: Story = {
   render: () => (
-    <div className="h-48 overflow-auto rounded-md border border-border">
+    <div className="border-border h-48 overflow-auto rounded-md border">
       <Table stickyHeader>
         <TableHeader>
           <InvoiceHeaders />

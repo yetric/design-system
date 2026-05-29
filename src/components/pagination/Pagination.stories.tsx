@@ -93,7 +93,7 @@ export const Sizes: Story = {
     <div className="flex flex-col gap-6">
       {(["sm", "md", "lg", "xl"] as const).map((s) => (
         <div key={s} className="space-y-1">
-          <p className="text-xs text-muted-foreground">size: {s}</p>
+          <p className="text-muted-foreground text-xs">size: {s}</p>
           <Pagination>
             <PaginationContent>
               <PaginationItem>

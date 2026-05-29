@@ -34,7 +34,7 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
         <code
           ref={ref as React.Ref<HTMLElement>}
           className={cn(
-            "relative rounded bg-muted px-1.5 py-0.5 font-mono text-[0.875em] text-foreground",
+            "bg-muted text-foreground relative rounded px-1.5 py-0.5 font-mono text-[0.875em]",
             className
           )}
           {...props}
@@ -47,9 +47,9 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
     return (
       <div className="relative">
         {(language || copyable) && (
-          <div className="flex items-center justify-between rounded-t-md border border-b-0 border-border bg-muted/60 px-4 py-1.5">
+          <div className="border-border bg-muted/60 flex items-center justify-between rounded-t-md border border-b-0 px-4 py-1.5">
             {language ? (
-              <span className="text-xs font-medium text-muted-foreground">{language}</span>
+              <span className="text-muted-foreground text-xs font-medium">{language}</span>
             ) : (
               <span />
             )}
@@ -58,7 +58,7 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
                 type="button"
                 onClick={handleCopy}
                 aria-label={copied ? "Copied!" : "Copy code"}
-                className="flex items-center gap-1 rounded text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="text-muted-foreground hover:text-foreground focus-visible:ring-ring flex items-center gap-1 rounded text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
                 {copied ? (
                   <>
@@ -78,7 +78,7 @@ const Code = React.forwardRef<HTMLElement, CodeProps>(
         <pre
           ref={ref as React.Ref<HTMLPreElement>}
           className={cn(
-            "overflow-x-auto border border-border bg-muted/30 p-4 font-mono text-sm text-foreground",
+            "border-border bg-muted/30 text-foreground overflow-x-auto border p-4 font-mono text-sm",
             language || copyable ? "rounded-b-md" : "rounded-md",
             className
           )}

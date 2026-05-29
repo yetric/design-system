@@ -52,7 +52,7 @@ export const Controlled: Story = {
     return (
       <div className="space-y-2">
         <DateRangePicker value={value} onChange={setValue} />
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Selected: {value?.from?.toDateString() ?? "None"} → {value?.to?.toDateString() ?? "None"}
         </p>
       </div>

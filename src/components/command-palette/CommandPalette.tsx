@@ -153,11 +153,11 @@ const CommandPalette = ({
                   onSelect={() => handleSelect(item)}
                   className="items-start"
                 >
-                  {Icon && <Icon className="mt-0.5 text-muted-foreground" />}
+                  {Icon && <Icon className="text-muted-foreground mt-0.5" />}
                   <div className="flex min-w-0 flex-1 flex-col">
                     <span className="font-medium">{item.label}</span>
                     {item.description && (
-                      <span className="text-xs text-muted-foreground">{item.description}</span>
+                      <span className="text-muted-foreground text-xs">{item.description}</span>
                     )}
                   </div>
                 </CommandItem>
@@ -175,11 +175,11 @@ const CommandPalette = ({
                       onSelect={() => handleSelect(item)}
                       className="items-start"
                     >
-                      {Icon && <Icon className="mt-0.5 text-muted-foreground" />}
+                      {Icon && <Icon className="text-muted-foreground mt-0.5" />}
                       <div className="flex min-w-0 flex-1 flex-col">
                         <span className="font-medium">{item.label}</span>
                         {item.description && (
-                          <span className="text-xs text-muted-foreground">{item.description}</span>
+                          <span className="text-muted-foreground text-xs">{item.description}</span>
                         )}
                       </div>
                     </CommandItem>

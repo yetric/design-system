@@ -90,7 +90,7 @@ function Stepper({
               <div className={cn(isHorizontal ? "mt-2 max-w-[6rem] text-center" : "pb-6")}>
                 <p
                   className={cn(
-                    "font-medium leading-none",
+                    "leading-none font-medium",
                     sz.title,
                     status === "current" && "text-foreground",
                     status === "completed" && "text-foreground",
@@ -100,7 +100,7 @@ function Stepper({
                   {step.title}
                 </p>
                 {step.description && (
-                  <p className={cn("mt-0.5 text-muted-foreground", sz.desc)}>{step.description}</p>
+                  <p className={cn("text-muted-foreground mt-0.5", sz.desc)}>{step.description}</p>
                 )}
               </div>
             </div>
@@ -111,8 +111,8 @@ function Stepper({
                 aria-hidden="true"
                 className={cn(
                   isHorizontal
-                    ? cn("mt-4 flex-1 self-start bg-border", "h-0.5 min-w-4")
-                    : cn("ml-4 min-h-4 w-0.5 self-start bg-border", sz.line),
+                    ? cn("bg-border mt-4 flex-1 self-start", "h-0.5 min-w-4")
+                    : cn("bg-border ml-4 min-h-4 w-0.5 self-start", sz.line),
                   status === "completed" && "bg-primary"
                 )}
               />

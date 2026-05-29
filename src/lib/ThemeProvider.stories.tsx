@@ -237,11 +237,11 @@ function Configurator() {
         {/* Preview */}
         <div className="w-[320px] space-y-4">
           <div>
-            <p className="mb-1 text-xs text-muted-foreground">
+            <p className="text-muted-foreground mb-1 text-xs">
               resolved: <Badge variant="outline">{resolvedTheme}</Badge>
             </p>
             <h2 className="text-2xl font-semibold">The quick brown fox</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1 text-sm">
               Body text using the configured font and primary color.
             </p>
           </div>

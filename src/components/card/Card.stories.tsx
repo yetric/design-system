@@ -52,7 +52,7 @@ export const Variants: Story = {
             <CardTitle>{v}</CardTitle>
             <CardDescription>variant="{v}"</CardDescription>
           </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">Card body content.</CardContent>
+          <CardContent className="text-muted-foreground text-sm">Card body content.</CardContent>
         </Card>
       ))}
     </div>
@@ -67,14 +67,14 @@ export const Interactive: Story = {
           <CardTitle>Hover me</CardTitle>
           <CardDescription>interactive card lifts on hover</CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">Click or tab to focus.</CardContent>
+        <CardContent className="text-muted-foreground text-sm">Click or tab to focus.</CardContent>
       </Card>
       <Card interactive variant="outlined" tabIndex={0}>
         <CardHeader>
           <CardTitle>Outlined + interactive</CardTitle>
           <CardDescription>Two variants combined</CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">
+        <CardContent className="text-muted-foreground text-sm">
           Hover to see lift effect.
         </CardContent>
       </Card>
@@ -93,7 +93,7 @@ export const WithImage: Story = {
         <CardTitle>Mountain escape</CardTitle>
         <CardDescription>A tranquil retreat above the clouds.</CardDescription>
       </CardHeader>
-      <CardContent className="text-sm text-muted-foreground">
+      <CardContent className="text-muted-foreground text-sm">
         Discover remote trails and breathtaking vistas perfect for the weekend adventurer.
       </CardContent>
       <CardFooter>
@@ -116,7 +116,7 @@ export const WithHeaderActions: Story = {
         <CardTitle>Notifications</CardTitle>
         <CardDescription>Recent activity on your account.</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-2 text-sm text-muted-foreground">
+      <CardContent className="text-muted-foreground space-y-2 text-sm">
         <p>🔔 New comment on your post</p>
         <p>⭐ Someone starred your repo</p>
         <p>🚀 Deployment succeeded</p>
@@ -213,7 +213,7 @@ export const StatCard: Story = {
 
 export const Shadows: Story = {
   render: () => (
-    <div className="grid max-w-2xl grid-cols-3 gap-6 rounded-xl bg-muted/30 p-4">
+    <div className="bg-muted/30 grid max-w-2xl grid-cols-3 gap-6 rounded-xl p-4">
       {(["none", "sm", "md", "lg", "xl"] as const).map((s) => (
         <Card key={s} shadow={s} className="p-4">
           <CardTitle className="text-sm">shadow="{s}"</CardTitle>
@@ -251,7 +251,7 @@ export const HeadingLevels: Story = {
       <CardHeader>
         <CardTitle as="h4">h4 — Subsection</CardTitle>
       </CardHeader>
-      <CardContent className="text-xs text-muted-foreground">
+      <CardContent className="text-muted-foreground text-xs">
         All same visual style, different semantic levels via the <code>as</code> prop.
       </CardContent>
     </Card>

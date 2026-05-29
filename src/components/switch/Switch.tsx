@@ -68,7 +68,7 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, S
     const labelEl = (
       <label
         htmlFor={switchId}
-        className="cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        className="cursor-pointer text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
         {label}
       </label>

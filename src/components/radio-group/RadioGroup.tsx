@@ -56,7 +56,7 @@ const RadioGroupItem = React.forwardRef<
         ref={ref}
         id={inputId}
         className={cn(
-          "aspect-square rounded-full border border-primary text-primary",
+          "border-primary text-primary aspect-square rounded-full border",
           "ring-offset-background focus:outline-none focus-visible:ring-2",
           "focus-visible:ring-ring focus-visible:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
@@ -72,7 +72,7 @@ const RadioGroupItem = React.forwardRef<
       {label && (
         <label
           htmlFor={inputId}
-          className="cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="cursor-pointer text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {label}
         </label>

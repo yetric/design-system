@@ -64,19 +64,19 @@ export const StatusIndicators: Story = {
     <div className="flex items-center gap-6">
       <div className="flex flex-col items-center gap-1">
         <Avatar fallback="ON" status="online" />
-        <span className="text-xs text-muted-foreground">online</span>
+        <span className="text-muted-foreground text-xs">online</span>
       </div>
       <div className="flex flex-col items-center gap-1">
         <Avatar fallback="AW" status="away" />
-        <span className="text-xs text-muted-foreground">away</span>
+        <span className="text-muted-foreground text-xs">away</span>
       </div>
       <div className="flex flex-col items-center gap-1">
         <Avatar fallback="BU" status="busy" />
-        <span className="text-xs text-muted-foreground">busy</span>
+        <span className="text-muted-foreground text-xs">busy</span>
       </div>
       <div className="flex flex-col items-center gap-1">
         <Avatar fallback="OF" status="offline" />
-        <span className="text-xs text-muted-foreground">offline</span>
+        <span className="text-muted-foreground text-xs">offline</span>
       </div>
     </div>
   ),
@@ -101,7 +101,7 @@ export const RadiusVariants: Story = {
       {(["none", "sm", "md", "lg", "full"] as const).map((r) => (
         <div key={r} className="flex flex-col items-center gap-1">
           <Avatar fallback="AB" radius={r} />
-          <span className="text-xs text-muted-foreground">{r}</span>
+          <span className="text-muted-foreground text-xs">{r}</span>
         </div>
       ))}
     </div>

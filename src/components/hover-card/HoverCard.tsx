@@ -39,7 +39,7 @@ const HoverCardContent = React.forwardRef<
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          "bg-popover text-popover-foreground z-50 w-64 border border-border p-4 outline-none",
+          "bg-popover text-popover-foreground border-border z-50 w-64 border p-4 outline-none",
           radiusClass[radius],
           shadowClass[shadow],
           "data-[state=open]:animate-in data-[state=closed]:animate-out",

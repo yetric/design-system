@@ -27,19 +27,19 @@ function TimelineItem({
     <li className={cn("relative flex gap-4", className)} {...props}>
       {/* Vertical connector */}
       {!last && (
-        <div className="absolute bottom-0 left-3.5 top-8 w-px bg-border" aria-hidden="true" />
+        <div className="bg-border absolute top-8 bottom-0 left-3.5 w-px" aria-hidden="true" />
       )}
       {/* Bullet */}
-      <div className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border bg-card text-muted-foreground">
-        {bullet ?? <span className="h-2 w-2 rounded-full bg-primary" />}
+      <div className="border-border bg-card text-muted-foreground relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border">
+        {bullet ?? <span className="bg-primary h-2 w-2 rounded-full" />}
       </div>
       {/* Content */}
       <div className="flex-1 pb-8">
         <div className="flex items-start justify-between gap-2">
-          {title && <p className="text-sm font-medium leading-tight text-foreground">{title}</p>}
-          {time && <time className="shrink-0 text-xs text-muted-foreground">{time}</time>}
+          {title && <p className="text-foreground text-sm leading-tight font-medium">{title}</p>}
+          {time && <time className="text-muted-foreground shrink-0 text-xs">{time}</time>}
         </div>
-        {description && <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>}
+        {description && <p className="text-muted-foreground mt-0.5 text-sm">{description}</p>}
         {children}
       </div>
     </li>

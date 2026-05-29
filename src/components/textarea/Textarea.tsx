@@ -99,10 +99,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-describedby={describedBy}
           onChange={handleChange}
           className={cn(
-            "flex w-full border border-input bg-background",
+            "border-input bg-background flex w-full border",
             "placeholder:text-muted-foreground",
-            "transition-colors duration-base",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "duration-base transition-colors",
+            "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:opacity-50",
             "min-h-[100px]",
             autoResize ? "resize-none overflow-hidden" : "resize-y",
@@ -114,7 +114,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {helpText && !hasError && (
-          <p id={helpTextId} className={cn("mt-1 text-muted-foreground", helperSizeClass[size])}>
+          <p id={helpTextId} className={cn("text-muted-foreground mt-1", helperSizeClass[size])}>
             {helpText}
           </p>
         )}
@@ -122,7 +122,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <p
             id={errorId}
             role="alert"
-            className={cn("mt-1 text-destructive", helperSizeClass[size])}
+            className={cn("text-destructive mt-1", helperSizeClass[size])}
           >
             {error}
           </p>

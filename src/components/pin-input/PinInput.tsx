@@ -107,8 +107,8 @@ function PinInput({
             onPaste={handlePaste}
             onFocus={(e) => e.target.select()}
             className={cn(
-              "border bg-background text-center font-mono tabular-nums text-foreground outline-none",
-              "transition-colors focus:ring-2 focus:ring-ring focus:ring-offset-2",
+              "bg-background text-foreground border text-center font-mono tabular-nums outline-none",
+              "focus:ring-ring transition-colors focus:ring-2 focus:ring-offset-2",
               boxSizeClass[size],
               radiusClass[radius],
               hasError ? "border-destructive" : "border-input",
@@ -118,7 +118,7 @@ function PinInput({
         ))}
       </div>
       {typeof error === "string" && (
-        <p id={errorId} role="alert" className="text-sm text-destructive">
+        <p id={errorId} role="alert" className="text-destructive text-sm">
           {error}
         </p>
       )}

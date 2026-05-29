@@ -22,13 +22,13 @@ export const Default: Story = {
         <span className="font-semibold">@yetric/ui starred repos</span>
       </CollapsibleTrigger>
       <CollapsibleContent className="space-y-1 pt-1">
-        <div className="rounded-md border border-border px-4 py-3 font-mono text-sm">
+        <div className="border-border rounded-md border px-4 py-3 font-mono text-sm">
           @yetric/ui
         </div>
-        <div className="rounded-md border border-border px-4 py-3 font-mono text-sm">
+        <div className="border-border rounded-md border px-4 py-3 font-mono text-sm">
           @yetric/icons
         </div>
-        <div className="rounded-md border border-border px-4 py-3 font-mono text-sm">
+        <div className="border-border rounded-md border px-4 py-3 font-mono text-sm">
           @yetric/hooks
         </div>
       </CollapsibleContent>
@@ -46,7 +46,7 @@ export const CustomTrigger: Story = {
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="space-y-2 pt-2">
-        <p className="px-2 text-sm text-muted-foreground">
+        <p className="text-muted-foreground px-2 text-sm">
           Additional configuration options appear here.
         </p>
       </CollapsibleContent>

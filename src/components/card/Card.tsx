@@ -55,7 +55,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           radiusClass[radius],
           shadowClass[resolvedShadow],
           interactive &&
-            "cursor-pointer hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "focus-visible:ring-ring cursor-pointer hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
           className
         )}
         {...props}
@@ -118,7 +118,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, as: Tag = "h3", ...props }, ref) => (
     <Tag
       ref={ref}
-      className={cn("text-lg font-semibold leading-tight tracking-tight", className)}
+      className={cn("text-lg leading-tight font-semibold tracking-tight", className)}
       {...props}
     />
   )
@@ -131,7 +131,7 @@ const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
+  <p ref={ref} className={cn("text-muted-foreground text-sm", className)} {...props} />
 ));
 CardDescription.displayName = "CardDescription";
 

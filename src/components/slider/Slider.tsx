@@ -38,16 +38,16 @@ const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, S
   ) => (
     <SliderPrimitive.Root
       ref={ref}
-      className={cn("relative flex w-full touch-none select-none items-center", className)}
+      className={cn("relative flex w-full touch-none items-center select-none", className)}
       {...props}
     >
       <SliderPrimitive.Track
         className={cn(
-          "relative w-full grow overflow-hidden rounded-full bg-secondary",
+          "bg-secondary relative w-full grow overflow-hidden rounded-full",
           trackClass[size]
         )}
       >
-        <SliderPrimitive.Range className="absolute h-full bg-primary" />
+        <SliderPrimitive.Range className="bg-primary absolute h-full" />
       </SliderPrimitive.Track>
       {(props.defaultValue ?? props.value ?? [0]).map((_, i) => (
         <SliderPrimitive.Thumb
@@ -55,8 +55,8 @@ const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, S
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby}
           className={cn(
-            "block rounded-full border border-primary/50 bg-background shadow transition-colors",
-            "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+            "border-primary/50 bg-background block rounded-full border shadow transition-colors",
+            "focus-visible:ring-ring focus-visible:ring-1 focus-visible:outline-none",
             "disabled:pointer-events-none disabled:opacity-50",
             thumbClass[size]
           )}

@@ -120,7 +120,7 @@ function MultiSelect({
   return (
     <div className={cn("flex flex-col", className)} ref={containerRef}>
       {label && (
-        <label htmlFor={id} className="mb-1.5 text-sm font-medium text-foreground">
+        <label htmlFor={id} className="text-foreground mb-1.5 text-sm font-medium">
           {label}
         </label>
       )}
@@ -141,13 +141,13 @@ function MultiSelect({
         }}
         onClick={() => !disabled && setOpen((o) => !o)}
         className={cn(
-          "relative flex w-full cursor-pointer flex-wrap items-center border bg-background transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "bg-background relative flex w-full cursor-pointer flex-wrap items-center border transition-colors",
+          "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
           triggerSizeClass[size],
           radiusClass[radius],
           hasError ? "border-destructive focus-visible:ring-destructive" : "border-input",
           disabled && "cursor-not-allowed opacity-50",
-          open && "ring-2 ring-ring ring-offset-2 ring-offset-background"
+          open && "ring-ring ring-offset-background ring-2 ring-offset-2"
         )}
       >
         <div className="flex flex-1 flex-wrap items-center gap-1">
@@ -158,7 +158,7 @@ function MultiSelect({
               <span
                 key={opt.value}
                 className={cn(
-                  "inline-flex items-center rounded-full border border-border bg-muted font-medium",
+                  "border-border bg-muted inline-flex items-center rounded-full border font-medium",
                   tagSizeClass[size]
                 )}
               >
@@ -189,7 +189,7 @@ function MultiSelect({
           )}
           <ChevronDown
             className={cn(
-              "h-4 w-4 text-muted-foreground transition-transform",
+              "text-muted-foreground h-4 w-4 transition-transform",
               open && "rotate-180"
             )}
             aria-hidden="true"
@@ -203,7 +203,7 @@ function MultiSelect({
           role="listbox"
           aria-multiselectable="true"
           className={cn(
-            "bg-popover absolute z-dropdown mt-1 w-full overflow-hidden border border-border shadow-md",
+            "bg-popover z-dropdown border-border absolute mt-1 w-full overflow-hidden border shadow-md",
             radiusClass[radius]
           )}
           style={{
@@ -211,21 +211,21 @@ function MultiSelect({
           }}
         >
           {searchable && (
-            <div className="flex items-center gap-2 border-b border-border px-3 py-2">
-              <Search className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+            <div className="border-border flex items-center gap-2 border-b px-3 py-2">
+              <Search className="text-muted-foreground h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={searchPlaceholder}
                 autoFocus
-                className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+                className="placeholder:text-muted-foreground flex-1 bg-transparent text-sm outline-none"
               />
             </div>
           )}
           <ul className="max-h-60 overflow-y-auto py-1">
             {filteredOptions.length === 0 ? (
-              <li className="px-3 py-2 text-sm text-muted-foreground">No results</li>
+              <li className="text-muted-foreground px-3 py-2 text-sm">No results</li>
             ) : (
               filteredOptions.map((opt) => {
                 const isSelected = value.includes(opt.value);
@@ -237,7 +237,7 @@ function MultiSelect({
                     onClick={() => !opt.disabled && toggleOption(opt.value)}
                     className={cn(
                       "flex cursor-pointer items-center gap-2 px-3 py-1.5 text-sm transition-colors",
-                      isSelected ? "bg-primary/10 font-medium text-foreground" : "hover:bg-muted",
+                      isSelected ? "bg-primary/10 text-foreground font-medium" : "hover:bg-muted",
                       opt.disabled && "pointer-events-none opacity-40"
                     )}
                   >
@@ -277,11 +277,11 @@ function MultiSelect({
       )}
 
       {typeof error === "string" && (
-        <p role="alert" className="mt-1 text-xs text-destructive">
+        <p role="alert" className="text-destructive mt-1 text-xs">
           {error}
         </p>
       )}
-      {!error && helpText && <p className="mt-1 text-xs text-muted-foreground">{helpText}</p>}
+      {!error && helpText && <p className="text-muted-foreground mt-1 text-xs">{helpText}</p>}
     </div>
   );
 }

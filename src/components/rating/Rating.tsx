@@ -63,7 +63,7 @@ function Rating({
             onMouseEnter={() => !readOnly && setHovered(starValue)}
             onMouseLeave={() => !readOnly && setHovered(null)}
             className={cn(
-              "rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "focus-visible:ring-ring rounded-sm transition-colors focus-visible:ring-2 focus-visible:outline-none",
               readOnly ? "cursor-default" : "cursor-pointer",
               starSizeClass[size]
             )}
@@ -72,7 +72,7 @@ function Rating({
               aria-hidden="true"
               className={cn(
                 "h-full w-full transition-colors",
-                filled ? [color, "fill-current"] : "fill-none stroke-muted-foreground text-muted"
+                filled ? [color, "fill-current"] : "stroke-muted-foreground text-muted fill-none"
               )}
             />
           </button>

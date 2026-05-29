@@ -192,18 +192,18 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             handleAddFiles(Array.from(event.dataTransfer.files ?? []));
           }}
           className={cn(
-            "flex min-h-52 flex-col items-center justify-center gap-3 border-dashed text-center transition-colors duration-base",
+            "duration-base flex min-h-52 flex-col items-center justify-center gap-3 border-dashed text-center transition-colors",
             disabled && "cursor-not-allowed opacity-50",
-            !disabled && "cursor-pointer hover:border-primary/50 hover:bg-accent/30",
+            !disabled && "hover:border-primary/50 hover:bg-accent/30 cursor-pointer",
             isDragging && !disabled && "border-primary bg-accent/40"
           )}
         >
-          <Upload className="h-8 w-8 text-muted-foreground" aria-hidden="true" />
+          <Upload className="text-muted-foreground h-8 w-8" aria-hidden="true" />
           <div className="space-y-1">
-            <p className="text-sm font-medium text-foreground">
+            <p className="text-foreground text-sm font-medium">
               Drop files here or click to upload
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {accept ? `Accepted formats: ${accept}` : "Any file type accepted"}
             </p>
           </div>
@@ -220,7 +220,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
         </Paper>
 
         {error && (
-          <p className="mt-2 text-sm text-destructive" role="alert">
+          <p className="text-destructive mt-2 text-sm" role="alert">
             {error}
           </p>
         )}
@@ -230,7 +230,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             {items.map((item) => (
               <li
                 key={item.id}
-                className="flex items-center gap-3 rounded-md border border-border bg-card px-3 py-2"
+                className="border-border bg-card flex items-center gap-3 rounded-md border px-3 py-2"
               >
                 {item.previewUrl ? (
                   <img
@@ -239,17 +239,17 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                     className="h-12 w-12 rounded-md object-cover"
                   />
                 ) : (
-                  <span className="flex h-12 w-12 items-center justify-center rounded-md bg-muted text-muted-foreground">
+                  <span className="bg-muted text-muted-foreground flex h-12 w-12 items-center justify-center rounded-md">
                     <FileIcon className="h-5 w-5" aria-hidden="true" />
                   </span>
                 )}
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-foreground">{item.file.name}</p>
-                  <p className="text-xs text-muted-foreground">{formatFileSize(item.file.size)}</p>
+                  <p className="text-foreground truncate text-sm font-medium">{item.file.name}</p>
+                  <p className="text-muted-foreground text-xs">{formatFileSize(item.file.size)}</p>
                 </div>
                 <button
                   type="button"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none"
+                  className="text-muted-foreground hover:bg-accent hover:text-foreground focus-visible:ring-ring inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none"
                   aria-label={`Remove ${item.file.name}`}
                   onClick={() => handleRemove(item.id)}
                   disabled={disabled}

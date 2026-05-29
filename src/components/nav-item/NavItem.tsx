@@ -92,7 +92,7 @@ export const NavItem = React.forwardRef<HTMLElement, NavItemProps>(
             {content}
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="ml-4 mt-0.5 flex flex-col gap-0.5 border-l border-border pl-3">
+            <div className="border-border mt-0.5 ml-4 flex flex-col gap-0.5 border-l pl-3">
               {children}
             </div>
           </CollapsibleContent>
@@ -144,7 +144,7 @@ export function NavGroup({ label, children, className }: NavGroupProps) {
   return (
     <div className={cn("flex flex-col gap-0.5", className)}>
       {label && (
-        <p className="mb-1 select-none px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <p className="text-muted-foreground mb-1 px-3 text-xs font-semibold tracking-wider uppercase select-none">
           {label}
         </p>
       )}

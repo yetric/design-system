@@ -44,8 +44,8 @@ const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root
         aria-invalid={hasError || undefined}
         aria-describedby={errorId}
         className={cn(
-          "peer shrink-0 border border-input ring-offset-background",
-          "transition-colors focus-visible:outline-none focus-visible:ring-2",
+          "peer border-input ring-offset-background shrink-0 border",
+          "transition-colors focus-visible:ring-2 focus-visible:outline-none",
           "focus-visible:ring-ring focus-visible:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
@@ -93,14 +93,14 @@ const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root
           {label && (
             <label
               htmlFor={checkboxId}
-              className="cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="cursor-pointer text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               {label}
             </label>
           )}
         </div>
         {typeof error === "string" && (
-          <p id={errorId} role="alert" className="text-sm text-destructive">
+          <p id={errorId} role="alert" className="text-destructive text-sm">
             {error}
           </p>
         )}

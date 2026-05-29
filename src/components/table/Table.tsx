@@ -131,7 +131,7 @@ const TableHeader = React.forwardRef<
       ref={ref}
       className={cn(
         borders !== "none" && "[&_tr]:border-b",
-        stickyHeader && "sticky top-0 z-10 bg-card",
+        stickyHeader && "bg-card sticky top-0 z-10",
         className
       )}
       {...props}
@@ -154,7 +154,7 @@ const TableFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tfoot
     ref={ref}
-    className={cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className)}
+    className={cn("bg-muted/50 border-t font-medium [&>tr]:last:border-b-0", className)}
     {...props}
   />
 ));
@@ -190,7 +190,7 @@ const TableHead = React.forwardRef<
     <th
       ref={ref}
       className={cn(
-        "text-left align-middle text-xs font-medium text-muted-foreground",
+        "text-muted-foreground text-left align-middle text-xs font-medium",
         "[&:has([role=checkbox])]:w-12 [&:has([role=checkbox])]:pr-0",
         headPadding[density],
         borders === "grid" && "border-r last:border-r-0",
@@ -226,7 +226,7 @@ const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
   React.HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref) => (
-  <caption ref={ref} className={cn("mt-4 text-sm text-muted-foreground", className)} {...props} />
+  <caption ref={ref} className={cn("text-muted-foreground mt-4 text-sm", className)} {...props} />
 ));
 TableCaption.displayName = "TableCaption";
 
@@ -479,7 +479,7 @@ function DataMode<TData>({
           />
         )}
         {selectedCount > 0 && (
-          <span className="text-sm text-muted-foreground">{selectedCount} selected</span>
+          <span className="text-muted-foreground text-sm">{selectedCount} selected</span>
         )}
         <div className="ml-auto flex items-center gap-2">
           {hasFilterableColumns && (
@@ -514,11 +514,11 @@ function DataMode<TData>({
               </svg>
             </Button>
             {colMenuOpen && (
-              <div className="absolute right-0 top-full z-[var(--z-dropdown)] mt-1 min-w-[160px] rounded-md border border-border bg-card p-1 shadow-md">
+              <div className="border-border bg-card absolute top-full right-0 z-[var(--z-dropdown)] mt-1 min-w-[160px] rounded-md border p-1 shadow-md">
                 {hideable.map((col) => (
                   <label
                     key={col.id}
-                    className="flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm hover:bg-accent"
+                    className="hover:bg-accent flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm"
                   >
                     <Checkbox
                       size="sm"
@@ -538,7 +538,7 @@ function DataMode<TData>({
       <div
         className={cn(
           "rounded-md",
-          borders !== "none" && "border border-border",
+          borders !== "none" && "border-border border",
           stickyHeader && "overflow-auto"
         )}
       >
@@ -552,7 +552,7 @@ function DataMode<TData>({
                       <TableHead key={header.id}>
                         {header.isPlaceholder ? null : header.column.getCanSort() ? (
                           <button
-                            className="flex items-center transition-colors hover:text-foreground"
+                            className="hover:text-foreground flex items-center transition-colors"
                             onClick={header.column.getToggleSortingHandler()}
                           >
                             {flexRender(header.column.columnDef.header, header.getContext())}
@@ -600,7 +600,7 @@ function DataMode<TData>({
                   <TableRow>
                     <TableCell
                       colSpan={processedColumns.length}
-                      className="h-24 text-center text-muted-foreground"
+                      className="text-muted-foreground h-24 text-center"
                     >
                       No results.
                     </TableCell>
@@ -615,7 +615,7 @@ function DataMode<TData>({
       {/* Pagination */}
       {pageSize && (
         <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">
+          <span className="text-muted-foreground text-sm">
             Page {table.getState().pagination.pageIndex + 1} of {Math.max(1, table.getPageCount())}
           </span>
           <div className="flex gap-2">

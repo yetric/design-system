@@ -20,7 +20,7 @@ const CollapsibleTrigger = React.forwardRef<
     className={cn(
       "flex w-full items-center justify-between gap-2 rounded-md p-2",
       "text-sm font-medium transition-colors",
-      "hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "hover:bg-muted focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       "[&[data-state=open]>svg]:rotate-180",
       className
@@ -31,7 +31,7 @@ const CollapsibleTrigger = React.forwardRef<
     {!hideChevron && (
       <ChevronDown
         aria-hidden="true"
-        className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200"
+        className="text-muted-foreground h-4 w-4 shrink-0 transition-transform duration-200"
       />
     )}
   </CollapsiblePrimitive.CollapsibleTrigger>

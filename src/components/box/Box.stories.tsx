@@ -66,13 +66,13 @@ export const FlexContainer: Story = {
     className: "gap-4 items-center bg-muted rounded",
     children: (
       <>
-        <Box p="sm" className="rounded bg-primary text-sm text-primary-foreground">
+        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">
           Item 1
         </Box>
-        <Box p="sm" className="rounded bg-primary text-sm text-primary-foreground">
+        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">
           Item 2
         </Box>
-        <Box p="sm" className="rounded bg-primary text-sm text-primary-foreground">
+        <Box p="sm" className="bg-primary text-primary-foreground rounded text-sm">
           Item 3
         </Box>
       </>
@@ -84,7 +84,7 @@ export const ShadowTokens: Story = {
   render: () => (
     <Box display="flex" className="flex-col gap-4">
       {(["none", "sm", "md", "lg", "xl"] as const).map((s) => (
-        <Box key={s} p="md" shadow={s} className="rounded-lg border bg-card text-sm">
+        <Box key={s} p="md" shadow={s} className="bg-card rounded-lg border text-sm">
           shadow="{s}"
         </Box>
       ))}
@@ -96,7 +96,7 @@ export const SpacingTokens: Story = {
   render: () => (
     <Box display="flex" className="flex-col gap-4">
       {(["none", "xs", "sm", "md", "lg", "xl"] as const).map((size) => (
-        <Box key={size} p={size} className="rounded bg-muted text-sm">
+        <Box key={size} p={size} className="bg-muted rounded text-sm">
           p="{size}"
         </Box>
       ))}
@@ -106,15 +106,15 @@ export const SpacingTokens: Story = {
 
 export const NestedBoxes: Story = {
   render: () => (
-    <Box p="lg" className="rounded-lg bg-muted">
+    <Box p="lg" className="bg-muted rounded-lg">
       <Box mb="md" className="text-lg font-semibold">
         Outer Box
       </Box>
       <Box display="flex" className="gap-4">
-        <Box p="md" className="flex-1 rounded border bg-background">
+        <Box p="md" className="bg-background flex-1 rounded border">
           Inner 1
         </Box>
-        <Box p="md" className="flex-1 rounded border bg-background">
+        <Box p="md" className="bg-background flex-1 rounded border">
           Inner 2
         </Box>
       </Box>

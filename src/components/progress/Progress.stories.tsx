@@ -26,7 +26,7 @@ export const Variants: Story = {
     <div className="flex w-[300px] flex-col gap-3">
       {(["default", "success", "warning", "destructive", "info"] as const).map((v) => (
         <div key={v} className="space-y-1">
-          <p className="text-xs capitalize text-muted-foreground">{v}</p>
+          <p className="text-muted-foreground text-xs capitalize">{v}</p>
           <Progress value={65} variant={v} />
         </div>
       ))}
@@ -39,7 +39,7 @@ export const Sizes: Story = {
     <div className="flex w-[300px] flex-col gap-3">
       {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
         <div key={s} className="space-y-1">
-          <p className="text-xs text-muted-foreground">{s}</p>
+          <p className="text-muted-foreground text-xs">{s}</p>
           <Progress value={70} size={s} />
         </div>
       ))}

@@ -214,7 +214,7 @@ export function RichTextEditor({
 
   return (
     <div
-      className={cn("yetric-rich-text-editor rounded-lg border border-border bg-card", className)}
+      className={cn("yetric-rich-text-editor border-border bg-card rounded-lg border", className)}
     >
       <style>{`
         .yetric-rich-text-editor .ProseMirror p.is-editor-empty:first-child::before {
@@ -243,11 +243,11 @@ export function RichTextEditor({
         }
       `}</style>
       {toolbar && editor ? (
-        <div className="flex flex-wrap items-center gap-2 border-b border-border p-2">
+        <div className="border-border flex flex-wrap items-center gap-2 border-b p-2">
           {toolbarSections.map((section, sectionIndex) => (
             <React.Fragment key={section[0]?.label ?? sectionIndex}>
               {sectionIndex > 0 ? (
-                <span className="mx-1 h-6 w-px bg-border" aria-hidden="true" />
+                <span className="bg-border mx-1 h-6 w-px" aria-hidden="true" />
               ) : null}
               {section.map((action) => (
                 <Button

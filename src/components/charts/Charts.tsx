@@ -74,7 +74,7 @@ function ChartContainer({
     <div
       data-testid={testId}
       className={cn(
-        "w-full rounded-lg border border-border bg-card p-4 text-card-foreground",
+        "border-border bg-card text-card-foreground w-full rounded-lg border p-4",
         className
       )}
       style={{ height }}

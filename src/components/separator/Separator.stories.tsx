@@ -41,7 +41,7 @@ export const Thickness: Story = {
     <div className="w-64 space-y-4">
       {(["thin", "medium", "thick"] as const).map((t) => (
         <div key={t}>
-          <p className="mb-1 text-xs text-muted-foreground">{t}</p>
+          <p className="text-muted-foreground mb-1 text-xs">{t}</p>
           <Separator thickness={t} />
         </div>
       ))}
@@ -54,7 +54,7 @@ export const Colors: Story = {
     <div className="w-64 space-y-4">
       {(["border", "muted", "accent"] as const).map((c) => (
         <div key={c}>
-          <p className="mb-1 text-xs text-muted-foreground">{c}</p>
+          <p className="text-muted-foreground mb-1 text-xs">{c}</p>
           <Separator color={c} thickness="medium" />
         </div>
       ))}
@@ -64,11 +64,11 @@ export const Colors: Story = {
 
 export const InMenu: Story = {
   render: () => (
-    <div className="w-48 rounded-md border border-border p-1 text-sm">
-      <div className="cursor-default rounded-sm px-2 py-1.5 hover:bg-accent">Profile</div>
-      <div className="cursor-default rounded-sm px-2 py-1.5 hover:bg-accent">Settings</div>
+    <div className="border-border w-48 rounded-md border p-1 text-sm">
+      <div className="hover:bg-accent cursor-default rounded-sm px-2 py-1.5">Profile</div>
+      <div className="hover:bg-accent cursor-default rounded-sm px-2 py-1.5">Settings</div>
       <Separator className="my-1" />
-      <div className="cursor-default rounded-sm px-2 py-1.5 text-destructive hover:bg-accent">
+      <div className="text-destructive hover:bg-accent cursor-default rounded-sm px-2 py-1.5">
         Sign out
       </div>
     </div>

@@ -50,7 +50,7 @@ function renderSortIcon(sortState: false | "asc" | "desc") {
     return <ArrowDown className="h-4 w-4" aria-hidden="true" />;
   }
 
-  return <ArrowUpDown className="h-4 w-4 text-muted-foreground" aria-hidden="true" />;
+  return <ArrowUpDown className="text-muted-foreground h-4 w-4" aria-hidden="true" />;
 }
 
 export function DataGrid<T>({
@@ -132,20 +132,20 @@ export function DataGrid<T>({
     <div className={cn("w-full", className)}>
       <div
         ref={scrollElementRef}
-        className="overflow-auto rounded-lg border border-border bg-card text-card-foreground"
+        className="border-border bg-card text-card-foreground overflow-auto rounded-lg border"
         style={{ height }}
       >
         <table className="w-full border-collapse" data-testid="data-grid">
-          <thead className="sticky top-0 z-10 bg-card shadow-[inset_0_-1px_0_hsl(var(--border))]">
+          <thead className="bg-card sticky top-0 z-10 shadow-[inset_0_-1px_0_hsl(var(--border))]">
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="border-b border-border">
+              <tr key={headerGroup.id} className="border-border border-b">
                 {headerGroup.headers.map((header) => {
                   const canSort = header.column.getCanSort();
                   const sortState = header.column.getIsSorted();
                   return (
                     <th
                       key={header.id}
-                      className="bg-card px-4 py-3 text-left text-sm font-medium text-card-foreground"
+                      className="bg-card text-card-foreground px-4 py-3 text-left text-sm font-medium"
                       style={{
                         width: header.getSize(),
                         minWidth: header.column.columnDef.minSize,
@@ -162,7 +162,7 @@ export function DataGrid<T>({
                       {header.isPlaceholder ? null : canSort ? (
                         <button
                           type="button"
-                          className="flex w-full items-center gap-2 transition-colors hover:text-foreground"
+                          className="hover:text-foreground flex w-full items-center gap-2 transition-colors"
                           onClick={header.column.getToggleSortingHandler()}
                         >
                           <span className="truncate">
@@ -188,14 +188,14 @@ export function DataGrid<T>({
                   {table.getAllLeafColumns().map((column) => (
                     <td
                       key={`${column.id}-${rowIndex}`}
-                      className="border-b border-border px-4 py-2"
+                      className="border-border border-b px-4 py-2"
                       style={{
                         height: rowHeight,
                         width: column.getSize(),
                         minWidth: column.columnDef.minSize,
                       }}
                     >
-                      <div className="h-4 animate-pulse rounded bg-muted" />
+                      <div className="bg-muted h-4 animate-pulse rounded" />
                     </td>
                   ))}
                 </tr>
@@ -206,7 +206,7 @@ export function DataGrid<T>({
               <tr>
                 <td
                   colSpan={table.getAllLeafColumns().length || 1}
-                  className="px-4 py-10 text-center text-sm text-muted-foreground"
+                  className="text-muted-foreground px-4 py-10 text-center text-sm"
                 >
                   {emptyMessage}
                 </td>
@@ -227,8 +227,8 @@ export function DataGrid<T>({
                   <tr
                     key={row.id}
                     className={cn(
-                      "absolute left-0 flex w-full border-b border-border bg-card transition-colors",
-                      onRowClick && "cursor-pointer hover:bg-accent/40"
+                      "border-border bg-card absolute left-0 flex w-full border-b transition-colors",
+                      onRowClick && "hover:bg-accent/40 cursor-pointer"
                     )}
                     style={{
                       height: rowHeight,
@@ -239,7 +239,7 @@ export function DataGrid<T>({
                     {row.getVisibleCells().map((cell) => (
                       <td
                         key={cell.id}
-                        className="flex items-center overflow-hidden px-4 text-sm text-card-foreground"
+                        className="text-card-foreground flex items-center overflow-hidden px-4 text-sm"
                         style={{
                           width: cell.column.getSize(),
                           minWidth: cell.column.columnDef.minSize,

@@ -97,7 +97,7 @@ export const RadiusVariants: Story = {
     <div className="flex flex-col gap-3">
       {(["none", "sm", "md", "lg", "xl", "full"] as const).map((r) => (
         <div key={r} className="flex items-center gap-3">
-          <p className="w-10 text-xs text-muted-foreground">{r}</p>
+          <p className="text-muted-foreground w-10 text-xs">{r}</p>
           <ToggleGroup type="single" radius={r} defaultValue="b">
             <ToggleGroupItem value="a" aria-label="Bold">
               <Bold className="h-4 w-4" />

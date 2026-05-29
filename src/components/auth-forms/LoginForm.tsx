@@ -104,7 +104,7 @@ const LoginForm = ({
       {error && (
         <div
           role="alert"
-          className="rounded-md border border-destructive/20 bg-destructive/5 px-3 py-2 text-sm text-destructive"
+          className="border-destructive/20 bg-destructive/5 text-destructive rounded-md border px-3 py-2 text-sm"
         >
           {error}
         </div>
@@ -127,7 +127,7 @@ const LoginForm = ({
           aria-describedby={errors.email ? emailErrorId : undefined}
         />
         {errors.email && (
-          <p id={emailErrorId} role="alert" className="text-sm text-destructive">
+          <p id={emailErrorId} role="alert" className="text-destructive text-sm">
             {errors.email}
           </p>
         )}
@@ -150,7 +150,7 @@ const LoginForm = ({
           aria-describedby={errors.password ? passwordErrorId : undefined}
         />
         {errors.password && (
-          <p id={passwordErrorId} role="alert" className="text-sm text-destructive">
+          <p id={passwordErrorId} role="alert" className="text-destructive text-sm">
             {errors.password}
           </p>
         )}

@@ -66,7 +66,7 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
           role="img"
           aria-label={alt ?? fallback ?? "avatar"}
           className={cn(
-            "inline-flex select-none items-center justify-center overflow-hidden bg-muted font-medium text-muted-foreground",
+            "bg-muted text-muted-foreground inline-flex items-center justify-center overflow-hidden font-medium select-none",
             avatarSizeClass[size],
             radiusClass[radius],
             className
@@ -88,7 +88,7 @@ const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
           <span
             aria-label={status}
             className={cn(
-              "absolute bottom-0 right-0 rounded-full ring-background",
+              "ring-background absolute right-0 bottom-0 rounded-full",
               statusSizeClass[size],
               statusColor[status]
             )}

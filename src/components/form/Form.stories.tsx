@@ -333,7 +333,7 @@ function CheckboxForm() {
                     control={form.control}
                     name={`notifications.${channel}`}
                     render={({ field }) => (
-                      <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                      <FormItem className="flex flex-row items-center space-y-0 space-x-3">
                         <FormControl>
                           <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
@@ -348,7 +348,7 @@ function CheckboxForm() {
                 control={form.control}
                 name="terms"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormItem className="flex flex-row items-start space-y-0 space-x-3">
                     <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
@@ -577,7 +577,7 @@ function ProfileForm() {
                 control={form.control}
                 name="updates"
                 render={({ field }) => (
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className="flex items-center space-y-0 space-x-3">
                     <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
@@ -589,7 +589,7 @@ function ProfileForm() {
                 control={form.control}
                 name="terms"
                 render={({ field }) => (
-                  <FormItem className="flex items-start space-x-3 space-y-0">
+                  <FormItem className="flex items-start space-y-0 space-x-3">
                     <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>

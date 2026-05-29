@@ -228,16 +228,16 @@ const AddressInput = React.forwardRef<HTMLInputElement, AddressInputProps>(
             id={listboxId}
             role="listbox"
             className={cn(
-              "absolute top-full z-[var(--z-dropdown)] mt-2 w-full overflow-hidden rounded-md border border-border bg-card text-card-foreground shadow-md"
+              "border-border bg-card text-card-foreground absolute top-full z-[var(--z-dropdown)] mt-2 w-full overflow-hidden rounded-md border shadow-md"
             )}
           >
             {isLoading ? (
-              <div className="flex items-center gap-2 px-3 py-3 text-sm text-muted-foreground">
+              <div className="text-muted-foreground flex items-center gap-2 px-3 py-3 text-sm">
                 <Loader size="sm" label="Searching addresses" />
                 <span>Searching...</span>
               </div>
             ) : suggestions.length === 0 ? (
-              <div className="px-3 py-3 text-sm text-muted-foreground">No results found</div>
+              <div className="text-muted-foreground px-3 py-3 text-sm">No results found</div>
             ) : (
               <ul className="max-h-72 overflow-y-auto py-1">
                 {suggestions.map((suggestion, index) => (

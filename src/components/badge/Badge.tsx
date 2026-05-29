@@ -75,7 +75,7 @@ function Badge({
           type="button"
           onClick={onDismiss}
           aria-label={dismissLabel}
-          className="ml-0.5 shrink-0 rounded-full opacity-70 hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-current"
+          className="ml-0.5 shrink-0 rounded-full opacity-70 hover:opacity-100 focus-visible:ring-1 focus-visible:ring-current focus-visible:outline-none"
         >
           <X className="h-3 w-3" aria-hidden="true" />
         </button>

@@ -80,7 +80,7 @@ export const Error: Story = {
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
         <Checkbox id="error-unchecked" error />
-        <Label htmlFor="error-unchecked" className="text-sm text-destructive">
+        <Label htmlFor="error-unchecked" className="text-destructive text-sm">
           You must accept the terms
         </Label>
       </div>

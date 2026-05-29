@@ -43,7 +43,7 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
         disabled={disabled}
         aria-labelledby={legend ? legendId : undefined}
         className={cn(
-          "flex flex-col border border-border",
+          "border-border flex flex-col border",
           fieldsetSizeClass[size],
           radiusClass[radius],
           disabled && "opacity-60",
@@ -54,7 +54,7 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
         {legend && (
           <legend
             id={legendId}
-            className={cn("float-left -mt-px font-medium text-foreground", legendSizeClass[size])}
+            className={cn("text-foreground float-left -mt-px font-medium", legendSizeClass[size])}
           >
             {legend}
           </legend>

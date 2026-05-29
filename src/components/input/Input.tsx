@@ -80,10 +80,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         aria-invalid={error || undefined}
         className={cn(
-          "flex w-full border border-input bg-background",
+          "border-input bg-background flex w-full border",
           "placeholder:text-muted-foreground",
-          "transition-colors duration-base",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "duration-base transition-colors",
+          "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "file:border-0 file:bg-transparent file:text-sm file:font-medium",
           inputSizeClass[size],
@@ -104,7 +104,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {leftIcon && (
           <span
             className={cn(
-              "pointer-events-none absolute top-1/2 flex -translate-y-1/2 items-center text-muted-foreground [&>svg]:h-full [&>svg]:w-full",
+              "text-muted-foreground pointer-events-none absolute top-1/2 flex -translate-y-1/2 items-center [&>svg]:h-full [&>svg]:w-full",
               iconPositionLeft[size],
               iconClass[size]
             )}
@@ -117,7 +117,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {rightIcon && (
           <span
             className={cn(
-              "pointer-events-none absolute top-1/2 flex -translate-y-1/2 items-center text-muted-foreground [&>svg]:h-full [&>svg]:w-full",
+              "text-muted-foreground pointer-events-none absolute top-1/2 flex -translate-y-1/2 items-center [&>svg]:h-full [&>svg]:w-full",
               iconPositionRight[size],
               iconClass[size]
             )}

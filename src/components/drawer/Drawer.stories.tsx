@@ -35,7 +35,7 @@ export const Right: Story = {
           <DrawerDescription>Adjust your preferences below.</DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
-          <p className="text-sm text-muted-foreground">Drawer body content goes here.</p>
+          <p className="text-muted-foreground text-sm">Drawer body content goes here.</p>
         </DrawerBody>
         <DrawerFooter>
           <DrawerClose asChild>
@@ -122,7 +122,7 @@ export const Sizes: Story = {
               <DrawerTitle>Size: {size}</DrawerTitle>
             </DrawerHeader>
             <DrawerBody>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Width controlled by size=&quot;{size}&quot;.
               </p>
             </DrawerBody>

@@ -41,7 +41,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         ref={ref}
         aria-hidden="true"
         className={cn(
-          "animate-pulse bg-muted",
+          "bg-muted animate-pulse",
           presetClass[preset],
           radiusClass[resolvedRadius],
           className

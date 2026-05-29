@@ -80,7 +80,7 @@ function Indicator({
         aria-label={label ?? (displayCount ? `${displayCount} notifications` : undefined)}
         role={label || displayCount ? "status" : undefined}
         className={cn(
-          "absolute flex items-center justify-center rounded-full font-medium ring-2 ring-background",
+          "ring-background absolute flex items-center justify-center rounded-full font-medium ring-2",
           indicatorSizeClass[size],
           indicatorColorClass[color],
           indicatorPositionClass[position],
