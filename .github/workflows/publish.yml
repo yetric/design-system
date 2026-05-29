@@ -1,20 +1,18 @@
 name: Publish
 
 on:
-  workflow_run:
-    workflows: [Release Please]
-    types: [completed]
+  release:
+    types: [published]
 
 jobs:
   publish-npm:
     name: Publish to npm
     runs-on: ubuntu-latest
-    # Only run when Release Please actually created a release
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
 
       - uses: actions/setup-node@v4
         with:
@@ -26,6 +24,4 @@ jobs:
       - run: npm run build
 
       - name: Publish
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
