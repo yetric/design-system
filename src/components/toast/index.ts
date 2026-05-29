@@ -1,2 +1,3 @@
-export { Toaster, toast } from "./Toast";
+export { Toaster } from "./Toast";
 export type { ToasterProps, ToasterPosition } from "./Toast";
+export * from "./toast";

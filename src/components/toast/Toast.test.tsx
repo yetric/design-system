@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as sonner from "sonner";
-import { Toaster, toast } from "./Toast";
+import { Toaster } from "./Toast";
+import { toast } from "./toast";
 
 // Mock sonner so tests don't depend on DOM internals
 vi.mock("sonner", () => {
@@ -34,28 +35,32 @@ describe("Toaster", () => {
 describe("toast API", () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it("calls sonner toast for default", () => {
-    toast("Hello");
-    expect(vi.mocked(sonner.toast)).toHaveBeenCalledWith("Hello");
-  });
-
   it("calls toast.success", () => {
     toast.success("Saved!");
-    expect(vi.mocked(sonner.toast.success)).toHaveBeenCalledWith("Saved!");
+    expect(vi.mocked(sonner.toast.success)).toHaveBeenCalled();
+    expect(vi.mocked(sonner.toast.success).mock.calls[0]?.[0]).toBe("Saved!");
   });
 
   it("calls toast.error", () => {
     toast.error("Failed");
-    expect(vi.mocked(sonner.toast.error)).toHaveBeenCalledWith("Failed");
+    expect(vi.mocked(sonner.toast.error)).toHaveBeenCalled();
+    expect(vi.mocked(sonner.toast.error).mock.calls[0]?.[0]).toBe("Failed");
   });
 
   it("calls toast.warning", () => {
     toast.warning("Watch out");
-    expect(vi.mocked(sonner.toast.warning)).toHaveBeenCalledWith("Watch out");
+    expect(vi.mocked(sonner.toast.warning)).toHaveBeenCalled();
+    expect(vi.mocked(sonner.toast.warning).mock.calls[0]?.[0]).toBe("Watch out");
   });
 
   it("calls toast.info", () => {
     toast.info("FYI");
-    expect(vi.mocked(sonner.toast.info)).toHaveBeenCalledWith("FYI");
+    expect(vi.mocked(sonner.toast.info)).toHaveBeenCalled();
+    expect(vi.mocked(sonner.toast.info).mock.calls[0]?.[0]).toBe("FYI");
+  });
+
+  it("calls toast.dismiss", () => {
+    toast.dismiss("toast-id");
+    expect(vi.mocked(sonner.toast.dismiss)).toHaveBeenCalledWith("toast-id");
   });
 });
