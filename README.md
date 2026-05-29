@@ -1,27 +1,85 @@
-# yetric-ui
+# @yetric/ui
 
-Shared React UI foundation for Yetric applications.
+A practical React component library built for modern applications — including AI-native UIs.
 
-The goal of this repository is to provide a small, reliable, accessible, and reusable component library for React apps. It should make common UI faster to build without turning into a heavy design-system project too early.
+`@yetric/ui` gives you a complete set of accessible, composable components that cover everyday UI needs, advanced data patterns, and the streaming/chat interfaces that AI-powered apps demand. Provider-agnostic by design: bring your own backend, your own geocoding, your own LLM.
 
-## Package name
+## Install
 
-```txt
-@yetric/ui
+```bash
+npm install @yetric/ui
 ```
 
-## Purpose
+## What's included
 
-`yetric-ui` exists to:
+### Core components
+Button, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider, Label, Badge, Avatar, Card, Alert, Dialog, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Sheet, Drawer, Tabs, Accordion, Collapsible, HoverCard, Menubar, NavigationMenu, Command, Pagination, Breadcrumb, Stepper, Timeline, Table, DataTable, Skeleton, Spinner, Progress, Separator, ScrollArea, ResizablePanel, Carousel, Calendar, InputOTP, TagsInput, MultiSelect, PinInput, Code, Toggle, ToggleGroup, Toolbar
 
-- reduce duplicated UI work across apps
-- keep common components visually consistent
-- provide accessible primitives for common interaction patterns
-- make new apps faster to start
-- keep low-level UI separate from business logic
-- create a stable foundation for future UI packages
+### Advanced components (0.5.0+)
+DatePicker, DateRangePicker, FileUpload, Image, ColorPicker, Charts (Line/Bar/Area/Pie), EmptyState, ConfirmDialog, Toast API
 
-This library should stay practical. It is not meant to become a process-heavy design system before there is a real need for that.
+### Power components (0.6.0+)
+DataGrid (virtualized), RichTextEditor (Tiptap), MapView (Leaflet/OpenStreetMap), CommandPalette (⌘K), PhoneInput, AddressInput (provider-agnostic), Tour, VideoPlayer, LoginForm, SignupForm
+
+### AI components (coming in 0.7.0)
+AIChat, StreamingText, PromptInput, AIMessage, ThinkingIndicator, ModelSelector, SuggestionChips
+
+## Quick start
+
+```tsx
+import { Button, Card, CardContent, CardHeader, CardTitle } from "@yetric/ui";
+import "@yetric/ui/dist/index.css";
+
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Welcome</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Get started</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## AI-native usage (0.7.0)
+
+```tsx
+import { AIChat } from "@yetric/ui";
+
+export function Assistant() {
+  return (
+    <AIChat
+      onSend={async (message) => {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          body: JSON.stringify({ message }),
+        });
+        return res.body; // ReadableStream
+      }}
+    />
+  );
+}
+```
+
+## Provider-agnostic patterns
+
+Components like `AddressInput`, `DataGrid`, and the upcoming AI components take callbacks instead of hardcoded integrations:
+
+```tsx
+// Bring your own geocoding
+<AddressInput
+  onSearch={async (query) => {
+    const res = await fetch(`/api/geocode?q=${query}`);
+    return res.json(); // AddressSuggestion[]
+  }}
+/>
+
+// Bring your own LLM
+<AIChat onSend={(msg) => streamFromAnyProvider(msg)} />
+```
 
 ## Tech stack
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.6.0] - 2026-05-30
+
+### ✨ Features
+
+- Add `DataGrid` — virtualized data grid with sorting, built on `@tanstack/react-table` + `@tanstack/react-virtual`
+- Add `RichTextEditor` — Tiptap-based editor with toolbar (bold, italic, headings, lists, links, code blocks)
+- Add `MapView` — Leaflet/OpenStreetMap wrapper with markers and popups
+- Add `CommandPalette` — ⌘K/Ctrl+K overlay built on existing `Command` component, grouped items
+- Add `PhoneInput` — international phone input with country selector
+- Add `AddressInput` — provider-agnostic address autocomplete (bring your own geocoding via `onSearch`)
+- Add `Tour` — step-by-step product tours via `driver.js`, includes `useTour` hook
+- Add `VideoPlayer` — HTML5 video wrapper with aspect ratio, multiple sources, accessible
+- Add `LoginForm` + `SignupForm` — opinionated auth form patterns
+
 ## [0.5.0] - 2026-05-29
 
 ### ✨ Features
