@@ -23,17 +23,26 @@ function Spoiler({
   const [expanded, setExpanded] = React.useState(false);
   const contentRef = React.useRef<HTMLDivElement>(null);
   const [overflows, setOverflows] = React.useState(false);
+  const [fullHeight, setFullHeight] = React.useState(0);
 
   React.useEffect(() => {
     const el = contentRef.current;
-    if (el) setOverflows(el.scrollHeight > maxHeight);
+    if (el) {
+      const h = el.scrollHeight;
+      setOverflows(h > maxHeight);
+      setFullHeight(h);
+    }
   }, [maxHeight, children]);
 
   return (
     <div className={cn("relative", className)} {...props}>
       <div
         ref={contentRef}
-        style={!expanded ? { maxHeight, overflow: "hidden" } : undefined}
+        style={{
+          maxHeight: expanded ? fullHeight : maxHeight,
+          overflow: "hidden",
+          transition: "max-height 0.3s ease-out",
+        }}
         className={cn(!expanded && overflows && "mask-b-from-50%")}
       >
         {children}

@@ -88,18 +88,36 @@ const textVariants = cva("text-foreground", {
 
 type TextAs = "p" | "span" | "div" | "label" | "small" | "strong" | "em";
 
+const lineClampClass: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
+  1: "line-clamp-1",
+  2: "line-clamp-2",
+  3: "line-clamp-3",
+  4: "line-clamp-4",
+  5: "line-clamp-5",
+  6: "line-clamp-6",
+};
+
 export interface TextProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "color">,
     VariantProps<typeof textVariants> {
   as?: TextAs;
+  /** Truncate text with an ellipsis on overflow. */
+  truncate?: boolean;
+  /** Clamp text to a maximum number of lines (1–6). */
+  lineClamp?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 const Text = React.forwardRef<HTMLElement, TextProps>(
-  ({ className, size, weight, color, as: Comp = "p", ...props }, ref) => (
+  ({ className, size, weight, color, truncate, lineClamp, as: Comp = "p", ...props }, ref) => (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <Comp
       ref={ref as React.Ref<any>}
-      className={cn(textVariants({ size, weight, color }), className)}
+      className={cn(
+        textVariants({ size, weight, color }),
+        truncate && "truncate",
+        lineClamp && lineClampClass[lineClamp],
+        className
+      )}
       {...props}
     />
   )

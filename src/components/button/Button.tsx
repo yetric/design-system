@@ -59,10 +59,12 @@ export interface ButtonProps
   leftIcon?: React.ReactNode;
   /** Icon rendered after the button label. */
   rightIcon?: React.ReactNode;
+  /** Stretches the button to fill its container width. */
+  fullWidth?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, radius, asChild = false, disabled, isLoading = false, loadingText = "Loading", leftIcon, rightIcon, children, ...props }, ref) => {
+  ({ className, variant, size, radius, fullWidth, asChild = false, disabled, isLoading = false, loadingText = "Loading", leftIcon, rightIcon, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || isLoading;
     const content = asChild ? children : (
@@ -81,7 +83,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, radius, className }))}
+        className={cn(buttonVariants({ variant, size, radius, className }), fullWidth && "w-full")}
         ref={ref}
         aria-disabled={isDisabled || undefined}
         aria-busy={isLoading || undefined}

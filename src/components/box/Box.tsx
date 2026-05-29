@@ -9,6 +9,56 @@ import { shadowClass, type ShadowSize } from "../../lib/shadow";
 
 export type SpacingSize = "none" | "xs" | "sm" | "md" | "lg" | "xl";
 
+// Gap uses the same 4px Tailwind scale as Stack.
+const gapClass: Record<number, string> = {
+  0: "gap-0", 1: "gap-1", 2: "gap-2", 3: "gap-3", 4: "gap-4",
+  5: "gap-5", 6: "gap-6", 7: "gap-7", 8: "gap-8", 10: "gap-10",
+  12: "gap-12", 14: "gap-14", 16: "gap-16",
+};
+
+export type RadiusSize = "none" | "xs" | "sm" | "md" | "lg" | "xl" | "full";
+const radiusClass: Record<RadiusSize, string> = {
+  none: "rounded-none",
+  xs:   "rounded-sm",
+  sm:   "rounded",
+  md:   "rounded-md",
+  lg:   "rounded-lg",
+  xl:   "rounded-xl",
+  full: "rounded-full",
+};
+
+export type OverflowValue = "hidden" | "visible" | "auto" | "scroll";
+const overflowClass: Record<OverflowValue, string> = {
+  hidden:  "overflow-hidden",
+  visible: "overflow-visible",
+  auto:    "overflow-auto",
+  scroll:  "overflow-scroll",
+};
+
+export type WidthValue = "full" | "auto" | "fit";
+const widthClass: Record<WidthValue, string> = {
+  full: "w-full",
+  auto: "w-auto",
+  fit:  "w-fit",
+};
+
+export type MaxWidthValue = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "full" | "screen";
+const maxWidthClass: Record<MaxWidthValue, string> = {
+  xs:     "max-w-xs",
+  sm:     "max-w-sm",
+  md:     "max-w-md",
+  lg:     "max-w-lg",
+  xl:     "max-w-xl",
+  "2xl":  "max-w-2xl",
+  "3xl":  "max-w-3xl",
+  "4xl":  "max-w-4xl",
+  "5xl":  "max-w-5xl",
+  "6xl":  "max-w-6xl",
+  "7xl":  "max-w-7xl",
+  full:   "max-w-full",
+  screen: "max-w-screen-xl",
+};
+
 const spacingToClass = {
   p:  { none: "p-0",  xs: "p-1",  sm: "p-2",  md: "p-4",  lg: "p-6",  xl: "p-8"  },
   px: { none: "px-0", xs: "px-1", sm: "px-2", md: "px-4", lg: "px-6", xl: "px-8" },
@@ -45,6 +95,20 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   /** CSS display value */
   display?: DisplayValue;
+  /** Gap between children using the 4px spacing scale (e.g. 4 = 1rem). Only useful with display="flex" or display="grid". */
+  gap?: number;
+  /** Border radius token */
+  radius?: RadiusSize;
+  /** Overflow behaviour */
+  overflow?: OverflowValue;
+  /** Width shorthand */
+  width?: WidthValue;
+  /** Maximum width token */
+  maxWidth?: MaxWidthValue;
+  /** Set to false to disable flex shrink (shrink-0). */
+  shrink?: boolean;
+  /** Set to true to allow the element to grow (flex-grow: 1). */
+  grow?: boolean;
   /** Padding (all sides) */
   p?: SpacingSize;
   /** Horizontal padding */
@@ -82,6 +146,13 @@ const Box = React.forwardRef<HTMLElement, BoxProps>(
     {
       as: Comp = "div",
       display,
+      gap,
+      radius,
+      overflow,
+      width,
+      maxWidth,
+      shrink,
+      grow,
       shadow,
       p, px, py, pt, pb, pl, pr,
       m, mx, my, mt, mb, ml, mr,
@@ -93,8 +164,15 @@ const Box = React.forwardRef<HTMLElement, BoxProps>(
     <Comp
       ref={ref}
       className={cn(
-        display !== undefined && displayMap[display],
-        shadow !== undefined && shadowClass[shadow],
+        display    !== undefined && displayMap[display],
+        gap        !== undefined && (gapClass[gap] ?? `gap-[${gap * 4}px]`),
+        radius     !== undefined && radiusClass[radius],
+        overflow   !== undefined && overflowClass[overflow],
+        width      !== undefined && widthClass[width],
+        maxWidth   !== undefined && maxWidthClass[maxWidth],
+        shrink     === false     && "shrink-0",
+        grow       === true      && "grow",
+        shadow     !== undefined && shadowClass[shadow],
         p  !== undefined && spacingToClass.p[p],
         px !== undefined && spacingToClass.px[px],
         py !== undefined && spacingToClass.py[py],

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { BreakpointsContext, DEFAULT_BREAKPOINTS, type Breakpoints } from "./breakpoints";
 
 // ─── Light / dark mode ────────────────────────────────────────────────────────
 
@@ -119,6 +120,14 @@ export interface ThemeConfig {
   fontSans?: string;
   /** CSS font-family string for headings. E.g. `'"Cal Sans", sans-serif'` */
   fontHeading?: string;
+  /**
+   * Override the responsive breakpoints (min-width in px) used by layout
+   * components such as Grid. Unspecified keys fall back to the defaults.
+   *
+   * @example
+   * { sm: 480, md: 720, lg: 960 }
+   */
+  breakpoints?: Partial<Breakpoints>;
 }
 
 const CONFIG_STYLE_ID = "yetric-ui-theme-config";
@@ -212,6 +221,12 @@ export function ThemeProvider({
     return theme;
   }, [theme]);
 
+  const breakpoints = React.useMemo<Breakpoints>(
+    () => ({ ...DEFAULT_BREAKPOINTS, ...config?.breakpoints }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(config?.breakpoints)]
+  );
+
   React.useEffect(() => {
     applyTheme(resolvedTheme);
   }, [resolvedTheme]);
@@ -238,9 +253,11 @@ export function ThemeProvider({
   );
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <BreakpointsContext.Provider value={breakpoints}>
+      <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+        {children}
+      </ThemeContext.Provider>
+    </BreakpointsContext.Provider>
   );
 }
 

@@ -39,6 +39,12 @@ const wrapClass: Record<Wrap, string> = {
   "wrap-reverse": "flex-wrap-reverse",
 };
 
+const widthClass: Record<"full" | "auto" | "fit", string> = {
+  full: "w-full",
+  auto: "w-auto",
+  fit:  "w-fit",
+};
+
 const gapClass: Record<number, string> = {
   0: "gap-0", 1: "gap-1", 2: "gap-2", 3: "gap-3", 4: "gap-4",
   5: "gap-5", 6: "gap-6", 7: "gap-7", 8: "gap-8", 10: "gap-10",
@@ -55,6 +61,8 @@ export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
   align?: Align;
   justify?: Justify;
   wrap?: Wrap;
+  /** Width shorthand. */
+  width?: "full" | "auto" | "fit";
   /** Render as a different element. Defaults to "div". */
   as?: React.ElementType;
 }
@@ -68,6 +76,7 @@ const Stack = React.forwardRef<HTMLDivElement, StackProps>(
       align,
       justify,
       wrap,
+      width,
       as: Comp = "div",
       ...props
     },
@@ -82,6 +91,7 @@ const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         align && alignClass[align],
         justify && justifyClass[justify],
         wrap && wrapClass[wrap],
+        width && widthClass[width],
         className
       )}
       {...props}
