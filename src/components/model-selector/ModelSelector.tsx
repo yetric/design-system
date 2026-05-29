@@ -55,13 +55,22 @@ const ModelSelector = ({
   disabled = false,
   className,
 }: ModelSelectorProps) => {
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = React.useState("");
+  const selectValue = isControlled ? value : internalValue;
+
   const groupedModels = React.useMemo(() => groupModels(models), [models]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!isControlled) setInternalValue(event.target.value);
+    onChange?.(event.target.value);
+  };
 
   return (
     <div className={cn("relative", className)}>
       <select
-        value={value ?? ""}
-        onChange={(event) => onChange?.(event.target.value)}
+        value={selectValue}
+        onChange={handleChange}
         disabled={disabled}
         className={cn(
           "flex h-10 w-full appearance-none rounded-md border border-input bg-background px-3 pr-10 text-sm",

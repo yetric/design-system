@@ -20,6 +20,13 @@ const StreamingText = ({
   cursor = true,
 }: StreamingTextProps) => {
   const [state, setState] = React.useState({ prevText: text, visibleLength: 0 });
+  const onCompleteRef = React.useRef(onComplete);
+  const isCompleteRef = React.useRef(false);
+
+  // Keep ref in sync with latest prop without triggering effects
+  React.useLayoutEffect(() => {
+    onCompleteRef.current = onComplete;
+  });
 
   // Reset visibleLength during render when text changes (derived state pattern)
   if (state.prevText !== text) {
@@ -30,8 +37,11 @@ const StreamingText = ({
   const isComplete = visibleLength >= text.length;
 
   React.useEffect(() => {
+    isCompleteRef.current = false;
+
     if (text.length === 0) {
-      onComplete?.();
+      isCompleteRef.current = true;
+      onCompleteRef.current?.();
       return;
     }
 
@@ -40,7 +50,10 @@ const StreamingText = ({
         const nextLength = s.visibleLength + 1;
         if (nextLength >= text.length) {
           window.clearInterval(intervalId);
-          onComplete?.();
+          if (!isCompleteRef.current) {
+            isCompleteRef.current = true;
+            onCompleteRef.current?.();
+          }
           return { ...s, visibleLength: text.length };
         }
         return { ...s, visibleLength: nextLength };
@@ -50,7 +63,7 @@ const StreamingText = ({
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [onComplete, speed, text]);
+  }, [text, speed]);
 
   return (
     <span className={cn("inline whitespace-pre-wrap", className)}>
