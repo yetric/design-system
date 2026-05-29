@@ -111,8 +111,8 @@ const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProps>(
     return (
       <div
         className={cn(
-          "flex w-full items-end gap-2 rounded-xl border border-input bg-background p-3",
-          "transition-colors duration-base focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background",
+          "border-input bg-background flex w-full items-end gap-2 rounded-xl border p-3",
+          "duration-base focus-within:ring-ring focus-within:ring-offset-background transition-colors focus-within:ring-2 focus-within:ring-offset-2",
           isDisabled && "cursor-not-allowed opacity-50",
           className
         )}
@@ -126,7 +126,7 @@ const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProps>(
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           className={cn(
-            "min-h-6 flex-1 resize-none bg-transparent text-sm text-foreground outline-none",
+            "text-foreground min-h-6 flex-1 resize-none bg-transparent text-sm outline-none",
             "placeholder:text-muted-foreground"
           )}
         />
@@ -138,8 +138,8 @@ const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProps>(
             disabled={!canSubmit}
             aria-label={loading ? "Loading" : "Send prompt"}
             className={cn(
-              "inline-flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+              "bg-primary text-primary-foreground inline-flex size-9 items-center justify-center rounded-full transition-colors",
+              "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               "disabled:cursor-not-allowed disabled:opacity-50"
             )}
           >

@@ -44,10 +44,10 @@ const SuggestionChips = ({
               onClick={() => onSelect?.(chip)}
               disabled={disabled}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1.5",
-                "text-sm text-muted-foreground transition-colors",
+                "border-border bg-muted/50 inline-flex items-center gap-2 rounded-full border px-3 py-1.5",
+                "text-muted-foreground text-sm transition-colors",
                 "hover:bg-muted hover:text-foreground",
-                "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                "focus:ring-ring focus:ring-2 focus:ring-offset-2 focus:outline-none",
                 "disabled:cursor-not-allowed disabled:opacity-50"
               )}
             >
@@ -62,10 +62,10 @@ const SuggestionChips = ({
             onClick={() => setIsExpanded((current) => !current)}
             disabled={disabled}
             className={cn(
-              "inline-flex items-center rounded-full border border-dashed border-border px-3 py-1.5",
-              "text-sm text-muted-foreground transition-colors",
+              "border-border inline-flex items-center rounded-full border border-dashed px-3 py-1.5",
+              "text-muted-foreground text-sm transition-colors",
               "hover:bg-accent hover:text-accent-foreground",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+              "focus:ring-ring focus:ring-2 focus:ring-offset-2 focus:outline-none",
               "disabled:cursor-not-allowed disabled:opacity-50"
             )}
           >

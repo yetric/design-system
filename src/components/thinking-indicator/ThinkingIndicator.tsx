@@ -44,7 +44,7 @@ const ThinkingIndicator = ({
     <div
       role="status"
       aria-live="polite"
-      className={cn("inline-flex items-center text-muted-foreground", sizeClasses.root, className)}
+      className={cn("text-muted-foreground inline-flex items-center", sizeClasses.root, className)}
     >
       {variant === "dots" && (
         <div className="inline-flex items-center gap-1" aria-hidden="true">

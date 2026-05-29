@@ -57,7 +57,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
   if (message.role === "system") {
     return (
       <div className="flex justify-center px-4">
-        <div className="max-w-xl text-center text-sm italic text-muted-foreground">
+        <div className="text-muted-foreground max-w-xl text-center text-sm italic">
           {message.content}
         </div>
       </div>
@@ -73,12 +73,12 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
         className={cn(
           "max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm",
           isUser
-            ? "rounded-br-md bg-primary text-primary-foreground"
-            : "rounded-bl-md border border-border bg-muted text-foreground",
+            ? "bg-primary text-primary-foreground rounded-br-md"
+            : "border-border bg-muted text-foreground rounded-bl-md border",
           message.isStreaming && "animate-pulse"
         )}
       >
-        <p className="whitespace-pre-wrap break-words">{message.content}</p>
+        <p className="break-words whitespace-pre-wrap">{message.content}</p>
         {timestamp && (
           <div
             className={cn(
@@ -100,7 +100,7 @@ const ThinkingIndicator = ({ className }: ThinkingIndicatorProps) => {
       <div
         role="status"
         aria-label="Assistant is thinking"
-        className="inline-flex items-center gap-1 rounded-2xl rounded-bl-md border border-border bg-muted px-4 py-3 text-muted-foreground shadow-sm"
+        className="border-border bg-muted text-muted-foreground inline-flex items-center gap-1 rounded-2xl rounded-bl-md border px-4 py-3 shadow-sm"
       >
         <span className="sr-only">Assistant is thinking</span>
         <span className="h-2 w-2 animate-bounce rounded-full bg-current [animation-delay:-0.3s]" />
@@ -128,7 +128,7 @@ const PromptComposer = ({
   };
 
   return (
-    <div className="rounded-2xl border border-border bg-background p-3 shadow-sm">
+    <div className="border-border bg-background rounded-2xl border p-3 shadow-sm">
       <div className="flex items-end gap-3">
         <textarea
           value={value}
@@ -138,7 +138,7 @@ const PromptComposer = ({
           disabled={disabled}
           rows={1}
           className={cn(
-            "max-h-40 min-h-[44px] flex-1 resize-none bg-transparent px-1 py-2 text-sm text-foreground outline-none",
+            "text-foreground max-h-40 min-h-[44px] flex-1 resize-none bg-transparent px-1 py-2 text-sm outline-none",
             "placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
           )}
         />
@@ -147,8 +147,8 @@ const PromptComposer = ({
           onClick={() => void onSubmit()}
           disabled={disabled || !value.trim()}
           className={cn(
-            "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "bg-primary text-primary-foreground inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors",
+            "focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:opacity-50",
             !disabled && value.trim() && "hover:bg-primary/90"
           )}
@@ -163,11 +163,11 @@ const PromptComposer = ({
 
 const defaultEmptyState = (
   <div className="flex h-full flex-col items-center justify-center px-6 text-center">
-    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+    <div className="bg-primary/10 text-primary mb-4 flex h-14 w-14 items-center justify-center rounded-full">
       <Sparkles className="h-6 w-6" />
     </div>
-    <h3 className="text-lg font-semibold text-foreground">Start a conversation</h3>
-    <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+    <h3 className="text-foreground text-lg font-semibold">Start a conversation</h3>
+    <p className="text-muted-foreground mt-2 max-w-sm text-sm">
       Ask a question, provide context, or use a suggestion to begin chatting with your AI.
     </p>
   </div>
@@ -210,14 +210,14 @@ const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
       <div
         ref={ref}
         className={cn(
-          "flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-background text-foreground shadow-sm",
+          "border-border bg-background text-foreground flex w-full flex-col overflow-hidden rounded-2xl border shadow-sm",
           className
         )}
         style={{ height }}
       >
         {title && (
-          <div className="flex items-center gap-3 border-b border-border px-4 py-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <div className="border-border flex items-center gap-3 border-b px-4 py-3">
+            <div className="bg-primary/10 text-primary flex h-9 w-9 items-center justify-center rounded-full">
               <Bot className="h-4 w-4" />
             </div>
             <div className="min-w-0">
@@ -248,7 +248,7 @@ const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
             {messages.length === 0 && !isLoading && <div ref={endRef} aria-hidden="true" />}
           </div>
 
-          <div className="border-t border-border px-4 py-4">
+          <div className="border-border border-t px-4 py-4">
             {suggestions.length > 0 && (
               <div className="mb-3 flex flex-wrap gap-2" aria-label="Suggestions">
                 {suggestions.map((suggestion) => (
@@ -257,8 +257,8 @@ const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
                     type="button"
                     onClick={() => onSuggestionSelect?.(suggestion)}
                     className={cn(
-                      "inline-flex items-center rounded-full border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors",
-                      "hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      "border-border bg-muted text-muted-foreground inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+                      "hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                     )}
                   >
                     {suggestion}

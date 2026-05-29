@@ -39,7 +39,7 @@ const AIMessage = ({
   if (isSystem) {
     return (
       <div data-testid="ai-message" className={cn("flex justify-center", className)}>
-        <div className="max-w-2xl rounded-full bg-muted px-4 py-2 text-center text-sm italic text-muted-foreground">
+        <div className="bg-muted text-muted-foreground max-w-2xl rounded-full px-4 py-2 text-center text-sm italic">
           <span className="whitespace-pre-wrap">{content}</span>
           {isStreaming && (
             <span data-testid="ai-message-cursor" aria-hidden="true" className="animate-pulse">
@@ -57,7 +57,7 @@ const AIMessage = ({
       className={cn("flex w-full gap-3", isUser ? "justify-end" : "justify-start", className)}
     >
       {isAssistant && (
-        <div className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
+        <div className="bg-muted text-muted-foreground mt-1 flex size-8 shrink-0 items-center justify-center rounded-full">
           {avatar ? (
             <img
               src={avatar}
@@ -86,7 +86,7 @@ const AIMessage = ({
         {(timestamp || actions) && (
           <div
             className={cn(
-              "flex items-center gap-2 text-xs text-muted-foreground",
+              "text-muted-foreground flex items-center gap-2 text-xs",
               isUser ? "justify-end" : "justify-start"
             )}
           >
