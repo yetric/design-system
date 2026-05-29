@@ -213,7 +213,9 @@ export function RichTextEditor({
   }, [editor, handleLink]);
 
   return (
-    <div className={cn("yetric-rich-text-editor rounded-lg border border-border bg-card", className)}>
+    <div
+      className={cn("yetric-rich-text-editor rounded-lg border border-border bg-card", className)}
+    >
       <style>{`
         .yetric-rich-text-editor .ProseMirror p.is-editor-empty:first-child::before {
           color: hsl(var(--muted-foreground));
@@ -244,7 +246,9 @@ export function RichTextEditor({
         <div className="flex flex-wrap items-center gap-2 border-b border-border p-2">
           {toolbarSections.map((section, sectionIndex) => (
             <React.Fragment key={section[0]?.label ?? sectionIndex}>
-              {sectionIndex > 0 ? <span className="mx-1 h-6 w-px bg-border" aria-hidden="true" /> : null}
+              {sectionIndex > 0 ? (
+                <span className="mx-1 h-6 w-px bg-border" aria-hidden="true" />
+              ) : null}
               {section.map((action) => (
                 <Button
                   key={action.label}

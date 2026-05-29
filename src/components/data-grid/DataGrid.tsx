@@ -84,7 +84,8 @@ export function DataGrid<T>({
             return column.cell ? column.cell(value, info.row.original) : String(value ?? "");
           },
           enableSorting:
-            column.sortable !== false && (typeof column.accessorFn === "function" || !!column.accessorKey),
+            column.sortable !== false &&
+            (typeof column.accessorFn === "function" || !!column.accessorKey),
           size: column.width ?? DEFAULT_COLUMN_WIDTH,
           minSize: column.minWidth ?? 80,
           ...accessor,
@@ -215,7 +216,8 @@ export function DataGrid<T>({
             <tbody
               style={{
                 display: "grid",
-                height: virtualRows.length > 0 ? rowVirtualizer.getTotalSize() : rows.length * rowHeight,
+                height:
+                  virtualRows.length > 0 ? rowVirtualizer.getTotalSize() : rows.length * rowHeight,
                 position: "relative",
               }}
             >

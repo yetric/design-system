@@ -4,7 +4,9 @@ import { useState } from "react";
 import { RichTextEditor } from "./RichTextEditor";
 
 function ControlledEditor() {
-  const [value, setValue] = useState("<p>Write release notes, product updates, or long-form content.</p>");
+  const [value, setValue] = useState(
+    "<p>Write release notes, product updates, or long-form content.</p>"
+  );
 
   return <RichTextEditor value={value} onChange={setValue} />;
 }

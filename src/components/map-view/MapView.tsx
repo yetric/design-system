@@ -8,7 +8,8 @@ import "leaflet/dist/leaflet.css";
 import { cn } from "../../lib/cn";
 
 const DEFAULT_TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-const DEFAULT_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+const DEFAULT_ATTRIBUTION =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const DEFAULT_MARKER_ICON = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png";
 const DEFAULT_MARKER_ICON_RETINA = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png";
 const DEFAULT_MARKER_SHADOW = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png";
@@ -75,7 +76,10 @@ export function MapView({
   );
 
   return (
-    <div className={cn("overflow-hidden rounded-lg border border-border", className)} style={{ height }}>
+    <div
+      className={cn("overflow-hidden rounded-lg border border-border", className)}
+      style={{ height }}
+    >
       <MapContainer center={center} zoom={zoom} className="h-full w-full">
         <TileLayer attribution={attribution} url={tileUrl} />
         {markers.map((marker) => (
@@ -94,7 +98,9 @@ export function MapView({
             {(marker.title || marker.description) && (
               <Popup>
                 <div className="space-y-1">
-                  {marker.title ? <p className="font-medium text-foreground">{marker.title}</p> : null}
+                  {marker.title ? (
+                    <p className="font-medium text-foreground">{marker.title}</p>
+                  ) : null}
                   {marker.description ? (
                     <p className="text-sm text-muted-foreground">{marker.description}</p>
                   ) : null}
