@@ -11,3 +11,19 @@ class ResizeObserverMock {
   disconnect = vi.fn();
 }
 window.ResizeObserver = ResizeObserverMock;
+
+// jsdom doesn't always expose localStorage — provide a simple in-memory stub
+if (typeof localStorage === "undefined") {
+  const store: Record<string, string> = {};
+  Object.defineProperty(window, "localStorage", {
+    value: {
+      getItem: (k: string) => store[k] ?? null,
+      setItem: (k: string, v: string) => { store[k] = v; },
+      removeItem: (k: string) => { delete store[k]; },
+      clear: () => { Object.keys(store).forEach(k => delete store[k]); },
+      get length() { return Object.keys(store).length; },
+      key: (i: number) => Object.keys(store)[i] ?? null,
+    },
+    writable: true,
+  });
+}
