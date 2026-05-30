@@ -5,7 +5,11 @@ import * as React from "react";
 import { cn } from "../../lib/cn";
 
 export interface StreamingTextProps {
-  text: string;
+  /** Pre-baked string: animates character-by-character at the given speed. */
+  text?: string;
+  /** Live token stream: appends each chunk as it arrives. */
+  stream?: AsyncIterable<string>;
+  /** Characters per second when using the `text` prop. Default 30ms/char. */
   speed?: number;
   onComplete?: () => void;
   className?: string;
@@ -14,61 +18,87 @@ export interface StreamingTextProps {
 
 const StreamingText = ({
   text,
+  stream,
   speed = 30,
   onComplete,
   className,
   cursor = true,
 }: StreamingTextProps) => {
-  const [state, setState] = React.useState({ prevText: text, visibleLength: 0 });
+  const [displayed, setDisplayed] = React.useState("");
+  const [done, setDone] = React.useState(false);
   const onCompleteRef = React.useRef(onComplete);
-  const isCompleteRef = React.useRef(false);
 
-  // Keep ref in sync with latest prop without triggering effects
   React.useLayoutEffect(() => {
     onCompleteRef.current = onComplete;
   });
 
-  // Reset visibleLength during render when text changes (derived state pattern)
-  if (state.prevText !== text) {
-    setState({ prevText: text, visibleLength: 0 });
+  // ── Stream mode ────────────────────────────────────────────────────────────
+  React.useEffect(() => {
+    if (!stream) return;
+
+    let cancelled = false;
+    setDisplayed("");
+    setDone(false);
+
+    (async () => {
+      for await (const token of stream) {
+        if (cancelled) break;
+        setDisplayed((prev) => prev + token);
+      }
+      if (!cancelled) {
+        setDone(true);
+        onCompleteRef.current?.();
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [stream]);
+
+  // ── Text mode ──────────────────────────────────────────────────────────────
+  const [textState, setTextState] = React.useState({ prevText: text ?? "", visibleLength: 0 });
+
+  if (!stream) {
+    const t = text ?? "";
+    if (textState.prevText !== t) {
+      setTextState({ prevText: t, visibleLength: 0 });
+    }
   }
 
-  const visibleLength = state.prevText !== text ? 0 : state.visibleLength;
-  const isComplete = visibleLength >= text.length;
-
   React.useEffect(() => {
-    isCompleteRef.current = false;
+    if (stream || !text) return;
 
+    setDone(false);
     if (text.length === 0) {
-      isCompleteRef.current = true;
+      setDone(true);
       onCompleteRef.current?.();
       return;
     }
 
-    const intervalId = window.setInterval(() => {
-      setState((s) => {
-        const nextLength = s.visibleLength + 1;
-        if (nextLength >= text.length) {
-          window.clearInterval(intervalId);
-          if (!isCompleteRef.current) {
-            isCompleteRef.current = true;
-            onCompleteRef.current?.();
-          }
+    const id = window.setInterval(() => {
+      setTextState((s) => {
+        const next = s.visibleLength + 1;
+        if (next >= text.length) {
+          window.clearInterval(id);
+          setDone(true);
+          onCompleteRef.current?.();
           return { ...s, visibleLength: text.length };
         }
-        return { ...s, visibleLength: nextLength };
+        return { ...s, visibleLength: next };
       });
     }, speed);
 
-    return () => {
-      window.clearInterval(intervalId);
-    };
-  }, [text, speed]);
+    return () => window.clearInterval(id);
+  }, [text, speed, stream]);
+
+  const content = stream ? displayed : (text ?? "").slice(0, textState.visibleLength);
+  const isComplete = stream ? done : textState.visibleLength >= (text ?? "").length;
 
   return (
     <span className={cn("inline whitespace-pre-wrap", className)}>
-      {text.slice(0, visibleLength)}
-      {cursor && (visibleLength < text.length || isComplete) && (
+      {content}
+      {cursor && !isComplete && (
         <span data-testid="streaming-text-cursor" aria-hidden="true" className="animate-pulse">
           |
         </span>

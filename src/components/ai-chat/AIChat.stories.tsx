@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
 import { Bot } from "lucide-react";
 
 import { AIChat } from "./AIChat";
 import type { ChatMessage } from "./AIChat";
+import { useChat } from "../../hooks/useChat";
 
 const sampleMessages: ChatMessage[] = [
   {
@@ -57,42 +57,22 @@ type Story = StoryObj<typeof meta>;
 export const Empty: Story = {};
 
 export const WithMessages: Story = {
-  args: {
-    messages: sampleMessages,
-  },
+  args: { messages: sampleMessages },
 };
 
 export const Loading: Story = {
-  args: {
-    messages: sampleMessages.slice(0, 3),
-    isLoading: true,
-  },
+  args: { messages: sampleMessages.slice(0, 3), isLoading: true },
 };
 
 export const WithSuggestions: Story = {
   args: {
-    suggestions: [
-      "Summarise this page",
-      "Write a commit message",
-      "Explain this error",
-      "Improve my writing",
-    ],
+    suggestions: ["Summarise this page", "Write a commit message", "Explain this error", "Improve my writing"],
   },
 };
 
 export const WithSystemMessage: Story = {
   args: {
-    messages: [
-      { id: "sys", role: "system", content: "Connected to GPT-4o" },
-      ...sampleMessages,
-    ],
-  },
-};
-
-export const NoTitle: Story = {
-  args: {
-    messages: sampleMessages,
-    title: undefined,
+    messages: [{ id: "sys", role: "system", content: "Connected to GPT-4o" }, ...sampleMessages],
   },
 };
 
@@ -109,41 +89,31 @@ export const CustomEmptyState: Story = {
   },
 };
 
-export const Interactive: Story = {
+// ── useChat demo ────────────────────────────────────────────────────────────
+
+async function* fakeStream(prompt: string): AsyncIterable<string> {
+  const reply = `Here's a response to: **"${prompt}"**\n\nThis simulates a real streaming response arriving token by token. In production you'd replace this with your AI provider's stream.\n\n\`\`\`ts\nconst { send, messages, isLoading } = useChat({ onRequest });\n\`\`\``;
+  for (const word of reply.split(" ")) {
+    await new Promise((r) => setTimeout(r, 60));
+    yield word + " ";
+  }
+}
+
+export const WithUseChat: Story = {
+  name: "Interactive (useChat + streaming)",
   render: () => {
-    const [messages, setMessages] = useState<ChatMessage[]>([]);
-    const [loading, setLoading] = useState(false);
-
-    const handleSend = async (text: string) => {
-      const userMsg: ChatMessage = {
-        id: crypto.randomUUID(),
-        role: "user",
-        content: text,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, userMsg]);
-      setLoading(true);
-
-      await new Promise((r) => setTimeout(r, 1200));
-
-      const reply: ChatMessage = {
-        id: crypto.randomUUID(),
-        role: "assistant",
-        content: `You said: "${text}"\n\nThis is a simulated response. In a real app, this would come from your AI backend.`,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, reply]);
-      setLoading(false);
-    };
+    const { messages, send, isLoading } = useChat({
+      onRequest: async (msgs) => fakeStream(msgs[msgs.length - 1]?.content ?? ""),
+    });
 
     return (
       <AIChat
-        title="Demo Chat"
+        title="Demo — useChat hook"
         messages={messages}
-        isLoading={loading}
-        onSend={handleSend}
-        suggestions={["Hello!", "What can you do?", "Tell me a fun fact"]}
-        onSuggestionSelect={handleSend}
+        isLoading={isLoading}
+        onSend={send}
+        suggestions={["Hello!", "Write me a haiku", "Explain async/await"]}
+        onSuggestionSelect={send}
         height={520}
       />
     );

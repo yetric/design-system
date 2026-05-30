@@ -4,12 +4,15 @@ import * as React from "react";
 import { Bot } from "lucide-react";
 
 import { cn } from "../../lib/cn";
+import { renderMarkdown } from "../../lib/markdown";
 
 export type MessageRole = "user" | "assistant" | "system";
 
 export interface AIMessageProps {
   role: MessageRole;
   content: string;
+  /** Render content as markdown. Recommended for assistant messages. */
+  markdown?: boolean;
   timestamp?: Date;
   avatar?: string;
   isStreaming?: boolean;
@@ -26,6 +29,7 @@ const timestampFormatter = new Intl.DateTimeFormat(undefined, {
 const AIMessage = ({
   role,
   content,
+  markdown = false,
   timestamp,
   avatar,
   isStreaming = false,
@@ -76,7 +80,7 @@ const AIMessage = ({
             isUser ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"
           )}
         >
-          <span className="whitespace-pre-wrap">{content}</span>
+          {markdown ? renderMarkdown(content) : <span className="whitespace-pre-wrap">{content}</span>}
           {isStreaming && (
             <span data-testid="ai-message-cursor" aria-hidden="true" className="animate-pulse">
               |

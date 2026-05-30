@@ -10,10 +10,12 @@ const meta = {
   args: {
     role: "assistant",
     content: "Hello! I'm your AI assistant. How can I help you today?",
+    markdown: false,
   },
   argTypes: {
     role: { control: "select", options: ["user", "assistant", "system"] },
     isStreaming: { control: "boolean" },
+    markdown: { control: "boolean" },
     content: { control: "text" },
   },
 } satisfies Meta<typeof AIMessage>;
@@ -35,6 +37,35 @@ export const AssistantMessage: Story = {
     role: "assistant",
     content:
       "Sure! To write a great bio, I'll need a few details:\n\n1. Your name and current role\n2. Key skills or areas of expertise\n3. A notable achievement\n4. What you're working on or passionate about\n\nShare those and I'll put something together for you.",
+  },
+};
+
+export const WithMarkdown: Story = {
+  args: {
+    role: "assistant",
+    markdown: true,
+    content: `Here's a quick overview of **Tailwind CSS v4**:
+
+## What's new
+
+- **Vite plugin** — \`@tailwindcss/vite\` replaces the PostCSS plugin for better HMR
+- **CSS-first config** — theme values live in \`@theme\` instead of \`tailwind.config.ts\`
+- **Faster builds** — the new Oxide engine is written in Rust
+
+## Migration
+
+Replace your PostCSS config:
+
+\`\`\`js
+// postcss.config.js — before
+plugins: { tailwindcss: {} }
+
+// vite.config.ts — after
+import tailwindcss from "@tailwindcss/vite"
+plugins: [tailwindcss()]
+\`\`\`
+
+> See the [migration guide](https://tailwindcss.com) for the full list of changes.`,
   },
 };
 
@@ -85,7 +116,21 @@ export const Conversation: Story = {
       <AIMessage role="user" content="What's the difference between TypeScript and JavaScript?" />
       <AIMessage
         role="assistant"
-        content="TypeScript is a superset of JavaScript that adds static type checking. The key differences are:\n\n• **Types**: TypeScript lets you annotate variables, parameters, and return values with types.\n• **Compilation**: TypeScript compiles to JavaScript — browsers run JS, not TS.\n• **Tooling**: Better IDE support with autocomplete and error detection before runtime.\n• **Learning curve**: Slightly steeper, but the type safety pays off in larger projects."
+        markdown
+        content={`TypeScript is a superset of JavaScript that adds static type checking. The key differences:
+
+- **Types**: annotate variables, parameters, and return values
+- **Compilation**: TypeScript compiles to JavaScript — browsers run JS, not TS
+- **Tooling**: better IDE support with autocomplete and error detection before runtime
+
+\`\`\`ts
+// TypeScript
+function greet(name: string): string {
+  return \`Hello, \${name}!\`;
+}
+\`\`\`
+
+The type safety pays off in larger projects.`}
         timestamp={new Date(Date.now() - 60_000)}
       />
       <AIMessage

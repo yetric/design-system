@@ -87,6 +87,8 @@ export * from "./lib/variant";
 export * from "./components/address-input";
 export * from "./components/ai-chat";
 export * from "./components/ai-message";
+export { useChat } from "./hooks/useChat";
+export type { UseChatOptions, UseChatReturn, ChatResponse, ChatResponseStream } from "./hooks/useChat";
 export * from "./components/auth-forms";
 export * from "./components/command-palette";
 export * from "./components/data-grid";
