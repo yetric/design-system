@@ -9,11 +9,26 @@ export interface StreamingTextProps {
   text?: string;
   /** Live token stream: appends each chunk as it arrives. */
   stream?: AsyncIterable<string>;
-  /** Characters per second when using the `text` prop. Default 30ms/char. */
+  /** Milliseconds per character when using the `text` prop. Default 30ms. */
   speed?: number;
   onComplete?: () => void;
   className?: string;
   cursor?: boolean;
+}
+
+// ── Stream mode ──────────────────────────────────────────────────────────────
+
+interface StreamState {
+  prevStream: AsyncIterable<string> | undefined;
+  displayed: string;
+  done: boolean;
+}
+
+// ── Text mode ────────────────────────────────────────────────────────────────
+
+interface TextState {
+  prevText: string;
+  visibleLength: number;
 }
 
 const StreamingText = ({
@@ -24,54 +39,65 @@ const StreamingText = ({
   className,
   cursor = true,
 }: StreamingTextProps) => {
-  const [displayed, setDisplayed] = React.useState("");
-  const [done, setDone] = React.useState(false);
   const onCompleteRef = React.useRef(onComplete);
-
-  React.useLayoutEffect(() => {
-    onCompleteRef.current = onComplete;
-  });
+  React.useLayoutEffect(() => { onCompleteRef.current = onComplete; });
 
   // ── Stream mode ────────────────────────────────────────────────────────────
+  const [streamState, setStreamState] = React.useState<StreamState>({
+    prevStream: stream,
+    displayed: "",
+    done: false,
+  });
+
+  // Derived state reset when stream identity changes (avoids setState-in-effect)
+  const resolvedStreamState: StreamState =
+    streamState.prevStream !== stream
+      ? { prevStream: stream, displayed: "", done: false }
+      : streamState;
+
+  if (resolvedStreamState !== streamState) {
+    setStreamState(resolvedStreamState);
+  }
+
   React.useEffect(() => {
     if (!stream) return;
-
     let cancelled = false;
-    setDisplayed("");
-    setDone(false);
 
     (async () => {
       for await (const token of stream) {
         if (cancelled) break;
-        setDisplayed((prev) => prev + token);
+        setStreamState((s) => ({ ...s, displayed: s.displayed + token }));
       }
       if (!cancelled) {
-        setDone(true);
+        setStreamState((s) => ({ ...s, done: true }));
         onCompleteRef.current?.();
       }
     })();
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [stream]);
 
   // ── Text mode ──────────────────────────────────────────────────────────────
-  const [textState, setTextState] = React.useState({ prevText: text ?? "", visibleLength: 0 });
+  const [textState, setTextState] = React.useState<TextState>({
+    prevText: text ?? "",
+    visibleLength: 0,
+  });
 
-  if (!stream) {
-    const t = text ?? "";
-    if (textState.prevText !== t) {
-      setTextState({ prevText: t, visibleLength: 0 });
-    }
+  const resolvedText = text ?? "";
+  const resolvedTextState: TextState =
+    textState.prevText !== resolvedText
+      ? { prevText: resolvedText, visibleLength: 0 }
+      : textState;
+
+  if (resolvedTextState !== textState) {
+    setTextState(resolvedTextState);
   }
 
   React.useEffect(() => {
-    if (stream || !text) return;
+    if (stream) return;
 
-    setDone(false);
-    if (text.length === 0) {
-      setDone(true);
+    const t = text ?? "";
+    if (t.length === 0) {
       onCompleteRef.current?.();
       return;
     }
@@ -79,11 +105,10 @@ const StreamingText = ({
     const id = window.setInterval(() => {
       setTextState((s) => {
         const next = s.visibleLength + 1;
-        if (next >= text.length) {
+        if (next >= t.length) {
           window.clearInterval(id);
-          setDone(true);
           onCompleteRef.current?.();
-          return { ...s, visibleLength: text.length };
+          return { ...s, visibleLength: t.length };
         }
         return { ...s, visibleLength: next };
       });
@@ -92,8 +117,14 @@ const StreamingText = ({
     return () => window.clearInterval(id);
   }, [text, speed, stream]);
 
-  const content = stream ? displayed : (text ?? "").slice(0, textState.visibleLength);
-  const isComplete = stream ? done : textState.visibleLength >= (text ?? "").length;
+  // ── Render ─────────────────────────────────────────────────────────────────
+  const content = stream
+    ? resolvedStreamState.displayed
+    : resolvedText.slice(0, resolvedTextState.visibleLength);
+
+  const isComplete = stream
+    ? resolvedStreamState.done
+    : resolvedTextState.visibleLength >= resolvedText.length;
 
   return (
     <span className={cn("inline whitespace-pre-wrap", className)}>
