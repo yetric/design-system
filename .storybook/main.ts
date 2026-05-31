@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import tailwindcss from "@tailwindcss/vite";
 
 const config: StorybookConfig = {
   framework: "@storybook/react-vite",
@@ -11,6 +12,10 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   viteFinal: async (config) => ({
     ...config,
+    plugins: [
+      ...(config.plugins ?? []),
+      tailwindcss(),
+    ],
     resolve: {
       ...(config.resolve ?? {}),
       alias: {
