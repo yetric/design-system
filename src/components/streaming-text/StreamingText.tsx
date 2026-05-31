@@ -40,8 +40,10 @@ const StreamingText = ({
   cursor = true,
 }: StreamingTextProps) => {
   const onCompleteRef = React.useRef(onComplete);
+  const speedRef = React.useRef(speed);
   React.useLayoutEffect(() => {
     onCompleteRef.current = onComplete;
+    speedRef.current = speed;
   });
 
   // ── Stream mode ────────────────────────────────────────────────────────────
@@ -106,6 +108,10 @@ const StreamingText = ({
 
     const id = window.setInterval(() => {
       setTextState((s) => {
+        if (s.visibleLength >= t.length) {
+          window.clearInterval(id);
+          return s;
+        }
         const next = s.visibleLength + 1;
         if (next >= t.length) {
           window.clearInterval(id);
@@ -114,10 +120,10 @@ const StreamingText = ({
         }
         return { ...s, visibleLength: next };
       });
-    }, speed);
+    }, speedRef.current);
 
     return () => window.clearInterval(id);
-  }, [text, speed, stream]);
+  }, [text, stream]); // speed intentionally omitted — changing speed mid-stream should not restart the interval
 
   // ── Render ─────────────────────────────────────────────────────────────────
   const content = stream

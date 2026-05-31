@@ -56,7 +56,7 @@ const ModelSelector = ({
   className,
 }: ModelSelectorProps) => {
   const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = React.useState("");
+  const [internalValue, setInternalValue] = React.useState(value ?? "");
   const selectValue = isControlled ? value : internalValue;
 
   const groupedModels = React.useMemo(() => groupModels(models), [models]);
