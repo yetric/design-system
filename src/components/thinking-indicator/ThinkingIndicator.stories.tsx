@@ -55,7 +55,12 @@ export const AllCombinations: Story = {
     <div className="grid grid-cols-3 gap-6">
       {(["dots", "pulse", "spinner"] as const).map((variant) =>
         (["sm", "md", "lg"] as const).map((size) => (
-          <ThinkingIndicator key={`${variant}-${size}`} variant={variant} size={size} label={variant} />
+          <ThinkingIndicator
+            key={`${variant}-${size}`}
+            variant={variant}
+            size={size}
+            label={variant}
+          />
         ))
       )}
     </div>

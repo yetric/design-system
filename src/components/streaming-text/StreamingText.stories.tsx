@@ -100,7 +100,10 @@ export const Replay: Story = {
         </div>
         <button
           type="button"
-          onClick={() => { setIndex((i) => (i + 1) % sentences.length); setKey((k) => k + 1); }}
+          onClick={() => {
+            setIndex((i) => (i + 1) % sentences.length);
+            setKey((k) => k + 1);
+          }}
           className="bg-primary text-primary-foreground rounded px-3 py-1.5 text-sm"
         >
           Next

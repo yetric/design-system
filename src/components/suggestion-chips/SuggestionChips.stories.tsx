@@ -62,10 +62,7 @@ export const Interactive: Story = {
     const [selected, setSelected] = useState<string | null>(null);
     return (
       <div className="space-y-3">
-        <SuggestionChips
-          chips={defaultChips}
-          onSelect={(chip) => setSelected(chip.label)}
-        />
+        <SuggestionChips chips={defaultChips} onSelect={(chip) => setSelected(chip.label)} />
         {selected && (
           <p className="text-muted-foreground text-sm">
             Selected: <span className="text-foreground font-medium">{selected}</span>

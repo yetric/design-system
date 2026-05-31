@@ -80,7 +80,11 @@ const AIMessage = ({
             isUser ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"
           )}
         >
-          {markdown ? renderMarkdown(content) : <span className="whitespace-pre-wrap">{content}</span>}
+          {markdown ? (
+            renderMarkdown(content)
+          ) : (
+            <span className="whitespace-pre-wrap">{content}</span>
+          )}
           {isStreaming && (
             <span data-testid="ai-message-cursor" aria-hidden="true" className="animate-pulse">
               |

@@ -13,9 +13,17 @@ function parseInline(text: string): React.ReactNode[] {
     if (match.index > last) nodes.push(text.slice(last, match.index));
     const token = match[0];
     if (token.startsWith("`")) {
-      nodes.push(<code key={match.index} className="bg-muted rounded px-1 py-0.5 font-mono text-[0.85em]">{token.slice(1, -1)}</code>);
+      nodes.push(
+        <code key={match.index} className="bg-muted rounded px-1 py-0.5 font-mono text-[0.85em]">
+          {token.slice(1, -1)}
+        </code>
+      );
     } else if (token.startsWith("***")) {
-      nodes.push(<strong key={match.index}><em>{token.slice(3, -3)}</em></strong>);
+      nodes.push(
+        <strong key={match.index}>
+          <em>{token.slice(3, -3)}</em>
+        </strong>
+      );
     } else if (token.startsWith("**")) {
       nodes.push(<strong key={match.index}>{token.slice(2, -2)}</strong>);
     } else {
@@ -49,7 +57,7 @@ export function renderMarkdown(text: string): React.ReactNode {
         i++;
       }
       elements.push(
-        <pre key={key++} className="bg-muted my-3 overflow-x-auto rounded-lg p-4 text-sm font-mono">
+        <pre key={key++} className="bg-muted my-3 overflow-x-auto rounded-lg p-4 font-mono text-sm">
           {lang && <div className="text-muted-foreground mb-2 text-xs">{lang}</div>}
           <code>{codeLines.join("\n")}</code>
         </pre>
@@ -63,7 +71,12 @@ export function renderMarkdown(text: string): React.ReactNode {
     if (headingMatch) {
       const level = headingMatch[1].length;
       const content = parseInline(headingMatch[2]);
-      const className = level === 1 ? "text-xl font-bold mt-4 mb-2" : level === 2 ? "text-lg font-semibold mt-3 mb-1.5" : "text-base font-semibold mt-2 mb-1";
+      const className =
+        level === 1
+          ? "text-xl font-bold mt-4 mb-2"
+          : level === 2
+            ? "text-lg font-semibold mt-3 mb-1.5"
+            : "text-base font-semibold mt-2 mb-1";
       elements.push(React.createElement(`h${level}`, { key: key++, className }, content));
       i++;
       continue;
@@ -91,7 +104,11 @@ export function renderMarkdown(text: string): React.ReactNode {
         items.push(<li key={i}>{parseInline(lines[i].replace(/^[-*+]\s/, ""))}</li>);
         i++;
       }
-      elements.push(<ul key={key++} className="my-2 list-inside list-disc space-y-0.5 pl-2">{items}</ul>);
+      elements.push(
+        <ul key={key++} className="my-2 list-inside list-disc space-y-0.5 pl-2">
+          {items}
+        </ul>
+      );
       continue;
     }
 
@@ -102,7 +119,11 @@ export function renderMarkdown(text: string): React.ReactNode {
         items.push(<li key={i}>{parseInline(lines[i].replace(/^\d+\.\s/, ""))}</li>);
         i++;
       }
-      elements.push(<ol key={key++} className="my-2 list-inside list-decimal space-y-0.5 pl-2">{items}</ol>);
+      elements.push(
+        <ol key={key++} className="my-2 list-inside list-decimal space-y-0.5 pl-2">
+          {items}
+        </ol>
+      );
       continue;
     }
 

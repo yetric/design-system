@@ -40,7 +40,9 @@ const StreamingText = ({
   cursor = true,
 }: StreamingTextProps) => {
   const onCompleteRef = React.useRef(onComplete);
-  React.useLayoutEffect(() => { onCompleteRef.current = onComplete; });
+  React.useLayoutEffect(() => {
+    onCompleteRef.current = onComplete;
+  });
 
   // ── Stream mode ────────────────────────────────────────────────────────────
   const [streamState, setStreamState] = React.useState<StreamState>({
@@ -74,7 +76,9 @@ const StreamingText = ({
       }
     })();
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [stream]);
 
   // ── Text mode ──────────────────────────────────────────────────────────────
@@ -85,9 +89,7 @@ const StreamingText = ({
 
   const resolvedText = text ?? "";
   const resolvedTextState: TextState =
-    textState.prevText !== resolvedText
-      ? { prevText: resolvedText, visibleLength: 0 }
-      : textState;
+    textState.prevText !== resolvedText ? { prevText: resolvedText, visibleLength: 0 } : textState;
 
   if (resolvedTextState !== textState) {
     setTextState(resolvedTextState);
@@ -122,14 +124,10 @@ const StreamingText = ({
     ? resolvedStreamState.displayed
     : resolvedText.slice(0, resolvedTextState.visibleLength);
 
-  const isComplete = stream
-    ? resolvedStreamState.done
-    : resolvedTextState.visibleLength >= resolvedText.length;
-
   return (
     <span className={cn("inline whitespace-pre-wrap", className)}>
       {content}
-      {cursor && !isComplete && (
+      {cursor && (
         <span data-testid="streaming-text-cursor" aria-hidden="true" className="animate-pulse">
           |
         </span>

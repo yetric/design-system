@@ -87,7 +87,9 @@ export const Interactive: Story = {
         />
         {submitted.length > 0 && (
           <div className="space-y-1">
-            <p className="text-muted-foreground text-xs font-medium uppercase tracking-wide">Submitted</p>
+            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+              Submitted
+            </p>
             {submitted.map((text, i) => (
               <div key={i} className="bg-muted rounded px-3 py-2 text-sm">
                 {text}

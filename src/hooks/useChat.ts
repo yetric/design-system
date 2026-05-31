@@ -74,15 +74,11 @@ export function useChat({ onRequest, initialMessages = [] }: UseChatOptions): Us
           for await (const token of response) {
             if (abortRef.current) break;
             setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantMsg.id ? { ...m, content: m.content + token } : m
-              )
+              prev.map((m) => (m.id === assistantMsg.id ? { ...m, content: m.content + token } : m))
             );
           }
           setMessages((prev) =>
-            prev.map((m) =>
-              m.id === assistantMsg.id ? { ...m, isStreaming: false } : m
-            )
+            prev.map((m) => (m.id === assistantMsg.id ? { ...m, isStreaming: false } : m))
           );
         }
       } catch (err) {

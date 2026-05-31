@@ -66,7 +66,12 @@ export const Loading: Story = {
 
 export const WithSuggestions: Story = {
   args: {
-    suggestions: ["Summarise this page", "Write a commit message", "Explain this error", "Improve my writing"],
+    suggestions: [
+      "Summarise this page",
+      "Write a commit message",
+      "Explain this error",
+      "Improve my writing",
+    ],
   },
 };
 
@@ -79,7 +84,7 @@ export const WithSystemMessage: Story = {
 export const CustomEmptyState: Story = {
   args: {
     emptyState: (
-      <div className="flex h-full flex-col items-center justify-center gap-3 text-center px-6">
+      <div className="flex h-full flex-col items-center justify-center gap-3 px-6 text-center">
         <div className="bg-muted flex h-12 w-12 items-center justify-center rounded-full">
           <Bot className="text-muted-foreground h-5 w-5" />
         </div>

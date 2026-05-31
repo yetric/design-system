@@ -99,10 +99,18 @@ export const WithActions: Story = {
     timestamp: new Date(),
     actions: (
       <div className="flex items-center gap-1">
-        <button type="button" aria-label="Thumbs up" className="text-muted-foreground hover:text-foreground rounded p-0.5 transition-colors">
+        <button
+          type="button"
+          aria-label="Thumbs up"
+          className="text-muted-foreground hover:text-foreground rounded p-0.5 transition-colors"
+        >
           <ThumbsUp className="h-3.5 w-3.5" />
         </button>
-        <button type="button" aria-label="Thumbs down" className="text-muted-foreground hover:text-foreground rounded p-0.5 transition-colors">
+        <button
+          type="button"
+          aria-label="Thumbs down"
+          className="text-muted-foreground hover:text-foreground rounded p-0.5 transition-colors"
+        >
           <ThumbsDown className="h-3.5 w-3.5" />
         </button>
       </div>
@@ -112,7 +120,7 @@ export const WithActions: Story = {
 
 export const Conversation: Story = {
   render: () => (
-    <div className="space-y-4 max-w-2xl">
+    <div className="max-w-2xl space-y-4">
       <AIMessage role="user" content="What's the difference between TypeScript and JavaScript?" />
       <AIMessage
         role="assistant"
