@@ -4,6 +4,7 @@ description: Browse and interact with all @yetric/ui components in Storybook.
 ---
 
 import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+import SbLink from "../../../components/SbLink.astro";
 
 The full component reference — including live examples, prop tables, and interactive controls — lives in Storybook.
 
@@ -22,17 +23,50 @@ The full component reference — including live examples, prop tables, and inter
     <tr><th>Category</th><th>Components</th></tr>
   </thead>
   <tbody>
-    <tr><td><strong>Actions</strong></td><td>Button, Toggle, ToggleGroup</td></tr>
-    <tr><td><strong>Forms</strong></td><td>Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider, Label, Form, DatePicker, DateRangePicker, ColorPicker, FileUpload, PinInput, TagsInput, MultiSelect, PhoneInput, NumberInput, Rating</td></tr>
-    <tr><td><strong>Feedback</strong></td><td>Alert, Badge, Progress, Skeleton, Toast, ThinkingIndicator</td></tr>
-    <tr><td><strong>Layout</strong></td><td>Card, Separator, ScrollArea, Stack, Grid, Box, Paper, AspectRatio</td></tr>
-    <tr><td><strong>Navigation</strong></td><td>Breadcrumb, Pagination, Tabs, Stepper, Menubar, NavigationMenu, NavItem</td></tr>
-    <tr><td><strong>Overlays</strong></td><td>Dialog, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, HoverCard, Drawer, Command, CommandPalette</td></tr>
-    <tr><td><strong>Data</strong></td><td>Table, DataGrid, Charts</td></tr>
-    <tr><td><strong>Media</strong></td><td>Image, Avatar, VideoPlayer, MapView</td></tr>
-    <tr><td><strong>Typography</strong></td><td>Text, Blockquote, Code, Kbd</td></tr>
-    <tr><td><strong>Utility</strong></td><td>Accordion, Collapsible, Timeline, EmptyState, Indicator, Loader, Tour, AuthForms</td></tr>
-    <tr><td><strong>AI</strong></td><td>AIChat, AIMessage, PromptInput, StreamingText, ThinkingIndicator, ModelSelector, SuggestionChips</td></tr>
+    <tr>
+      <td><strong>Actions</strong></td>
+      <td><SbLink name="Button" />, <SbLink name="Toggle" />, <SbLink name="ToggleGroup" />, <SbLink name="Toolbar" /></td>
+    </tr>
+    <tr>
+      <td><strong>Forms</strong></td>
+      <td><SbLink name="Input" />, <SbLink name="Textarea" />, <SbLink name="Select" />, <SbLink name="Checkbox" />, <SbLink name="RadioGroup" />, <SbLink name="Switch" />, <SbLink name="Slider" />, <SbLink name="Label" />, <SbLink name="Form" />, <SbLink name="DatePicker" />, <SbLink name="DateRangePicker" />, <SbLink name="ColorPicker" />, <SbLink name="FileUpload" />, <SbLink name="PinInput" />, <SbLink name="TagsInput" />, <SbLink name="MultiSelect" />, <SbLink name="PhoneInput" />, <SbLink name="NumberInput" />, <SbLink name="Rating" /></td>
+    </tr>
+    <tr>
+      <td><strong>Feedback</strong></td>
+      <td><SbLink name="Alert" />, <SbLink name="Badge" />, <SbLink name="Progress" />, <SbLink name="Skeleton" />, <SbLink name="Toast" />, <SbLink name="Indicator" />, <SbLink name="Loader" /></td>
+    </tr>
+    <tr>
+      <td><strong>Layout</strong></td>
+      <td><SbLink name="Card" />, <SbLink name="Separator" />, <SbLink name="ScrollArea" />, <SbLink name="Stack" />, <SbLink name="Grid" />, <SbLink name="Box" />, <SbLink name="Paper" />, <SbLink name="AspectRatio" />, <SbLink name="Fieldset" /></td>
+    </tr>
+    <tr>
+      <td><strong>Navigation</strong></td>
+      <td><SbLink name="Breadcrumb" />, <SbLink name="Pagination" />, <SbLink name="Tabs" />, <SbLink name="Stepper" />, <SbLink name="Menubar" />, <SbLink name="NavigationMenu" />, <SbLink name="NavItem" /></td>
+    </tr>
+    <tr>
+      <td><strong>Overlays</strong></td>
+      <td><SbLink name="Dialog" />, <SbLink name="AlertDialog" />, <SbLink name="ConfirmDialog" />, <SbLink name="Popover" />, <SbLink name="Tooltip" />, <SbLink name="DropdownMenu" />, <SbLink name="ContextMenu" />, <SbLink name="HoverCard" />, <SbLink name="Drawer" />, <SbLink name="Command" />, <SbLink name="CommandPalette" /></td>
+    </tr>
+    <tr>
+      <td><strong>Data</strong></td>
+      <td><SbLink name="Table" />, <SbLink name="DataGrid" />, <SbLink name="Charts" />, <SbLink name="EmptyState" /></td>
+    </tr>
+    <tr>
+      <td><strong>Media</strong></td>
+      <td><SbLink name="Image" />, <SbLink name="Avatar" />, <SbLink name="VideoPlayer" />, <SbLink name="MapView" /></td>
+    </tr>
+    <tr>
+      <td><strong>Typography</strong></td>
+      <td><SbLink name="Text" />, <SbLink name="Blockquote" />, <SbLink name="Code" />, <SbLink name="Kbd" />, <SbLink name="Anchor" /></td>
+    </tr>
+    <tr>
+      <td><strong>Utility</strong></td>
+      <td><SbLink name="Accordion" />, <SbLink name="Collapsible" />, <SbLink name="Timeline" />, <SbLink name="Spoiler" />, <SbLink name="Chip" />, <SbLink name="Tour" />, <SbLink name="AuthForms" /></td>
+    </tr>
+    <tr>
+      <td><strong>AI</strong></td>
+      <td><SbLink name="AIChat" />, <SbLink name="AIMessage" />, <SbLink name="PromptInput" />, <SbLink name="StreamingText" />, <SbLink name="ThinkingIndicator" />, <SbLink name="ModelSelector" />, <SbLink name="SuggestionChips" /></td>
+    </tr>
   </tbody>
 </table>
 

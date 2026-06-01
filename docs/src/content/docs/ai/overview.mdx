@@ -3,6 +3,8 @@ title: AI components overview
 description: Streaming chat UI primitives for AI-powered applications.
 ---
 
+import SbLink from "../../../components/SbLink.astro";
+
 `@yetric/ui` ships a complete set of AI-native UI components. They are **provider-agnostic** — they do not call any AI API directly. You supply the stream, they handle the UI.
 
 ## Components
@@ -12,13 +14,13 @@ description: Streaming chat UI primitives for AI-powered applications.
     <tr><th>Component</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td>[`AIChat`](#aichat)</td><td>Full chat interface with message list, input, and loading state</td></tr>
-    <tr><td>[`AIMessage`](#aimessage)</td><td>Individual message bubble with role-based styling and markdown</td></tr>
-    <tr><td>[`PromptInput`](#promptinput)</td><td>Auto-resizing textarea with submit button</td></tr>
-    <tr><td>[`StreamingText`](#streamingtext)</td><td>Renders an <code>AsyncIterable&lt;string&gt;</code> token stream in real time</td></tr>
-    <tr><td>[`ThinkingIndicator`](#thinkingindicator)</td><td>Animated loading state (dots, pulse, or spinner)</td></tr>
-    <tr><td>[`ModelSelector`](#modelselector)</td><td>Grouped select for choosing an AI model</td></tr>
-    <tr><td>[`SuggestionChips`](#suggestionchips)</td><td>Clickable prompt suggestion pills</td></tr>
+    <tr><td><SbLink name="AIChat" /></td><td>Full chat interface with message list, input, and loading state</td></tr>
+    <tr><td><SbLink name="AIMessage" /></td><td>Individual message bubble with role-based styling and markdown</td></tr>
+    <tr><td><SbLink name="PromptInput" /></td><td>Auto-resizing textarea with submit button</td></tr>
+    <tr><td><SbLink name="StreamingText" /></td><td>Renders an <code>AsyncIterable&lt;string&gt;</code> token stream in real time</td></tr>
+    <tr><td><SbLink name="ThinkingIndicator" /></td><td>Animated loading state (dots, pulse, or spinner)</td></tr>
+    <tr><td><SbLink name="ModelSelector" /></td><td>Grouped select for choosing an AI model</td></tr>
+    <tr><td><SbLink name="SuggestionChips" /></td><td>Clickable prompt suggestion pills</td></tr>
   </tbody>
 </table>
 

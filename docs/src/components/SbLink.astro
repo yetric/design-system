@@ -1,0 +1,133 @@
+---
+/**
+ * Links a component name to its Storybook docs page.
+ * Usage: <SbLink name="Button" /> or <SbLink name="Button">custom label</SbLink>
+ */
+
+interface Props {
+  name: string;
+}
+
+const BASE = "https://yetric.github.io/design-system";
+
+// Map display name → Storybook story slug
+const SLUGS: Record<string, string> = {
+  // Actions
+  Button:              "components-button",
+  Toggle:              "components-toggle",
+  ToggleGroup:         "components-toggle",
+
+  // Forms
+  Input:               "components-input",
+  Textarea:            "components-textarea",
+  Select:              "components-select",
+  Checkbox:            "components-checkbox",
+  RadioGroup:          "components-radiogroup",
+  Switch:              "components-switch",
+  Slider:              "components-slider",
+  Label:               "components-label",
+  Form:                "patterns-form",
+  DatePicker:          "components-datepicker",
+  DateRangePicker:     "components-daterangepicker",
+  ColorPicker:         "components-colorpicker",
+  FileUpload:          "components-fileupload",
+  PinInput:            "components-pininput",
+  TagsInput:           "components-tagsinput",
+  MultiSelect:         "components-multiselect",
+  PhoneInput:          "components-phoneinput",
+  NumberInput:         "components-numberinput",
+  Rating:              "components-rating",
+  InputField:          "components-inputfield",
+  SegmentedControl:    "components-segmentedcontrol",
+
+  // Feedback
+  Alert:               "components-alert",
+  Badge:               "components-badge",
+  Progress:            "components-progress",
+  Skeleton:            "components-skeleton",
+  Toast:               "components-toast",
+  Indicator:           "components-indicator",
+  Loader:              "components-loader",
+  ThinkingIndicator:   "components-ai-thinkingindicator",
+
+  // Layout
+  Card:                "components-card",
+  Separator:           "components-separator",
+  ScrollArea:          "components-scrollarea",
+  Stack:               "components-stack",
+  Grid:                "layout-grid",
+  Box:                 "layout-box",
+  Paper:               "components-paper",
+  AspectRatio:         "components-aspectratio",
+  Fieldset:            "components-fieldset",
+
+  // Navigation
+  Breadcrumb:          "components-breadcrumb",
+  Pagination:          "components-pagination",
+  Tabs:                "components-tabs",
+  Stepper:             "components-stepper",
+  Menubar:             "components-menubar",
+  NavigationMenu:      "components-navigationmenu",
+  NavItem:             "navigation-navitem",
+
+  // Overlays
+  Dialog:              "components-dialog",
+  AlertDialog:         "components-alertdialog",
+  Popover:             "components-popover",
+  Tooltip:             "components-tooltip",
+  DropdownMenu:        "components-dropdownmenu",
+  ContextMenu:         "components-contextmenu",
+  HoverCard:           "components-hovercard",
+  Drawer:              "components-drawer",
+  Command:             "components-command",
+  CommandPalette:      "components-commandpalette",
+  ConfirmDialog:       "components-confirmdialog",
+
+  // Data & display
+  Table:               "components-table",
+  DataGrid:            "components-datagrid",
+  Charts:              "components-charts",
+  EmptyState:          "components-emptystate",
+
+  // Media
+  Image:               "components-image",
+  Avatar:              "components-avatar",
+  VideoPlayer:         "components-videoplayer",
+  MapView:             "components-mapview",
+
+  // Typography
+  Text:                "components-typography",
+  Blockquote:          "components-blockquote",
+  Code:                "components-code",
+  Kbd:                 "components-kbd",
+
+  // Utility
+  Accordion:           "components-accordion",
+  Collapsible:         "components-collapsible",
+  Timeline:            "components-timeline",
+  Spoiler:             "components-spoiler",
+  Tour:                "components-tour",
+  AuthForms:           "components-authforms-loginform",
+  RichTextEditor:      "components-richtexteditor",
+  Chip:                "components-chip",
+  Anchor:              "components-anchor",
+  Toolbar:             "components-toolbar",
+
+  // AI
+  AIChat:              "components-ai-aichat",
+  AIMessage:           "components-ai-aimessage",
+  PromptInput:         "components-ai-promptinput",
+  StreamingText:       "components-ai-streamingtext",
+  ModelSelector:       "components-ai-modelselector",
+  SuggestionChips:     "components-ai-suggestionchips",
+};
+
+const { name } = Astro.props;
+const slug = SLUGS[name];
+const href = slug ? `${BASE}/?path=/docs/${slug}--docs` : null;
+---
+
+{href
+  ? <a href={href} target="_blank" rel="noopener noreferrer">{name}</a>
+  : <span>{name}</span>
+}
