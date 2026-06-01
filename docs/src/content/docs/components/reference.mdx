@@ -1,0 +1,45 @@
+---
+title: Component reference
+description: Browse and interact with all @yetric/ui components in Storybook.
+---
+
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+The full component reference — including live examples, prop tables, and interactive controls — lives in Storybook.
+
+<CardGrid>
+  <LinkCard
+    title="Open Storybook →"
+    description="Browse all 87 components with live examples, prop tables, and dark mode preview."
+    href="https://yetric.github.io/design-system"
+  />
+</CardGrid>
+
+## Component categories
+
+| Category | Components |
+|----------|-----------|
+| **Actions** | Button, Toggle, ToggleGroup |
+| **Forms** | Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider, Label, Form, DatePicker, DateRangePicker, ColorPicker, FileUpload, PinInput, TagsInput, MultiSelect, PhoneInput, NumberInput, Rating |
+| **Feedback** | Alert, Badge, Progress, Skeleton, Toast, ThinkingIndicator |
+| **Layout** | Card, Separator, ScrollArea, Stack, Grid, Box, Paper, AspectRatio |
+| **Navigation** | Breadcrumb, Pagination, Tabs, Stepper, Menubar, NavigationMenu, NavItem |
+| **Overlays** | Dialog, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, HoverCard, Drawer, Command, CommandPalette |
+| **Data** | Table, DataGrid, Charts |
+| **Media** | Image, Avatar, VideoPlayer, MapView |
+| **Typography** | Text, Blockquote, Code, Kbd |
+| **Utility** | Accordion, Collapsible, Timeline, EmptyState, Indicator, Loader, Tour, AuthForms |
+| **AI** | AIChat, AIMessage, PromptInput, StreamingText, ThinkingIndicator, ModelSelector, SuggestionChips |
+
+## All components are exported from the package root
+
+```ts
+import {
+  Button,
+  AIChat,
+  DataGrid,
+  // ...
+} from "@yetric/ui";
+```
+
+No deep imports needed.

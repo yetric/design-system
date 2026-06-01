@@ -1,0 +1,46 @@
+---
+title: Introduction
+description: What @yetric/ui is, what it includes, and when to use it.
+---
+
+`@yetric/ui` is a React component library built for modern applications. It covers everyday UI needs, advanced data patterns, and the streaming chat interfaces that AI-powered apps demand.
+
+## Philosophy
+
+**Provider-agnostic.** Components like `AIChat`, `AddressInput`, and `DataGrid` take callbacks instead of hardcoded integrations. Bring your own LLM, geocoding service, or data layer.
+
+**Accessible by default.** Complex behaviour (focus trapping, keyboard navigation, ARIA roles) is handled by [Radix UI](https://radix-ui.com) primitives. We focus on visual design, API consistency, and documentation.
+
+**Boring and predictable.** APIs are consistent across components. No surprise prop names, no magic.
+
+## What's included
+
+### Core components
+Button, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider, Label, Badge, Avatar, Card, Alert, Dialog, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Drawer, Tabs, Accordion, Collapsible, HoverCard, Menubar, NavigationMenu, Pagination, Breadcrumb, Stepper, Timeline, Skeleton, Progress, Separator, ScrollArea, Toggle, Toolbar, Code, Kbd, and more.
+
+### Form & input
+DatePicker, DateRangePicker, ColorPicker, FileUpload, PinInput, TagsInput, MultiSelect, PhoneInput, NumberInput, Rating, Slider, Form (with Zod validation).
+
+### Data & display
+DataGrid (virtualized, sortable, filterable), Charts (Line, Bar, Area, Pie via Recharts), Table, Image, EmptyState, Toast.
+
+### Power components
+RichTextEditor (Tiptap), MapView (Leaflet/OpenStreetMap), CommandPalette (⌘K), AddressInput (provider-agnostic geocoding), Tour, VideoPlayer, AuthForms.
+
+### AI components
+`AIChat`, `AIMessage`, `PromptInput`, `StreamingText`, `ThinkingIndicator`, `ModelSelector`, `SuggestionChips`, `useChat`.
+
+## When to use it
+
+`@yetric/ui` is a good fit when you:
+
+- Want a complete component set rather than assembling pieces from multiple libraries
+- Are building AI-powered features and need streaming UI primitives
+- Need dark mode and theming to work out of the box
+- Want accessible components without managing Radix UI yourself
+
+## When not to use it
+
+- You need a headless library with zero default styles
+- You are already deep into a different component system (shadcn/ui, MUI, etc.)
+- You need IE11 support (ESM-only build)

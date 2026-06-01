@@ -1,0 +1,145 @@
+---
+title: AI components overview
+description: Streaming chat UI primitives for AI-powered applications.
+---
+
+`@yetric/ui` ships a complete set of AI-native UI components. They are **provider-agnostic** — they do not call any AI API directly. You supply the stream, they handle the UI.
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| [`AIChat`](/ai/overview#aichat) | Full chat interface with message list, input, and loading state |
+| [`AIMessage`](/ai/overview#aimessage) | Individual message bubble with role-based styling and markdown |
+| [`PromptInput`](/ai/overview#promptinput) | Auto-resizing textarea with submit button |
+| [`StreamingText`](/ai/overview#streamingtext) | Renders an `AsyncIterable<string>` token stream in real time |
+| [`ThinkingIndicator`](/ai/overview#thinkingindicator) | Animated loading state (dots, pulse, or spinner) |
+| [`ModelSelector`](/ai/overview#modelselector) | Grouped `<select>` for choosing an AI model |
+| [`SuggestionChips`](/ai/overview#suggestionchips) | Clickable prompt suggestion pills |
+
+## useChat hook
+
+The `useChat` hook wires the components together and handles message state, streaming, and error handling.
+
+```tsx
+import { AIChat, useChat } from "@yetric/ui";
+
+export function Assistant() {
+  const { messages, send, isLoading } = useChat({
+    onRequest: async (messages) => {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        body: JSON.stringify({ messages }),
+      });
+      return res.body.pipeThrough(new TextDecoderStream());
+    },
+  });
+
+  return (
+    <AIChat
+      messages={messages}
+      isLoading={isLoading}
+      onSend={send}
+    />
+  );
+}
+```
+
+## Provider guides
+
+- [OpenAI](/ai/openai/)
+- [Anthropic](/ai/anthropic/)
+- [Vercel AI SDK](/ai/vercel-ai-sdk/)
+
+## Component reference
+
+### AIChat
+
+A full chat interface. Manages scroll-to-bottom, empty state, suggestion chips, and the prompt composer internally.
+
+```tsx
+<AIChat
+  title="Assistant"
+  messages={messages}
+  isLoading={isLoading}
+  onSend={send}
+  suggestions={["Summarise this", "Explain simply"]}
+  onSuggestionSelect={send}
+  height={600}
+/>
+```
+
+### AIMessage
+
+A single message bubble. Use `markdown` on assistant messages to render formatted responses.
+
+```tsx
+<AIMessage
+  role="assistant"
+  content="Here is a **formatted** response with `code`."
+  markdown
+  timestamp={new Date()}
+/>
+```
+
+### PromptInput
+
+A textarea that auto-resizes and submits on Enter (Shift+Enter for newline).
+
+```tsx
+<PromptInput
+  value={value}
+  onChange={setValue}
+  onSubmit={handleSubmit}
+  loading={isLoading}
+  placeholder="Ask anything…"
+/>
+```
+
+### StreamingText
+
+Renders an `AsyncIterable<string>` token stream as it arrives.
+
+```tsx
+<StreamingText stream={tokenStream} cursor />
+```
+
+Or animates a pre-baked string character-by-character:
+
+```tsx
+<StreamingText text="Hello!" speed={30} />
+```
+
+### ThinkingIndicator
+
+```tsx
+<ThinkingIndicator variant="dots" size="md" label="Thinking…" />
+```
+
+Variants: `dots` | `pulse` | `spinner`. Sizes: `sm` | `md` | `lg`.
+
+### ModelSelector
+
+```tsx
+<ModelSelector
+  models={[
+    { id: "gpt-4o", name: "GPT-4o", provider: "OpenAI" },
+    { id: "claude-sonnet-4", name: "Claude Sonnet 4", provider: "Anthropic" },
+  ]}
+  value={selectedModel}
+  onChange={setSelectedModel}
+/>
+```
+
+### SuggestionChips
+
+```tsx
+<SuggestionChips
+  chips={[
+    { id: "1", label: "Summarise this" },
+    { id: "2", label: "Explain simply" },
+  ]}
+  onSelect={(chip) => send(chip.label)}
+  maxVisible={4}
+/>
+```

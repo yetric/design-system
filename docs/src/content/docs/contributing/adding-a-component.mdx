@@ -1,0 +1,121 @@
+---
+title: Adding a component
+description: Step-by-step guide for adding a new component to @yetric/ui.
+---
+
+import { Steps, FileTree } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. **Create the component folder**:
+
+   ```bash
+   mkdir src/components/my-component
+   ```
+
+   The folder should contain four files:
+
+   <FileTree>
+   - src/components/my-component/
+     - MyComponent.tsx
+     - MyComponent.test.tsx
+     - MyComponent.stories.tsx
+     - index.ts
+   </FileTree>
+
+2. **Implement the component** (`MyComponent.tsx`):
+
+   ```tsx
+   "use client";
+
+   import * as React from "react";
+   import { cn } from "../../lib/cn";
+
+   export interface MyComponentProps {
+     children?: React.ReactNode;
+     className?: string;
+   }
+
+   const MyComponent = React.forwardRef<HTMLDivElement, MyComponentProps>(
+     ({ children, className }, ref) => (
+       <div ref={ref} className={cn("...", className)}>
+         {children}
+       </div>
+     )
+   );
+
+   MyComponent.displayName = "MyComponent";
+
+   export { MyComponent };
+   ```
+
+   Guidelines:
+   - Add `"use client"` at the top
+   - Use `React.forwardRef` for DOM-wrapping components
+   - Accept `className` and merge with `cn()`
+   - Export the component and its prop types
+
+3. **Write the barrel export** (`index.ts`):
+
+   ```ts
+   export { MyComponent } from "./MyComponent";
+   export type { MyComponentProps } from "./MyComponent";
+   ```
+
+4. **Write tests** (`MyComponent.test.tsx`):
+
+   ```tsx
+   import { render, screen } from "@testing-library/react";
+   import { describe, expect, it } from "vitest";
+   import { MyComponent } from "./MyComponent";
+
+   describe("MyComponent", () => {
+     it("renders children", () => {
+       render(<MyComponent>Hello</MyComponent>);
+       expect(screen.getByText("Hello")).toBeInTheDocument();
+     });
+   });
+   ```
+
+5. **Write stories** (`MyComponent.stories.tsx`):
+
+   ```tsx
+   import type { Meta, StoryObj } from "@storybook/react-vite";
+   import { MyComponent } from "./MyComponent";
+
+   const meta = {
+     component: MyComponent,
+     title: "Components/MyComponent",
+     tags: ["autodocs"],
+   } satisfies Meta<typeof MyComponent>;
+
+   export default meta;
+   type Story = StoryObj<typeof meta>;
+
+   export const Default: Story = {
+     args: { children: "Hello" },
+   };
+   ```
+
+6. **Export from the package root** (`src/index.ts`):
+
+   ```ts
+   export * from "./components/my-component";
+   ```
+
+7. **Verify everything passes**:
+
+   ```bash
+   npm run typecheck && npm run lint && npm run test:run && npm run build
+   ```
+
+</Steps>
+
+## Checklist before opening a PR
+
+- [ ] `MyComponent.tsx` — component with `"use client"`, typed props, `forwardRef` if DOM-wrapping
+- [ ] `MyComponent.test.tsx` — renders, variants, interaction
+- [ ] `MyComponent.stories.tsx` — Default, Variants (and any other meaningful states)
+- [ ] `index.ts` — exports component and types
+- [ ] `src/index.ts` — package root export added
+- [ ] All CI checks pass locally

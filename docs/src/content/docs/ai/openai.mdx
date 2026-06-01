@@ -1,0 +1,93 @@
+---
+title: OpenAI
+description: Connect @yetric/ui AI components to the OpenAI API.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. **Install the OpenAI SDK**:
+
+   ```bash
+   npm install openai
+   ```
+
+2. **Create an API route** (Next.js App Router):
+
+   ```ts
+   // app/api/chat/route.ts
+   import OpenAI from "openai";
+   import { NextRequest } from "next/server";
+
+   const openai = new OpenAI();
+
+   export async function POST(req: NextRequest) {
+     const { messages } = await req.json();
+
+     const stream = await openai.chat.completions.create({
+       model: "gpt-4o",
+       messages,
+       stream: true,
+     });
+
+     const encoder = new TextEncoder();
+     const readable = new ReadableStream({
+       async start(controller) {
+         for await (const chunk of stream) {
+           const token = chunk.choices[0]?.delta?.content ?? "";
+           if (token) controller.enqueue(encoder.encode(token));
+         }
+         controller.close();
+       },
+     });
+
+     return new Response(readable, {
+       headers: { "Content-Type": "text/plain; charset=utf-8" },
+     });
+   }
+   ```
+
+3. **Wire to `useChat`**:
+
+   ```tsx
+   import { AIChat, useChat } from "@yetric/ui";
+
+   async function* toStream(body: ReadableStream<Uint8Array>) {
+     const reader = body.pipeThrough(new TextDecoderStream()).getReader();
+     try {
+       while (true) {
+         const { done, value } = await reader.read();
+         if (done) break;
+         yield value;
+       }
+     } finally {
+       reader.releaseLock();
+     }
+   }
+
+   export function OpenAIChat() {
+     const { messages, send, isLoading } = useChat({
+       onRequest: async (messages) => {
+         const res = await fetch("/api/chat", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify({ messages }),
+         });
+         if (!res.ok) throw new Error("Request failed");
+         return toStream(res.body!);
+       },
+     });
+
+     return (
+       <AIChat
+         title="GPT-4o"
+         messages={messages}
+         isLoading={isLoading}
+         onSend={send}
+       />
+     );
+   }
+   ```
+
+</Steps>

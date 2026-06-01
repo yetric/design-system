@@ -1,0 +1,117 @@
+---
+title: useChat hook
+description: Manage AI chat state with streaming support.
+---
+
+`useChat` handles message state, streaming token consumption, loading state, and errors. It is the recommended way to wire `AIChat` to a backend.
+
+## Signature
+
+```ts
+function useChat(options: UseChatOptions): UseChatReturn;
+
+interface UseChatOptions {
+  /** Called with the full message history. Return a string or an AsyncIterable of tokens. */
+  onRequest: (messages: ChatMessage[]) => Promise<string | AsyncIterable<string>>;
+  initialMessages?: ChatMessage[];
+}
+
+interface UseChatReturn {
+  messages: ChatMessage[];
+  send: (text: string) => Promise<void>;
+  clear: () => void;
+  stop: () => void;
+  isLoading: boolean;
+  error: Error | null;
+}
+```
+
+## Basic usage
+
+```tsx
+import { AIChat, useChat } from "@yetric/ui";
+
+export function Assistant() {
+  const { messages, send, isLoading, error } = useChat({
+    onRequest: async (messages) => {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages }),
+      });
+
+      if (!res.ok) throw new Error(await res.text());
+
+      // Return the raw ReadableStream — useChat will consume it
+      return streamToAsyncIterable(res.body!);
+    },
+  });
+
+  return (
+    <>
+      {error && <p className="text-destructive text-sm">{error.message}</p>}
+      <AIChat messages={messages} isLoading={isLoading} onSend={send} />
+    </>
+  );
+}
+
+async function* streamToAsyncIterable(stream: ReadableStream<Uint8Array>) {
+  const reader = stream.pipeThrough(new TextDecoderStream()).getReader();
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      yield value;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+}
+```
+
+## Stopping a stream
+
+Call `stop()` to abort the current response mid-stream. The partial message is discarded.
+
+```tsx
+const { stop, isLoading } = useChat({ onRequest });
+
+<Button onClick={stop} disabled={!isLoading}>Stop</Button>
+```
+
+## Initial messages
+
+Pre-populate the conversation — useful for loading a saved chat history:
+
+```tsx
+const { messages } = useChat({
+  initialMessages: await loadHistoryFromDb(chatId),
+  onRequest,
+});
+```
+
+## Simple (non-streaming) responses
+
+`onRequest` can also return a plain string. `useChat` will display it immediately without streaming:
+
+```tsx
+const { messages, send } = useChat({
+  onRequest: async (msgs) => {
+    const res = await fetch("/api/chat", { ... });
+    const { reply } = await res.json();
+    return reply; // string — displayed immediately
+  },
+});
+```
+
+## ChatMessage type
+
+```ts
+interface ChatMessage {
+  id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  timestamp?: Date;
+  isStreaming?: boolean;
+}
+```

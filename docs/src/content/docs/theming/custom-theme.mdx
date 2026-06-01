@@ -1,0 +1,111 @@
+---
+title: Custom theme
+description: Override @yetric/ui color tokens with your own brand.
+---
+
+All design tokens are CSS custom properties on `:root`. Override them in a global stylesheet imported after `@yetric/ui/styles`.
+
+## Example: blue brand
+
+```css
+/* src/theme.css */
+:root {
+  --primary:            221 83% 53%;  /* blue-600 */
+  --primary-foreground: 0 0% 100%;
+  --ring:               221 83% 53%;
+  --radius:             0.375rem;     /* slightly tighter corners */
+}
+
+.dark {
+  --primary:            217 91% 60%;  /* blue-400 */
+  --primary-foreground: 222 47% 11%;
+  --ring:               217 91% 60%;
+}
+```
+
+```tsx
+// src/main.tsx  or  app/layout.tsx
+import "@yetric/ui/styles";
+import "./theme.css";     // must come after
+```
+
+## Token format
+
+Tokens use space-separated HSL components — **not** `hsl(...)`. This lets Tailwind compose opacity variants:
+
+```css
+/* ✅ correct */
+--primary: 255 86% 63%;
+
+/* ❌ wrong — opacity modifiers like bg-primary/50 will break */
+--primary: hsl(255, 86%, 63%);
+```
+
+## Changing the radius
+
+```css
+:root {
+  --radius: 0.25rem;  /* sharp */
+  /* or */
+  --radius: 1rem;     /* very rounded */
+}
+```
+
+All components derive their border-radius from this single variable via:
+- `rounded-lg` → `var(--radius)`
+- `rounded-md` → `calc(var(--radius) - 2px)`
+- `rounded-sm` → `calc(var(--radius) - 4px)`
+
+## Changing the font
+
+```css
+:root {
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Cal Sans", ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+Load your font however you normally would (Google Fonts `<link>`, `next/font`, etc.) and reference it here.
+
+## Common brand palettes
+
+Here are ready-to-paste token sets for common brand colors:
+
+### Slate (neutral)
+
+```css
+:root {
+  --primary:            215 25% 27%;
+  --primary-foreground: 0 0% 100%;
+}
+.dark {
+  --primary:            215 20% 65%;
+  --primary-foreground: 215 25% 10%;
+}
+```
+
+### Green
+
+```css
+:root {
+  --primary:            142 71% 45%;
+  --primary-foreground: 0 0% 100%;
+}
+.dark {
+  --primary:            142 69% 58%;
+  --primary-foreground: 142 25% 10%;
+}
+```
+
+### Rose
+
+```css
+:root {
+  --primary:            347 77% 50%;
+  --primary-foreground: 0 0% 100%;
+}
+.dark {
+  --primary:            347 77% 65%;
+  --primary-foreground: 347 25% 10%;
+}
+```

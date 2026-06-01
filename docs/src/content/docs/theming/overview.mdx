@@ -1,0 +1,69 @@
+---
+title: Theming overview
+description: How @yetric/ui's color token system works.
+---
+
+`@yetric/ui` uses a CSS custom property token system. All component colors reference semantic tokens — not hardcoded values — so you can change the entire visual language by overriding a handful of variables.
+
+## Token structure
+
+Tokens are defined in two places:
+
+| Selector | Purpose |
+|----------|---------|
+| `:root` | Light mode values |
+| `.dark` | Dark mode overrides |
+
+Each token stores an HSL triplet (without `hsl()`) so you can compose opacity variants with `/`:
+
+```css
+:root {
+  --primary: 255 86% 63%; /* hsl(255 86% 63%) = #7950f2 */
+}
+```
+
+Tailwind utility classes reference these via the `@theme inline` mapping:
+
+```css
+@theme inline {
+  --color-primary: hsl(var(--primary));
+}
+```
+
+So `bg-primary` in your JSX always resolves to the current `--primary` token value.
+
+## Available tokens
+
+### Colors
+
+| Token | Light | Dark | Usage |
+|-------|-------|------|-------|
+| `--background` | gray-0 | near-black | Page background |
+| `--foreground` | gray-9 | gray-0 | Body text |
+| `--primary` | violet-6 | violet-4 | Buttons, links, focus rings |
+| `--primary-foreground` | white | gray-9 | Text on primary backgrounds |
+| `--secondary` | gray-1 | gray-8 | Secondary actions |
+| `--muted` | gray-1 | gray-8 | Subtle backgrounds |
+| `--muted-foreground` | gray-6 | gray-5 | Placeholder text, labels |
+| `--accent` | gray-1 | gray-8 | Hover backgrounds |
+| `--card` | white | gray-8 | Card surfaces |
+| `--border` | gray-3 | gray-7 | Borders, dividers |
+| `--input` | gray-3 | gray-7 | Input borders |
+| `--ring` | violet-6 | violet-4 | Focus rings |
+| `--destructive` | red-7 | red-6 | Error states |
+| `--warning` | orange-7 | orange-6 | Warning states |
+| `--success` | green-8 | green-5 | Success states |
+| `--info` | blue-6 | blue-4 | Info states |
+
+### Shape & motion
+
+| Token | Default | Usage |
+|-------|---------|-------|
+| `--radius` | `0.5rem` | Base border radius |
+| `--font-sans` | IBM Plex Sans | Body font family |
+| `--font-heading` | IBM Plex Sans | Heading font family |
+
+## Next steps
+
+- [Dark mode](/theming/dark-mode/) — implementing a theme toggle
+- [Custom theme](/theming/custom-theme/) — overriding tokens with your own brand colors

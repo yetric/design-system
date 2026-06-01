@@ -1,0 +1,69 @@
+---
+title: Vercel AI SDK
+description: Connect @yetric/ui AI components to the Vercel AI SDK.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+The [Vercel AI SDK](https://sdk.vercel.ai) provides a `useChat` hook of its own, but you can use it alongside `@yetric/ui` components by feeding the messages and loading state directly.
+
+<Steps>
+
+1. **Install the AI SDK**:
+
+   ```bash
+   npm install ai
+   ```
+
+2. **Create an API route**:
+
+   ```ts
+   // app/api/chat/route.ts
+   import { streamText } from "ai";
+   import { openai } from "@ai-sdk/openai";
+
+   export async function POST(req: Request) {
+     const { messages } = await req.json();
+     const result = streamText({ model: openai("gpt-4o"), messages });
+     return result.toDataStreamResponse();
+   }
+   ```
+
+3. **Use Vercel's `useChat` with `@yetric/ui` components**:
+
+   ```tsx
+   import { useChat as useVercelChat } from "ai/react";
+   import { AIChat } from "@yetric/ui";
+   import type { ChatMessage } from "@yetric/ui";
+
+   export function VercelChat() {
+     const { messages, input, handleInputChange, handleSubmit, isLoading } =
+       useVercelChat({ api: "/api/chat" });
+
+     // Map Vercel's message format to @yetric/ui's ChatMessage
+     const uiMessages: ChatMessage[] = messages.map((m) => ({
+       id: m.id,
+       role: m.role as "user" | "assistant",
+       content: m.content,
+     }));
+
+     const send = (text: string) => {
+       handleInputChange({ target: { value: text } } as any);
+       setTimeout(() => handleSubmit(), 0);
+     };
+
+     return (
+       <AIChat
+         messages={uiMessages}
+         isLoading={isLoading}
+         onSend={send}
+       />
+     );
+   }
+   ```
+
+</Steps>
+
+## Using @yetric/ui's useChat instead
+
+If you prefer a simpler setup without the Vercel AI SDK, use `@yetric/ui`'s own `useChat` hook directly with a streaming endpoint. See the [useChat guide](/ai/use-chat/).
