@@ -48,7 +48,7 @@ Contributions are welcome — bug fixes, new components, documentation improveme
 | `npm run test:run` | Run unit tests once |
 | `npm run typecheck` | TypeScript strict mode check |
 | `npm run lint` | ESLint |
-| `npm run format` | Prettier format all files |
+| `npm run format` | Prettier format `src/**/*.{ts,tsx}` |
 | `npm run build` | Build the library |
 
 ## What we accept
@@ -68,10 +68,10 @@ Contributions are welcome — bug fixes, new components, documentation improveme
 ## Code style
 
 - TypeScript strict mode throughout
-- Tailwind utility classes for all styles — no inline styles, no CSS modules
+- Tailwind utility classes for styling; inline styles are acceptable where dynamic values are needed
 - Radix UI primitives for any component with complex keyboard or ARIA behavior
 - `class-variance-authority` for variant-heavy components
-- `cn()` from `@/lib/cn` for conditional class merging
+- `cn()` via a relative import (e.g. `import { cn } from "../../lib/cn"`) for conditional class merging
 
 ## Opening a PR
 

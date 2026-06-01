@@ -42,7 +42,7 @@ export function Assistant() {
 
       if (!res.ok) throw new Error(await res.text());
 
-      // Return the raw ReadableStream — useChat will consume it
+      // Convert the ReadableStream into an AsyncIterable<string> for useChat
       return streamToAsyncIterable(res.body!);
     },
   });

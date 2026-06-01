@@ -33,7 +33,7 @@ Static assets, like favicons, can be placed in the `public/` directory.
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the `docs/` directory:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |

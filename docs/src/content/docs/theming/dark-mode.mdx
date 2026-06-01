@@ -44,7 +44,7 @@ Put this in a `<script>` tag before your app bundle loads to avoid a flash of th
     import { cookies } from "next/headers";
 
     export default async function RootLayout({ children }) {
-      const theme = (await cookies()).get("theme")?.value ?? "light";
+      const theme = cookies().get("theme")?.value ?? "light";
       return (
         <html lang="en" className={theme}>
           <body>{children}</body>
