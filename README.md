@@ -46,9 +46,9 @@ export function Assistant() {
 
 ## Documentation
 
-**[Full docs →](https://your-docs-domain.com)**
-
 Includes installation guides for Next.js and Vite, theming reference, dark mode setup, and AI component integration guides for OpenAI, Anthropic, and the Vercel AI SDK.
+
+The docs source lives in [`docs/`](./docs) — see the [contributing guide](https://github.com/yetric/design-system/blob/main/docs/src/content/docs/contributing/guide.mdx) for how to run them locally.
 
 ## Storybook
 
@@ -68,8 +68,8 @@ npm run build       # build the library
 
 ## Contributing
 
-See [CONTRIBUTING.md](docs/src/content/docs/contributing/guide.mdx) or the [contributing guide](https://your-docs-domain.com/contributing/guide/) in the docs.
+See the [contributing guide](https://github.com/yetric/design-system/blob/main/docs/src/content/docs/contributing/guide.mdx) and [adding a component](https://github.com/yetric/design-system/blob/main/docs/src/content/docs/contributing/adding-a-component.mdx).
 
 ## License
 
-MIT
+ISC
