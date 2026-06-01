@@ -1,0 +1,33 @@
+---
+title: "@yetric/ui"
+description: A practical React component library for modern and AI-native applications.
+template: splash
+hero:
+  tagline: 87 accessible, composable components — including a complete AI chat UI kit. Provider-agnostic by design.
+  actions:
+    - text: Get started
+      link: /getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/yetric/design-system
+      icon: github
+      variant: secondary
+---
+
+import { CardGrid, Card } from "@astrojs/starlight/components";
+
+<CardGrid stagger>
+  <Card title="87 components" icon="puzzle">
+    Everything from buttons and forms to data grids, rich text editors, and maps — all in one package.
+  </Card>
+  <Card title="AI-native" icon="rocket">
+    First-class streaming chat UI, `useChat` hook, markdown rendering, and model selection — bring your own LLM.
+  </Card>
+  <Card title="Accessible" icon="approve-check-circle">
+    Built on Radix UI primitives. Keyboard navigation, focus management, and ARIA semantics come for free.
+  </Card>
+  <Card title="Themeable" icon="seti:css">
+    CSS variable token system with full dark mode support. Override any color in one place.
+  </Card>
+</CardGrid>

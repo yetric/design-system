@@ -1,0 +1,83 @@
+---
+title: Contributing guide
+description: How to contribute to @yetric/ui.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+Contributions are welcome — bug fixes, new components, documentation improvements, and accessibility fixes.
+
+## Getting started
+
+<Steps>
+
+1. **Fork and clone** the repository:
+
+   ```bash
+   git clone https://github.com/your-username/design-system.git
+   cd design-system
+   npm install
+   ```
+
+2. **Start Storybook**:
+
+   ```bash
+   npm run storybook
+   ```
+
+3. **Run the tests**:
+
+   ```bash
+   npm run test
+   ```
+
+4. **Create a branch**:
+
+   ```bash
+   git checkout -b feat/my-component
+   ```
+
+</Steps>
+
+## Development workflow
+
+| Script | What it does |
+|--------|-------------|
+| `npm run storybook` | Start Storybook dev server on port 6006 |
+| `npm run test` | Run unit tests in watch mode |
+| `npm run test:run` | Run unit tests once |
+| `npm run typecheck` | TypeScript strict mode check |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier format `src/**/*.{ts,tsx}` |
+| `npm run build` | Build the library |
+
+## What we accept
+
+**Good contributions:**
+- Bug fixes with a failing test that now passes
+- New components that follow the existing patterns
+- Accessibility improvements
+- Documentation improvements
+- Performance improvements
+
+**Out of scope:**
+- Business-specific or domain-specific components
+- Breaking API changes without prior discussion
+- Components that duplicate existing ones without clear motivation
+
+## Code style
+
+- TypeScript strict mode throughout
+- Tailwind utility classes for styling; inline styles are acceptable where dynamic values are needed
+- Radix UI primitives for any component with complex keyboard or ARIA behavior
+- `class-variance-authority` for variant-heavy components
+- `cn()` via a relative import (e.g. `import { cn } from "../../lib/cn"`) for conditional class merging
+
+## Opening a PR
+
+- Reference any related issue
+- Include a short description of what changed and why
+- All CI checks must pass (lint, typecheck, format, tests, build)
+- New components need a test file and a stories file
+
+See [Adding a component](/contributing/adding-a-component/) for the full checklist.

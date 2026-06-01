@@ -1,0 +1,122 @@
+---
+title: Dark mode
+description: How to enable and toggle dark mode in @yetric/ui.
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Dark mode is class-based: add `dark` to `<html>` and all components switch automatically.
+
+## Basic toggle
+
+```ts
+function toggleTheme() {
+  document.documentElement.classList.toggle("dark");
+}
+```
+
+## Persist preference
+
+```ts
+// On load — before paint to avoid flash
+const saved = localStorage.getItem("theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+if (saved === "dark" || (!saved && prefersDark)) {
+  document.documentElement.classList.add("dark");
+}
+
+// On toggle
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+```
+
+Put this in a `<script>` tag before your app bundle loads to avoid a flash of the wrong theme.
+
+## Next.js
+
+<Tabs>
+  <TabItem label="App Router">
+    ```tsx
+    // app/layout.tsx
+    import { cookies } from "next/headers";
+
+    export default async function RootLayout({ children }) {
+      const theme = cookies().get("theme")?.value ?? "light";
+      return (
+        <html lang="en" className={theme}>
+          <body>{children}</body>
+        </html>
+      );
+    }
+    ```
+
+    Set the `theme` cookie from a server action or API route when the user toggles.
+  </TabItem>
+  <TabItem label="Pages Router">
+    Add the flash-prevention script to `_document.tsx`:
+
+    ```tsx
+    // pages/_document.tsx
+    import { Html, Head, Main, NextScript } from "next/document";
+
+    export default function Document() {
+      return (
+        <Html>
+          <Head />
+          <body>
+            <script dangerouslySetInnerHTML={{ __html: `
+              const t = localStorage.getItem('theme');
+              const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              if (t === 'dark' || (!t && d)) document.documentElement.classList.add('dark');
+            `}} />
+            <Main />
+            <NextScript />
+          </body>
+        </Html>
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## React hook
+
+```tsx
+import { useEffect, useState } from "react";
+
+export function useTheme() {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  return { theme, setTheme, toggle: () => setTheme(t => t === "dark" ? "light" : "dark") };
+}
+```
+
+```tsx
+import { useTheme } from "./useTheme";
+import { Button } from "@yetric/ui";
+
+export function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  return (
+    <Button variant="ghost" size="icon" onClick={toggle} aria-label="Toggle theme">
+      {theme === "dark" ? "☀️" : "🌙"}
+    </Button>
+  );
+}
+```

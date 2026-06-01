@@ -1,0 +1,82 @@
+---
+title: Next.js
+description: Set up @yetric/ui in a Next.js application.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. **Create a Next.js app** (skip if you have one):
+
+   ```bash
+   npx create-next-app@latest my-app --typescript --tailwind --app
+   cd my-app
+   ```
+
+2. **Install @yetric/ui**:
+
+   ```bash
+   npm install @yetric/ui
+   ```
+
+3. **Import the stylesheet** in your root layout:
+
+   ```tsx
+   // app/layout.tsx
+   import "@yetric/ui/styles";
+   import type { ReactNode } from "react";
+
+   export default function RootLayout({ children }: { children: ReactNode }) {
+     return (
+       <html lang="en" suppressHydrationWarning>
+         <body>{children}</body>
+       </html>
+     );
+   }
+   ```
+
+4. **Use components**:
+
+   ```tsx
+   // app/page.tsx
+   import { Button, Card, CardContent, CardHeader, CardTitle } from "@yetric/ui";
+
+   export default function Page() {
+     return (
+       <Card className="max-w-sm mx-auto mt-16">
+         <CardHeader>
+           <CardTitle>Hello</CardTitle>
+         </CardHeader>
+         <CardContent>
+           <Button>Get started</Button>
+         </CardContent>
+       </Card>
+     );
+   }
+   ```
+
+</Steps>
+
+## Dark mode
+
+Add the `dark` class to `<html>` to activate dark mode. For a toggle, see the [dark mode guide](/theming/dark-mode/).
+
+```tsx
+// app/layout.tsx
+<html lang="en" className="dark">
+```
+
+## Server components
+
+All `@yetric/ui` components include the `"use client"` directive and can be used in server component trees without wrapping. Interactive components (Dialog, DropdownMenu, etc.) require a client boundary — the components handle this internally.
+
+## Fonts
+
+The library uses IBM Plex Sans by default (loaded via the stylesheet). To use a different font, override the `--font-sans` CSS variable in your global styles:
+
+```css
+:root {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+```
