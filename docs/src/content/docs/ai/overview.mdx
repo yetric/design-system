@@ -7,15 +7,20 @@ description: Streaming chat UI primitives for AI-powered applications.
 
 ## Components
 
-| Component | Description |
-|-----------|-------------|
-| [`AIChat`](/ai/overview#aichat) | Full chat interface with message list, input, and loading state |
-| [`AIMessage`](/ai/overview#aimessage) | Individual message bubble with role-based styling and markdown |
-| [`PromptInput`](/ai/overview#promptinput) | Auto-resizing textarea with submit button |
-| [`StreamingText`](/ai/overview#streamingtext) | Renders an `AsyncIterable<string>` token stream in real time |
-| [`ThinkingIndicator`](/ai/overview#thinkingindicator) | Animated loading state (dots, pulse, or spinner) |
-| [`ModelSelector`](/ai/overview#modelselector) | Grouped select for choosing an AI model |
-| [`SuggestionChips`](/ai/overview#suggestionchips) | Clickable prompt suggestion pills |
+<table>
+  <thead>
+    <tr><th>Component</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>[`AIChat`](#aichat)</td><td>Full chat interface with message list, input, and loading state</td></tr>
+    <tr><td>[`AIMessage`](#aimessage)</td><td>Individual message bubble with role-based styling and markdown</td></tr>
+    <tr><td>[`PromptInput`](#promptinput)</td><td>Auto-resizing textarea with submit button</td></tr>
+    <tr><td>[`StreamingText`](#streamingtext)</td><td>Renders an <code>AsyncIterable&lt;string&gt;</code> token stream in real time</td></tr>
+    <tr><td>[`ThinkingIndicator`](#thinkingindicator)</td><td>Animated loading state (dots, pulse, or spinner)</td></tr>
+    <tr><td>[`ModelSelector`](#modelselector)</td><td>Grouped select for choosing an AI model</td></tr>
+    <tr><td>[`SuggestionChips`](#suggestionchips)</td><td>Clickable prompt suggestion pills</td></tr>
+  </tbody>
+</table>
 
 ## useChat hook
 
