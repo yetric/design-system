@@ -1,8 +1,8 @@
 # @yetric/ui
 
-A practical React component library built for modern applications — including AI-native UIs.
+A practical React component library for modern and AI-native applications.
 
-`@yetric/ui` gives you a complete set of accessible, composable components that cover everyday UI needs, advanced data patterns, and the streaming/chat interfaces that AI-powered apps demand. Provider-agnostic by design: bring your own backend, your own geocoding, your own LLM.
+87 accessible, composable components — from everyday form elements to streaming chat UI, data grids, rich text editors, and maps. Provider-agnostic by design.
 
 ## Install
 
@@ -10,31 +10,17 @@ A practical React component library built for modern applications — including 
 npm install @yetric/ui
 ```
 
-## What's included
-
-### Core components
-Button, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider, Label, Badge, Avatar, Card, Alert, Dialog, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Sheet, Drawer, Tabs, Accordion, Collapsible, HoverCard, Menubar, NavigationMenu, Command, Pagination, Breadcrumb, Stepper, Timeline, Table, DataTable, Skeleton, Spinner, Progress, Separator, ScrollArea, ResizablePanel, Carousel, Calendar, InputOTP, TagsInput, MultiSelect, PinInput, Code, Toggle, ToggleGroup, Toolbar
-
-### Advanced components (0.5.0+)
-DatePicker, DateRangePicker, FileUpload, Image, ColorPicker, Charts (Line/Bar/Area/Pie), EmptyState, ConfirmDialog, Toast API
-
-### Power components (0.6.0+)
-DataGrid (virtualized), RichTextEditor (Tiptap), MapView (Leaflet/OpenStreetMap), CommandPalette (⌘K), PhoneInput, AddressInput (provider-agnostic), Tour, VideoPlayer, LoginForm, SignupForm
-
-### AI components (coming in 0.7.0)
-AIChat, StreamingText, PromptInput, AIMessage, ThinkingIndicator, ModelSelector, SuggestionChips
-
 ## Quick start
 
 ```tsx
 import { Button, Card, CardContent, CardHeader, CardTitle } from "@yetric/ui";
-import "@yetric/ui/dist/index.css";
+import "@yetric/ui/styles";
 
 export function Example() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Welcome</CardTitle>
+        <CardTitle>Hello</CardTitle>
       </CardHeader>
       <CardContent>
         <Button>Get started</Button>
@@ -44,435 +30,46 @@ export function Example() {
 }
 ```
 
-## AI-native usage (0.7.0)
+## AI components
 
 ```tsx
-import { AIChat } from "@yetric/ui";
+import { AIChat, useChat } from "@yetric/ui";
 
 export function Assistant() {
-  return (
-    <AIChat
-      onSend={async (message) => {
-        const res = await fetch("/api/chat", {
-          method: "POST",
-          body: JSON.stringify({ message }),
-        });
-        return res.body; // ReadableStream
-      }}
-    />
-  );
+  const { messages, send, isLoading } = useChat({
+    onRequest: async (messages) => streamFromYourBackend(messages),
+  });
+
+  return <AIChat messages={messages} isLoading={isLoading} onSend={send} />;
 }
 ```
 
-## Provider-agnostic patterns
+## Documentation
 
-Components like `AddressInput`, `DataGrid`, and the upcoming AI components take callbacks instead of hardcoded integrations:
+**[Full docs →](https://your-docs-domain.com)**
 
-```tsx
-// Bring your own geocoding
-<AddressInput
-  onSearch={async (query) => {
-    const res = await fetch(`/api/geocode?q=${query}`);
-    return res.json(); // AddressSuggestion[]
-  }}
-/>
+Includes installation guides for Next.js and Vite, theming reference, dark mode setup, and AI component integration guides for OpenAI, Anthropic, and the Vercel AI SDK.
 
-// Bring your own LLM
-<AIChat onSend={(msg) => streamFromAnyProvider(msg)} />
-```
+## Storybook
 
-## Tech stack
+**[Component reference →](https://yetric.github.io/design-system)**
 
-The intended foundation is:
-
-```txt
-React
-TypeScript
-Radix UI primitives
-Tailwind CSS
-class-variance-authority
-tailwind-merge
-Storybook
-Vitest
-React Testing Library
-tsup or Vite library mode
-```
-
-## Design approach
-
-The library should use proven accessible primitives for behavior-heavy components and focus our own work on visual design, API consistency, composition, and documentation.
-
-Build ourselves:
-
-```txt
-component APIs
-styling conventions
-variants
-design tokens
-layout primitives
-documentation
-business-friendly usage examples
-```
-
-Avoid rebuilding from scratch:
-
-```txt
-focus trapping
-keyboard navigation
-ARIA behavior
-popover positioning
-menu behavior
-dialog behavior
-combobox behavior
-screen reader edge cases
-```
-
-## Component principles
-
-- Keep core components domain-free.
-- Prefer composition over large configuration objects.
-- Use accessible primitives for complex behavior.
-- Keep APIs boring and predictable.
-- Use TypeScript types as part of the component contract.
-- Use Storybook to document real usage.
-- Add at least basic tests for every reusable component.
-- Do not put app-specific business logic in `@yetric/ui`.
-- Business components should live in a separate package or app layer.
-
-## Suggested package structure
-
-```txt
-packages/
-  ui/
-    src/
-      components/
-        button/
-          Button.tsx
-          Button.test.tsx
-          Button.stories.tsx
-          index.ts
-        card/
-          Card.tsx
-          Card.stories.tsx
-          index.ts
-        dialog/
-          Dialog.tsx
-          Dialog.stories.tsx
-          index.ts
-      lib/
-        cn.ts
-      styles/
-        globals.css
-      index.ts
-    package.json
-    tsconfig.json
-    tailwind.config.ts
-    tsup.config.ts
-```
-
-If this repository starts as a single-package repo instead of a monorepo, the same structure can live directly under `src/`.
-
-## Initial components
-
-The first version should validate the foundation with a small set of components:
-
-```txt
-Button
-Card
-Dialog
-```
-
-These are enough to prove:
-
-- styling conventions
-- variants
-- composition
-- Radix wrapping
-- exports
-- Storybook setup
-- testing setup
-- package build
-
-## Example usage
-
-```tsx
-import { Button, Card, CardContent, CardHeader, CardTitle } from "@yetric/ui";
-
-export function Example() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Welcome</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Button>Get started</Button>
-      </CardContent>
-    </Card>
-  );
-}
-```
-
-## Styling utility
-
-The library should include a small `cn` helper for combining conditional classes and resolving Tailwind conflicts.
-
-```ts
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-```
-
-## Component variants
-
-Use `class-variance-authority` for variant-heavy components.
-
-Example:
-
-```tsx
-<Button variant="primary" size="md">
-  Save
-</Button>
-
-<Button variant="secondary" size="sm">
-  Cancel
-</Button>
-
-<Button variant="danger">
-  Delete
-</Button>
-```
-
-## Scripts
-
-Suggested scripts:
-
-```json
-{
-  "scripts": {
-    "build": "tsup src/index.ts --format esm --dts",
-    "dev": "tsup src/index.ts --format esm --dts --watch",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "typecheck": "tsc --noEmit"
-  }
-}
-```
-
-Adjust scripts to match the final repository setup.
+Live examples, prop tables, and interactive controls for all 87 components.
 
 ## Development
 
-Install dependencies:
-
 ```bash
 npm install
+npm run storybook   # component development
+npm run test        # unit tests
+npm run typecheck   # TypeScript check
+npm run build       # build the library
 ```
 
-Run Storybook:
+## Contributing
 
-```bash
-npm run storybook
-```
+See [CONTRIBUTING.md](docs/src/content/docs/contributing/guide.mdx) or the [contributing guide](https://your-docs-domain.com/contributing/guide/) in the docs.
 
-Run tests:
+## License
 
-```bash
-npm run test
-```
-
-Build the library:
-
-```bash
-npm run build
-```
-
-Run type checking:
-
-```bash
-npm run typecheck
-```
-
-## Public exports
-
-All public components should be exported from `src/index.ts`.
-
-Example:
-
-```ts
-export * from "./components/button";
-export * from "./components/card";
-export * from "./components/dialog";
-export * from "./lib/cn";
-```
-
-Consumers should not import from deep internal paths unless explicitly supported.
-
-Preferred:
-
-```tsx
-import { Button } from "@yetric/ui";
-```
-
-Avoid:
-
-```tsx
-import { Button } from "@yetric/ui/src/components/button/Button";
-```
-
-## Adding a new component
-
-When adding a component:
-
-1. Create a folder under `src/components/<component-name>/`.
-2. Add the component implementation.
-3. Add an `index.ts` file for local exports.
-4. Add Storybook stories.
-5. Add basic tests.
-6. Export the component from `src/index.ts`.
-7. Document variants and important usage notes.
-
-Recommended structure:
-
-```txt
-src/components/input/
-  Input.tsx
-  Input.test.tsx
-  Input.stories.tsx
-  index.ts
-```
-
-## What belongs here
-
-Good candidates for `@yetric/ui`:
-
-```txt
-Button
-Input
-Textarea
-Checkbox
-RadioGroup
-Select
-Dialog
-DropdownMenu
-Tabs
-Tooltip
-Popover
-Card
-Badge
-Alert
-Table primitives
-Typography helpers
-Layout primitives
-```
-
-## What does not belong here
-
-Avoid adding business-specific components to this package.
-
-Examples that should probably live elsewhere:
-
-```txt
-AccountSelector
-PaymentReceiverSelector
-PayAmountField
-BookingCalendar
-RestaurantTableMap
-PropertyValuationForm
-LeadCaptureFlow
-```
-
-Those components can still use `@yetric/ui`, but they should live in app-specific packages or a separate business UI package.
-
-Possible future package:
-
-```txt
-@yetric/ui-business
-```
-
-## Accessibility
-
-Accessibility is a core reason for using primitives like Radix UI.
-
-Components should support:
-
-- keyboard navigation
-- focus states
-- disabled states
-- accessible names and labels
-- screen reader-friendly structure
-- sensible default semantics
-
-Do not remove accessibility behavior from underlying primitives unless there is a very good reason.
-
-## Testing expectations
-
-Each reusable component should have at least basic tests.
-
-Minimum expectations:
-
-- renders without crashing
-- renders children/content
-- supports important variants
-- supports disabled state where relevant
-- supports basic interaction where relevant
-
-For behavior-heavy components, test the behavior that matters to consumers.
-
-Example:
-
-```txt
-Dialog opens when trigger is clicked.
-Dialog content is visible when open.
-Button is disabled when disabled=true.
-```
-
-## Storybook expectations
-
-Each component should have stories for:
-
-- default state
-- variants
-- sizes, if applicable
-- disabled/loading/error states, if applicable
-- realistic usage example
-
-Storybook should be treated as the main component documentation.
-
-## Versioning
-
-Use semantic versioning once the package is consumed by real applications.
-
-```txt
-patch: bug fixes and internal improvements
-minor: new components or backwards-compatible additions
-major: breaking API or styling contract changes
-```
-
-## Future direction
-
-Possible future additions:
-
-```txt
-@yetric/ui-icons
-@yetric/ui-theme
-@yetric/ui-forms
-@yetric/ui-business
-internal component registry
-visual regression testing
-theme switching
-React Hook Form adapters
-application shell components
-```
-
-Do not add these until there is a real need.
-
-## Guiding idea
-
-Start small. Keep it useful. Avoid building a museum of abstractions.
-
-The best version of this library is boring, predictable, accessible, and easy to use.
+MIT
