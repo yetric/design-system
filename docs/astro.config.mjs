@@ -43,18 +43,20 @@ export default defineConfig({
           ],
         },
         {
-          label: "AI components",
-          items: [
-            { label: "Overview", slug: "ai/overview" },
-            { label: "useChat hook", slug: "ai/use-chat" },
-            { label: "OpenAI", slug: "ai/openai" },
-            { label: "Anthropic", slug: "ai/anthropic" },
-            { label: "Vercel AI SDK", slug: "ai/vercel-ai-sdk" },
-          ],
-        },
-        {
           label: "Components",
-          items: [{ label: "Component reference", slug: "components/reference" }],
+          items: [
+            { label: "Component reference", slug: "components/reference" },
+            {
+              label: "AI components",
+              items: [
+                { label: "Overview", slug: "ai/overview" },
+                { label: "useChat hook", slug: "ai/use-chat" },
+                { label: "OpenAI", slug: "ai/openai" },
+                { label: "Anthropic", slug: "ai/anthropic" },
+                { label: "Vercel AI SDK", slug: "ai/vercel-ai-sdk" },
+              ],
+            },
+          ],
         },
         {
           label: "Contributing",
