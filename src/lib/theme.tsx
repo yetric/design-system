@@ -229,7 +229,10 @@ export function ThemeProvider({
   });
 
   const resolvedTheme = React.useMemo<"light" | "dark">(() => {
-    if (theme === "system") return getSystemTheme();
+    if (theme === "system") {
+      if (typeof window === "undefined") return "light";
+      return getSystemTheme();
+    }
     return theme;
   }, [theme]);
 
