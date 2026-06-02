@@ -22,7 +22,7 @@ const markers = [
 const meta = {
   title: "Components/MapView",
   component: MapView,
-  tags: ["autodocs"],
+  tags: ["autodocs", "no-vitest"],
 } satisfies Meta<typeof MapView>;
 
 export default meta;

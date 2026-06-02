@@ -29,7 +29,8 @@ export default defineConfig({
         plugins: [
           storybookTest({
             configDir: storybookConfigDir,
-            storybookScript: "npm run storybook -- --no-open"
+            storybookScript: "npm run storybook -- --no-open",
+            tags: { exclude: ["no-vitest"] },
           })
         ],
         test: {
