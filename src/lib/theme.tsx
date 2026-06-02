@@ -8,6 +8,7 @@ import { BreakpointsContext, DEFAULT_BREAKPOINTS, type Breakpoints } from "./bre
 export type Theme = "light" | "dark" | "system";
 
 export function applyTheme(theme: "light" | "dark"): void {
+  if (typeof document === "undefined") return;
   const root = document.documentElement;
   root.classList.remove("light", "dark");
   if (theme === "dark") {
@@ -16,6 +17,7 @@ export function applyTheme(theme: "light" | "dark"): void {
 }
 
 export function getSystemTheme(): "light" | "dark" {
+  if (typeof window === "undefined") return "light";
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
