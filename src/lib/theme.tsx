@@ -229,7 +229,10 @@ export function ThemeProvider({
   });
 
   const resolvedTheme = React.useMemo<"light" | "dark">(() => {
-    if (theme === "system") return getSystemTheme();
+    if (theme === "system") {
+      if (typeof window === "undefined") return "light";
+      return getSystemTheme();
+    }
     return theme;
   }, [theme]);
 
@@ -247,6 +250,7 @@ export function ThemeProvider({
 
   React.useEffect(() => {
     if (theme !== "system") return;
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const handler = () => applyTheme(getSystemTheme());
     mq.addEventListener("change", handler);
