@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as L from "leaflet";
 import { vi } from "vitest";
@@ -34,10 +34,12 @@ const markers: MapMarker[] = [
 ];
 
 describe("MapView", () => {
-  it("renders the map and markers", () => {
-    render(<MapView markers={markers} />);
+  it("renders the map and markers", async () => {
+    await act(async () => {
+      render(<MapView markers={markers} />);
+    });
 
-    expect(screen.getByTestId("map-container")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("map-container")).toBeInTheDocument());
     expect(screen.getByTestId("tile-layer")).toHaveAttribute(
       "data-url",
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -51,14 +53,21 @@ describe("MapView", () => {
     const user = userEvent.setup();
     const onMarkerClick = vi.fn();
 
-    render(<MapView markers={markers} onMarkerClick={onMarkerClick} />);
+    await act(async () => {
+      render(<MapView markers={markers} onMarkerClick={onMarkerClick} />);
+    });
 
+    await waitFor(() => expect(screen.getAllByTestId("map-marker")[0]).toBeInTheDocument());
     await user.click(screen.getAllByTestId("map-marker")[0]);
 
     expect(onMarkerClick).toHaveBeenCalledWith(markers[0]);
   });
 
-  it("configures the default leaflet marker icons", () => {
+  it("configures the default leaflet marker icons", async () => {
+    await act(async () => {
+      render(<MapView />);
+    });
+    await waitFor(() => expect(L.Icon.Default.mergeOptions).toHaveBeenCalled());
     expect(L.Icon.Default.mergeOptions).toHaveBeenCalledWith(
       expect.objectContaining({
         iconRetinaUrl: expect.stringContaining("marker-icon-2x.png"),
