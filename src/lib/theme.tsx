@@ -250,6 +250,7 @@ export function ThemeProvider({
 
   React.useEffect(() => {
     if (theme !== "system") return;
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const handler = () => applyTheme(getSystemTheme());
     mq.addEventListener("change", handler);

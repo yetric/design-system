@@ -1,4 +1,5 @@
 import { render, screen, act } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import * as React from "react";
 import {
@@ -218,5 +219,38 @@ describe("ThemeProvider config prop", () => {
     );
     expect(document.documentElement.style.getPropertyValue("--radius")).toBe(RADIUS_VALUES.lg);
     expect(document.getElementById("yetric-ui-theme-config")).not.toBeNull();
+  });
+});
+
+describe("ThemeProvider SSR safety", () => {
+  it("renderToString does not throw with defaultTheme=system", () => {
+    // react-dom/server runs without effects, simulating SSR — verifies the
+    // render path (useState init + resolvedTheme useMemo) is free of window access.
+    expect(() =>
+      renderToString(
+        <ThemeProvider defaultTheme="system">
+          <span>hello</span>
+        </ThemeProvider>
+      )
+    ).not.toThrow();
+  });
+
+  it("resolvedTheme falls back to light when matchMedia is unavailable", () => {
+    // Simulate an environment where window exists but matchMedia is absent
+    // (older WebViews, embedded runtimes, test setups without media query support).
+    const saved = window.matchMedia;
+    // @ts-expect-error — intentionally removing matchMedia
+    delete window.matchMedia;
+
+    try {
+      render(
+        <ThemeProvider defaultTheme="system">
+          <ThemeConsumer />
+        </ThemeProvider>
+      );
+      expect(screen.getByTestId("resolved").textContent).toBe("light");
+    } finally {
+      window.matchMedia = saved;
+    }
   });
 });
