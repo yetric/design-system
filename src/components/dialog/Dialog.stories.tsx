@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, within } from "storybook/test";
+import { expect, waitFor, within } from "storybook/test";
 
 import { Button } from "../button";
 import {
@@ -43,7 +43,9 @@ export const Default: Story = {
   play: async ({ canvas, canvasElement, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: "Open" }));
     const body = within(canvasElement.ownerDocument.body);
-    await expect(await body.findByRole("dialog")).toBeVisible();
+    const dialog = await body.findByRole("dialog");
+    // Wait for the fade-in animation to complete before asserting visibility
+    await waitFor(() => expect(dialog).toBeVisible());
     await expect(body.getByText("Confirm action")).toBeVisible();
   },
 };
