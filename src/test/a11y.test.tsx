@@ -2,11 +2,34 @@
  * Accessibility audit — runs axe-core against every component.
  * Filters out "minor" impact to focus on serious/critical/moderate violations.
  */
-import { render } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { render, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
 import { axe } from "vitest-axe";
 import * as React from "react";
 import { ThemeProvider } from "@/lib/theme";
+
+// driver.js is a browser-only library — mock it for jsdom
+vi.mock("driver.js", () => ({
+  driver: vi.fn(() => ({
+    drive: vi.fn(),
+    destroy: vi.fn(),
+    moveNext: vi.fn(),
+    movePrevious: vi.fn(),
+    setConfig: vi.fn(),
+    setSteps: vi.fn(),
+    isActive: vi.fn(() => false),
+    isLastStep: vi.fn(() => false),
+    refresh: vi.fn(),
+    getConfig: vi.fn(),
+    getState: vi.fn(),
+    getActiveIndex: vi.fn(),
+    isFirstStep: vi.fn(),
+    getActiveStep: vi.fn(),
+    getActiveElement: vi.fn(),
+    getPreviousElement: vi.fn(),
+    getPreviousStep: vi.fn(),
+  })),
+}));
 
 async function expectNoViolations(container: HTMLElement) {
   const results = await axe(container);
@@ -310,6 +333,79 @@ describe("a11y — composite components", () => {
         <Stepper
           activeStep={1}
           steps={[{ title: "Step 1" }, { title: "Step 2" }, { title: "Step 3" }]}
+        />
+      )
+    );
+  });
+});
+
+// ─── Advanced components ───────────────────────────────────────────────────────
+import { DataGrid, type DataGridColumn } from "@/components/data-grid/DataGrid";
+import { CommandPalette } from "@/components/command-palette/CommandPalette";
+import { VideoPlayer } from "@/components/video-player/VideoPlayer";
+import { RichTextEditor } from "@/components/rich-text-editor/RichTextEditor";
+import { Tour } from "@/components/tour/Tour";
+
+describe("a11y — advanced components", () => {
+  it("DataGrid", async () => {
+    type Row = { id: string; name: string; role: string };
+    const columns: DataGridColumn<Row>[] = [
+      { id: "name", header: "Name", accessorKey: "name" },
+      { id: "role", header: "Role", accessorKey: "role" },
+    ];
+    const data: Row[] = [
+      { id: "1", name: "Alice", role: "Admin" },
+      { id: "2", name: "Bob", role: "Editor" },
+    ];
+    await expectNoViolations(wrap(<DataGrid data={data} columns={columns} height={300} />));
+  });
+
+  it("CommandPalette (closed)", async () => {
+    const items = [
+      { id: "new", label: "New file", onSelect: vi.fn() },
+      { id: "open", label: "Open file", onSelect: vi.fn() },
+    ];
+    await expectNoViolations(wrap(<CommandPalette items={items} open={false} />));
+  });
+
+  it("CommandPalette (open)", async () => {
+    const items = [
+      { id: "new", label: "New file", onSelect: vi.fn() },
+      { id: "open", label: "Open file", onSelect: vi.fn() },
+    ];
+    await expectNoViolations(wrap(<CommandPalette items={items} open={true} />));
+  });
+
+  it("VideoPlayer", async () => {
+    await expectNoViolations(
+      wrap(
+        <VideoPlayer src="/sample.mp4" title="Demo video" controls aria-label="Demo video player" />
+      )
+    );
+  });
+
+  it("RichTextEditor", async () => {
+    const { container } = render(
+      <ThemeProvider>
+        <RichTextEditor value="<p>Hello world</p>" />
+      </ThemeProvider>
+    );
+    // Tiptap initialises asynchronously
+    await waitFor(() => {
+      expect(container.querySelector(".tiptap")).toBeTruthy();
+    });
+    await expectNoViolations(container);
+  });
+
+  it("Tour (not started)", async () => {
+    await expectNoViolations(
+      wrap(
+        <Tour
+          autoStart={false}
+          steps={[
+            { title: "Welcome", description: "This is the first step." },
+            { title: "Next", description: "This is the second step." },
+          ]}
         />
       )
     );
